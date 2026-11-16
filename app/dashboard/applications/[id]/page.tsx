@@ -1,52 +1,56 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 const applicationData: Record<string, {
   student: string;
   studentId: string;
+  program: string;
+  yearSection: string;
+  opportunity: string;
   company: string;
-  role: string;
-  internshipId: string;
-  stage: string;
-  submitted: string;
+  description: string;
+  slots: number;
+  status: string;
+  submissionDate: string;
 }> = {
   "app-001": {
     student: "Angela Reyes",
     studentId: "2024-0001",
+    program: "BS Computer Engineering",
+    yearSection: "4th Year / 4-1",
+    opportunity: "Software Development Intern",
     company: "Accenture Philippines",
-    role: "Software Development Intern",
-    internshipId: "software-development-intern",
-    stage: "Screening",
-    submitted: "November 10, 2026",
+    description: "Software development and application support internship.",
+    slots: 4,
+    status: "Pending",
+    submissionDate: "November 10, 2026",
   },
 
   "app-002": {
     student: "Miguel Santos",
     studentId: "2024-0002",
+    program: "BS Information Technology",
+    yearSection: "4th Year / 4-2",
+    opportunity: "IT Support Intern",
     company: "IBM Philippines",
-    role: "IT Support Intern",
-    internshipId: "it-support-intern",
-    stage: "Interview",
-    submitted: "November 8, 2026",
+    description: "Technical support and infrastructure internship.",
+    slots: 2,
+    status: "Accepted",
+    submissionDate: "November 8, 2026",
   },
 
   "app-003": {
     student: "Sofia Cruz",
     studentId: "2024-0003",
+    program: "BS Computer Science",
+    yearSection: "4th Year / 4-1",
+    opportunity: "Data Analytics Intern",
     company: "Globe Telecom",
-    role: "Data Analytics Intern",
-    internshipId: "data-analytics-intern",
-    stage: "Accepted",
-    submitted: "November 2, 2026",
+    description: "Data processing and analytics internship.",
+    slots: 3,
+    status: "Rejected",
+    submissionDate: "November 2, 2026",
   },
 };
-
-const stages = [
-  "Submitted",
-  "Screening",
-  "Interview",
-  "Accepted",
-];
 
 export default async function ApplicationDetailsPage({
   params,
@@ -58,17 +62,8 @@ export default async function ApplicationDetailsPage({
   const application = applicationData[id];
 
   if (!application) {
-    notFound();
+    return <h1>Application not found</h1>;
   }
-
-  const activeIndex =
-    application.stage === "Screening"
-      ? 1
-      : application.stage === "Interview"
-      ? 2
-      : application.stage === "Accepted"
-      ? 3
-      : 0;
 
   return (
     <>
@@ -91,31 +86,79 @@ export default async function ApplicationDetailsPage({
           <h1>{application.student}</h1>
 
           <p>
-            {application.role} · {application.company}
+            {application.opportunity} · {application.company}
           </p>
         </div>
 
         <div className="record-status">
-          <span>CURRENT STAGE</span>
-          <strong>{application.stage}</strong>
+          <span>STATUS</span>
+          <strong>{application.status}</strong>
         </div>
       </header>
 
-      <section className="status-stepper">
-        {stages.map((stage, index) => (
-          <div
-            key={stage}
-            className={`status-step ${
-              index <= activeIndex ? "status-step-active" : ""
-            }`}
-          >
-            <span>
-              {String(index + 1).padStart(2, "0")}
-            </span>
+      <section className="detail-grid">
+        <div className="detail-section">
+          <span className="section-label">
+            STUDENT INFORMATION
+          </span>
 
-            <strong>{stage}</strong>
-          </div>
-        ))}
+          <dl className="record-list">
+            <div>
+              <dt>Name</dt>
+              <dd>{application.student}</dd>
+            </div>
+
+            <div>
+              <dt>Student Number</dt>
+              <dd>{application.studentId}</dd>
+            </div>
+
+            <div>
+              <dt>Program</dt>
+              <dd>{application.program}</dd>
+            </div>
+
+            <div>
+              <dt>Year / Section</dt>
+              <dd>{application.yearSection}</dd>
+            </div>
+          </dl>
+
+          <Link
+            href={`/dashboard/students/${application.studentId}`}
+            className="simple-action"
+          >
+            View Student Profile →
+          </Link>
+        </div>
+
+        <div className="detail-section">
+          <span className="section-label">
+            OPPORTUNITY INFORMATION
+          </span>
+
+          <dl className="record-list">
+            <div>
+              <dt>Position</dt>
+              <dd>{application.opportunity}</dd>
+            </div>
+
+            <div>
+              <dt>Company</dt>
+              <dd>{application.company}</dd>
+            </div>
+
+            <div>
+              <dt>Available Slots</dt>
+              <dd>{application.slots}</dd>
+            </div>
+
+            <div>
+              <dt>Description</dt>
+              <dd>{application.description}</dd>
+            </div>
+          </dl>
+        </div>
       </section>
 
       <section className="detail-grid">
@@ -126,88 +169,54 @@ export default async function ApplicationDetailsPage({
 
           <dl className="record-list">
             <div>
-              <dt>Applicant</dt>
-              <dd>{application.student}</dd>
+              <dt>Application ID</dt>
+              <dd>{id}</dd>
             </div>
 
             <div>
-              <dt>Position</dt>
-              <dd>{application.role}</dd>
+              <dt>Submission Date</dt>
+              <dd>{application.submissionDate}</dd>
             </div>
 
             <div>
-              <dt>Company</dt>
-              <dd>{application.company}</dd>
-            </div>
-
-            <div>
-              <dt>Submitted</dt>
-              <dd>{application.submitted}</dd>
+              <dt>Status</dt>
+              <dd>{application.status}</dd>
             </div>
           </dl>
         </div>
 
         <div className="detail-section">
           <span className="section-label">
-            REQUIREMENTS
+            MANDATORY REQUIREMENTS
           </span>
 
           <div className="requirement-row">
             <span>Resume</span>
-            <strong>Submitted</strong>
+            <strong>Approved</strong>
           </div>
 
           <div className="requirement-row">
-            <span>Endorsement Letter</span>
-            <strong>Submitted</strong>
+            <span>Transcript of Records</span>
+            <strong>Approved</strong>
           </div>
 
           <div className="requirement-row">
-            <span>Application Form</span>
-            <strong>Submitted</strong>
+            <span>Medical Certificate</span>
+            <strong>Approved</strong>
           </div>
-        </div>
-      </section>
-
-      <section className="action-section">
-        <span className="section-label">
-          RELATED RECORDS
-        </span>
-
-        <div className="action-links">
-          <Link
-            href={`/dashboard/students/${application.studentId}`}
-            className="action-link"
-          >
-            <small>STUDENT</small>
-            <strong>
-              View {application.student}
-            </strong>
-            <span>→</span>
-          </Link>
-
-          <Link
-            href={`/dashboard/internships/${application.internshipId}`}
-            className="action-link"
-          >
-            <small>OPPORTUNITY</small>
-            <strong>
-              View Internship Posting
-            </strong>
-            <span>→</span>
-          </Link>
         </div>
       </section>
 
       <section className="decision-section">
         <span className="section-label">
-          NEXT ACTION
+          AVAILABLE ACTIONS
         </span>
 
-        {application.stage === "Screening" && (
+        {application.status === "Pending" && (
           <>
             <p>
-              The application is currently under screening.
+              Review the student information, required documents, and
+              opportunity availability before making a decision.
             </p>
 
             <div className="decision-actions">
@@ -216,35 +225,43 @@ export default async function ApplicationDetailsPage({
               </button>
 
               <button className="primary-action">
-                Move to Interview
+                Accept Application
               </button>
             </div>
           </>
         )}
 
-        {application.stage === "Interview" && (
+        {application.status === "Accepted" && (
           <>
             <p>
-              The applicant has reached the interview stage.
+              This application has been accepted and is ready for official
+              internship placement.
             </p>
 
-            <div className="decision-actions">
-              <button className="secondary-action">
-                Reject Application
-              </button>
-
-              <button className="primary-action">
-                Mark as Accepted
-              </button>
-            </div>
+            <Link
+              href={`/dashboard/placements/create?application=${id}`}
+              className="primary-action link-button"
+            >
+              Create Placement →
+            </Link>
           </>
         )}
 
-        {application.stage === "Accepted" && (
-          <p>
-            This application has been accepted and can proceed to
-            internship placement.
-          </p>
+        {application.status === "Rejected" && (
+          <>
+            <p>
+              This application was rejected and remains in the student's
+              application history.
+            </p>
+
+            <div className="rejection-note">
+              <span>REJECTION REASON</span>
+
+              <p>
+                Required criteria for the selected opportunity were not met.
+              </p>
+            </div>
+          </>
         )}
       </section>
     </>

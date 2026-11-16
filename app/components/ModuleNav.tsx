@@ -34,6 +34,11 @@ const modules = [
     label: "Evaluations",
     href: "/dashboard/evaluations",
   },
+  {
+  number: "11",
+  label: "Settings",
+  href: "/dashboard/settings",
+  },
 ];
 
 export default function ModuleNav() {
