@@ -225,23 +225,50 @@ export default function DashboardPage() {
         </div>
 
         <div className="activity-list-clean">
-          <div>
-            <strong>Joshua Tan</strong>
-            <span>Submitted an application</span>
-            <small>10m</small>
-          </div>
+          <Link
+            href="/dashboard/applications/app-001"
+            className="activity-item"
+          >
+            <div className="activity-person">
+              <strong>Joshua Tan</strong>
+              <span>Submitted an application</span>
+            </div>
 
-          <div>
-            <strong>Nicole Garcia</strong>
-            <span>Application accepted</span>
-            <small>1h</small>
-          </div>
+            <div className="activity-meta">
+              <small>10m</small>
+              <span className="activity-arrow">→</span>
+            </div>
+          </Link>
 
-          <div>
-            <strong>Sofia Cruz</strong>
-            <span>Completed internship hours</span>
-            <small>3h</small>
-          </div>
+          <Link
+            href="/dashboard/applications/app-002"
+            className="activity-item"
+          >
+            <div className="activity-person">
+              <strong>Nicole Garcia</strong>
+              <span>Application accepted</span>
+            </div>
+
+            <div className="activity-meta">
+              <small>1h</small>
+              <span className="activity-arrow">→</span>
+            </div>
+          </Link>
+
+          <Link
+            href="/dashboard/progress/2024-0003"
+            className="activity-item"
+          >
+            <div className="activity-person">
+              <strong>Sofia Cruz</strong>
+              <span>Completed internship hours</span>
+            </div>
+
+            <div className="activity-meta">
+              <small>3h</small>
+              <span className="activity-arrow">→</span>
+            </div>
+          </Link>
         </div>
       </section>
     </>

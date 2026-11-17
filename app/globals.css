@@ -1394,8 +1394,49 @@ td a {
   text-decoration: none;
 }
 
+/* ===================================
+   QUICK ACTION INTERACTIONS
+=================================== */
+
+.overview-actions a {
+  position: relative;
+
+  transition:
+    background 140ms ease,
+    color 140ms ease,
+    border-color 140ms ease;
+}
+
+.overview-actions a > span:last-child {
+  transition: transform 140ms ease;
+}
+
 .overview-actions a:hover {
-  padding-left: 5px;
+  background: #dedfdb;
+}
+
+.overview-actions a:hover > span:last-child {
+  transform: translateX(4px);
+}
+
+/* PRIMARY QUICK ACTION */
+
+.overview-actions .overview-action-primary {
+  transition:
+    background 140ms ease,
+    color 140ms ease;
+}
+
+.overview-actions .overview-action-primary:hover {
+  padding-left: 14px;
+
+  background: #2c2c2c;
+}
+
+.overview-actions
+  .overview-action-primary:hover
+  > span:last-child {
+  transform: rotate(90deg);
 }
 
 .overview-actions .overview-action-primary {
@@ -1408,30 +1449,205 @@ td a {
   color: var(--white);
 }
 
+/* ===================================
+   CLICKABLE DASHBOARD CARDS
+=================================== */
+
+.attention-card,
+.snapshot-item {
+  cursor: pointer;
+}
+
+.attention-card {
+  transition:
+    transform 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.attention-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #9d9e99;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.attention-primary:hover {
+  background: #292929;
+
+  border-color: #292929;
+}
+
+
+/* AT A GLANCE */
+
+.snapshot-item {
+  position: relative;
+
+  transition:
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.snapshot-item::after {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  content: "→";
+
+  color: #777872;
+
+  font-size: 11px;
+
+  transition: transform 140ms ease;
+}
+
+.snapshot-item:hover {
+  transform: translateY(-2px);
+
+  background: #e7e8e4;
+}
+
+.snapshot-item:hover::after {
+  transform: translateX(4px);
+
+  color: var(--black);
+}
+
+/* ===================================
+   TEXT LINK INTERACTIONS
+=================================== */
+
+.tertiary-link,
+.table-action,
+.simple-action {
+  transition:
+    color 140ms ease,
+    opacity 140ms ease;
+}
+
+.tertiary-link:hover,
+.table-action:hover,
+.simple-action:hover {
+  color: #555651;
+
+  opacity: 1;
+}
+
+/* ===================================
+   SIDEBAR INTERACTIONS
+=================================== */
+
+.sidebar-link {
+  transition:
+    background 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease;
+}
+
+.sidebar-link:hover {
+  background: #c6c7c3;
+
+  color: #111111;
+
+  border-left-color: #8e8f8a;
+}
+
+.sidebar-link-active:hover {
+  background: #ffffff;
+
+  border-left-color: #111111;
+}
+
+/* ===================================
+   RECENT ACTIVITY
+=================================== */
+
+.overview-activity {
+  margin-bottom: 20px;
+}
+
+.overview-activity .overview-section-heading {
+  margin-bottom: 10px;
+}
+
 .activity-list-clean {
   border-top: 1px solid var(--line);
 }
 
-.activity-list-clean > div {
-  padding: 14px 0;
+.activity-item {
+  min-height: 48px;
 
-  display: grid;
-  grid-template-columns: 180px 1fr auto;
-  align-items: baseline;
-  gap: 20px;
+  padding: 10px 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
 
   border-bottom: 1px solid var(--line);
+
+  color: var(--black);
+
+  text-decoration: none;
+
+  transition:
+    background 140ms ease,
+    border-color 140ms ease;
 }
 
-.activity-list-clean strong {
-  font-size: 12px;
+.activity-person {
+  min-width: 0;
+
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
 }
 
-.activity-list-clean span,
-.activity-list-clean small {
-  color: var(--gray);
+.activity-person strong {
+  min-width: 150px;
 
   font-size: 11px;
+}
+
+.activity-person span {
+  color: var(--gray);
+
+  font-size: 10px;
+}
+
+.activity-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.activity-meta small {
+  min-width: 25px;
+
+  color: var(--gray);
+
+  font-size: 9px;
+
+  text-align: right;
+}
+
+.activity-arrow {
+  font-size: 13px;
+
+  transition: transform 140ms ease;
+}
+
+.activity-item:hover {
+  background: #e7e8e4;
+}
+
+.activity-item:hover .activity-arrow {
+  transform: translateX(4px);
 }
 
 
@@ -1725,6 +1941,42 @@ td a {
   line-height: 1.4;
 }
 
+.student-record-card {
+  border: 1px solid transparent;
+
+  transition:
+    transform 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease;
+}
+
+.student-record-card:hover {
+  transform: translateY(-2px);
+
+  background: #e5e5e1;
+
+  border-color: #c7c8c4;
+}
+
+.student-record-card .record-card-arrow {
+  transition: transform 140ms ease;
+}
+
+.student-record-card:hover .record-card-arrow {
+  transform: translateX(4px);
+}
+
+
+/* non-clickable cards must not move */
+
+.student-card-disabled:hover {
+  transform: none;
+
+  background: #f0f0ed;
+
+  border-color: transparent;
+}
+
 .record-card-arrow {
   position: absolute;
   top: 17px;
@@ -1863,16 +2115,16 @@ td a {
 }
 
 .application-review-button {
-  padding: 10px 13px;
+  transition:
+    background 140ms ease,
+    color 140ms ease,
+    transform 140ms ease;
+}
 
-  background: var(--white);
-  color: var(--black);
+.application-review-button:hover {
+  transform: translateY(-1px);
 
-  font-size: 10px;
-  font-weight: 700;
-
-  text-decoration: none;
-  white-space: nowrap;
+  background: #d9dad6;
 }
 
 .application-outcomes {
@@ -1931,6 +2183,27 @@ td a {
   color: #666762;
 
   font-size: 10px;
+}
+
+.outcome-card,
+.placement-status-row {
+  transition:
+    background 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.outcome-card:hover,
+.placement-status-row:hover {
+  background: #d7d8d4;
+
+  box-shadow: inset 0 0 0 1px #b9bab5;
+}
+
+.outcome-card-active,
+.placement-status-active {
+  background: #f7f7f5;
+
+  box-shadow: inset 0 0 0 2px #111111;
 }
 
 .operations-directory {
@@ -2435,6 +2708,27 @@ td a {
 
 .progress-record-row:hover {
   background: #e8e9e5;
+}
+
+.progress-record-row {
+  transition:
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.progress-record-row:hover {
+  transform: translateX(2px);
+
+  background: #e2e3df;
+}
+
+.progress-record-row:hover
+  .progress-open-arrow {
+  transform: translateX(4px);
+}
+
+.progress-open-arrow {
+  transition: transform 140ms ease;
 }
 
 .progress-person strong,
