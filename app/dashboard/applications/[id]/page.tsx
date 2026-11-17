@@ -49,6 +49,14 @@ export default async function ApplicationDetailsPage({
         </div>
       </header>
 
+      <ApplicationDecision
+        applicationId={application.id}
+        initialStatus={application.status}
+        existingReason={
+          application.rejectionReason
+        }
+      />
+
       <section className="detail-grid">
         <div className="detail-section">
           <span className="section-label">
@@ -166,14 +174,7 @@ export default async function ApplicationDetailsPage({
           </div>
         </div>
       </section>
-
-      <ApplicationDecision
-        applicationId={application.id}
-        initialStatus={application.status}
-        existingReason={
-          application.rejectionReason
-        }
-      />
     </>
   );
 }
+

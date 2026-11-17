@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import {
   applications,
   placements,
@@ -17,23 +18,14 @@ export default async function StudentProfilePage({
   );
 
   if (!student) {
-    return (
-      <>
-        <Link
-          href="/dashboard/students"
-          className="back-link"
-        >
-          ← Back to Students
-        </Link>
-
-        <h1>Student not found</h1>
-      </>
-    );
+    return <h1>Student not found</h1>;
   }
 
-  const studentApplications = applications.filter(
-    (application) => application.studentId === id
-  );
+  const studentApplications =
+    applications.filter(
+      (application) =>
+        application.studentId === id
+    );
 
   const placement = placements.find(
     (record) => record.studentId === id
@@ -42,12 +34,21 @@ export default async function StudentProfilePage({
   const progress =
     student.requiredHours > 0
       ? Math.round(
-          (student.hours / student.requiredHours) * 100
+          (student.hours /
+            student.requiredHours) *
+            100
         )
       : 0;
 
+  const remaining = Math.max(
+    student.requiredHours - student.hours,
+    0
+  );
+
   return (
     <>
+      {/* BREADCRUMB */}
+
       <div className="breadcrumb">
         <Link href="/dashboard/students">
           Students
@@ -58,78 +59,280 @@ export default async function StudentProfilePage({
         <span>{student.name}</span>
       </div>
 
-      <header className="student-profile-header">
-        <div>
+
+      {/* IDENTITY HERO */}
+
+      <section className="student-hero-v2">
+
+        <div className="student-identity-v2">
           <span className="section-label">
-            STUDENT RECORD
+            STUDENT PROFILE
           </span>
 
-          <h1 className="student-name">
-            {student.name}
-          </h1>
+          <h1>{student.name}</h1>
 
-          <p className="student-program">
-            {student.program} · {student.yearLevel} ·{" "}
-            {student.section}
-          </p>
+          <div className="student-identity-meta">
+            <span>{student.id}</span>
+
+            <span>{student.program}</span>
+
+            <span>
+              {student.yearLevel} ·{" "}
+              {student.section}
+            </span>
+          </div>
         </div>
 
-        <div className="profile-header-actions">
-          <div className="student-id-block">
-            <span>STUDENT ID</span>
-            <strong>{student.id}</strong>
+        <Link
+          href={`/dashboard/students/${student.id}/edit`}
+          className="secondary-action link-button-reset"
+        >
+          Edit Profile
+        </Link>
+
+      </section>
+
+
+      {/* MAIN INTERNSHIP STATUS */}
+
+      <section className="student-internship-card">
+
+        <div className="student-internship-primary">
+          <div className="student-status-row">
+            <span className="student-status-pill">
+              {student.status}
+            </span>
+
+            {placement && (
+              <span className="student-placement-id">
+                {placement.id}
+              </span>
+            )}
           </div>
 
-          <Link
-            href={`/dashboard/students/${student.id}/edit`}
-            className="secondary-action link-button-reset"
-          >
-            Edit Student
-          </Link>
-        </div>
-      </header>
-
-      <section className="student-overview">
-        <div className="student-main-info">
           <span className="section-label">
             CURRENT INTERNSHIP
           </span>
 
-          <div className="student-company">
+          <h2>
             {student.placement}
-          </div>
+          </h2>
 
-          <p>{student.position}</p>
+          <p>
+            {student.position}
+          </p>
         </div>
 
-        <div className="student-status-info">
-          <div>
-            <span>STATUS</span>
-            <strong>{student.status}</strong>
-          </div>
 
-          <div>
-            <span>RENDERED HOURS</span>
+        <div className="student-progress-v2">
 
-            <strong>
-              {student.hours} / {student.requiredHours}
-            </strong>
-          </div>
-
-          <div>
-            <span>PROGRESS</span>
+          <div className="student-progress-main">
             <strong>{progress}%</strong>
+
+            <span>completed</span>
           </div>
+
+          <div className="student-progress-track">
+            <div
+              style={{
+                width: `${Math.min(
+                  progress,
+                  100
+                )}%`,
+              }}
+            />
+          </div>
+
+          <div className="student-progress-numbers">
+            <div>
+              <strong>{student.hours}</strong>
+              <span>Rendered</span>
+            </div>
+
+            <div>
+              <strong>{remaining}</strong>
+              <span>Remaining</span>
+            </div>
+
+            <div>
+              <strong>
+                {student.requiredHours}
+              </strong>
+              <span>Required</span>
+            </div>
+          </div>
+
         </div>
+
       </section>
 
-      <section className="student-record-grid">
-        <div className="student-record-section">
+
+      {/* RECORD SHORTCUTS */}
+
+      <section className="student-record-hub">
+
+        <div className="student-section-heading">
+          <div>
+            <span className="section-label">
+              INTERNSHIP RECORD
+            </span>
+
+            <h2>
+              Everything related to this student
+            </h2>
+          </div>
+        </div>
+
+
+        <div className="student-record-card-grid">
+
+          <Link
+            href={`/dashboard/requirements?student=${id}`}
+            className="student-record-card"
+          >
+            <span className="record-card-index">
+              01
+            </span>
+
+            <strong>Requirements</strong>
+
+            <p>
+              Documents and review status
+            </p>
+
+            <span className="record-card-arrow">
+              →
+            </span>
+          </Link>
+
+
+          <Link
+            href={`/dashboard/applications?student=${id}`}
+            className="student-record-card"
+          >
+            <span className="record-card-index">
+              02
+            </span>
+
+            <strong>Applications</strong>
+
+            <p>
+              {studentApplications.length}{" "}
+              application
+              {studentApplications.length !== 1
+                ? "s"
+                : ""}
+            </p>
+
+            <span className="record-card-arrow">
+              →
+            </span>
+          </Link>
+
+
+          {placement ? (
+            <Link
+              href={`/dashboard/placements/${placement.id}`}
+              className="student-record-card"
+            >
+              <span className="record-card-index">
+                03
+              </span>
+
+              <strong>Placement</strong>
+
+              <p>
+                {placement.company}
+              </p>
+
+              <span className="record-card-arrow">
+                →
+              </span>
+            </Link>
+          ) : (
+            <div className="student-record-card student-card-disabled">
+              <span className="record-card-index">
+                03
+              </span>
+
+              <strong>Placement</strong>
+
+              <p>
+                Not yet available
+              </p>
+            </div>
+          )}
+
+
+          {placement ? (
+            <Link
+              href={`/dashboard/progress/${id}`}
+              className="student-record-card"
+            >
+              <span className="record-card-index">
+                04
+              </span>
+
+              <strong>Progress</strong>
+
+              <p>
+                {progress}% completed
+              </p>
+
+              <span className="record-card-arrow">
+                →
+              </span>
+            </Link>
+          ) : (
+            <div className="student-record-card student-card-disabled">
+              <span className="record-card-index">
+                04
+              </span>
+
+              <strong>Progress</strong>
+
+              <p>
+                Available after placement
+              </p>
+            </div>
+          )}
+
+
+          <Link
+            href={`/dashboard/evaluations?student=${id}`}
+            className="student-record-card"
+          >
+            <span className="record-card-index">
+              05
+            </span>
+
+            <strong>Evaluations</strong>
+
+            <p>
+              Company and faculty records
+            </p>
+
+            <span className="record-card-arrow">
+              →
+            </span>
+          </Link>
+
+        </div>
+
+      </section>
+
+
+      {/* DETAILS */}
+
+      <section className="student-detail-v2">
+
+        <div className="student-detail-panel">
           <span className="section-label">
-            PROFILE
+            STUDENT INFORMATION
           </span>
 
-          <dl className="record-list">
+          <dl className="student-info-list">
+
             <div>
               <dt>Student ID</dt>
               <dd>{student.id}</dd>
@@ -154,16 +357,20 @@ export default async function StudentProfilePage({
               <dt>Section</dt>
               <dd>{student.section}</dd>
             </div>
+
           </dl>
         </div>
 
-        <div className="student-record-section">
+
+        <div className="student-detail-panel student-placement-detail">
+
           <span className="section-label">
-            PLACEMENT SUMMARY
+            PLACEMENT DETAILS
           </span>
 
           {placement ? (
-            <dl className="record-list">
+            <dl className="student-info-list">
+
               <div>
                 <dt>Company</dt>
                 <dd>{placement.company}</dd>
@@ -171,166 +378,48 @@ export default async function StudentProfilePage({
 
               <div>
                 <dt>Opportunity</dt>
-                <dd>{placement.opportunity}</dd>
+                <dd>
+                  {placement.opportunity}
+                </dd>
               </div>
 
               <div>
                 <dt>Faculty Adviser</dt>
-                <dd>{placement.adviser}</dd>
+                <dd>
+                  {placement.adviser}
+                </dd>
               </div>
 
               <div>
                 <dt>Supervisor</dt>
-                <dd>{placement.supervisor}</dd>
+                <dd>
+                  {placement.supervisor}
+                </dd>
               </div>
 
               <div>
                 <dt>Start Date</dt>
-                <dd>{placement.startDate}</dd>
+                <dd>
+                  {placement.startDate}
+                </dd>
               </div>
 
               <div>
                 <dt>End Date</dt>
-                <dd>{placement.endDate}</dd>
+                <dd>
+                  {placement.endDate}
+                </dd>
               </div>
+
             </dl>
           ) : (
             <p className="empty-message">
-              No official placement has been created yet.
+              No placement has been created yet.
             </p>
           )}
+
         </div>
-      </section>
 
-      <section className="student-records">
-        <span className="section-label">
-          STUDENT INTERNSHIP RECORD
-        </span>
-
-        <Link
-          href={`/dashboard/requirements?student=${id}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">01</span>
-
-            <div>
-              <strong>Requirements</strong>
-
-              <p>
-                Submitted documents, review status, and
-                remarks
-              </p>
-            </div>
-          </div>
-
-          <span>→</span>
-        </Link>
-
-        <Link
-          href={`/dashboard/applications?student=${id}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">02</span>
-
-            <div>
-              <strong>Applications</strong>
-
-              <p>
-                {studentApplications.length} application
-                {studentApplications.length !== 1 ? "s" : ""}{" "}
-                recorded
-              </p>
-            </div>
-          </div>
-
-          <span>→</span>
-        </Link>
-
-        {placement ? (
-          <Link
-            href={`/dashboard/placements/${placement.id}`}
-            className="student-record-link"
-          >
-            <div>
-              <span className="record-number">03</span>
-
-              <div>
-                <strong>Placement</strong>
-
-                <p>
-                  Open official placement record{" "}
-                  {placement.id}
-                </p>
-              </div>
-            </div>
-
-            <span>→</span>
-          </Link>
-        ) : (
-          <div className="student-record-link disabled-record">
-            <div>
-              <span className="record-number">03</span>
-
-              <div>
-                <strong>Placement</strong>
-                <p>No placement created yet</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {placement ? (
-          <Link
-            href={`/dashboard/progress/${id}`}
-            className="student-record-link"
-          >
-            <div>
-              <span className="record-number">04</span>
-
-              <div>
-                <strong>Progress</strong>
-                <p>
-                  Progress reports and accumulated hours
-                </p>
-              </div>
-            </div>
-
-            <span>→</span>
-          </Link>
-        ) : (
-          <div className="student-record-link disabled-record">
-            <div>
-              <span className="record-number">04</span>
-
-              <div>
-                <strong>Progress</strong>
-                <p>Available after placement</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <Link
-          href={`/dashboard/evaluations?student=${id}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">05</span>
-
-            <div>
-              <strong>Evaluations</strong>
-
-              <p>
-                Company supervisor and faculty adviser
-                evaluation records
-              </p>
-            </div>
-          </div>
-
-          <span>→</span>
-        </Link>
       </section>
     </>
   );

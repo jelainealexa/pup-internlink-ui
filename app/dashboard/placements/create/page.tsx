@@ -50,7 +50,7 @@ export default function CreatePlacementPage() {
     setError("");
     setSaved(false);
 
-    if (application.status !== "Accepted") {
+    if (!application || application.status !== "Accepted") {
       setError(
         "A placement can only be created from an accepted application."
       );

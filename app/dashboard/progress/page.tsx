@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
 } from "react";
+
 import {
   placements,
   progressReports,
@@ -12,252 +13,378 @@ import {
 
 export default function ProgressPage() {
   const [search, setSearch] = useState("");
-  const [company, setCompany] = useState("All");
-  const [adviser, setAdviser] = useState("All");
-  const [status, setStatus] = useState("All");
+  const [company, setCompany] =
+    useState("All");
+  const [adviser, setAdviser] =
+    useState("All");
+  const [status, setStatus] =
+    useState("All");
 
   const companies = [
-    ...new Set(placements.map((item) => item.company)),
+    ...new Set(
+      placements.map(
+        (placement) =>
+          placement.company
+      )
+    ),
   ];
 
   const advisers = [
-    ...new Set(placements.map((item) => item.adviser)),
+    ...new Set(
+      placements.map(
+        (placement) =>
+          placement.adviser
+      )
+    ),
   ];
 
   const filteredRecords = useMemo(() => {
-    return placements.filter((placement) => {
-      const query = search.toLowerCase();
+    return placements.filter(
+      (placement) => {
+        const query =
+          search.toLowerCase();
 
-      return (
-        (placement.student
-          .toLowerCase()
-          .includes(query) ||
-          placement.studentId
+        return (
+          (placement.student
             .toLowerCase()
-            .includes(query)) &&
-        (company === "All" ||
-          placement.company === company) &&
-        (adviser === "All" ||
-          placement.adviser === adviser) &&
-        (status === "All" ||
-          placement.status === status)
-      );
-    });
-  }, [search, company, adviser, status]);
+            .includes(query) ||
+            placement.studentId
+              .toLowerCase()
+              .includes(query)) &&
+          (company === "All" ||
+            placement.company === company) &&
+          (adviser === "All" ||
+            placement.adviser === adviser) &&
+          (status === "All" ||
+            placement.status === status)
+        );
+      }
+    );
+  }, [
+    search,
+    company,
+    adviser,
+    status,
+  ]);
 
   const ongoing = placements.filter(
-    (item) => item.status === "Ongoing"
+    (placement) =>
+      placement.status === "Ongoing"
   ).length;
 
   const reportingStudents = new Set(
-    progressReports.map((report) => report.studentId)
+    progressReports.map(
+      (report) => report.studentId
+    )
   ).size;
 
-  const pendingReviews = progressReports.filter(
-    (report) =>
-      report.reviewStatus === "Pending Review"
-  ).length;
+  const pendingReports =
+    progressReports.filter(
+      (report) =>
+        report.reviewStatus ===
+        "Pending Review"
+    );
 
-  const nearCompletion = placements.filter(
-    (placement) => {
+  const nearCompletion =
+    placements.filter((placement) => {
       const percentage =
         placement.renderedHours /
         placement.requiredHours;
 
       return (
         percentage >= 0.75 &&
+        percentage < 1 &&
         placement.status === "Ongoing"
       );
-    }
-  ).length;
+    }).length;
 
-  const completedHours = placements.filter(
-    (placement) =>
-      placement.renderedHours >=
-      placement.requiredHours
-  ).length;
+  const completedHours =
+    placements.filter(
+      (placement) =>
+        placement.renderedHours >=
+        placement.requiredHours
+    ).length;
+
+  const firstPendingReport =
+    pendingReports[0];
 
   return (
     <>
-      <header className="content-header">
-        <div className="page-eyebrow">
-          08 / Progress Monitoring
+      <header className="content-header operations-page-header">
+        <div>
+          <div className="page-eyebrow">
+            08 / PROGRESS MONITORING
+          </div>
+
+          <h1>Progress monitoring</h1>
+
+          <p>
+            Find delayed reports, review hours,
+            and monitor completion.
+          </p>
         </div>
-
-        <h1>Progress monitoring</h1>
-
-        <p>
-          Track internship hours, progress reports, and
-          completion status across active placements.
-        </p>
       </header>
 
-      <section className="progress-summary five-summary">
-        <div>
+      {/* REVIEW ALERT */}
+
+      <section className="progress-attention-v2">
+        <div className="progress-attention-main">
           <span className="section-label">
-            ONGOING PLACEMENTS
+            REVIEW QUEUE
           </span>
-          <strong>{ongoing}</strong>
-          <p>active placements</p>
+
+          <strong>
+            {pendingReports.length}
+          </strong>
+
+          <h2>
+            report
+            {pendingReports.length !== 1
+              ? "s"
+              : ""}{" "}
+            need review
+          </h2>
+
+          {firstPendingReport && (
+            <Link
+              href={`/dashboard/progress/${firstPendingReport.studentId}`}
+              className="progress-review-action"
+            >
+              Review next report →
+            </Link>
+          )}
         </div>
 
-        <div>
-          <span className="section-label">
-            CURRENTLY REPORTING
-          </span>
-          <strong>{reportingStudents}</strong>
-          <p>students with submitted reports</p>
-        </div>
+        <div className="progress-snapshot-v2">
+          <div>
+            <span>Ongoing</span>
+            <strong>{ongoing}</strong>
+          </div>
 
-        <div>
-          <span className="section-label">
-            PENDING REVIEWS
-          </span>
-          <strong>{pendingReviews}</strong>
-          <p>reports waiting for review</p>
-        </div>
+          <div>
+            <span>Reporting</span>
+            <strong>
+              {reportingStudents}
+            </strong>
+          </div>
 
-        <div>
-          <span className="section-label">
-            NEAR COMPLETION
-          </span>
-          <strong>{nearCompletion}</strong>
-          <p>students at 75% or above</p>
-        </div>
+          <div>
+            <span>Near completion</span>
+            <strong>
+              {nearCompletion}
+            </strong>
+          </div>
 
-        <div>
-          <span className="section-label">
-            COMPLETED REQUIRED HOURS
-          </span>
-          <strong>{completedHours}</strong>
-          <p>students who reached required hours</p>
+          <div>
+            <span>
+              Completed hours
+            </span>
+
+            <strong>
+              {completedHours}
+            </strong>
+          </div>
         </div>
       </section>
 
-      <section className="progress-controls">
-        <div>
-          <label>SEARCH</label>
+      {/* MONITORING TABLE */}
 
-          <input
-            type="search"
-            placeholder="Student name or student number"
-            value={search}
-            onChange={(event) =>
-              setSearch(event.target.value)
-            }
-          />
+      <section className="operations-directory">
+        <div className="directory-heading-v2">
+          <div>
+            <span className="section-label">
+              STUDENT PROGRESS
+            </span>
+
+            <h2>
+              {filteredRecords.length} student
+              {filteredRecords.length !== 1
+                ? "s"
+                : ""}{" "}
+              monitored
+            </h2>
+          </div>
         </div>
 
-        <div>
-          <label>COMPANY</label>
+        <div className="operations-filter-bar progress-filter-bar-v2">
+          <div className="filter-search-wide">
+            <label>SEARCH</label>
 
-          <select
-            value={company}
-            onChange={(event) =>
-              setCompany(event.target.value)
-            }
-          >
-            <option>All</option>
+            <input
+              type="search"
+              placeholder="Student name or student number"
+              value={search}
+              onChange={(event) =>
+                setSearch(event.target.value)
+              }
+            />
+          </div>
 
-            {companies.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
+          <div>
+            <label>COMPANY</label>
+
+            <select
+              value={company}
+              onChange={(event) =>
+                setCompany(event.target.value)
+              }
+            >
+              <option>All</option>
+
+              {companies.map((item) => (
+                <option key={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>
+              FACULTY ADVISER
+            </label>
+
+            <select
+              value={adviser}
+              onChange={(event) =>
+                setAdviser(event.target.value)
+              }
+            >
+              <option>All</option>
+
+              {advisers.map((item) => (
+                <option key={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>STATUS</label>
+
+            <select
+              value={status}
+              onChange={(event) =>
+                setStatus(event.target.value)
+              }
+            >
+              <option>All</option>
+              <option>Ongoing</option>
+              <option>Completed</option>
+              <option>Terminated</option>
+            </select>
+          </div>
         </div>
 
-        <div>
-          <label>FACULTY ADVISER</label>
-
-          <select
-            value={adviser}
-            onChange={(event) =>
-              setAdviser(event.target.value)
-            }
-          >
-            <option>All</option>
-
-            {advisers.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label>STATUS</label>
-
-          <select
-            value={status}
-            onChange={(event) =>
-              setStatus(event.target.value)
-            }
-          >
-            <option>All</option>
-            <option>Ongoing</option>
-            <option>Completed</option>
-            <option>Terminated</option>
-          </select>
-        </div>
-      </section>
-
-      <div className="table-shell">
-        <table>
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Student Number</th>
-              <th>Company</th>
-              <th>Faculty Adviser</th>
-              <th>Required</th>
-              <th>Rendered</th>
-              <th>Remaining</th>
-              <th>Progress</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {filteredRecords.map((record) => {
+        <div className="progress-record-list">
+          {filteredRecords.map(
+            (record) => {
               const remaining = Math.max(
                 record.requiredHours -
                   record.renderedHours,
                 0
               );
 
-              const completion = Math.round(
-                (record.renderedHours /
-                  record.requiredHours) *
-                  100
-              );
+              const completion =
+                Math.round(
+                  (record.renderedHours /
+                    record.requiredHours) *
+                    100
+                );
+
+              const studentPending =
+                progressReports.filter(
+                  (report) =>
+                    report.studentId ===
+                      record.studentId &&
+                    report.reviewStatus ===
+                      "Pending Review"
+                ).length;
 
               return (
-                <tr key={record.id}>
-                  <td>
-                    <strong>{record.student}</strong>
-                  </td>
+                <Link
+                  href={`/dashboard/progress/${record.studentId}`}
+                  className="progress-record-row"
+                  key={record.id}
+                >
+                  <div className="progress-person">
+                    <strong>
+                      {record.student}
+                    </strong>
 
-                  <td>{record.studentId}</td>
-                  <td>{record.company}</td>
-                  <td>{record.adviser}</td>
-                  <td>{record.requiredHours}</td>
-                  <td>{record.renderedHours}</td>
-                  <td>{remaining}</td>
-                  <td>{completion}%</td>
-                  <td>{record.status}</td>
+                    <span>
+                      {record.studentId}
+                    </span>
+                  </div>
 
-                  <td>
-                    <Link
-                      href={`/dashboard/progress/${record.studentId}`}
-                    >
-                      Open →
-                    </Link>
-                  </td>
-                </tr>
+                  <div className="progress-company">
+                    <strong>
+                      {record.company}
+                    </strong>
+
+                    <span>
+                      {record.adviser}
+                    </span>
+                  </div>
+
+                  <div className="progress-hours-v2">
+                    <div className="progress-hours-heading">
+                      <strong>
+                        {record.renderedHours} /{" "}
+                        {
+                          record.requiredHours
+                        }{" "}
+                        hrs
+                      </strong>
+
+                      <span>
+                        {completion}%
+                      </span>
+                    </div>
+
+                    <div className="progress-row-track">
+                      <div
+                        style={{
+                          width: `${Math.min(
+                            completion,
+                            100
+                          )}%`,
+                        }}
+                      />
+                    </div>
+
+                    <span className="progress-remaining">
+                      {remaining} hours remaining
+                    </span>
+                  </div>
+
+                  <div className="progress-record-status">
+                    {studentPending > 0 ? (
+                      <span className="review-needed-badge">
+                        {studentPending} review
+                        {studentPending !== 1
+                          ? "s"
+                          : ""}
+                      </span>
+                    ) : (
+                      <span
+                        className={`record-status-pill status-${record.status.toLowerCase()}`}
+                      >
+                        {record.status}
+                      </span>
+                    )}
+
+                    <span className="progress-open-arrow">
+                      →
+                    </span>
+                  </div>
+                </Link>
               );
-            })}
-          </tbody>
-        </table>
-      </div>
+            }
+          )}
+        </div>
+      </section>
     </>
   );
 }

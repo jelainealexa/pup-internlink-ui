@@ -6,14 +6,22 @@ import {
   useMemo,
   useState,
 } from "react";
+
 import { placements } from "@/app/lib/mockData";
 
 export default function PlacementsPage() {
   const [search, setSearch] = useState("");
-  const [company, setCompany] = useState("All");
-  const [status, setStatus] = useState("All");
-  const [adviser, setAdviser] = useState("All");
-  const [sort, setSort] = useState("start-newest");
+  const [company, setCompany] =
+    useState("All");
+  const [status, setStatus] =
+    useState("All");
+  const [adviser, setAdviser] =
+    useState("All");
+
+  const [sort, setSort] = useState(
+    "start-newest"
+  );
+
   const [studentFilter, setStudentFilter] =
     useState("");
 
@@ -22,51 +30,67 @@ export default function PlacementsPage() {
       window.location.search
     );
 
-    const urlStatus = params.get("status");
-    const student = params.get("student");
+    const incomingStatus =
+      params.get("status");
 
-    if (urlStatus) {
-      const formatted =
-        urlStatus.charAt(0).toUpperCase() +
-        urlStatus.slice(1);
+    const incomingStudent =
+      params.get("student");
 
-      setStatus(formatted);
+    if (incomingStatus) {
+      setStatus(
+        incomingStatus.charAt(0).toUpperCase() +
+          incomingStatus.slice(1)
+      );
     }
 
-    if (student) {
-      setStudentFilter(student);
+    if (incomingStudent) {
+      setStudentFilter(incomingStudent);
     }
   }, []);
 
   const companies = [
-    ...new Set(placements.map((item) => item.company)),
+    ...new Set(
+      placements.map(
+        (placement) =>
+          placement.company
+      )
+    ),
   ];
 
   const advisers = [
-    ...new Set(placements.map((item) => item.adviser)),
+    ...new Set(
+      placements.map(
+        (placement) =>
+          placement.adviser
+      )
+    ),
   ];
 
   const filteredPlacements = useMemo(() => {
-    let result = placements.filter((placement) => {
-      const query = search.toLowerCase();
+    let result = placements.filter(
+      (placement) => {
+        const query =
+          search.toLowerCase();
 
-      return (
-        (placement.student
-          .toLowerCase()
-          .includes(query) ||
-          placement.id
+        return (
+          (placement.student
             .toLowerCase()
-            .includes(query)) &&
-        (company === "All" ||
-          placement.company === company) &&
-        (status === "All" ||
-          placement.status === status) &&
-        (adviser === "All" ||
-          placement.adviser === adviser) &&
-        (!studentFilter ||
-          placement.studentId === studentFilter)
-      );
-    });
+            .includes(query) ||
+            placement.id
+              .toLowerCase()
+              .includes(query)) &&
+          (company === "All" ||
+            placement.company === company) &&
+          (status === "All" ||
+            placement.status === status) &&
+          (adviser === "All" ||
+            placement.adviser === adviser) &&
+          (!studentFilter ||
+            placement.studentId ===
+              studentFilter)
+        );
+      }
+    );
 
     result = [...result].sort((a, b) => {
       if (sort === "start-oldest") {
@@ -102,219 +126,349 @@ export default function PlacementsPage() {
     studentFilter,
   ]);
 
+  const ongoing = placements.filter(
+    (item) => item.status === "Ongoing"
+  ).length;
+
+  const completed = placements.filter(
+    (item) => item.status === "Completed"
+  ).length;
+
+  const terminated = placements.filter(
+    (item) => item.status === "Terminated"
+  ).length;
+
   return (
     <>
-      <header className="content-header">
-        <div className="page-eyebrow">
-          07 / Placements
+      <header className="content-header operations-page-header">
+        <div>
+          <div className="page-eyebrow">
+            07 / PLACEMENTS
+          </div>
+
+          <h1>Placements</h1>
+
+          <p>
+            Official internship assignments and
+            supervision records.
+          </p>
         </div>
-
-        <h1>Placements</h1>
-
-        <p>
-          Manage official internship assignments created
-          from accepted applications.
-        </p>
       </header>
 
-      <section className="placement-summary">
-        <div>
+      {/* ASSIGNMENT OVERVIEW */}
+
+      <section className="placement-overview-v2">
+        <div className="placement-active-total">
           <span className="section-label">
-            ONGOING
+            ACTIVE PLACEMENTS
           </span>
 
-          <strong>
-            {
-              placements.filter(
-                (item) => item.status === "Ongoing"
-              ).length
-            }
-          </strong>
+          <strong>{ongoing}</strong>
 
-          <p>active internship placements</p>
+          <p>
+            students currently assigned to an
+            industry partner
+          </p>
         </div>
 
-        <div>
-          <span className="section-label">
-            COMPLETED
-          </span>
-
-          <strong>
-            {
-              placements.filter(
-                (item) => item.status === "Completed"
-              ).length
+        <div className="placement-status-list">
+          <button
+            onClick={() =>
+              setStatus(
+                status === "Ongoing"
+                  ? "All"
+                  : "Ongoing"
+              )
             }
-          </strong>
-
-          <p>completed placements</p>
-        </div>
-
-        <div>
-          <span className="section-label">
-            TERMINATED
-          </span>
-
-          <strong>
-            {
-              placements.filter(
-                (item) => item.status === "Terminated"
-              ).length
+            className={
+              status === "Ongoing"
+                ? "placement-status-row placement-status-active"
+                : "placement-status-row"
             }
-          </strong>
-
-          <p>placements terminated early</p>
-        </div>
-      </section>
-
-      {studentFilter && (
-        <div className="active-filter-notice">
-          Showing placement for student{" "}
-          <strong>{studentFilter}</strong>
+          >
+            <span>Ongoing</span>
+            <strong>{ongoing}</strong>
+          </button>
 
           <button
-            onClick={() => setStudentFilter("")}
+            onClick={() =>
+              setStatus(
+                status === "Completed"
+                  ? "All"
+                  : "Completed"
+              )
+            }
+            className={
+              status === "Completed"
+                ? "placement-status-row placement-status-active"
+                : "placement-status-row"
+            }
           >
-            Clear
+            <span>Completed</span>
+            <strong>{completed}</strong>
           </button>
-        </div>
-      )}
 
-      <section className="placement-controls placement-controls-expanded">
-        <div>
-          <label>SEARCH</label>
-
-          <input
-            type="search"
-            placeholder="Student name or placement ID"
-            value={search}
-            onChange={(event) =>
-              setSearch(event.target.value)
+          <button
+            onClick={() =>
+              setStatus(
+                status === "Terminated"
+                  ? "All"
+                  : "Terminated"
+              )
             }
-          />
-        </div>
-
-        <div>
-          <label>COMPANY</label>
-
-          <select
-            value={company}
-            onChange={(event) =>
-              setCompany(event.target.value)
+            className={
+              status === "Terminated"
+                ? "placement-status-row placement-status-active"
+                : "placement-status-row"
             }
           >
-            <option>All</option>
-
-            {companies.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label>STATUS</label>
-
-          <select
-            value={status}
-            onChange={(event) =>
-              setStatus(event.target.value)
-            }
-          >
-            <option>All</option>
-            <option>Ongoing</option>
-            <option>Completed</option>
-            <option>Terminated</option>
-          </select>
-        </div>
-
-        <div>
-          <label>FACULTY ADVISER</label>
-
-          <select
-            value={adviser}
-            onChange={(event) =>
-              setAdviser(event.target.value)
-            }
-          >
-            <option>All</option>
-
-            {advisers.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label>SORT</label>
-
-          <select
-            value={sort}
-            onChange={(event) =>
-              setSort(event.target.value)
-            }
-          >
-            <option value="start-newest">
-              Start Date: Newest
-            </option>
-            <option value="start-oldest">
-              Start Date: Oldest
-            </option>
-            <option value="end-newest">
-              End Date: Latest
-            </option>
-            <option value="end-oldest">
-              End Date: Earliest
-            </option>
-          </select>
+            <span>Terminated</span>
+            <strong>{terminated}</strong>
+          </button>
         </div>
       </section>
 
-      <div className="table-shell">
-        <table className="wide-table">
-          <thead>
-            <tr>
-              <th>Placement ID</th>
-              <th>Student</th>
-              <th>Company</th>
-              <th>Opportunity</th>
-              <th>Faculty Adviser</th>
-              <th>Company Supervisor</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Required</th>
-              <th>Rendered</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
+      {/* DIRECTORY */}
 
-          <tbody>
-            {filteredPlacements.map((placement) => (
-              <tr key={placement.id}>
-                <td>{placement.id}</td>
-                <td>{placement.student}</td>
-                <td>{placement.company}</td>
-                <td>{placement.opportunity}</td>
-                <td>{placement.adviser}</td>
-                <td>{placement.supervisor}</td>
-                <td>{placement.startDate}</td>
-                <td>{placement.endDate}</td>
-                <td>{placement.requiredHours}</td>
-                <td>{placement.renderedHours}</td>
-                <td>{placement.status}</td>
+      <section className="operations-directory">
+        <div className="directory-heading-v2">
+          <div>
+            <span className="section-label">
+              PLACEMENT DIRECTORY
+            </span>
 
-                <td>
-                  <Link
-                    href={`/dashboard/placements/${placement.id}`}
-                  >
-                    Open →
-                  </Link>
-                </td>
+            <h2>
+              {filteredPlacements.length} assignment
+              {filteredPlacements.length !== 1
+                ? "s"
+                : ""}
+            </h2>
+          </div>
+        </div>
+
+        {studentFilter && (
+          <div className="context-filter">
+            Student:{" "}
+            <strong>{studentFilter}</strong>
+
+            <button
+              onClick={() =>
+                setStudentFilter("")
+              }
+            >
+              Clear
+            </button>
+          </div>
+        )}
+
+        <div className="operations-filter-bar placement-filter-bar-v2">
+          <div className="filter-search-wide">
+            <label>SEARCH</label>
+
+            <input
+              type="search"
+              placeholder="Student name or placement ID"
+              value={search}
+              onChange={(event) =>
+                setSearch(event.target.value)
+              }
+            />
+          </div>
+
+          <div>
+            <label>COMPANY</label>
+
+            <select
+              value={company}
+              onChange={(event) =>
+                setCompany(event.target.value)
+              }
+            >
+              <option>All</option>
+
+              {companies.map((item) => (
+                <option key={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>STATUS</label>
+
+            <select
+              value={status}
+              onChange={(event) =>
+                setStatus(event.target.value)
+              }
+            >
+              <option>All</option>
+              <option>Ongoing</option>
+              <option>Completed</option>
+              <option>Terminated</option>
+            </select>
+          </div>
+
+          <div>
+            <label>
+              FACULTY ADVISER
+            </label>
+
+            <select
+              value={adviser}
+              onChange={(event) =>
+                setAdviser(event.target.value)
+              }
+            >
+              <option>All</option>
+
+              {advisers.map((item) => (
+                <option key={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>SORT</label>
+
+            <select
+              value={sort}
+              onChange={(event) =>
+                setSort(event.target.value)
+              }
+            >
+              <option value="start-newest">
+                Start: Newest
+              </option>
+
+              <option value="start-oldest">
+                Start: Oldest
+              </option>
+
+              <option value="end-newest">
+                End: Latest
+              </option>
+
+              <option value="end-oldest">
+                End: Earliest
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div className="table-shell operations-table-shell">
+          <table className="placement-table-v2">
+            <thead>
+              <tr>
+                <th>Placement</th>
+                <th>Student</th>
+                <th>Assignment</th>
+                <th>Supervision</th>
+                <th>Schedule</th>
+                <th>Hours</th>
+                <th>Status</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody>
+              {filteredPlacements.map(
+                (placement) => {
+                  const percent = Math.round(
+                    (placement.renderedHours /
+                      placement.requiredHours) *
+                      100
+                  );
+
+                  return (
+                    <tr key={placement.id}>
+                      <td>
+                        <strong>
+                          {placement.id}
+                        </strong>
+                      </td>
+
+                      <td>
+                        <strong>
+                          {placement.student}
+                        </strong>
+
+                        <span className="cell-subtext">
+                          {placement.studentId}
+                        </span>
+                      </td>
+
+                      <td>
+                        <strong>
+                          {placement.company}
+                        </strong>
+
+                        <span className="cell-subtext">
+                          {placement.opportunity}
+                        </span>
+                      </td>
+
+                      <td>
+                        <span>
+                          {placement.adviser}
+                        </span>
+
+                        <span className="cell-subtext">
+                          {placement.supervisor}
+                        </span>
+                      </td>
+
+                      <td>
+                        <span>
+                          {placement.startDate}
+                        </span>
+
+                        <span className="cell-subtext">
+                          to {placement.endDate}
+                        </span>
+                      </td>
+
+                      <td>
+                        <strong>
+                          {placement.renderedHours}
+                          {" / "}
+                          {
+                            placement.requiredHours
+                          }
+                        </strong>
+
+                        <span className="cell-subtext">
+                          {percent}% completed
+                        </span>
+                      </td>
+
+                      <td>
+                        <span
+                          className={`record-status-pill status-${placement.status.toLowerCase()}`}
+                        >
+                          {placement.status}
+                        </span>
+                      </td>
+
+                      <td>
+                        <Link
+                          href={`/dashboard/placements/${placement.id}`}
+                          className="table-action"
+                        >
+                          Open →
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                }
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </>
   );
 }

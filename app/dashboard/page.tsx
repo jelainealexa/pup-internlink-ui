@@ -3,301 +3,246 @@ import Link from "next/link";
 export default function DashboardPage() {
   return (
     <>
-      <div className="page-eyebrow">
-        Internship Program / Overview
-      </div>
+      {/* PAGE INTRO */}
 
-      <h1 className="page-title">
-        What needs attention right now.
-      </h1>
-
-      <p className="page-description">
-        A working overview of students, placements, applications,
-        requirements, progress, and evaluations for the current term.
-      </p>
-
-      {/* PRIORITY / ATTENTION AREA */}
-
-      <section className="overview-lead">
-        <div className="semester-pulse">
-          <span className="section-label">
-            CURRENT INTERNSHIP PROGRAM
-          </span>
-
-          <strong className="pulse-number">
-            124
-          </strong>
-
-          <p className="pulse-caption">
-            registered students are currently included in the internship
-            program.
-          </p>
+      <header className="overview-header">
+        <div className="page-eyebrow">
+          OVERVIEW
         </div>
 
-        <div className="now-panel">
-          <span className="section-label">
-            NEEDS ATTENTION
-          </span>
+        <h1>
+          Good afternoon, Coordinator.
+        </h1>
 
-          <div className="attention-list">
+        <p>
+          18 items need your attention today.
+        </p>
+      </header>
 
-            <Link
-              href="/dashboard/applications?status=pending"
-              className="attention-row"
-            >
-              <strong>12</strong>
+      {/* NEEDS ATTENTION */}
 
-              <span>
-                Pending applications
-              </span>
+      <section className="overview-section">
+        <div className="overview-section-heading">
+          <div>
+            <span className="section-label">
+              NEEDS ATTENTION
+            </span>
 
-              <span>→</span>
-            </Link>
-
-            <Link
-              href="/dashboard/requirements?status=pending"
-              className="attention-row"
-            >
-              <strong>07</strong>
-
-              <span>
-                Requirements to review
-              </span>
-
-              <span>→</span>
-            </Link>
-
-            <Link
-              href="/dashboard/evaluations?status=pending"
-              className="attention-row"
-            >
-              <strong>18</strong>
-
-              <span>
-                Pending evaluations
-              </span>
-
-              <span>→</span>
-            </Link>
-
-            <Link
-              href="/dashboard/partners?status=expiring"
-              className="attention-row"
-            >
-              <strong>04</strong>
-
-              <span>
-                Partner agreements expiring soon
-              </span>
-
-              <span>→</span>
-            </Link>
-
+            <h2>
+              Start with these.
+            </h2>
           </div>
+        </div>
+
+        <div className="attention-grid">
+          <Link
+            href="/dashboard/applications?status=pending"
+            className="attention-card attention-primary"
+          >
+            <div className="attention-card-top">
+              <span>Applications</span>
+              <span>→</span>
+            </div>
+
+            <strong>12</strong>
+
+            <p>Pending review</p>
+          </Link>
+
+          <Link
+            href="/dashboard/requirements?status=pending"
+            className="attention-card"
+          >
+            <div className="attention-card-top">
+              <span>Requirements</span>
+              <span>→</span>
+            </div>
+
+            <strong>04</strong>
+
+            <p>Awaiting review</p>
+          </Link>
+
+          <Link
+            href="/dashboard/evaluations?status=pending"
+            className="attention-card"
+          >
+            <div className="attention-card-top">
+              <span>Evaluations</span>
+              <span>→</span>
+            </div>
+
+            <strong>02</strong>
+
+            <p>Pending</p>
+          </Link>
         </div>
       </section>
 
-      {/* PROGRAM SUMMARY */}
+      {/* PROGRAM OVERVIEW */}
 
-      <section className="dashboard-summary">
+      <section className="overview-section">
+        <div className="overview-section-heading">
+          <div>
+            <span className="section-label">
+              PROGRAM
+            </span>
 
-        <span className="section-label">
-          PROGRAM SUMMARY
-        </span>
+            <h2>At a glance</h2>
+          </div>
+        </div>
 
-        <div className="summary-grid">
-
+        <div className="snapshot-grid">
           <Link
             href="/dashboard/students"
-            className="summary-item"
+            className="snapshot-item"
           >
             <span>Students</span>
-
             <strong>124</strong>
-
-            <small>
-              View all registered students
-            </small>
           </Link>
 
           <Link
             href="/dashboard/partners"
-            className="summary-item"
+            className="snapshot-item"
           >
             <span>Industry Partners</span>
-
             <strong>32</strong>
-
-            <small>
-              View registered companies
-            </small>
           </Link>
 
           <Link
             href="/dashboard/internships"
-            className="summary-item"
+            className="snapshot-item"
           >
             <span>Opportunities</span>
-
             <strong>46</strong>
-
-            <small>
-              View available opportunities
-            </small>
           </Link>
 
           <Link
             href="/dashboard/placements?status=ongoing"
-            className="summary-item"
+            className="snapshot-item"
           >
-            <span>Ongoing Placements</span>
-
+            <span>Active Placements</span>
             <strong>87</strong>
-
-            <small>
-              View active internship assignments
-            </small>
           </Link>
-
         </div>
       </section>
 
-      {/* PROGRESS + RECENT ACTIVITY */}
+      {/* PROGRESS + QUICK ACTIONS */}
 
-      <section className="workspace-grid">
+      <section className="overview-split">
+        <div className="overview-panel">
+          <div className="panel-heading">
+            <div>
+              <span className="section-label">
+                INTERNSHIP PROGRESS
+              </span>
 
-        <div className="workspace-section">
+              <h2>87% placed</h2>
+            </div>
 
-          <span className="section-label">
-            PLACEMENT PROGRESS
-          </span>
-
-          <div className="progress-number">
-            87%
+            <Link
+              href="/dashboard/progress"
+              className="tertiary-link"
+            >
+              View progress →
+            </Link>
           </div>
 
-          <div className="progress-track">
+          <div className="overview-progress-bar">
             <div
-              className="progress-fill"
+              className="overview-progress-value"
               style={{ width: "87%" }}
             />
           </div>
 
-          <p className="progress-caption">
-            students currently placed in internship assignments
-          </p>
+          <div className="overview-progress-stats">
+            <div>
+              <strong>87</strong>
+              <span>Ongoing</span>
+            </div>
 
-          <Link
-            href="/dashboard/progress"
-            className="simple-action dashboard-action"
-          >
-            Open Progress Monitoring →
-          </Link>
+            <div>
+              <strong>24</strong>
+              <span>Completed</span>
+            </div>
 
+            <div>
+              <strong>11</strong>
+              <span>Near completion</span>
+            </div>
+          </div>
         </div>
 
-        <div className="workspace-section">
-
-          <span className="section-label">
-            RECENT ACTIVITY
-          </span>
-
-          <ul className="movement-list">
-
-            <li>
-              <strong>Angela Reyes</strong>
-
-              <span>
-                Submitted internship application
+        <div className="overview-panel">
+          <div className="panel-heading">
+            <div>
+              <span className="section-label">
+                QUICK ACTIONS
               </span>
 
-              <small>10m</small>
-            </li>
+              <h2>Create or review</h2>
+            </div>
+          </div>
 
-            <li>
-              <strong>Miguel Santos</strong>
+          <div className="overview-actions">
+            <Link
+              href="/dashboard/students/create"
+              className="overview-action-primary"
+            >
+              <span>Add Student</span>
+              <span>＋</span>
+            </Link>
 
-              <span>
-                Placement record created
-              </span>
+            <Link href="/dashboard/partners/create">
+              <span>Add Industry Partner</span>
+              <span>→</span>
+            </Link>
 
-              <small>1h</small>
-            </li>
+            <Link href="/dashboard/internships/create">
+              <span>Create Opportunity</span>
+              <span>→</span>
+            </Link>
 
-            <li>
-              <strong>Sofia Cruz</strong>
-
-              <span>
-                Evaluation submitted
-              </span>
-
-              <small>3h</small>
-            </li>
-
-          </ul>
-
+            <Link href="/dashboard/applications?status=pending">
+              <span>Review Applications</span>
+              <span>→</span>
+            </Link>
+          </div>
         </div>
-
       </section>
 
-      {/* QUICK ACCESS */}
+      {/* ACTIVITY */}
 
-      <section className="page-index">
-        <span className="section-label">
-          QUICK ACTIONS
-        </span>
+      <section className="overview-section overview-activity">
+        <div className="overview-section-heading">
+          <div>
+            <span className="section-label">
+              RECENT ACTIVITY
+            </span>
 
-        <Link
-          href="/dashboard/students/create"
-          className="index-row"
-        >
-          <span className="index-number">01</span>
+            <h2>Latest updates</h2>
+          </div>
+        </div>
 
-          <span className="index-title">
-            Add Student
-          </span>
+        <div className="activity-list-clean">
+          <div>
+            <strong>Joshua Tan</strong>
+            <span>Submitted an application</span>
+            <small>10m</small>
+          </div>
 
-          <span className="index-arrow">→</span>
-        </Link>
+          <div>
+            <strong>Nicole Garcia</strong>
+            <span>Application accepted</span>
+            <small>1h</small>
+          </div>
 
-        <Link
-          href="/dashboard/partners/create"
-          className="index-row"
-        >
-          <span className="index-number">02</span>
-
-          <span className="index-title">
-            Add Industry Partner
-          </span>
-
-          <span className="index-arrow">→</span>
-        </Link>
-
-        <Link
-          href="/dashboard/internships/create"
-          className="index-row"
-        >
-          <span className="index-number">03</span>
-
-          <span className="index-title">
-            Create Opportunity
-          </span>
-
-          <span className="index-arrow">→</span>
-        </Link>
-
-        <Link
-          href="/dashboard/applications?status=pending"
-          className="index-row"
-        >
-          <span className="index-number">04</span>
-
-          <span className="index-title">
-            Review Pending Applications
-          </span>
-
-          <span className="index-arrow">→</span>
-        </Link>
+          <div>
+            <strong>Sofia Cruz</strong>
+            <span>Completed internship hours</span>
+            <small>3h</small>
+          </div>
+        </div>
       </section>
     </>
   );

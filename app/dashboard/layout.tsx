@@ -11,7 +11,10 @@ export default function DashboardLayout({
       <header className="workspace-header">
         <div className="masthead">
           <div>
-            <Link href="/dashboard" className="brand-title">
+            <Link
+              href="/dashboard"
+              className="brand-title"
+            >
               PUP INTERNLINK
             </Link>
 
@@ -31,18 +34,23 @@ export default function DashboardLayout({
               <strong>Coordinator</strong>
             </div>
 
-            <Link href="/" className="logout-link">
+            <Link
+              href="/"
+              className="logout-link"
+            >
               Exit
             </Link>
           </div>
         </div>
-
-        <ModuleNav />
       </header>
 
-      <main className="workspace-content">
-        {children}
-      </main>
+      <div className="workspace-body">
+        <ModuleNav />
+
+        <main className="workspace-content">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
