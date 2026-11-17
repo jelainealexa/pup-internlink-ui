@@ -21,23 +21,43 @@ const modules = [
   },
   {
     number: "04",
+    label: "Requirements",
+    href: "/dashboard/requirements",
+  },
+  {
+    number: "05",
     label: "Opportunities",
     href: "/dashboard/internships",
   },
   {
-    number: "05",
+    number: "06",
     label: "Applications",
     href: "/dashboard/applications",
   },
   {
-    number: "06",
+    number: "07",
+    label: "Placements",
+    href: "/dashboard/placements",
+  },
+  {
+    number: "08",
+    label: "Progress",
+    href: "/dashboard/progress",
+  },
+  {
+    number: "09",
     label: "Evaluations",
     href: "/dashboard/evaluations",
   },
   {
-  number: "11",
-  label: "Settings",
-  href: "/dashboard/settings",
+    number: "10",
+    label: "Reports",
+    href: "/dashboard/reports",
+  },
+  {
+    number: "11",
+    label: "Settings",
+    href: "/dashboard/settings",
   },
 ];
 
@@ -56,9 +76,14 @@ export default function ModuleNav() {
           <Link
             key={module.href}
             href={module.href}
-            className={`module-link ${active ? "active-module" : ""}`}
+            className={`module-link ${
+              active ? "active-module" : ""
+            }`}
           >
-            <span className="module-number">{module.number}</span>
+            <span className="module-number">
+              {module.number}
+            </span>
+
             <span>{module.label}</span>
           </Link>
         );

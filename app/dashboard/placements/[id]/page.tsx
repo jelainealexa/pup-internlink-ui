@@ -1,46 +1,8 @@
 import Link from "next/link";
-
-const placementData: Record<string, {
-  student: string;
-  studentId: string;
-  company: string;
-  opportunity: string;
-  adviser: string;
-  supervisor: string;
-  startDate: string;
-  endDate: string;
-  requiredHours: number;
-  renderedHours: number;
-  status: string;
-}> = {
-  "PL-001": {
-    student: "Miguel Santos",
-    studentId: "2024-0002",
-    company: "IBM Philippines",
-    opportunity: "IT Support Intern",
-    adviser: "Prof. Maria Santos",
-    supervisor: "John Reyes",
-    startDate: "November 15, 2026",
-    endDate: "February 15, 2027",
-    requiredHours: 486,
-    renderedHours: 280,
-    status: "Ongoing",
-  },
-
-  "PL-002": {
-    student: "Sofia Cruz",
-    studentId: "2024-0003",
-    company: "Globe Telecom",
-    opportunity: "Data Analytics Intern",
-    adviser: "Prof. Carlo Mendoza",
-    supervisor: "Patricia Lim",
-    startDate: "August 10, 2026",
-    endDate: "November 10, 2026",
-    requiredHours: 486,
-    renderedHours: 486,
-    status: "Completed",
-  },
-};
+import {
+  placements,
+  progressReports,
+} from "@/app/lib/mockData";
 
 export default async function PlacementDetailsPage({
   params,
@@ -49,15 +11,38 @@ export default async function PlacementDetailsPage({
 }) {
   const { id } = await params;
 
-  const placement = placementData[id];
+  const placement = placements.find(
+    (record) => record.id === id
+  );
 
   if (!placement) {
     return <h1>Placement not found</h1>;
   }
 
   const progress = Math.round(
-    (placement.renderedHours / placement.requiredHours) * 100
+    (placement.renderedHours /
+      placement.requiredHours) *
+      100
   );
+
+  const remaining = Math.max(
+    placement.requiredHours -
+      placement.renderedHours,
+    0
+  );
+
+  const reports = progressReports.filter(
+    (report) =>
+      report.studentId === placement.studentId
+  );
+
+  const pendingReports = reports.filter(
+    (report) =>
+      report.reviewStatus === "Pending Review"
+  ).length;
+
+  const completed =
+    placement.status === "Completed";
 
   return (
     <>
@@ -68,7 +53,7 @@ export default async function PlacementDetailsPage({
 
         <span>/</span>
 
-        <span>{id}</span>
+        <span>{placement.id}</span>
       </div>
 
       <header className="record-header">
@@ -80,7 +65,8 @@ export default async function PlacementDetailsPage({
           <h1>{placement.student}</h1>
 
           <p>
-            {placement.opportunity} · {placement.company}
+            {placement.opportunity} ·{" "}
+            {placement.company}
           </p>
         </div>
 
@@ -93,13 +79,15 @@ export default async function PlacementDetailsPage({
       <section className="record-summary">
         <div>
           <span>PLACEMENT ID</span>
-          <strong>{id}</strong>
+          <strong>{placement.id}</strong>
         </div>
 
         <div>
           <span>RENDERED HOURS</span>
+
           <strong>
-            {placement.renderedHours} / {placement.requiredHours}
+            {placement.renderedHours} /{" "}
+            {placement.requiredHours}
           </strong>
         </div>
 
@@ -121,6 +109,11 @@ export default async function PlacementDetailsPage({
           </span>
 
           <dl className="record-list">
+            <div>
+              <dt>Student</dt>
+              <dd>{placement.student}</dd>
+            </div>
+
             <div>
               <dt>Company</dt>
               <dd>{placement.company}</dd>
@@ -164,61 +157,117 @@ export default async function PlacementDetailsPage({
               <dd>{placement.supervisor}</dd>
             </div>
           </dl>
+
+          <Link
+            href={`/dashboard/students/${placement.studentId}`}
+            className="simple-action detail-action"
+          >
+            View Student Profile →
+          </Link>
         </div>
       </section>
 
-      <section className="student-records">
-        <span className="section-label">
-          RELATED PLACEMENT RECORDS
-        </span>
+      <section className="placement-module-grid">
+        <div className="placement-module">
+          <span className="section-label">
+            PROGRESS
+          </span>
 
-        <Link
-          href={`/dashboard/students/${placement.studentId}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">01</span>
+          <strong className="module-large-number">
+            {progress}%
+          </strong>
 
-            <div>
-              <strong>Student Profile</strong>
-              <p>Open the student’s complete internship record</p>
-            </div>
+          <p>
+            {placement.renderedHours} rendered ·{" "}
+            {remaining} remaining
+          </p>
+
+          <Link
+            href={`/dashboard/progress/${placement.studentId}`}
+            className="simple-action"
+          >
+            View Progress Details →
+          </Link>
+        </div>
+
+        <div className="placement-module">
+          <span className="section-label">
+            PROGRESS REPORTS
+          </span>
+
+          <strong className="module-large-number">
+            {reports.length}
+          </strong>
+
+          <p>
+            {pendingReports} report
+            {pendingReports !== 1 ? "s" : ""} waiting
+            for review
+          </p>
+
+          <Link
+            href={`/dashboard/progress/${placement.studentId}`}
+            className="simple-action"
+          >
+            Review Reports →
+          </Link>
+        </div>
+
+        <div className="placement-module">
+          <span className="section-label">
+            EVALUATIONS
+          </span>
+
+          <div className="mini-status-row">
+            <span>Company Supervisor</span>
+            <strong>
+              {completed ? "Submitted" : "Pending"}
+            </strong>
           </div>
 
-          <span>→</span>
-        </Link>
-
-        <Link
-          href={`/dashboard/progress?student=${placement.studentId}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">02</span>
-
-            <div>
-              <strong>Progress Reports</strong>
-              <p>Review rendered hours and submitted progress reports</p>
-            </div>
+          <div className="mini-status-row">
+            <span>Faculty Adviser</span>
+            <strong>
+              {completed ? "Submitted" : "Pending"}
+            </strong>
           </div>
 
-          <span>→</span>
-        </Link>
+          <Link
+            href={`/dashboard/evaluations?student=${placement.studentId}`}
+            className="simple-action detail-action"
+          >
+            View Evaluations →
+          </Link>
+        </div>
 
-        <Link
-          href={`/dashboard/evaluations?student=${placement.studentId}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">03</span>
+        <div className="placement-module">
+          <span className="section-label">
+            CERTIFICATE
+          </span>
 
-            <div>
-              <strong>Evaluations</strong>
-              <p>Check company and faculty evaluation records</p>
-            </div>
-          </div>
+          {completed ? (
+            <>
+              <dl className="record-list compact-record-list">
+                <div>
+                  <dt>Certificate No.</dt>
+                  <dd>
+                    CERT-{placement.id}-2026
+                  </dd>
+                </div>
 
-          <span>→</span>
-        </Link>
+                <div>
+                  <dt>Issue Status</dt>
+                  <dd>Available</dd>
+                </div>
+              </dl>
+            </>
+          ) : (
+            <p>
+              Certificate information becomes available
+              once completion conditions are satisfied.
+            </p>
+          )}
+        </div>
       </section>
     </>
   );

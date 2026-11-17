@@ -1,56 +1,6 @@
 import Link from "next/link";
-
-const applicationData: Record<string, {
-  student: string;
-  studentId: string;
-  program: string;
-  yearSection: string;
-  opportunity: string;
-  company: string;
-  description: string;
-  slots: number;
-  status: string;
-  submissionDate: string;
-}> = {
-  "app-001": {
-    student: "Angela Reyes",
-    studentId: "2024-0001",
-    program: "BS Computer Engineering",
-    yearSection: "4th Year / 4-1",
-    opportunity: "Software Development Intern",
-    company: "Accenture Philippines",
-    description: "Software development and application support internship.",
-    slots: 4,
-    status: "Pending",
-    submissionDate: "November 10, 2026",
-  },
-
-  "app-002": {
-    student: "Miguel Santos",
-    studentId: "2024-0002",
-    program: "BS Information Technology",
-    yearSection: "4th Year / 4-2",
-    opportunity: "IT Support Intern",
-    company: "IBM Philippines",
-    description: "Technical support and infrastructure internship.",
-    slots: 2,
-    status: "Accepted",
-    submissionDate: "November 8, 2026",
-  },
-
-  "app-003": {
-    student: "Sofia Cruz",
-    studentId: "2024-0003",
-    program: "BS Computer Science",
-    yearSection: "4th Year / 4-1",
-    opportunity: "Data Analytics Intern",
-    company: "Globe Telecom",
-    description: "Data processing and analytics internship.",
-    slots: 3,
-    status: "Rejected",
-    submissionDate: "November 2, 2026",
-  },
-};
+import ApplicationDecision from "@/app/components/ApplicationDecision";
+import { applications } from "@/app/lib/mockData";
 
 export default async function ApplicationDetailsPage({
   params,
@@ -59,7 +9,9 @@ export default async function ApplicationDetailsPage({
 }) {
   const { id } = await params;
 
-  const application = applicationData[id];
+  const application = applications.find(
+    (record) => record.id === id
+  );
 
   if (!application) {
     return <h1>Application not found</h1>;
@@ -86,7 +38,8 @@ export default async function ApplicationDetailsPage({
           <h1>{application.student}</h1>
 
           <p>
-            {application.opportunity} · {application.company}
+            {application.opportunity} ·{" "}
+            {application.company}
           </p>
         </div>
 
@@ -119,8 +72,13 @@ export default async function ApplicationDetailsPage({
             </div>
 
             <div>
-              <dt>Year / Section</dt>
-              <dd>{application.yearSection}</dd>
+              <dt>Year Level</dt>
+              <dd>{application.yearLevel}</dd>
+            </div>
+
+            <div>
+              <dt>Section</dt>
+              <dd>{application.section}</dd>
             </div>
           </dl>
 
@@ -170,12 +128,14 @@ export default async function ApplicationDetailsPage({
           <dl className="record-list">
             <div>
               <dt>Application ID</dt>
-              <dd>{id}</dd>
+              <dd>{application.id}</dd>
             </div>
 
             <div>
               <dt>Submission Date</dt>
-              <dd>{application.submissionDate}</dd>
+              <dd>
+                {application.submissionDate}
+              </dd>
             </div>
 
             <div>
@@ -187,7 +147,7 @@ export default async function ApplicationDetailsPage({
 
         <div className="detail-section">
           <span className="section-label">
-            MANDATORY REQUIREMENTS
+            RELATED REQUIREMENTS
           </span>
 
           <div className="requirement-row">
@@ -207,63 +167,13 @@ export default async function ApplicationDetailsPage({
         </div>
       </section>
 
-      <section className="decision-section">
-        <span className="section-label">
-          AVAILABLE ACTIONS
-        </span>
-
-        {application.status === "Pending" && (
-          <>
-            <p>
-              Review the student information, required documents, and
-              opportunity availability before making a decision.
-            </p>
-
-            <div className="decision-actions">
-              <button className="secondary-action">
-                Reject Application
-              </button>
-
-              <button className="primary-action">
-                Accept Application
-              </button>
-            </div>
-          </>
-        )}
-
-        {application.status === "Accepted" && (
-          <>
-            <p>
-              This application has been accepted and is ready for official
-              internship placement.
-            </p>
-
-            <Link
-              href={`/dashboard/placements/create?application=${id}`}
-              className="primary-action link-button"
-            >
-              Create Placement →
-            </Link>
-          </>
-        )}
-
-        {application.status === "Rejected" && (
-          <>
-            <p>
-              This application was rejected and remains in the student's
-              application history.
-            </p>
-
-            <div className="rejection-note">
-              <span>REJECTION REASON</span>
-
-              <p>
-                Required criteria for the selected opportunity were not met.
-              </p>
-            </div>
-          </>
-        )}
-      </section>
+      <ApplicationDecision
+        applicationId={application.id}
+        initialStatus={application.status}
+        existingReason={
+          application.rejectionReason
+        }
+      />
     </>
   );
 }

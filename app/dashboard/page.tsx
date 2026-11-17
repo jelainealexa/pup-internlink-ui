@@ -243,79 +243,61 @@ export default function DashboardPage() {
       {/* QUICK ACCESS */}
 
       <section className="page-index">
-
         <span className="section-label">
-          QUICK ACCESS
+          QUICK ACTIONS
         </span>
 
         <Link
-          href="/dashboard/students"
+          href="/dashboard/students/create"
           className="index-row"
         >
-          <span className="index-number">
-            01
-          </span>
+          <span className="index-number">01</span>
 
           <span className="index-title">
-            Student Directory
+            Add Student
           </span>
 
-          <span className="index-arrow">
-            →
-          </span>
+          <span className="index-arrow">→</span>
         </Link>
 
         <Link
-          href="/dashboard/applications"
+          href="/dashboard/partners/create"
           className="index-row"
         >
-          <span className="index-number">
-            02
-          </span>
+          <span className="index-number">02</span>
 
           <span className="index-title">
-            Review Applications
+            Add Industry Partner
           </span>
 
-          <span className="index-arrow">
-            →
-          </span>
+          <span className="index-arrow">→</span>
         </Link>
 
         <Link
-          href="/dashboard/placements"
+          href="/dashboard/internships/create"
           className="index-row"
         >
-          <span className="index-number">
-            03
-          </span>
+          <span className="index-number">03</span>
 
           <span className="index-title">
-            Placement Records
+            Create Opportunity
           </span>
 
-          <span className="index-arrow">
-            →
-          </span>
+          <span className="index-arrow">→</span>
         </Link>
 
         <Link
-          href="/dashboard/progress"
+          href="/dashboard/applications?status=pending"
           className="index-row"
         >
-          <span className="index-number">
-            04
-          </span>
+          <span className="index-number">04</span>
 
           <span className="index-title">
-            Progress Monitoring
+            Review Pending Applications
           </span>
 
-          <span className="index-arrow">
-            →
-          </span>
+          <span className="index-arrow">→</span>
         </Link>
-
       </section>
     </>
   );

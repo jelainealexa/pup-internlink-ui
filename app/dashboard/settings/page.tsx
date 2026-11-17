@@ -3,39 +3,42 @@ export default function SettingsPage() {
     <>
       <header className="content-header">
         <div className="page-eyebrow">
-          System / Settings
+          11 / Settings
         </div>
 
         <h1>Settings</h1>
 
         <p>
-          Manage coordinator preferences and system configuration.
-          Detailed settings will be finalized once the remaining system
-          requirements are confirmed.
+          System configuration options will be added
+          once additional coordinator requirements are
+          finalized.
         </p>
       </header>
 
       <section className="settings-section">
         <span className="section-label">
-          ACCOUNT
+          CURRENT ACCOUNT
         </span>
 
         <div className="settings-row">
           <div>
-            <strong>Coordinator Account</strong>
+            <strong>Account Role</strong>
+
             <p>
-              View the currently signed-in coordinator account.
+              Current access level for this workspace.
             </p>
           </div>
 
-          <span>Coordinator</span>
+          <span>Internship Coordinator</span>
         </div>
 
         <div className="settings-row">
           <div>
             <strong>Email Address</strong>
+
             <p>
-              Email associated with this account.
+              Email associated with the current
+              coordinator account.
             </p>
           </div>
 
@@ -43,94 +46,19 @@ export default function SettingsPage() {
         </div>
       </section>
 
-      <section className="settings-section">
+      <section className="settings-placeholder">
         <span className="section-label">
-          SYSTEM PREFERENCES
+          SYSTEM CONFIGURATION
         </span>
 
-        <div className="settings-row">
-          <div>
-            <strong>Academic Year</strong>
-            <p>
-              Current academic year used throughout the internship
-              workspace.
-            </p>
-          </div>
-
-          <select defaultValue="2026-2027">
-            <option value="2026-2027">2026–2027</option>
-            <option value="2025-2026">2025–2026</option>
-          </select>
-        </div>
-
-        <div className="settings-row">
-          <div>
-            <strong>Default Records View</strong>
-            <p>
-              Choose the default number of records displayed in directory
-              pages.
-            </p>
-          </div>
-
-          <select defaultValue="25">
-            <option value="10">10 records</option>
-            <option value="25">25 records</option>
-            <option value="50">50 records</option>
-          </select>
-        </div>
-      </section>
-
-      <section className="settings-section">
-        <span className="section-label">
-          NOTIFICATIONS
-        </span>
-
-        <div className="settings-row">
-          <div>
-            <strong>Pending Requirements</strong>
-            <p>
-              Show reminders when student submissions still require review.
-            </p>
-          </div>
-
-          <input type="checkbox" defaultChecked />
-        </div>
-
-        <div className="settings-row">
-          <div>
-            <strong>Pending Evaluations</strong>
-            <p>
-              Show reminders for incomplete internship evaluations.
-            </p>
-          </div>
-
-          <input type="checkbox" defaultChecked />
-        </div>
-
-        <div className="settings-row">
-          <div>
-            <strong>Expiring Partnerships</strong>
-            <p>
-              Show reminders when an industry partner MOA is nearing
-              expiration.
-            </p>
-          </div>
-
-          <input type="checkbox" defaultChecked />
-        </div>
-      </section>
-
-      <div className="settings-note">
-        <span className="section-label">
-          PROTOTYPE NOTE
-        </span>
+        <h2>No configurable settings yet.</h2>
 
         <p>
-          These settings are placeholders for the current UI/UX prototype.
-          Final options should follow the approved functional requirements
-          once system configuration rules are finalized.
+          This area is intentionally reserved because
+          detailed Settings functionality is not yet
+          defined in the approved system flow.
         </p>
-      </div>
+      </section>
     </>
   );
 }

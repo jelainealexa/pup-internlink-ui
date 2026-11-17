@@ -1,64 +1,9 @@
 import Link from "next/link";
-
-const studentData: Record<string, {
-  name: string;
-  program: string;
-  yearSection: string;
-  email: string;
-  placement: string;
-  position: string;
-  status: string;
-  hours: number;
-  requiredHours: number;
-}> = {
-  "2024-0001": {
-    name: "Angela Reyes",
-    program: "BS Computer Engineering",
-    yearSection: "4th Year / 4-1",
-    email: "angela.reyes@example.com",
-    placement: "Accenture Philippines",
-    position: "Software Development Intern",
-    status: "Ongoing",
-    hours: 320,
-    requiredHours: 486,
-  },
-
-  "2024-0002": {
-    name: "Miguel Santos",
-    program: "BS Information Technology",
-    yearSection: "4th Year / 4-2",
-    email: "miguel.santos@example.com",
-    placement: "IBM Philippines",
-    position: "IT Support Intern",
-    status: "Ongoing",
-    hours: 280,
-    requiredHours: 486,
-  },
-
-  "2024-0003": {
-    name: "Sofia Cruz",
-    program: "BS Computer Science",
-    yearSection: "4th Year / 4-1",
-    email: "sofia.cruz@example.com",
-    placement: "Globe Telecom",
-    position: "Data Analytics Intern",
-    status: "Completed",
-    hours: 486,
-    requiredHours: 486,
-  },
-
-  "2024-0004": {
-    name: "Joshua Tan",
-    program: "BS Information Technology",
-    yearSection: "4th Year / 4-3",
-    email: "joshua.tan@example.com",
-    placement: "Not Yet Placed",
-    position: "None",
-    status: "Applying",
-    hours: 0,
-    requiredHours: 486,
-  },
-};
+import {
+  applications,
+  placements,
+  students,
+} from "@/app/lib/mockData";
 
 export default async function StudentProfilePage({
   params,
@@ -67,7 +12,9 @@ export default async function StudentProfilePage({
 }) {
   const { id } = await params;
 
-  const student = studentData[id];
+  const student = students.find(
+    (record) => record.id === id
+  );
 
   if (!student) {
     return (
@@ -83,6 +30,14 @@ export default async function StudentProfilePage({
       </>
     );
   }
+
+  const studentApplications = applications.filter(
+    (application) => application.studentId === id
+  );
+
+  const placement = placements.find(
+    (record) => record.studentId === id
+  );
 
   const progress =
     student.requiredHours > 0
@@ -114,21 +69,28 @@ export default async function StudentProfilePage({
           </h1>
 
           <p className="student-program">
-            {student.program} · {student.yearSection}
+            {student.program} · {student.yearLevel} ·{" "}
+            {student.section}
           </p>
         </div>
 
-        <div className="student-id-block">
-          <span>STUDENT ID</span>
+        <div className="profile-header-actions">
+          <div className="student-id-block">
+            <span>STUDENT ID</span>
+            <strong>{student.id}</strong>
+          </div>
 
-          <strong>{id}</strong>
+          <Link
+            href={`/dashboard/students/${student.id}/edit`}
+            className="secondary-action link-button-reset"
+          >
+            Edit Student
+          </Link>
         </div>
       </header>
 
       <section className="student-overview">
-
         <div className="student-main-info">
-
           <span className="section-label">
             CURRENT INTERNSHIP
           </span>
@@ -137,20 +99,13 @@ export default async function StudentProfilePage({
             {student.placement}
           </div>
 
-          <p>
-            {student.position}
-          </p>
-
+          <p>{student.position}</p>
         </div>
 
         <div className="student-status-info">
-
           <div>
             <span>STATUS</span>
-
-            <strong>
-              {student.status}
-            </strong>
+            <strong>{student.status}</strong>
           </div>
 
           <div>
@@ -163,31 +118,21 @@ export default async function StudentProfilePage({
 
           <div>
             <span>PROGRESS</span>
-
-            <strong>
-              {progress}%
-            </strong>
+            <strong>{progress}%</strong>
           </div>
-
         </div>
-
       </section>
 
-      {/* BASIC STUDENT INFO */}
-
       <section className="student-record-grid">
-
         <div className="student-record-section">
-
           <span className="section-label">
             PROFILE
           </span>
 
           <dl className="record-list">
-
             <div>
               <dt>Student ID</dt>
-              <dd>{id}</dd>
+              <dd>{student.id}</dd>
             </div>
 
             <div>
@@ -201,52 +146,63 @@ export default async function StudentProfilePage({
             </div>
 
             <div>
-              <dt>Year / Section</dt>
-              <dd>{student.yearSection}</dd>
+              <dt>Year Level</dt>
+              <dd>{student.yearLevel}</dd>
             </div>
 
+            <div>
+              <dt>Section</dt>
+              <dd>{student.section}</dd>
+            </div>
           </dl>
-
         </div>
 
         <div className="student-record-section">
-
           <span className="section-label">
             PLACEMENT SUMMARY
           </span>
 
-          <dl className="record-list">
+          {placement ? (
+            <dl className="record-list">
+              <div>
+                <dt>Company</dt>
+                <dd>{placement.company}</dd>
+              </div>
 
-            <div>
-              <dt>Company</dt>
-              <dd>{student.placement}</dd>
-            </div>
+              <div>
+                <dt>Opportunity</dt>
+                <dd>{placement.opportunity}</dd>
+              </div>
 
-            <div>
-              <dt>Position</dt>
-              <dd>{student.position}</dd>
-            </div>
+              <div>
+                <dt>Faculty Adviser</dt>
+                <dd>{placement.adviser}</dd>
+              </div>
 
-            <div>
-              <dt>Status</dt>
-              <dd>{student.status}</dd>
-            </div>
+              <div>
+                <dt>Supervisor</dt>
+                <dd>{placement.supervisor}</dd>
+              </div>
 
-            <div>
-              <dt>Required Hours</dt>
-              <dd>{student.requiredHours}</dd>
-            </div>
+              <div>
+                <dt>Start Date</dt>
+                <dd>{placement.startDate}</dd>
+              </div>
 
-          </dl>
-
+              <div>
+                <dt>End Date</dt>
+                <dd>{placement.endDate}</dd>
+              </div>
+            </dl>
+          ) : (
+            <p className="empty-message">
+              No official placement has been created yet.
+            </p>
+          )}
         </div>
-
       </section>
 
-      {/* CENTRAL ACCESS TO RELATED RECORDS */}
-
       <section className="student-records">
-
         <span className="section-label">
           STUDENT INTERNSHIP RECORD
         </span>
@@ -256,17 +212,14 @@ export default async function StudentProfilePage({
           className="student-record-link"
         >
           <div>
-            <span className="record-number">
-              01
-            </span>
+            <span className="record-number">01</span>
 
             <div>
-              <strong>
-                Requirements
-              </strong>
+              <strong>Requirements</strong>
 
               <p>
-                Submitted documents, review status, and remarks
+                Submitted documents, review status, and
+                remarks
               </p>
             </div>
           </div>
@@ -279,17 +232,15 @@ export default async function StudentProfilePage({
           className="student-record-link"
         >
           <div>
-            <span className="record-number">
-              02
-            </span>
+            <span className="record-number">02</span>
 
             <div>
-              <strong>
-                Applications
-              </strong>
+              <strong>Applications</strong>
 
               <p>
-                Internship applications and their current status
+                {studentApplications.length} application
+                {studentApplications.length !== 1 ? "s" : ""}{" "}
+                recorded
               </p>
             </div>
           </div>
@@ -297,75 +248,89 @@ export default async function StudentProfilePage({
           <span>→</span>
         </Link>
 
-        <Link
-          href={`/dashboard/placements?student=${id}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">
-              03
-            </span>
-
+        {placement ? (
+          <Link
+            href={`/dashboard/placements/${placement.id}`}
+            className="student-record-link"
+          >
             <div>
-              <strong>
-                Placement
-              </strong>
+              <span className="record-number">03</span>
 
-              <p>
-                Company, opportunity, supervisors, dates, and required hours
-              </p>
+              <div>
+                <strong>Placement</strong>
+
+                <p>
+                  Open official placement record{" "}
+                  {placement.id}
+                </p>
+              </div>
+            </div>
+
+            <span>→</span>
+          </Link>
+        ) : (
+          <div className="student-record-link disabled-record">
+            <div>
+              <span className="record-number">03</span>
+
+              <div>
+                <strong>Placement</strong>
+                <p>No placement created yet</p>
+              </div>
             </div>
           </div>
+        )}
 
-          <span>→</span>
-        </Link>
-
-        <Link
-          href={`/dashboard/progress?student=${id}`}
-          className="student-record-link"
-        >
-          <div>
-            <span className="record-number">
-              04
-            </span>
-
+        {placement ? (
+          <Link
+            href={`/dashboard/progress/${id}`}
+            className="student-record-link"
+          >
             <div>
-              <strong>
-                Progress
-              </strong>
+              <span className="record-number">04</span>
 
-              <p>
-                Progress reports, activities, and rendered hours
-              </p>
+              <div>
+                <strong>Progress</strong>
+                <p>
+                  Progress reports and accumulated hours
+                </p>
+              </div>
+            </div>
+
+            <span>→</span>
+          </Link>
+        ) : (
+          <div className="student-record-link disabled-record">
+            <div>
+              <span className="record-number">04</span>
+
+              <div>
+                <strong>Progress</strong>
+                <p>Available after placement</p>
+              </div>
             </div>
           </div>
-
-          <span>→</span>
-        </Link>
+        )}
 
         <Link
           href={`/dashboard/evaluations?student=${id}`}
           className="student-record-link"
         >
           <div>
-            <span className="record-number">
-              05
-            </span>
+            <span className="record-number">05</span>
 
             <div>
-              <strong>
-                Evaluations
-              </strong>
+              <strong>Evaluations</strong>
 
               <p>
-                Company supervisor and faculty adviser evaluations
+                Company supervisor and faculty adviser
+                evaluation records
               </p>
             </div>
           </div>
 
           <span>→</span>
         </Link>
-
       </section>
     </>
   );
