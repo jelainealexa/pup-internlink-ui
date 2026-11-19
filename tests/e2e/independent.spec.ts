@@ -83,6 +83,7 @@ test("IV-10: a stale edit must not overwrite another tab's persisted student cha
     "student@example.test",
   );
   await peer.getByLabel("Last name").fill("Peer Synthetic");
+  await page.bringToFront();
   await page
     .getByLabel("Email *", { exact: true })
     .fill("audit-preserved@example.test");

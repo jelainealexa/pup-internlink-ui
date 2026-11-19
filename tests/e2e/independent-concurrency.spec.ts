@@ -52,6 +52,7 @@ for (const item of [
     await page.goto(`/dashboard/${item.route}`);
     await peer.goto(`/dashboard/${item.route}`);
     await peer.locator(`form [name=${item.other}]`).fill(item.otherValue);
+    await page.bringToFront();
     await page.locator(`form [name=${item.field}]`).fill(item.value);
     await page.getByRole("button", { name: item.save, exact: true }).click();
     await expect(page.locator("h1")).not.toHaveText(/Edit /);
