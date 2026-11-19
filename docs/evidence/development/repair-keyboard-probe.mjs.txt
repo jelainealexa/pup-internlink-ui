@@ -1,0 +1,28 @@
+import {createRequire} from 'node:module';
+import {spawn} from 'node:child_process';
+const root='D:/Orca/Workspace/pup-internlink-ui';
+const require=createRequire(root+'/package.json');
+const {chromium,expect}=require('@playwright/test');
+const server=spawn(process.execPath,[require.resolve('next/dist/bin/next'),'start','--port','3109','--hostname','127.0.0.1'],{cwd:root,env:{...process.env,INTERNLINK_DIST_DIR:'.next-frontend'},stdio:'ignore'});
+let browser;
+try {
+  for(let i=0;i<100;i++){try {if((await fetch('http://127.0.0.1:3109')).ok)break;}catch{} await new Promise(r=>setTimeout(r,100));}
+  browser=await chromium.launch({headless:true,executablePath:'C:/Users/User 1/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe'});
+  const page=await browser.newPage();
+  await page.goto('http://127.0.0.1:3109');
+  await page.getByLabel('Email address').fill('coordinator@example.test');
+  await page.getByLabel('Password',{exact:false}).fill('InternLink!2026');
+  await page.getByRole('button',{name:'Sign in',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Log out',exact:true})).toBeVisible();
+  await page.goto('http://127.0.0.1:3109/dashboard/students');
+  await expect(page.locator('tbody tr')).toHaveCount(6);
+  await page.getByRole('searchbox').pressSequentially('SYN-2026-001',{delay:0});
+  await expect(page.getByRole('searchbox')).toHaveValue('SYN-2026-001');
+  await expect(page.locator('tbody tr')).toHaveCount(1);
+  await expect(page.locator('tbody')).toContainText('Mira Demo');
+  await page.getByRole('searchbox').fill('');
+  await page.getByRole('searchbox').pressSequentially('Sample',{delay:0});
+  await expect(page.getByRole('searchbox')).toHaveValue('Sample');
+  await expect(page.locator('tbody tr')).toHaveCount(2);
+  console.log('PASS: zero-delay keyboard search preserved full student ID and name, URL-derived results match1 and2 persisted records.');
+} finally {await browser?.close();server.kill();}

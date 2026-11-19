@@ -1,0 +1,13 @@
+
+> internlink-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.1 C:/Users/User 1/AppData/Local/Temp/internlink-clean-251410a
+
+
+ Test Files  4 passed (4)
+      Tests  79 passed (79)
+   Start at  17:57:26
+   Duration  3.22s (environment 61%, import 14%, tests 10%, transform 9%, setup 6%, worker 1%)
+

@@ -1,0 +1,18 @@
+
+> internlink-ui@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=docs/evidence/development/vitest.json
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ✓ tests/unit/rules.test.ts (47 tests) 64ms
+ ✓ tests/integration/services.test.ts (21 tests) 192ms
+ ✓ tests/unit/session.test.ts (8 tests) 10ms
+ ✓ tests/components/forms.test.tsx (3 tests) 255ms
+
+ Test Files  4 passed (4)
+      Tests  79 passed (79)
+   Start at  17:53:48
+   Duration  2.94s (environment 61%, import 17%, tests 11%, setup 7%, transform 3%, worker 1%)
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/development/vitest.json

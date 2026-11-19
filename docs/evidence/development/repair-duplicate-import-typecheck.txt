@@ -1,0 +1,8 @@
+
+> internlink-ui@0.1.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+app/lib/service.ts(6,3): error TS2300: Duplicate identifier 'Database'.
+app/lib/service.ts(8,3): error TS2300: Duplicate identifier 'Database'.

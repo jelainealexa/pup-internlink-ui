@@ -1,31 +1,17 @@
 # Development status
 
-Last updated 2026-11-19. **Phase 0 complete; Phase 1 not started.**
+Updated **2026-11-19**. **Front-end demonstration delivery: PASS within the tested scope.** All feasible required coordinator workflows and the minimal connected role extensions are implemented; actual backend/database integration remains outside scope. No waiting for another module prompt or planned implementation is hidden as completed work.
 
-## Source and commit state
+Implementation checkpoint: **251410a697333dd08a5a11fa4f6b6f4f6e90e72a** (`fix: preserve search keystrokes during URL transitions`), branch **frontend/complete-demo**. Phase0 checkpoint **d679d264a80c5ebf88829488d0580e7c0eed2880**; original audited source **aae8d8781c3cbb44094e1aa8dcabc398d913514c**. Local main remains **2d846774c6dfbc61d675331145bd7b82b301e5a4**. Final documentation checkpoint is identified by git history (`git log -2 --oneline`); a commit does not embed its own final hash. No push, force-push or merge into main.
 
-Audit branch: `audit/phase-0-baseline`. Assessed application source: `aae8d8781c3cbb44094e1aa8dcabc398d913514c`. Original local main: `2d846774c6dfbc61d675331145bd7b82b301e5a4`, preserved. Branch was fast-forwarded to existing origin/main commits to include forms/components specifically requested for review. Phase 0 documentation commit is the commit introducing this file/document set; retrieve it with `git log -1 --format=fuller` on the audit branch (a commit cannot contain its own final hash). No push/merge into main.
+Delivered: shared normalized contracts/rules/integrity; transactional versioned IndexedDB including actual Blob attachments; public synthetic accounts/eight-hour sessions/scoped views and commands; all eleven coordinator modules; missing Requirements and Reports routes; durable maintenance/decisions/history; accepted application→placement with assignments/capacity; reviewed-hour accounting; exactly two assigned evaluations; guarded completion and real synthetic certificate metadata; seven reports/CSV/print; effective settings and confirmed reset. Names, relations, counts and summaries use shared records. Existing framework/CSS direction/URLs retained; old disconnected fixture/review components removed after replacement.
 
-User-provided `PUP INTERNLINK_System Flow.pdf` remains untracked and byte-identical to its initial SHA-256. No baseline app/config/package/lockfile edits were made. AGENTS.md has appended project guidance; generated Next block preserved. Temporary external test installations/builds are outside the repository; original existing dev server preserved.
+Verification: **79 Vitest tests** (55 unit, 3 component, 21 integration) in 4 files; **18 Playwright tests** (15 desktop, 3 mobile) all pass with 0 skipped/flaky. Typecheck/lint/production build pass. Fresh archived implementation installs, lints, typechecks, runs 79 tests and builds successfully. Production-mode browser lifecycle, wrong-role/invalid-rule cases, refresh/cross-tab/browser-restart persistence, seven reports and selected axe/keyboard/mobile checks passed. Exact commands, warnings and bounded claims: [TEST_REPORT.md](TEST_REPORT.md).
 
-## Completed Phase 0 work
+Requirements inventory: **94 rows**, **86 PASS**, **1 external BLOCKED**, **7 NOT APPLICABLE**. The external row concerns approved real account/profile policy, not inability to operate synthetic accounts. Excluded rows cover optional/full role products/self-evaluation/unapproved metadata/real backend integration; delivered minimal role extensions have distinct IDs. Representative suite evidence does not mean every input/browser was exercised.
 
-- Verified intended repository, initial clean tracked tree, environment/config/history, latest available remote state and safe dedicated branch.
-- Read entire 23-page PDF, all tables/navigation examples and embedded illustrations; recorded absent ERD/API/rubric/permission/approved-requirements artifacts.
-- Audited all 43 tracked baseline files and 20 route files; characterized forms, state, queries, buttons, fixtures, joins, calculations and routes.
-- Performed clean isolated dependency install, lint, production build, typechecking, missing-test-script check and actual production runtime browser observation: 48 route visits/16 action groups.
-- Created all thirteen requested documentation files, requirement inventory/traceability, candidate architecture/model/API and unresolved business rules. Added reproducible evidence and a final consistency review.
+Remaining external decisions: approved ERD/SQL/API, real account provisioning/permission matrix, document eligibility, capacity/termination policy, reporting/grade/completion/certificate authority. Reversible assumptions are implemented and documented, not claimed approved. Backend authentication/authorization/private files/constraints/transactions/deployment belong to the receiving team. Firefox/WebKit/manual assistive technology and large-volume/quota stress remain unverified. See KNOWN_ISSUES and BACKEND_INTEGRATION_GUIDE.
 
-## Functional status and quality gates
+Repository preservation: user PDF remains untracked and byte-identical (SHA256 A8852A86F90EF6931D20B568F1E7EF3C86C000906520CB4F8BD5ABB0B7438458). Initial tracked tree was clean; supplied/groupmate prototype work is preserved in Git history and reused styles/routes where practical. Existing user dev processes were not terminated. Generated build/test output is ignored. AGENTS framework block preserved. Local commit identity is command-scoped Codex as in Phase0; no user/global configuration changed.
 
-Working within fixture-only scope: directory reads; student search/filters/sort; application and placement filters/sort; progress controls; direct record links where IDs match; local sidebar toggle; local reject reason guard; some form validation and review-dialog content. There is no implemented persistent demo or real backend/database integration.
-
-Missing or materially incomplete: authentication/authorization, persistent CRUD/decisions/placement/report reviews, partner/MOA/supervisor maintenance, requirements module, opportunity management, individual scored evaluations, truthful completion/certificates, reports module and effective settings. Browser defects and severities: KNOWN_ISSUES.md. Requirement counts: REQUIREMENTS.md (86 audit requirements; these do not replace the unavailable original nine approved functional requirements).
-
-Current source gate results: install PASS; production build PASS; TypeScript PASS; lint FAIL (3 errors); existing tests NOT AVAILABLE (npm test missing script); browser observation COMPLETED, many required workflows FAIL. Native browser pipe unavailable; actual headless Chromium evidence recorded. This is not release-ready.
-
-## Next work and blockers
-
-Recommended next phase: core normalized data/service/explicit-mode/persistent synthetic foundation and targeted quality checks, as detailed in PROJECT_PLAN. Do not start it until a later user request. Backend integration remains blocked by approved ERD/SQL/API/auth/permission/grade/upload/test environment decisions. Safe isolated synthetic foundation work can proceed after authorization while these contracts are collected; do not hide the unresolved production policies.
-
-Final verdict: **Phase 0 PASS with recorded limitations** because repository/source/specification/runtime audit and reproducible planning evidence are complete. **Application acceptance FAIL** because core end-to-end operations do not work. Missing external source specifications block claims of final schema/policy correctness, not truthful audit delivery.
+Next action is developer handover and independent verification, not further automatic backend implementation. Start with README and HANDOVER. Full route/model/rule/contract/test details are maintained in the linked documents; historical Phase0 findings remain explicitly historical in REPOSITORY_AUDIT.

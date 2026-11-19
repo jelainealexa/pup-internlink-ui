@@ -1,131 +1,116 @@
 # Requirements traceability
 
-Baseline aae8d87. Requirement statuses/acceptance are canonical in REQUIREMENTS.md and evidence/requirements-inventory.json. `T-*` IDs are planned tests, not executed test passes. B01-B16 are executed characterization observations. Source inspection establishes absence/local-state behavior but is not equivalent to a runtime acceptance test.
+Canonical descriptions/acceptance/status: REQUIREMENTS.md and evidence/requirements-inventory.json. Test counts/logs: TEST_REPORT.md. PASS is limited to synthetic front-end behavior and representative executed assertions; no real HTTP or institutional approval is implied.
 
-## Specification coverage
-
-| Specification section / pages | Requirements | Existing coverage / important gaps |
-| --- | --- | --- |
-| Login/roles/navigation p.1 | AUTH-001..004; NAV-001..003; SET-001..003 | Login placeholder; coordinator unguarded; eleven nav items but two missing routes. Settings details provisional. |
-| Dashboard pp.1-2 | DSH-001..004 | Static data; recommended sections not final. |
-| Students pp.3-5, illustration p.4 | STU-001..009 | Search/sort/filter/read hub; create/edit not durable; export optional. |
-| Partners pp.5-8, illustration p.7 | PAR-001..007 | Read fixtures; MOA/supervisors/company maintenance absent. |
-| Requirements pp.8-10 | REQ-001..008 | Missing entire module; submission eligibility versus approval unresolved. |
-| Opportunities pp.10-12 | OPP-001..006 | Local read pages; no create/edit/approval; applicant link wrong. |
-| Applications pp.12-14, illustration p.13 | APP-001..006 | Read/filter and temporary decisions; no durable write. |
-| Placements pp.14-17 | PLC-001..008 | Read/filter/create validation; no persistence/assignment transaction/certificate record. |
-| Progress pp.17-19, equation p.18 | PRG-001..006 | Read/filter/review UI; totals independent; schedule absent. |
-| Evaluations pp.19-20 | EVA-001..005 | Checklist substitutes for individual evaluations; missing grades/assignments/max-two enforcement. |
-| Reports pp.20-21 | RPT-001..004 | Missing route and all categories/outputs. |
-| Connections pp.21-22 | NAV-002; DSH-003; STU-008; PAR-005; OPP-004; APP-005; PLC-006 | Partial valid links; context ignored in progress/evaluations/partners and opportunity query. |
-| Scenarios A-D pp.22-23; flow diagram p.23 | Related module IDs above; ROLE-001..004 | Student applies/submits reports and assigned evaluators contribute; full portal UX unspecified; self-evaluation absent. |
-| User Tasks 3-7 / architecture and reliability | FND-001..009; AUTH-004; REQ-007; PLC-008 | Cross-cutting enabling requirements and unresolved external policies explicitly identified. |
-
-## Scenario and connection checks
-
-| Scenario / navigation | Current conclusion | Executed / required evidence |
-| --- | --- | --- |
-| A: dashboard → student search/profile → applications/placement/progress/evaluations | Search/read/direct placement/progress links work for fixtures; Requirements missing and evaluation context lost. | B02-B03/B11-B12, full route matrix; future T-STU-008 and T-NAV-002. |
-| B: company create → profile → supervisors → opportunity create | Blocked at create (404); supervisor workflow absent. | 404 matrix/source; future T-PAR-003/005/006 and T-OPP-002. |
-| C: pending application → checklist/slots → accept/reject | UI decision works locally, header/list/placement do not share result; mandatory checklist fabricated. | B06-B07; future T-APP-003/004 and T-REQ-006. |
-| D: accepted application → placement setup/save → progress/evaluations/completion/certificate | Setup basic checks work; no save/ID/redirect; review nonpersistent and completion/certificate not actual records. | B08-B09/source; future T-PLC-002..007, T-PRG-004, T-EVA-004. |
-| Dashboard summary/attention/quick actions | Some destinations work; Requirements, Partner create, Opportunity create fail; evaluation pending query ignored. | All route results and B11-B12; future T-DSH-003. |
-| Company profile → supervisor/opportunity/placements | Only Accenture example links; no supervisor detail or complete scoped lists. | Source/route links; future T-PAR-005..007. |
-| Opportunity → Applicants → application | Software Angela label opens Joshua's record; other related records omitted. | Source and browser captured hrefs/headings; future T-OPP-004. |
-| Application → student; accepted → matching create/cancel | Student link matches shared studentId; query context supported, but status handoff fails. | B06/B08 and recorded hrefs; future T-APP-005. |
-| Placement → student/progress/evaluations | Student/progress correct; evaluations shows all students despite query. | Route matrix/B12; future T-PLC-006. |
-| Progress → report review/student/placement | Correct fixtures; review changes only dialog and resets. | B09/route matrix; future T-PRG-004. |
-| Reports → generated results/export/print | Missing. | 404 matrix; future T-RPT-001..004. |
-
-## Requirement-to-test index
-
-Every row below has a required future test and evidence pointer. No automated acceptance suite existed at baseline. Bounded verified statuses apply only to stated fixture behavior; other gaps remain in their own requirements.
-
-| Requirement | Source | Status | Planned test | Baseline evidence |
+| ID | Source | Current location | Classification / verdict | Executed evidence or boundary |
 | --- | --- | --- | --- | --- |
-| AUTH-001 | PDF p.1 | Placeholder | T-AUTH-001 | B01 |
-| AUTH-002 | PDF pp.1,20 | Missing | T-AUTH-002 | B01; source |
-| AUTH-003 | PDF p.1 login boundary; user Task 6 | Placeholder | T-AUTH-003 | source |
-| AUTH-004 | PDF pp.1,7; user Task 7 | Blocked by external dependency | T-AUTH-004 | source |
-| NAV-001 | PDF p.1 | Partially implemented | T-NAV-001 | B13; route matrix |
-| NAV-002 | PDF pp.2,5,12,21-22 | Partially implemented | T-NAV-002 | B11-B12 |
-| NAV-003 | User Tasks 3,6 | Partially implemented | T-NAV-003 | 48-route matrix |
-| DSH-001 | PDF pp.1-2 (unfinished/recommended) | Placeholder | T-DSH-001 | source |
-| DSH-002 | PDF p.2 (recommended) | Placeholder | T-DSH-002 | source |
-| DSH-003 | PDF pp.2,21-22 | Partially implemented | T-DSH-003 | route matrix; B11-B12 |
-| DSH-004 | PDF p.2 (recommended) | Placeholder | T-DSH-004 | source |
-| STU-001 | PDF pp.3-5 | Partially implemented | T-STU-001 | B02; route matrix |
-| STU-002 | PDF p.3 | Implemented and verified | T-STU-002 | B02; source |
-| STU-003 | PDF p.3 | Partially implemented | T-STU-003 | B03; source |
-| STU-004 | PDF p.3 | Implemented and verified | T-STU-004 | B03; default fixture order |
-| STU-005 | PDF pp.3-4 | Partially implemented | T-STU-005 | B04 |
-| STU-006 | PDF pp.3-4 | Partially implemented | T-STU-006 | B04 |
-| STU-007 | PDF p.3 | Placeholder | T-STU-007 | B05 |
-| STU-008 | PDF pp.4-5,21-22 | Partially implemented | T-STU-008 | route matrix; B12 |
-| STU-009 | PDF p.3 (explicitly optional) | Proposed expansion | T-STU-009 | source |
-| PAR-001 | PDF pp.5-6 (recommended columns) | Partially implemented | T-PAR-001 | route matrix; source |
-| PAR-002 | PDF pp.5-6,21 | Missing | T-PAR-002 | B12 |
-| PAR-003 | PDF p.6,23 scenario B | Missing | T-PAR-003 | route matrix |
-| PAR-004 | PDF p.6 | Missing | T-PAR-004 | source |
-| PAR-005 | PDF pp.7-8,22 | Partially implemented | T-PAR-005 | route matrix; source |
-| PAR-006 | PDF pp.7-8 | Missing | T-PAR-006 | source |
-| PAR-007 | PDF p.7 | Placeholder | T-PAR-007 | source |
-| REQ-001 | PDF p.8 | Missing | T-REQ-001 | 404 matrix |
-| REQ-002 | PDF pp.8-9 | Missing | T-REQ-002 | source |
-| REQ-003 | PDF p.9 | Missing | T-REQ-003 | source |
-| REQ-004 | PDF p.9 | Missing | T-REQ-004 | source |
-| REQ-005 | PDF pp.9-10 | Missing | T-REQ-005 | source |
-| REQ-006 | PDF p.10 | Missing | T-REQ-006 | source |
-| REQ-007 | User Task 7; PDF pp.9-10 does not specify | Blocked by external dependency | T-REQ-007 | source |
-| REQ-008 | PDF p.23 diagram; pp.9-10 | Missing | T-REQ-008 | source |
-| OPP-001 | PDF pp.10-11 | Partially implemented | T-OPP-001 | route matrix |
-| OPP-002 | PDF p.11 | Missing | T-OPP-002 | route matrix |
-| OPP-003 | PDF p.11 (approval conditional) | Blocked by external dependency | T-OPP-003 | source |
-| OPP-004 | PDF pp.11-12,22 | Partially implemented | T-OPP-004 | route matrix; source |
-| OPP-005 | PDF pp.10-11,14 | Placeholder | T-OPP-005 | source |
-| OPP-006 | Existing opportunity UI; user scope constraint | Implemented but unverified | T-OPP-006 | source |
-| APP-001 | PDF pp.12-13 | Partially implemented | T-APP-001 | route matrix |
-| APP-002 | PDF pp.12-13,22 | Partially implemented | T-APP-002 | B11 |
-| APP-003 | PDF pp.13-14,23 | Partially implemented | T-APP-003 | B06 |
-| APP-004 | PDF p.14,23 | Partially implemented | T-APP-004 | B07 |
-| APP-005 | PDF p.14 | Partially implemented | T-APP-005 | B06; B08 |
-| APP-006 | PDF p.23 flow diagram | Missing | T-APP-006 | source |
-| PLC-001 | PDF pp.14-15 | Partially implemented | T-PLC-001 | B11; B16; source |
-| PLC-002 | PDF pp.15-16 | Partially implemented | T-PLC-002 | B06; B08 |
-| PLC-003 | PDF p.16 | Partially implemented | T-PLC-003 | B08 |
-| PLC-004 | PDF pp.10,14,16 | Missing | T-PLC-004 | source |
-| PLC-005 | PDF p.16 | Placeholder | T-PLC-005 | B08 |
-| PLC-006 | PDF p.17,22-23 | Partially implemented | T-PLC-006 | route matrix; source |
-| PLC-007 | PDF p.17,23 | Placeholder | T-PLC-007 | source |
-| PLC-008 | PDF pp.14-15 status; user Task 7 | Blocked by external dependency | T-PLC-008 | source |
-| PRG-001 | PDF pp.17-19 | Partially implemented | T-PRG-001 | B12; B16 |
-| PRG-002 | PDF pp.18-19 | Partially implemented | T-PRG-002 | B09; route matrix |
-| PRG-003 | PDF p.18 | Partially implemented | T-PRG-003 | source; B08 |
-| PRG-004 | PDF p.19 | Partially implemented | T-PRG-004 | B09 |
-| PRG-005 | PDF p.19 | Blocked by external dependency | T-PRG-005 | source |
-| PRG-006 | PDF p.23 diagram; pp.18-19 | Missing | T-PRG-006 | source |
-| EVA-001 | PDF pp.19-20 | Placeholder | T-EVA-001 | route matrix; source |
-| EVA-002 | PDF pp.19-20,22 | Missing | T-EVA-002 | B12 |
-| EVA-003 | PDF p.20 | Missing | T-EVA-003 | source |
-| EVA-004 | PDF p.20 | Placeholder | T-EVA-004 | source |
-| EVA-005 | PDF pp.19-20,23 diagram | Blocked by external dependency | T-EVA-005 | source |
-| RPT-001 | PDF pp.20-21 | Missing | T-RPT-001 | 404 matrix |
-| RPT-002 | PDF p.21 | Missing | T-RPT-002 | source |
-| RPT-003 | PDF p.21; user reliability objective | Missing | T-RPT-003 | source |
-| RPT-004 | PDF p.21 | Missing | T-RPT-004 | source |
-| SET-001 | PDF p.1 lists Settings; detailed UI provisional | Placeholder | T-SET-001 | B10 |
-| SET-002 | Existing prototype; user Task 3/6 | Placeholder | T-SET-002 | B10; B15 |
-| SET-003 | PDF p.1 role rules; existing Settings UI | Placeholder | T-SET-003 | source |
-| ROLE-001 | PDF p.23 limited flows; user Phase 9 scope | Proposed expansion | T-ROLE-001 | source |
-| ROLE-002 | PDF pp.19-20; user Phase 9 scope | Proposed expansion | T-ROLE-002 | source |
-| ROLE-003 | PDF pp.7,19-20; user Phase 9 scope | Proposed expansion | T-ROLE-003 | source |
-| ROLE-004 | Existing evaluation checklist only; absent from primary PDF | Proposed expansion | T-ROLE-004 | source |
-| FND-001 | User Tasks 5-6 | Partially implemented | T-FND-001 | source |
-| FND-002 | User Task 6 | Missing | T-FND-002 | B04-B10 |
-| FND-003 | User Task 6 | Missing | T-FND-003 | source |
-| FND-004 | User Task 6; PDF pp.4,6,11,16,20 | Partially implemented | T-FND-004 | B04; B08 |
-| FND-005 | User Task 6 | Partially implemented | T-FND-005 | B04-B10; B16 |
-| FND-006 | User Tasks 3,6 | Partially implemented | T-FND-006 | B14-B15; source |
-| FND-007 | User Task 4/6 | Partially implemented | T-FND-007 | current logs |
-| FND-008 | PDF p.9; user Task 6 | Missing | T-FND-008 | source |
-| FND-009 | User objective and Phase 10 | Blocked by external dependency | T-FND-009 | source |
+| AUTH-001 | PDF p.1 | app/features/Login.tsx; app/lib/service.ts; app/components/Workspace.tsx | Implemented and verified / PASS | tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation) |
+| AUTH-002 | PDF pp.1,20 | app/features/Login.tsx; app/lib/service.ts; app/components/Workspace.tsx | Implemented and verified / PASS | tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation) |
+| AUTH-003 | PDF p.1 login boundary; user Task 6 | app/features/Login.tsx; app/lib/service.ts; app/components/Workspace.tsx | Implemented and verified / PASS | tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation) |
+| AUTH-004 | PDF pp.1,7; user Task 7 | app/features/Login.tsx; app/lib/service.ts; app/components/Workspace.tsx | Blocked by external dependency / BLOCKED | tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation) |
+| NAV-001 | PDF p.1 | app/components/Workspace.tsx; app/components/ui.tsx; app/features/PortalPage.tsx; app/dashboard/**/page.tsx | Implemented and verified / PASS | tests/e2e/smoke.spec.ts; tests/e2e/maintenance.spec.ts (valid/invalid routes, URL filters, back/forward) |
+| NAV-002 | PDF pp.2,5,12,21-22 | app/components/Workspace.tsx; app/components/ui.tsx; app/features/PortalPage.tsx; app/dashboard/**/page.tsx | Implemented and verified / PASS | tests/e2e/smoke.spec.ts; tests/e2e/maintenance.spec.ts (valid/invalid routes, URL filters, back/forward) |
+| NAV-003 | User Tasks 3,6 | app/components/Workspace.tsx; app/components/ui.tsx; app/features/PortalPage.tsx; app/dashboard/**/page.tsx | Implemented and verified / PASS | tests/e2e/smoke.spec.ts; tests/e2e/maintenance.spec.ts (valid/invalid routes, URL filters, back/forward) |
+| DSH-001 | PDF pp.1-2 (unfinished/recommended) | app/features/Dashboard.tsx; app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals) |
+| DSH-002 | PDF p.2 (recommended) | app/features/Dashboard.tsx; app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals) |
+| DSH-003 | PDF pp.2,21-22 | app/features/Dashboard.tsx; app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals) |
+| DSH-004 | PDF p.2 (recommended) | app/features/Dashboard.tsx; app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals) |
+| STU-001 | PDF pp.3-5 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-002 | PDF p.3 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-003 | PDF p.3 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-004 | PDF p.3 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-005 | PDF pp.3-4 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-006 | PDF pp.3-4 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-007 | PDF p.3 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-008 | PDF pp.4-5,21-22 | app/features/Students.tsx; app/lib/commands.ts (student.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence) |
+| STU-009 | PDF p.3 (explicitly optional) | app/features/Students.tsx; app/lib/commands.ts (student.save) | Proposed expansion / NOT APPLICABLE | Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend. |
+| PAR-001 | PDF pp.5-6 (recommended columns) | app/features/Partners.tsx; app/lib/commands.ts (company.save/supervisor.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries) |
+| PAR-002 | PDF pp.5-6,21 | app/features/Partners.tsx; app/lib/commands.ts (company.save/supervisor.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries) |
+| PAR-003 | PDF p.6,23 scenario B | app/features/Partners.tsx; app/lib/commands.ts (company.save/supervisor.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries) |
+| PAR-004 | PDF p.6 | app/features/Partners.tsx; app/lib/commands.ts (company.save/supervisor.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries) |
+| PAR-005 | PDF pp.7-8,22 | app/features/Partners.tsx; app/lib/commands.ts (company.save/supervisor.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries) |
+| PAR-006 | PDF pp.7-8 | app/features/Partners.tsx; app/lib/commands.ts (company.save/supervisor.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries) |
+| PAR-007 | PDF p.7 | app/features/Partners.tsx; app/lib/commands.ts (company.save/supervisor.save) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries) |
+| REQ-001 | PDF p.8 | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| REQ-002 | PDF pp.8-9 | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| REQ-003 | PDF p.9 | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| REQ-004 | PDF p.9 | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| REQ-005 | PDF pp.9-10 | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| REQ-006 | PDF p.10 | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| REQ-007 | User Task 7; PDF pp.9-10 does not specify | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| REQ-008 | PDF p.23 diagram; pp.9-10 | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts) |
+| OPP-001 | PDF pp.10-11 | app/features/Opportunities.tsx; app/lib/commands.ts (opportunity commands); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts |
+| OPP-002 | PDF p.11 | app/features/Opportunities.tsx; app/lib/commands.ts (opportunity commands); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts |
+| OPP-003 | PDF p.11 (approval conditional) | app/features/Opportunities.tsx; app/lib/commands.ts (opportunity commands); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts |
+| OPP-004 | PDF pp.11-12,22 | app/features/Opportunities.tsx; app/lib/commands.ts (opportunity commands); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts |
+| OPP-005 | PDF pp.10-11,14 | app/features/Opportunities.tsx; app/lib/commands.ts (opportunity commands); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts |
+| OPP-006 | Existing opportunity UI; user scope constraint | app/features/Opportunities.tsx; app/lib/commands.ts (opportunity commands); app/lib/rules.ts | Proposed expansion / NOT APPLICABLE | Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend. |
+| APP-001 | PDF pp.12-13 | app/features/Applications.tsx; app/lib/commands.ts (application commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility) |
+| APP-002 | PDF pp.12-13,22 | app/features/Applications.tsx; app/lib/commands.ts (application commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility) |
+| APP-003 | PDF pp.13-14,23 | app/features/Applications.tsx; app/lib/commands.ts (application commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility) |
+| APP-004 | PDF p.14,23 | app/features/Applications.tsx; app/lib/commands.ts (application commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility) |
+| APP-005 | PDF p.14 | app/features/Applications.tsx; app/lib/commands.ts (application commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility) |
+| APP-006 | PDF p.23 flow diagram | app/features/Applications.tsx; app/lib/commands.ts (application commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility) |
+| PLC-001 | PDF pp.14-15 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PLC-002 | PDF pp.15-16 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PLC-003 | PDF p.16 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PLC-004 | PDF pp.10,14,16 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PLC-005 | PDF p.16 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PLC-006 | PDF p.17,22-23 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PLC-007 | PDF p.17,23 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PLC-008 | PDF pp.14-15 status; user Task 7 | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts |
+| PRG-001 | PDF pp.17-19 | app/features/Progress.tsx; app/lib/rules.ts; app/lib/commands.ts (report commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps) |
+| PRG-002 | PDF pp.18-19 | app/features/Progress.tsx; app/lib/rules.ts; app/lib/commands.ts (report commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps) |
+| PRG-003 | PDF p.18 | app/features/Progress.tsx; app/lib/rules.ts; app/lib/commands.ts (report commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps) |
+| PRG-004 | PDF p.19 | app/features/Progress.tsx; app/lib/rules.ts; app/lib/commands.ts (report commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps) |
+| PRG-005 | PDF p.19 | app/features/Progress.tsx; app/lib/rules.ts; app/lib/commands.ts (report commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps) |
+| PRG-006 | PDF p.23 diagram; pp.18-19 | app/features/Progress.tsx; app/lib/rules.ts; app/lib/commands.ts (report commands) | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps) |
+| EVA-001 | PDF pp.19-20 | app/features/Evaluations.tsx; app/lib/commands.ts (evaluation.submit); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade) |
+| EVA-002 | PDF pp.19-20,22 | app/features/Evaluations.tsx; app/lib/commands.ts (evaluation.submit); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade) |
+| EVA-003 | PDF p.20 | app/features/Evaluations.tsx; app/lib/commands.ts (evaluation.submit); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade) |
+| EVA-004 | PDF p.20 | app/features/Evaluations.tsx; app/lib/commands.ts (evaluation.submit); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade) |
+| EVA-005 | PDF pp.19-20,23 diagram | app/features/Evaluations.tsx; app/lib/commands.ts (evaluation.submit); app/lib/rules.ts | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade) |
+| RPT-001 | PDF pp.20-21 | app/features/Reports.tsx; app/lib/reporting.ts | Implemented and verified / PASS | tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals) |
+| RPT-002 | PDF p.21 | app/features/Reports.tsx; app/lib/reporting.ts | Implemented and verified / PASS | tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals) |
+| RPT-003 | PDF p.21; user reliability objective | app/features/Reports.tsx; app/lib/reporting.ts | Implemented and verified / PASS | tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals) |
+| RPT-004 | PDF p.21 | app/features/Reports.tsx; app/lib/reporting.ts | Implemented and verified / PASS | tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals) |
+| SET-001 | PDF p.1 lists Settings; detailed UI provisional | app/features/Settings.tsx; app/components/AppProvider.tsx; app/lib/commands.ts (preferences.save) | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/smoke.spec.ts (persisted effects/reset/axe) |
+| SET-002 | Existing prototype; user Task 3/6 | app/features/Settings.tsx; app/components/AppProvider.tsx; app/lib/commands.ts (preferences.save) | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/smoke.spec.ts (persisted effects/reset/axe) |
+| SET-003 | PDF p.1 role rules; existing Settings UI | app/features/Settings.tsx; app/components/AppProvider.tsx; app/lib/commands.ts (preferences.save) | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/smoke.spec.ts (persisted effects/reset/axe) |
+| ROLE-001 | PDF p.23 limited flows; user Phase 9 scope | app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx | Proposed expansion / NOT APPLICABLE | Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend. |
+| ROLE-002 | PDF pp.19-20; user Phase 9 scope | app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx | Proposed expansion / NOT APPLICABLE | Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend. |
+| ROLE-003 | PDF pp.7,19-20; user Phase 9 scope | app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx | Proposed expansion / NOT APPLICABLE | Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend. |
+| ROLE-004 | Existing evaluation checklist only; absent from primary PDF | app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx | Proposed expansion / NOT APPLICABLE | Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend. |
+| FND-001 | User Tasks 5-6 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-002 | User Task 6 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-003 | User Task 6 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-004 | User Task 6; PDF pp.4,6,11,16,20 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-005 | User Task 6 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-006 | User Tasks 3,6 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-007 | User Task 4/6 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-008 | PDF p.9; user Task 6 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs |
+| FND-009 | User objective and Phase 10 | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Blocked by external dependency / NOT APPLICABLE | Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend. |
+| AUTH-005 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/features/Login.tsx; app/lib/service.ts; app/components/Workspace.tsx | Implemented and verified / PASS | tests/unit/session.test.ts; tests/integration/services.test.ts (malformed/unavailable/expired sessions) |
+| REQ-009 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/features/Requirements.tsx; app/lib/commands.ts (requirement/submission commands) | Implemented and verified / PASS | tests/integration/services.test.ts; tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts |
+| PLC-009 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/features/Placements.tsx; app/lib/commands.ts (placement/certificate commands) | Implemented and verified / PASS | tests/unit/rules.test.ts; tests/e2e/lifecycle.spec.ts |
+| SET-004 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/features/Settings.tsx; app/components/AppProvider.tsx; app/lib/commands.ts (preferences.save) | Implemented and verified / PASS | tests/integration/services.test.ts; tests/e2e/smoke.spec.ts |
+| ROLE-005 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts |
+| ROLE-006 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts |
+| ROLE-007 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx | Implemented and verified / PASS | tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts |
+| FND-010 | User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension) | app/lib/domain.ts; app/lib/service.ts; app/lib/storage.ts; app/lib/integrity.ts; app/lib/commands.ts; app/components/ui.tsx | Implemented and verified / PASS | tests/e2e/maintenance.spec.ts; tests/e2e/restart.spec.ts; tests/integration/services.test.ts |
+
+## Source coverage
+
+| Specification | Implemented scope |
+| --- | --- |
+| PDF p.1 | Simulated login/active roles/navigation and effective settings; dashboard recommendations implemented as derived local metrics. |
+| pp.2–4 | Student directory/filters/forms/profile hub. |
+| pp.5–7 | Partner maintenance/MOA/company profile/nested supervisor accounts/placements. |
+| pp.8–10 | Requirement definitions/checklists/files/review. Approved-latest eligibility is a documented stricter demo choice. |
+| pp.11–14 | Opportunity maintenance/approval/capacity; student application and coordinator decision/history/context. |
+| pp.15–17 | Accepted placement creation/assignments/dates/hours/details/actual synthetic certificate metadata. |
+| pp.18–20 | Progress formula/reports/review and two assigned evaluation obligations. |
+| pp.20–21 | Seven generated categories, filters, totals, CSV and print. |
+| pp.22–23 / examples A–D | Contextual navigation and full registration-to-completion/report lifecycle in lifecycle.spec.ts. |
+
+The supplied PDF was read in full, including tables, examples and diagrams. Approved ERD/SQL/API/permission/rubric documents were not available. Their absence is an external limitation, not permission to claim demonstration assumptions as approved rules.

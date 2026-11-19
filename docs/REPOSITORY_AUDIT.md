@@ -1,3 +1,5 @@
+> Historical Phase 0 evidence for prototype aae8d87, committed at d679d264. Statements below describe that baseline, not the completed front-end. Current implementation, resolved issues and verification are in [HANDOVER.md](HANDOVER.md), [KNOWN_ISSUES.md](KNOWN_ISSUES.md) and [TEST_REPORT.md](TEST_REPORT.md).
+
 # Phase 0 repository audit
 
 Audit date: 2026-11-19, Asia/Manila. **Application readiness: FAIL. Phase 0 audit delivery: PASS with recorded external limitations.** No feature implementation was performed. See [test evidence](TEST_REPORT.md), [requirements](REQUIREMENTS.md), and [known issues](KNOWN_ISSUES.md).

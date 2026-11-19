@@ -10,12 +10,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## PUP InternLink project guidance
 
-- Read `docs/DEVELOPMENT_STATUS.md`, `docs/PROJECT_PLAN.md`, `docs/REQUIREMENTS.md`, `docs/BUSINESS_RULES.md`, and `docs/DECISION_LOG.md` before further development. Phase 0 is audit/documentation only; begin later phases only when requested.
-- Preserve this generated Next.js block. Consult installed `node_modules/next/dist/docs/` for the APIs being changed; do not assume older routing, params, or configuration conventions.
-- Preserve user changes and the supplied specification. Work on a dedicated branch; do not modify/merge into main, force-push, or push without explicit authorization.
-- Reuse working Next/React/TypeScript/CSS code; prioritize linked functionality over redesign. Keep Opportunities under existing `/dashboard/internships` URLs unless explicitly approved otherwise.
-- The approved ERD, schema, API specification, permission matrix and evaluation rubric were not available at Phase 0. Candidate models/contracts in docs are proposals. Record conflicts/questions rather than inventing approved database rules.
-- Keep synthetic demonstration data/storage and production API behavior explicitly isolated. Never fall back to mock success on API failure. Component state or validation messages are not persistent functionality. Use synthetic contacts/data only; keep credentials and real personal data out of fixtures/logs.
-- Keep business rules and relationship validation in typed services when implemented. Preserve student/company/opportunity/placement context through navigation. Only report successful writes after real adapter persistence.
-- Run checks appropriate to changes and record exact outcomes. Baseline lint fails three errors; build/typecheck pass; no test suite existed. Never label unexecuted or unavailable tests as passed. Update requirement status, traceability, issues and test evidence together.
-- Preserve existing server processes. On Windows, isolated source copies/worktrees avoid SWC and `.next` locks during installation/build checks. Audit harnesses under `docs/evidence/*.cjs.txt` are documentation; copy to a temporary `.cjs` to run with external Playwright tooling.
+- Read `docs/DEVELOPMENT_STATUS.md`, `docs/HANDOVER.md`, `docs/REQUIREMENTS.md`, `docs/BUSINESS_RULES.md` and `docs/DECISION_LOG.md` before changes. Complete-front-end authorization superseded the historical Phase 0 stop; actual backend/server/database implementation remains outside scope.
+- Preserve the generated Next block. Read relevant installed node_modules/next/dist/docs guides before framework-dependent changes, including async params and navigation/history conventions.
+- Preserve user changes and the supplied PDF; use a dedicated branch. No push, force-push, destructive Git operation or merge/changes to main without explicit authorization. Do not stage the supplied untracked PDF silently.
+- Keep Next/React/TypeScript/CSS and existing /dashboard/internships URLs. Prioritize interconnected functionality over redesign.
+- Domain contracts live in app/lib/domain.ts; all domain writes go through InternLinkService/commands.ts. Do not add page-local mutable fixture arrays, duplicate derived counters or pretend success.
+- IndexedDbStore is demo-only. Preserve existing saved data; validate schema/references, use atomic writes and visible errors; reset only after the deliberate confirmed action. Never silently fall back from API failures to demo data.
+- No approved ERD/API/rubric/permission matrix was supplied. Keep proposed contracts and demo policies explicitly labelled; update decision log and tests when changing assumptions. Use only fictional records/public synthetic credentials, never real student data or secrets.
+- Role-aware UI is simulated access control. Backend must enforce every permission/constraint/file access before real use. API mode must remain explicitly unavailable until a real approved adapter exists.
+- Preserve existing server processes. Use INTERNLINK_DIST_DIR for isolated build/start directories and free ports for tests. Never run recursive deletes against unchecked paths.
+- Run npm run typecheck, npm run lint, npm test, relevant Playwright tests and production build after changes. Do not disable meaningful checks or weaken assertions. Update requirement traceability/status/issues/test evidence together; report only executed results.

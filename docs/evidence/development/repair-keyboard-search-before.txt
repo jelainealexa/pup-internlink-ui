@@ -1,0 +1,50 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toHaveValue(expected) failed
+
+Locator:  getByRole('searchbox')
+Expected: "SYN-2026-001"
+Received: "-01"
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveValue" getByRole('searchbox') with timeout 5000ms
+  - waiting for getByRole('searchbox')
+    14 × locator resolved to <input id="_r_0_" value="-01" type="search" placeholder="Student name or ID"/>
+       - unexpected value "-01"
+
+    at captureRawStack (D:\Orca\Workspace\pup-internlink-ui\node_modules\playwright-core\lib\coreBundle.js:9551:17)
+    at callMatcherAsStep (D:\Orca\Workspace\pup-internlink-ui\node_modules\playwright\lib\matchers\expect.js:13342:57)
+    at Object.toHaveValue (D:\Orca\Workspace\pup-internlink-ui\node_modules\playwright\lib\matchers\expect.js:13334:23)
+    at C:\Users\USER1~1\AppData\Local\Temp\internlink-keyboard-probe.mjs:20:45 {
+  matcherResult: {
+    name: 'toHaveValue',
+    expected: 'SYN-2026-001',
+    message: 'expect(locator).toHaveValue(expected) failed\n' +
+      '\n' +
+      "Locator:  getByRole('searchbox')\n" +
+      'Expected: "SYN-2026-001"\n' +
+      'Received: "-01"\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toHaveValue" getByRole('searchbox') with timeout 5000ms\n` +
+      "  - waiting for getByRole('searchbox')\n" +
+      '    14 × locator resolved to <input id="_r_0_" value="-01" type="search" placeholder="Student name or ID"/>\n' +
+      '       - unexpected value "-01"\n',
+    pass: false,
+    actual: '-01',
+    log: [
+      `  - Expect "toHaveValue" getByRole('searchbox') with timeout 5000ms`,
+      "  - waiting for getByRole('searchbox')",
+      '    14 × locator resolved to <input id="_r_0_" value="-01" type="search" placeholder="Student name or ID"/>',
+      '       - unexpected value "-01"'
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- searchbox "Search": "-01"'
+  }
+}
+
+Node.js v24.15.0

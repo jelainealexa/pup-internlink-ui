@@ -1,0 +1,72 @@
+
+> internlink-ui@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=docs/evidence/development/vitest.json
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ❯ tests/integration/services.test.ts (0 test)
+ ❯ tests/unit/rules.test.ts (0 test)
+ ❯ tests/unit/session.test.ts (0 test)
+ ❯ tests/components/forms.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/components/forms.test.tsx [ tests/components/forms.test.tsx ]
+ FAIL  tests/unit/rules.test.ts [ tests/unit/rules.test.ts ]
+Error: Transform failed with 1 error:
+
+[PARSE_ERROR] Identifier `Database` has already been declared
+   ╭─[ app/lib/service.ts:6:3 ]
+   │
+ 6 │   Database,
+   │   ────┬───
+   │       ╰───── `Database` has already been declared here
+   │
+ 8 │   Database,
+   │   ────┬───
+   │       ╰───── It can not be redeclared here
+───╯
+
+  Plugin: vite:oxc
+  File: D:/Orca/Workspace/pup-internlink-ui/app/lib/service.ts
+ ❯ transformWithOxc node_modules/vite/dist/node/chunks/node.js:7673:19
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:7747:26
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8636:51
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20112:26
+ ❯ fetchModule node_modules/vite/dist/node/chunks/node.js:36229:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/integration/services.test.ts [ tests/integration/services.test.ts ]
+ FAIL  tests/unit/session.test.ts [ tests/unit/session.test.ts ]
+Error: Transform failed with 1 error:
+
+[PARSE_ERROR] Identifier `Database` has already been declared
+   ╭─[ app/lib/service.ts:6:3 ]
+   │
+ 6 │   Database,
+   │   ────┬───
+   │       ╰───── `Database` has already been declared here
+   │
+ 8 │   Database,
+   │   ────┬───
+   │       ╰───── It can not be redeclared here
+───╯
+
+  Plugin: vite:oxc
+  File: D:/Orca/Workspace/pup-internlink-ui/app/lib/service.ts
+ ❯ transformWithOxc node_modules/vite/dist/node/chunks/node.js:7673:19
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:7747:26
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8636:51
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:20112:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  17:45:08
+   Duration  2.66s (environment 89%, setup 10%, worker 1%, transform 1%)
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/development/vitest.json
