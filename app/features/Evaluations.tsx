@@ -87,14 +87,19 @@ export function Evaluations({ id }: FeatureProps) {
         e.status === "Pending" &&
         p.status === "Ongoing" ? (
           <SaveForm
+            revision={db.revision}
             submit="Submit Evaluation"
-            save={async (data) => {
-              await mutate({
-                type: "evaluation.submit",
-                id: e.id,
-                grade: number(data, "grade"),
-                comments: text(data, "comments"),
-              });
+            save={async (data, revision) => {
+              await mutate(
+                {
+                  type: "evaluation.submit",
+                  id: e.id,
+                  grade: number(data, "grade"),
+                  comments: text(data, "comments"),
+                },
+                undefined,
+                revision,
+              );
               setNotice("Assigned evaluation saved.");
             }}
           >

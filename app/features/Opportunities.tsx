@@ -39,6 +39,14 @@ export function Opportunities({ id, action }: FeatureProps) {
   if (action === "create" || action === "edit") {
     if (!coordinator) return <RecordState title="Access denied" />;
     if (action === "edit" && !opportunity) return <RecordState />;
+    if (action === "create" && !db.companies.length)
+      return (
+        <RecordState
+          title="No registered partners"
+          message="Register an industry partner before creating an opportunity."
+          back="/dashboard/partners/create"
+        />
+      );
     return (
       <>
         <Back href="/dashboard/internships">Opportunities</Back>
@@ -47,24 +55,29 @@ export function Opportunities({ id, action }: FeatureProps) {
           description="New postings require coordinator approval. Capacity is consumed once, when a placement is created."
         />
         <SaveForm
+          revision={db.revision}
           submit="Save Opportunity"
           cancel={
             opportunity
               ? `/dashboard/internships/${opportunity.id}`
               : "/dashboard/internships"
           }
-          save={async (data) => {
-            const result = await mutate({
-              type: "opportunity.save",
-              id: opportunity?.id,
-              input: {
-                companyId: text(data, "companyId"),
-                title: text(data, "title"),
-                description: text(data, "description"),
-                capacity: number(data, "capacity"),
-                academicYear: text(data, "academicYear"),
+          save={async (data, revision) => {
+            const result = await mutate(
+              {
+                type: "opportunity.save",
+                id: opportunity?.id,
+                input: {
+                  companyId: text(data, "companyId"),
+                  title: text(data, "title"),
+                  description: text(data, "description"),
+                  capacity: number(data, "capacity"),
+                  academicYear: text(data, "academicYear"),
+                },
               },
-            });
+              undefined,
+              revision,
+            );
             setNotice("Opportunity saved.");
             router.push(`/dashboard/internships/${result}`);
           }}

@@ -28,7 +28,11 @@ interface AppContextValue {
   error: string;
   service: InternLinkService;
   refresh: () => Promise<void>;
-  mutate: (command: Command, key?: string) => Promise<string>;
+  mutate: (
+    command: Command,
+    key?: string,
+    expectedRevision?: number,
+  ) => Promise<string>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   notice: string;
@@ -90,9 +94,13 @@ export function AppProvider({
     };
   }, [refresh, service]);
   const mutate = useCallback(
-    async (command: Command, key = crypto.randomUUID()) => {
+    async (
+      command: Command,
+      key = crypto.randomUUID(),
+      expectedRevision = db?.revision,
+    ) => {
       try {
-        const id = await service.execute(command, key, db?.revision);
+        const id = await service.execute(command, key, expectedRevision);
         await refresh();
         return id;
       } catch (e) {

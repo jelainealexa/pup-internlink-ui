@@ -92,24 +92,29 @@ export function Placements({ id, action }: FeatureProps) {
           student; an accepted application alone does not reserve a slot.
         </p>
         <SaveForm
+          revision={db.revision}
           submit="Review and Save Placement"
           cancel={`/dashboard/applications/${a.id}`}
-          save={async (data) => {
+          save={async (data, revision) => {
             if (text(data, "confirmation") !== "reviewed")
               throw new Error(
                 "Confirm that you reviewed the placement information.",
               );
-            const result = await mutate({
-              type: "placement.create",
-              input: {
-                applicationId: a.id,
-                adviserId: text(data, "adviserId"),
-                supervisorId: text(data, "supervisorId"),
-                startDate: text(data, "startDate"),
-                endDate: text(data, "endDate"),
-                requiredHours: number(data, "requiredHours"),
+            const result = await mutate(
+              {
+                type: "placement.create",
+                input: {
+                  applicationId: a.id,
+                  adviserId: text(data, "adviserId"),
+                  supervisorId: text(data, "supervisorId"),
+                  startDate: text(data, "startDate"),
+                  endDate: text(data, "endDate"),
+                  requiredHours: number(data, "requiredHours"),
+                },
               },
-            });
+              undefined,
+              revision,
+            );
             setNotice(
               "Placement saved, capacity allocated, and two evaluation obligations created.",
             );
@@ -176,9 +181,9 @@ export function Placements({ id, action }: FeatureProps) {
                 label="Required hours"
                 name="requiredHours"
                 type="number"
-                min={0.25}
+                min={0}
                 max={10000}
-                step={0.25}
+                step="any"
                 value={486}
               />
               <Field
@@ -350,14 +355,19 @@ export function Placements({ id, action }: FeatureProps) {
           )}
           {coordinator && p.status === "Completed" && !cert && (
             <SaveForm
+              revision={db.revision}
               submit="Record demonstration certificate"
-              save={async (data) => {
-                await mutate({
-                  type: "certificate.record",
-                  placementId: p.id,
-                  number: text(data, "number"),
-                  issueDate: text(data, "issueDate"),
-                });
+              save={async (data, revision) => {
+                await mutate(
+                  {
+                    type: "certificate.record",
+                    placementId: p.id,
+                    number: text(data, "number"),
+                    issueDate: text(data, "issueDate"),
+                  },
+                  undefined,
+                  revision,
+                );
                 setNotice(
                   "Demonstration certificate information saved; no official certificate was issued.",
                 );
@@ -378,15 +388,20 @@ export function Placements({ id, action }: FeatureProps) {
           <section>
             <h2>Terminate placement</h2>
             <SaveForm
+              revision={db.revision}
               submit="Confirm termination"
-              save={async (data) => {
+              save={async (data, revision) => {
                 if (text(data, "confirm") !== "terminate")
                   throw new Error("Confirm the termination first.");
-                await mutate({
-                  type: "placement.terminate",
-                  id: p.id,
-                  reason: text(data, "reason"),
-                });
+                await mutate(
+                  {
+                    type: "placement.terminate",
+                    id: p.id,
+                    reason: text(data, "reason"),
+                  },
+                  undefined,
+                  revision,
+                );
                 setNotice(
                   "Placement terminated; history retained and capacity released.",
                 );

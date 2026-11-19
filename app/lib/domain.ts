@@ -193,7 +193,12 @@ export interface Database {
   certificates: Certificate[];
   activities: Activity[];
   preferences: Record<string, Preferences>;
-  receipts: { key: string; actorId: string; result: string }[];
+  receipts: {
+    key: string;
+    actorId: string;
+    result: string;
+    commandFingerprint?: string;
+  }[];
   /** Read projection only: authoritative availability without exposing other students' placements. */
   availability?: Record<string, { remaining: number; eligible: boolean }>;
 }

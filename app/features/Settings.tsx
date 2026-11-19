@@ -72,23 +72,28 @@ export function Settings() {
       />
       <h2>Workspace preferences</h2>
       <SaveForm
+        revision={db.revision}
         submit="Save Preferences"
         success="Preferences saved and applied throughout this browser workspace."
-        save={async (data) => {
-          await mutate({
-            type: "preferences.save",
-            input: {
-              academicYear: text(data, "academicYear"),
-              landingPage: text(data, "landingPage"),
-              density: text(data, "density") as "Comfortable" | "Compact",
-              requirementAlerts: data.has("requirementAlerts"),
-              evaluationAlerts: data.has("evaluationAlerts"),
-              progressAlerts: data.has("progressAlerts"),
-              partnershipAlerts: data.has("partnershipAlerts"),
-              largerText: data.has("largerText"),
-              reduceMotion: data.has("reduceMotion"),
+        save={async (data, revision) => {
+          await mutate(
+            {
+              type: "preferences.save",
+              input: {
+                academicYear: text(data, "academicYear"),
+                landingPage: text(data, "landingPage"),
+                density: text(data, "density") as "Comfortable" | "Compact",
+                requirementAlerts: data.has("requirementAlerts"),
+                evaluationAlerts: data.has("evaluationAlerts"),
+                progressAlerts: data.has("progressAlerts"),
+                partnershipAlerts: data.has("partnershipAlerts"),
+                largerText: data.has("largerText"),
+                reduceMotion: data.has("reduceMotion"),
+              },
             },
-          });
+            undefined,
+            revision,
+          );
         }}
       >
         <div className="form-grid">

@@ -41,3 +41,9 @@ Search inputs retain browser text while URL transitions settle. A current-locati
 Forms wait for actual service completion; failed writes preserve relevant fields and focus feedback. Native HTML validation plus central command validation reject invalid inputs. Dialogs support Escape, modal keyboard focus and focus restoration. Shared record/loading/empty/error/success states prevent invalid IDs from dereferencing undefined records. Desktop/mobile table shells scroll horizontally; retained text/density/motion preferences affect rendered CSS. No redesign framework was added.
 
 Testing uses Vitest for rules, Testing Library for async form interactions, fake-indexeddb for actual adapter integration and Playwright/axe for production browser workflows. See TEST_PLAN/TEST_REPORT. Tests do not establish production backend or universal accessibility conformance.
+
+## Verification repair notes
+
+Readonly IndexedDB access avoids rewrites and permits loading intact data when writes fail. Startup failures are retryable. Mutations still validate and commit one shared snapshot atomically; the UI holds a form-specific expected revision through background refresh. See D-033/034 for conflict behavior.
+
+Command fingerprints are computed before opening a transaction. Persisted optional receipt fingerprints bind actor/request key to intent and file bytes; legacy receipts remain readable but conflicting/ambiguous replay is rejected. This is bounded browser-local idempotency, not a permanent server audit trail. Reset is explicitly confirmed and ordered to preserve records when session clearing fails (D-040).

@@ -47,6 +47,22 @@ export function Applications({ id, action }: FeatureProps) {
         : undefined;
     if (!coordinator && !ownStudent)
       return <RecordState title="Access denied" />;
+    if (!db.students.some((s) => get(db.accounts, s.accountId).active))
+      return (
+        <RecordState
+          title="No active students"
+          message="Register an active student before creating an application."
+          back="/dashboard/students/create"
+        />
+      );
+    if (!db.opportunities.some((o) => available(db, o.id)))
+      return (
+        <RecordState
+          title="No available opportunities"
+          message="There are no approved, eligible postings with remaining capacity."
+          back="/dashboard/internships"
+        />
+      );
     return (
       <>
         <Back href="/dashboard/applications">Applications</Back>
@@ -55,14 +71,19 @@ export function Applications({ id, action }: FeatureProps) {
           description="Only approved, eligible postings with remaining placement capacity can receive new applications. Mandatory documents must be approved before acceptance."
         />
         <SaveForm
+          revision={db.revision}
           submit="Submit Application"
           cancel="/dashboard/applications"
-          save={async (data) => {
-            const result = await mutate({
-              type: "application.create",
-              studentId: text(data, "studentId"),
-              opportunityId: text(data, "opportunityId"),
-            });
+          save={async (data, revision) => {
+            const result = await mutate(
+              {
+                type: "application.create",
+                studentId: text(data, "studentId"),
+                opportunityId: text(data, "opportunityId"),
+              },
+              undefined,
+              revision,
+            );
             setNotice("Application submitted and stored locally.");
             router.push(`/dashboard/applications/${result}`);
           }}
@@ -175,18 +196,23 @@ export function Applications({ id, action }: FeatureProps) {
               Accept Application
             </ActionButton>
             <SaveForm
+              revision={db.revision}
               submit="Confirm Rejection"
-              save={async (data) => {
+              save={async (data, revision) => {
                 if (text(data, "confirm") !== "reject")
                   throw new Error(
                     "Select the rejection confirmation before saving.",
                   );
-                await mutate({
-                  type: "application.decide",
-                  id: application.id,
-                  decision: "Rejected",
-                  reason: text(data, "reason"),
-                });
+                await mutate(
+                  {
+                    type: "application.decide",
+                    id: application.id,
+                    decision: "Rejected",
+                    reason: text(data, "reason"),
+                  },
+                  undefined,
+                  revision,
+                );
                 setNotice("Application rejected; reason and history saved.");
               }}
             >

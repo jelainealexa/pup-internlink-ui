@@ -26,6 +26,173 @@ async function audit(seed?: Database) {
 }
 afterEach(() => vi.restoreAllMocks());
 describe("independent adversarial verification", () => {
+  it("IV-05 binds file retries to actual bytes and accepts genuine same-intent retries", async () => {
+    const { store, service } = await audit();
+    const requirementId = await service.execute(
+      {
+        type: "requirement.save",
+        input: {
+          name: "Independent file fingerprint",
+          description: "Synthetic evidence",
+          classification: "Optional",
+        },
+      },
+      request(),
+    );
+    const key = request();
+    const command: Command = {
+      type: "submission.create",
+      studentId: "2024-0005",
+      requirementId,
+      file: {
+        name: "synthetic.txt",
+        mime: "text/plain",
+        size: 3,
+        blob: new Blob(["one"], { type: "text/plain" }),
+      },
+    };
+    const result = await service.execute(command, key);
+    expect(await service.execute(command, key)).toBe(result);
+    const before = await store.read();
+    await expect(
+      service.execute(
+        {
+          ...command,
+          file: {
+            ...command.file,
+            blob: new Blob(["two"], { type: "text/plain" }),
+          },
+        },
+        key,
+      ),
+    ).rejects.toMatchObject({ code: "CONFLICT" });
+    expect(await store.read()).toEqual(before);
+    expect(
+      await (
+        await service.attachment(
+          before.submissions.find((s) => s.id === result)!.fileId,
+        )
+      ).blob.text(),
+    ).toBe("one");
+  });
+  it("IV-05 preserves legacy snapshots while rejecting ambiguous legacy receipt replay", async () => {
+    const { store, service } = await audit();
+    const key = request();
+    const command: Command = {
+      type: "requirement.save",
+      input: {
+        name: "Legacy synthetic receipt",
+        description: "Synthetic evidence",
+        classification: "Optional",
+      },
+    };
+    await service.execute(command, key);
+    await store.update((db) => {
+      delete db.receipts.find((r) => r.key === key)!.commandFingerprint;
+    });
+    const before = await store.read();
+    expect(
+      before.requirements.some((r) => r.name === "Legacy synthetic receipt"),
+    ).toBe(true);
+    await expect(service.execute(command, key)).rejects.toMatchObject({
+      code: "CONFLICT",
+    });
+    expect(await store.read()).toEqual(before);
+  });
+  it("IV-16 does not erase saved records when reset cannot clear the session", async () => {
+    const store = new IndexedDbStore(`independent-reset-${request()}`);
+    const sessions = new AuditSession();
+    const service = new DemoService(store, sessions, () => clock);
+    await service.signIn("coordinator@example.test", DEMO_PASSWORD);
+    const before = await store.read();
+    vi.spyOn(sessions, "set").mockImplementation(() => {
+      throw new Error("session storage denied");
+    });
+    await expect(service.reset("RESET DEMO")).rejects.toThrow(
+      "session storage denied",
+    );
+    expect(await store.read()).toEqual(before);
+  });
+  it("IV-01 retries after a transient storage initialization failure without a fake success", async () => {
+    const store = new IndexedDbStore(`independent-retry-${request()}`);
+    vi.spyOn(indexedDB, "open").mockImplementationOnce(() => {
+      throw new DOMException("temporarily blocked", "SecurityError");
+    });
+    await expect(store.read()).rejects.toMatchObject({
+      code: "STORAGE_UNAVAILABLE",
+    });
+    expect((await store.read()).students).toHaveLength(6);
+  });
+  it("IV-06 keeps cross-placement report totals and almost-complete percentages accurate", async () => {
+    const seed = await createSeed(clock);
+    const amounts = [0.7, 0.1, 0.1];
+    seed.reports = seed.placements.map((p, index) => ({
+      ...seed.reports.find((r) => r.placementId === p.id)!,
+      hours: amounts[index],
+      status: "Reviewed" as const,
+    }));
+    seed.placements.find((p) => p.status === "Completed")!.requiredHours = 0.1;
+    const { service } = await audit(seed);
+    const db = await service.read();
+    expect(
+      generateReport(db, {
+        category: "Progress",
+        academicYear: "2032-2033",
+        companyId: "",
+        status: "",
+      }).totals["Reviewed hours"],
+    ).toBe(0.9);
+    const p = db.placements[0];
+    p.requiredHours = 0.7001;
+    expect(hours(db, p.id).percent).toBeLessThan(100);
+  });
+  it("reads, updates and reports a thousand additional coherent synthetic students", async () => {
+    const seed = await createSeed(clock);
+    for (let i = 0; i < 1000; i++) {
+      const accountId = `audit-large-account-${i}`;
+      const email = `large-${i}@example.test`;
+      seed.accounts.push({
+        ...seed.accounts.find((a) => a.role === "Student")!,
+        id: accountId,
+        email,
+        name: `Large Synthetic ${i}`,
+      });
+      seed.students.push({
+        ...seed.students[0],
+        id: `audit-large-student-${i}`,
+        accountId,
+        email,
+        studentNumber: `AUDIT-LARGE-${i}`,
+        firstName: "Large",
+        lastName: `Synthetic ${i}`,
+      });
+    }
+    const { store, service } = await audit(seed);
+    const db = await store.read();
+    expect(db.students).toHaveLength(1006);
+    const student = db.students.at(-1)!;
+    await service.execute(
+      {
+        type: "student.save",
+        id: student.id,
+        input: { ...student, lastName: "Edited" },
+      },
+      request(),
+    );
+    const saved = await store.read();
+    expect(saved.students.at(-1)?.lastName).toBe("Edited");
+    expect(saved.accounts.find((a) => a.id === student.accountId)?.name).toBe(
+      "Large Edited",
+    );
+    expect(
+      generateReport(saved, {
+        category: "Students",
+        academicYear: "2032-2033",
+        companyId: "",
+        status: "",
+      }).rows,
+    ).toHaveLength(1006);
+  });
   it("IV-02 derives the unsaved role year preference from its actual records", async () => {
     const { service } = await audit();
     await service.signIn("student@example.test", DEMO_PASSWORD);
@@ -138,7 +305,7 @@ describe("independent adversarial verification", () => {
         { type: "placement.complete", id: placement.id },
         request(),
       ),
-    ).resolves.toBe(placement.id);
+    ).rejects.toMatchObject({ code: "CONFLICT" });
     expect(
       (await store.read()).placements.find((p) => p.id === placement.id)
         ?.status,

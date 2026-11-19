@@ -9,6 +9,7 @@ import {
   nameOf,
   partnership,
   reportingGap,
+  sumHours,
 } from "../lib/rules";
 import { useData } from "./shared";
 
@@ -147,7 +148,7 @@ export function Dashboard() {
           headers={[
             "Ongoing",
             "Students reporting",
-            "Reviewed hours",
+            "Reviewed hours (all placements)",
             "Near completion (75%+)",
             "Missing / delayed reports",
           ]}
@@ -163,7 +164,7 @@ export function Dashboard() {
                   )
                   .map((r) => r.placementId),
               ).size,
-              ps.reduce((sum, p) => sum + hours(db, p.id).reviewed, 0),
+              sumHours(ps.map((p) => hours(db, p.id).reviewed)),
               ps.filter(
                 (p) => p.status === "Ongoing" && hours(db, p.id).percent >= 75,
               ).length,

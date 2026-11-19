@@ -90,20 +90,25 @@ export function Partners({ id, action, parentId }: FeatureProps) {
           description="The supervisor belongs to this company and receives a linked synthetic account."
         />
         <SaveForm
+          revision={db.revision}
           submit="Save supervisor"
           cancel={`/dashboard/partners/${company.id}`}
-          save={async (data) => {
-            const result = await mutate({
-              type: "supervisor.save",
-              id: supervisor?.id,
-              input: {
-                companyId: company.id,
-                name: text(data, "name"),
-                email: text(data, "email"),
-                phone: text(data, "phone"),
-                active: text(data, "active") === "true",
+          save={async (data, revision) => {
+            const result = await mutate(
+              {
+                type: "supervisor.save",
+                id: supervisor?.id,
+                input: {
+                  companyId: company.id,
+                  name: text(data, "name"),
+                  email: text(data, "email"),
+                  phone: text(data, "phone"),
+                  active: text(data, "active") === "true",
+                },
               },
-            });
+              undefined,
+              revision,
+            );
             setNotice("Supervisor and linked account saved.");
             router.push(
               `/dashboard/partners/${company.id}/supervisors/${result}`,
@@ -155,29 +160,34 @@ export function Partners({ id, action, parentId }: FeatureProps) {
           title={company ? "Edit industry partner" : "Add industry partner"}
         />
         <SaveForm
+          revision={db.revision}
           submit="Save Partner"
           cancel={
             company
               ? `/dashboard/partners/${company.id}`
               : "/dashboard/partners"
           }
-          save={async (data) => {
-            const result = await mutate({
-              type: "company.save",
-              id: company?.id,
-              input: {
-                name: text(data, "name"),
-                industry: text(data, "industry"),
-                address: text(data, "address"),
-                contactPerson: text(data, "contactPerson"),
-                email: text(data, "email"),
-                phone: text(data, "phone"),
-                moaStart: text(data, "moaStart"),
-                moaEnd: text(data, "moaEnd"),
-                approved: text(data, "approved") === "true",
-                academicYear: text(data, "academicYear"),
+          save={async (data, revision) => {
+            const result = await mutate(
+              {
+                type: "company.save",
+                id: company?.id,
+                input: {
+                  name: text(data, "name"),
+                  industry: text(data, "industry"),
+                  address: text(data, "address"),
+                  contactPerson: text(data, "contactPerson"),
+                  email: text(data, "email"),
+                  phone: text(data, "phone"),
+                  moaStart: text(data, "moaStart"),
+                  moaEnd: text(data, "moaEnd"),
+                  approved: text(data, "approved") === "true",
+                  academicYear: text(data, "academicYear"),
+                },
               },
-            });
+              undefined,
+              revision,
+            );
             setNotice("Industry partner saved.");
             router.push(`/dashboard/partners/${result}`);
           }}

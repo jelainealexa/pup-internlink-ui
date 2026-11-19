@@ -39,8 +39,9 @@ export class IndexedDbStore implements DataStore {
   private connection?: Promise<IDBDatabase>;
   constructor(private name = DATABASE_NAME) {}
   private open(): Promise<IDBDatabase> {
-    if (!this.connection)
-      this.connection = new Promise((resolve, reject) => {
+    if (!this.connection) {
+      let blocked = false;
+      const pending = new Promise<IDBDatabase>((resolve, reject) => {
         if (typeof indexedDB === "undefined")
           return reject(
             new AppError(
@@ -48,10 +49,25 @@ export class IndexedDbStore implements DataStore {
               "This browser does not provide IndexedDB. Enable browser storage to use demonstration mode.",
             ),
           );
-        const request = indexedDB.open(this.name, 1);
+        let request: IDBOpenDBRequest;
+        try {
+          request = indexedDB.open(this.name, 1);
+        } catch {
+          reject(
+            new AppError(
+              "STORAGE_UNAVAILABLE",
+              "Browser storage is currently blocked. Enable storage and retry loading.",
+            ),
+          );
+          return;
+        }
         request.onupgradeneeded = () =>
           request.result.createObjectStore("state");
         request.onsuccess = () => {
+          if (blocked) {
+            request.result.close();
+            return;
+          }
           request.result.onversionchange = () => {
             request.result.close();
             this.connection = undefined;
@@ -59,7 +75,6 @@ export class IndexedDbStore implements DataStore {
           resolve(request.result);
         };
         request.onerror = () => {
-          this.connection = undefined;
           reject(
             new AppError(
               "STORAGE_UNAVAILABLE",
@@ -67,18 +82,55 @@ export class IndexedDbStore implements DataStore {
             ),
           );
         };
-        request.onblocked = () =>
+        request.onblocked = () => {
+          blocked = true;
           reject(
             new AppError(
               "STORAGE_UNAVAILABLE",
               "Another tab is blocking the demonstration storage update. Close it and retry.",
             ),
           );
+        };
       });
+      this.connection = pending;
+      void pending.catch(() => {
+        if (this.connection === pending) this.connection = undefined;
+      });
+    }
     return this.connection;
   }
   async read(): Promise<Database> {
-    return this.update((db) => structuredClone(db));
+    const connection = await this.open();
+    const existing = await new Promise<Database | undefined>(
+      (resolve, reject) => {
+        const tx = connection.transaction("state", "readonly");
+        const request = tx.objectStore("state").get("snapshot");
+        let value: Database | undefined;
+        let failure: unknown;
+        request.onsuccess = () => {
+          try {
+            if (request.result !== undefined) {
+              check(request.result);
+              assertIntegrity(request.result);
+              value = request.result;
+            }
+          } catch (error) {
+            failure = error;
+            tx.abort();
+          }
+        };
+        tx.oncomplete = () => resolve(value);
+        tx.onabort = () =>
+          reject(
+            failure ??
+              new AppError(
+                "STORAGE_UNAVAILABLE",
+                "Saved demonstration records could not be read. They have not been overwritten.",
+              ),
+          );
+      },
+    );
+    return existing ?? this.update((db) => structuredClone(db));
   }
   async update<T>(change: (database: Database) => T): Promise<T> {
     const seed = await createSeed();

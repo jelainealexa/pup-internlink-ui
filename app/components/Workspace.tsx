@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { useApp } from "./AppProvider";
 import { preferencesOf } from "../lib/rules";
@@ -10,13 +10,16 @@ import { SavedNotice } from "./ui";
 export function Workspace({ children }: { children: ReactNode }) {
   const { account, db, loading, error, refresh, logout } = useApp();
   const pathname = usePathname(),
-    router = useRouter();
+    router = useRouter(),
+    query = useSearchParams();
   const [open, setOpen] = useState(true);
   const [logoutError, setLogoutError] = useState("");
   useEffect(() => {
     if (!loading && !error && !account)
-      router.replace(`/?next=${encodeURIComponent(pathname)}`);
-  }, [loading, error, account, pathname, router]);
+      router.replace(
+        `/?next=${encodeURIComponent(pathname + (query.size ? `?${query}` : ""))}`,
+      );
+  }, [loading, error, account, pathname, router, query]);
   if (loading)
     return (
       <main className="page">

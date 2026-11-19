@@ -12,6 +12,7 @@ import { applyCommand, scopedDatabase } from "./commands";
 import { createSeed, DEMO_PASSWORD, passwordVerifier } from "./seed";
 import { get } from "./rules";
 import { IndexedDbStore } from "./storage";
+import { commandFingerprint } from "./fingerprint";
 
 export const SESSION_KEY = "pup-internlink-demo-session-v1";
 export interface SessionStorage {
@@ -148,7 +149,7 @@ export class DemoService implements InternLinkService {
         "UNAUTHENTICATED",
         "Sign in with an active demonstration account. Your previous session may have expired.",
       );
-    return scopedDatabase(db, actor);
+    return scopedDatabase(db, actor, this.clock().toISOString().slice(0, 10));
   }
   async execute(
     command: Command,
@@ -156,6 +157,7 @@ export class DemoService implements InternLinkService {
     expectedRevision?: number,
   ) {
     const verifier = await passwordVerifier(DEMO_PASSWORD);
+    const fingerprint = await commandFingerprint(command);
     const result = await this.store.update((db) => {
       const actor = this.actor(db);
       if (!actor)
@@ -166,7 +168,14 @@ export class DemoService implements InternLinkService {
       const receipt = db.receipts.find(
         (r) => r.key === requestId && r.actorId === actor.id,
       );
-      if (receipt) return receipt.result;
+      if (receipt) {
+        if (receipt.commandFingerprint !== fingerprint)
+          throw new AppError(
+            "CONFLICT",
+            "This request key belongs to a different or older operation. Review existing records and submit with a new request key.",
+          );
+        return receipt.result;
+      }
       if (expectedRevision !== undefined && expectedRevision !== db.revision)
         throw new AppError(
           "CONFLICT",
@@ -178,7 +187,12 @@ export class DemoService implements InternLinkService {
         id: this.makeId,
       });
       db.revision++;
-      db.receipts.push({ key: requestId, actorId: actor.id, result: value });
+      db.receipts.push({
+        key: requestId,
+        actorId: actor.id,
+        result: value,
+        commandFingerprint: fingerprint,
+      });
       db.receipts = db.receipts.slice(-200);
       return value;
     });
@@ -212,13 +226,15 @@ export class DemoService implements InternLinkService {
         );
     }
     const seed = await createSeed(this.clock());
+    // Clear the separate session store before the destructive database write.
+    // If that write fails, records remain intact and the user can sign in again.
+    this.sessions.set(null);
     if (damaged && this.store instanceof IndexedDbStore)
       await this.store.replace(seed);
     else
       await this.store.update((db) => {
         Object.assign(db, seed);
       });
-    this.sessions.set(null);
     this.notify();
   }
 }

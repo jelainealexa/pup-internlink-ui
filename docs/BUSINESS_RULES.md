@@ -45,3 +45,7 @@ These resolve BR-Q01–18 from the historical audit for independent front-end op
 Every production invariant, permission and relationship must be enforced again by the server/database, including idempotent duplicate prevention and transactional capacity. Browser-local data and client guards cannot protect data from their profile owner. No unresolved policy is silently claimed as owner-approved.
 
 Engineering bounds are demonstration choices: capacity and required hours cannot exceed 10,000; daily report hours cannot exceed 12. Date-only comparisons use the UTC ISO calendar day, while audit timestamps display in the browser's locale. The receiving team must agree institutional timezone/calendar and maximum values before real integration.
+
+## Verification clarifications
+
+See D-033–040 for repaired demonstration engineering behavior. Fractional hours use a shared compensated sum with twelve significant digits and consistent forms; rendered hours still mean Reviewed reports only. Academic years require a consecutive pair; phone format requires five digits. These are demo guards rather than approved institutional maxima/precision/catalog rules. Reset can sign out before a failed database replacement but never intentionally reseeds during ordinary reads.

@@ -24,6 +24,7 @@ import {
   nameOf,
   placementsForStudent,
   studentStatus,
+  sumHours,
 } from "../lib/rules";
 import {
   FeatureProps,
@@ -63,27 +64,32 @@ export function Students({ id, action }: FeatureProps) {
           description="A linked synthetic student account is created with the documented public demo password. No real personal information."
         />
         <SaveForm
+          revision={db.revision}
           submit={student ? "Save Changes" : "Save Student"}
           cancel={
             student
               ? `/dashboard/students/${student.id}`
               : "/dashboard/students"
           }
-          save={async (data) => {
-            const result = await mutate({
-              type: "student.save",
-              id: student?.id,
-              input: {
-                studentNumber: text(data, "studentNumber"),
-                firstName: text(data, "firstName"),
-                lastName: text(data, "lastName"),
-                email: text(data, "email"),
-                program: text(data, "program"),
-                yearLevel: text(data, "yearLevel"),
-                section: text(data, "section"),
-                academicYear: text(data, "academicYear"),
+          save={async (data, revision) => {
+            const result = await mutate(
+              {
+                type: "student.save",
+                id: student?.id,
+                input: {
+                  studentNumber: text(data, "studentNumber"),
+                  firstName: text(data, "firstName"),
+                  lastName: text(data, "lastName"),
+                  email: text(data, "email"),
+                  program: text(data, "program"),
+                  yearLevel: text(data, "yearLevel"),
+                  section: text(data, "section"),
+                  academicYear: text(data, "academicYear"),
+                },
               },
-            });
+              undefined,
+              revision,
+            );
             setNotice("Student record saved in this browser.");
             router.push(`/dashboard/students/${result}`);
           }}
@@ -115,6 +121,7 @@ export function Students({ id, action }: FeatureProps) {
               name="program"
               value={student?.program}
               options={options([
+                ...db.students.map((s) => s.program),
                 "BS Computer Engineering",
                 "BS Information Technology",
                 "BS Computer Science",
@@ -124,7 +131,11 @@ export function Students({ id, action }: FeatureProps) {
               label="Year level"
               name="yearLevel"
               value={student?.yearLevel}
-              options={options(["3rd Year", "4th Year"])}
+              options={options([
+                ...db.students.map((s) => s.yearLevel),
+                "3rd Year",
+                "4th Year",
+              ])}
             />
             <Field label="Section" name="section" value={student?.section} />
             <Field
@@ -141,7 +152,7 @@ export function Students({ id, action }: FeatureProps) {
   if (id) {
     if (!student) return <RecordState back="/dashboard/students" />;
     const ps = placementsForStudent(db, student.id);
-    const reviewed = ps.reduce((sum, p) => sum + hours(db, p.id).reviewed, 0);
+    const reviewed = sumHours(ps.map((p) => hours(db, p.id).reviewed));
     return (
       <>
         <Back href="/dashboard/students">Student directory</Back>
@@ -216,9 +227,8 @@ export function Students({ id, action }: FeatureProps) {
     );
   }
   const totalHours = (studentId: string) =>
-    placementsForStudent(db, studentId).reduce(
-      (sum, p) => sum + hours(db, p.id).reviewed,
-      0,
+    sumHours(
+      placementsForStudent(db, studentId).map((p) => hours(db, p.id).reviewed),
     );
   const rows = db.students
     .filter(

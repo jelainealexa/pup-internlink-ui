@@ -8,6 +8,7 @@ import {
   remainingSlots,
   studentFor,
   studentStatus,
+  sumHours,
 } from "./rules";
 
 export const reportCategories = [
@@ -219,14 +220,12 @@ export function generateReport(
         ];
       });
       totals = {
-        "Required hours": selected.reduce((sum, p) => sum + p.requiredHours, 0),
-        "Submitted hours": selected.reduce(
-          (sum, p) => sum + hours(db, p.id).submitted,
-          0,
+        "Required hours": sumHours(selected.map((p) => p.requiredHours)),
+        "Submitted hours": sumHours(
+          selected.map((p) => hours(db, p.id).submitted),
         ),
-        "Reviewed hours": selected.reduce(
-          (sum, p) => sum + hours(db, p.id).reviewed,
-          0,
+        "Reviewed hours": sumHours(
+          selected.map((p) => hours(db, p.id).reviewed),
         ),
       };
       break;

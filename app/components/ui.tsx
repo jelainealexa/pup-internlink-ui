@@ -11,6 +11,7 @@ import {
   useState,
 } from "react";
 import { useApp } from "./AppProvider";
+import { AppError } from "../lib/domain";
 
 export function PageHeader({
   title,
@@ -117,17 +118,21 @@ export function SaveForm({
   cancel,
   submit = "Save",
   success,
+  revision,
 }: {
   children: ReactNode;
-  save: (data: FormData) => Promise<void>;
+  save: (data: FormData, expectedRevision?: number) => Promise<void>;
   cancel?: string;
   submit?: string;
   success?: string;
+  revision?: number;
 }) {
   const [pending, setPending] = useState(false),
     [error, setError] = useState(""),
     [done, setDone] = useState("");
   const locked = useRef(false);
+  const formRevision = useRef(revision);
+  const [reloadOffered, setReloadOffered] = useState(false);
   const feedback = useRef<HTMLDivElement>(null);
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -136,11 +141,14 @@ export function SaveForm({
     setPending(true);
     setError("");
     setDone("");
+    setReloadOffered(false);
     const data = new FormData(event.currentTarget);
     try {
-      await save(data);
+      await save(data, formRevision.current);
+      if (formRevision.current !== undefined) formRevision.current++;
       setDone(success ?? "Changes saved.");
     } catch (e) {
+      setReloadOffered(e instanceof AppError && e.code === "CONFLICT");
       setError(
         e instanceof Error
           ? e.message
@@ -173,6 +181,21 @@ export function SaveForm({
         </div>
       )}
       <div className="form-actions">
+        {reloadOffered && (
+          <div className="prototype-message">
+            <p>
+              Reload to review the latest saved records. Reloading discards
+              unsaved inputs; copy anything you need first.
+            </p>
+            <button
+              type="button"
+              className="secondary-action"
+              onClick={() => window.location.reload()}
+            >
+              Reload latest form
+            </button>
+          </div>
+        )}
         {cancel && (
           <Link href={cancel} className="secondary-action">
             Cancel
@@ -413,11 +436,16 @@ export function ActionButton({
       <button
         className="secondary-action"
         disabled={pending || disabled}
-        onClick={() => (confirm ? setOpen(true) : void run())}
+        onClick={() => {
+          if (confirm) {
+            setError("");
+            setOpen(true);
+          } else void run();
+        }}
       >
         {pending ? "Saving…" : children}
       </button>
-      {error && (
+      {error && !open && (
         <p role="alert" className="inline-error">
           {error}
         </p>
@@ -425,6 +453,11 @@ export function ActionButton({
       {open && (
         <Dialog title="Confirm action" close={() => setOpen(false)}>
           <p>{confirm}</p>
+          {error && (
+            <p role="alert" className="inline-error">
+              {error}
+            </p>
+          )}
           <button
             className="primary-action"
             disabled={pending}

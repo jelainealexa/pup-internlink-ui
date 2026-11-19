@@ -26,6 +26,8 @@ import {
   requireRole,
   studentFor,
   validDate,
+  validAcademicYear,
+  validatePhone,
 } from "./rules";
 
 export interface CommandContext {
@@ -120,7 +122,7 @@ export function applyCommand(
         program: required(input.program, "Program", 120),
         yearLevel: required(input.yearLevel, "Year level", 40),
         section: required(input.section, "Section", 40),
-        academicYear: required(input.academicYear, "Academic year", 20),
+        academicYear: validAcademicYear(input.academicYear),
       };
       if (existing) {
         Object.assign(existing, data);
@@ -168,12 +170,7 @@ export function applyCommand(
         "CONFLICT",
         "This company contact email already exists.",
       );
-      const phone = required(input.phone, "Contact number", 40);
-      assert(
-        /^[+\d() .-]{5,40}$/.test(phone),
-        "VALIDATION",
-        "Enter a valid contact number using digits and phone punctuation.",
-      );
+      const phone = validatePhone(input.phone);
       dateRange(input.moaStart, input.moaEnd);
       const data = {
         ...input,
@@ -183,7 +180,7 @@ export function applyCommand(
         industry: required(input.industry, "Industry", 100),
         address: required(input.address, "Address", 300),
         contactPerson: required(input.contactPerson, "Contact person", 120),
-        academicYear: required(input.academicYear, "Academic year", 20),
+        academicYear: validAcademicYear(input.academicYear),
         approved: Boolean(input.approved),
       };
       result = existing?.id ?? id();
@@ -206,12 +203,7 @@ export function applyCommand(
       const name = required(input.name, "Supervisor name", 120),
         contact = email(input.email);
       uniqueEmail(db, contact, existing?.accountId);
-      const phone = required(input.phone, "Contact number", 40);
-      assert(
-        /^[+\d() .-]{5,40}$/.test(phone),
-        "VALIDATION",
-        "Enter a valid supervisor contact number.",
-      );
+      const phone = validatePhone(input.phone);
       const accountId = existing?.accountId ?? id();
       if (existing) {
         Object.assign(get(db.accounts, accountId), {
@@ -383,7 +375,7 @@ export function applyCommand(
         capacity,
         title: required(input.title, "Position title", 150),
         description: required(input.description, "Description", 4000),
-        academicYear: required(input.academicYear, "Academic year", 20),
+        academicYear: validAcademicYear(input.academicYear),
       };
       result = existing?.id ?? id();
       if (existing) Object.assign(existing, data);
@@ -739,7 +731,7 @@ export function applyCommand(
     case "preferences.save": {
       const input = command.input;
       assert(
-        /^\d{4}-\d{4}$/.test(input.academicYear),
+        !!validAcademicYear(input.academicYear),
         "VALIDATION",
         "Choose a valid academic year.",
       );
@@ -770,6 +762,11 @@ export function applyCommand(
       href = "/dashboard/settings";
       break;
     }
+    default:
+      throw new AppError(
+        "VALIDATION",
+        "Unsupported demonstration operation. No records were changed.",
+      );
   }
   db.activities.unshift({
     id: id(),
@@ -782,7 +779,11 @@ export function applyCommand(
   return result;
 }
 
-export function scopedDatabase(db: Database, actor: Account): Database {
+export function scopedDatabase(
+  db: Database,
+  actor: Account,
+  today = new Date().toISOString().slice(0, 10),
+): Database {
   const out = structuredClone(db);
   if (actor.role !== "Coordinator") {
     out.placements = db.placements.filter((p) => canSeePlacement(db, actor, p));
@@ -806,10 +807,11 @@ export function scopedDatabase(db: Database, actor: Account): Database {
         .filter((s) => s.accountId === actor.id)
         .map((s) => s.companyId),
     ]);
-    out.opportunities = db.opportunities.filter(
-      (o) =>
-        companyIds.has(o.companyId) ||
-        (actor.role === "Student" && available(db, o.id)),
+    out.opportunities = db.opportunities.filter((o) =>
+      actor.role === "Student"
+        ? out.applications.some((a) => a.opportunityId === o.id) ||
+          available(db, o.id, today)
+        : companyIds.has(o.companyId),
     );
     out.companies = db.companies.filter(
       (c) =>
@@ -864,7 +866,10 @@ export function scopedDatabase(db: Database, actor: Account): Database {
   out.availability = Object.fromEntries(
     out.opportunities.map((o) => [
       o.id,
-      { remaining: remainingSlots(db, o.id), eligible: available(db, o.id) },
+      {
+        remaining: remainingSlots(db, o.id),
+        eligible: available(db, o.id, today),
+      },
     ]),
   );
   out.preferences = { [actor.id]: db.preferences[actor.id] };

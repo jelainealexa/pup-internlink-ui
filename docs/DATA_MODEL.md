@@ -49,3 +49,7 @@ Persisted status values: Role = Coordinator/Student/Faculty Adviser/Company Supe
 Derived values never become separate mutable counters: display names, student placement state, remaining slots, submitted/reviewed/remaining hours, completion percentage, evaluation counts and report/dashboard totals. Term strings on historical application/placement records and requiredRequirementIds are deliberate snapshots. Company/student names resolve live; prior report output is an intentional generated snapshot until regenerated.
 
 Integrity validation detects malformed collections, duplicate IDs, core foreign-key/role relationships, application uniqueness, duplicate placements/reports, wrong-company supervisors, capacity excess, missing/extra evaluator obligations and invalid file Blob metadata. Browser data can still be manually tampered with; authoritative production validation, constraints, privacy and transactions are backend responsibilities. See BUSINESS_RULES and API_CONTRACT.
+
+## Verification-compatible receipt extension
+
+Version 1 receipts now optionally contain commandFingerprint: string (64 lowercase hexadecimal SHA-256 characters). New commands always write it. Existing receipts without it are valid to read; replay requires a new reviewed request key. No migration or automatic reseed is performed. Account/profile associations must be unique per profile type; submitted grades must be finite. Native attachment Blobs remain in IndexedDB, never duplicated as base64 in records.

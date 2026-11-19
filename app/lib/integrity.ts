@@ -56,6 +56,48 @@ export function assertIntegrity(db: Database) {
       db.accounts.length
     )
       fail();
+    for (const profiles of [db.students, db.faculty, db.supervisors]) {
+      if (new Set(profiles.map((p) => p.accountId)).size !== profiles.length)
+        fail();
+    }
+    if (
+      db.receipts.some(
+        (r) =>
+          !r ||
+          typeof r.key !== "string" ||
+          !r.key ||
+          !account(r.actorId) ||
+          typeof r.result !== "string" ||
+          !r.result ||
+          (r.commandFingerprint !== undefined &&
+            !/^[a-f0-9]{64}$/.test(r.commandFingerprint)),
+      )
+    )
+      fail();
+    if (
+      !db.preferences ||
+      typeof db.preferences !== "object" ||
+      Array.isArray(db.preferences)
+    )
+      fail();
+    for (const [accountId, pref] of Object.entries(db.preferences)) {
+      if (
+        !account(accountId) ||
+        !pref ||
+        typeof pref.academicYear !== "string" ||
+        typeof pref.landingPage !== "string" ||
+        !["Comfortable", "Compact"].includes(pref.density) ||
+        [
+          pref.requirementAlerts,
+          pref.evaluationAlerts,
+          pref.progressAlerts,
+          pref.partnershipAlerts,
+          pref.largerText,
+          pref.reduceMotion,
+        ].some((value) => typeof value !== "boolean")
+      )
+        fail();
+    }
     if (
       db.students.some(
         (s) =>
@@ -242,6 +284,7 @@ export function assertIntegrity(db: Database) {
           !["Pending", "Submitted"].includes(e.status) ||
           (e.status === "Submitted" &&
             (typeof e.grade !== "number" ||
+              !Number.isFinite(e.grade) ||
               e.grade < 0 ||
               e.grade > 100 ||
               !e.comments ||

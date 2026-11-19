@@ -43,6 +43,14 @@ export function Progress({ id, action }: FeatureProps) {
   const canSubmit = ["Coordinator", "Student"].includes(account.role);
   if (action === "create") {
     if (!canSubmit) return <RecordState title="Access denied" />;
+    if (!db.placements.some((p) => p.status === "Ongoing"))
+      return (
+        <RecordState
+          title="No ongoing placement"
+          message="Progress reports can only be submitted for an ongoing placement."
+          back="/dashboard/placements"
+        />
+      );
     return (
       <>
         <Back href="/dashboard/progress">Progress monitoring</Back>
@@ -51,16 +59,21 @@ export function Progress({ id, action }: FeatureProps) {
           description="One daily report per placement/date, up to 12 hours. Only reviewed hours count toward official demonstration completion."
         />
         <SaveForm
+          revision={db.revision}
           submit="Submit Report"
           cancel="/dashboard/progress"
-          save={async (data) => {
-            const result = await mutate({
-              type: "report.create",
-              placementId: text(data, "placementId"),
-              workDate: text(data, "workDate"),
-              hours: number(data, "hours"),
-              tasks: text(data, "tasks"),
-            });
+          save={async (data, revision) => {
+            const result = await mutate(
+              {
+                type: "report.create",
+                placementId: text(data, "placementId"),
+                workDate: text(data, "workDate"),
+                hours: number(data, "hours"),
+                tasks: text(data, "tasks"),
+              },
+              undefined,
+              revision,
+            );
             setNotice("Progress report saved for review.");
             router.push(`/dashboard/progress/reports/${result}`);
           }}
@@ -87,9 +100,9 @@ export function Progress({ id, action }: FeatureProps) {
               label="Hours rendered"
               name="hours"
               type="number"
-              min={0.25}
+              min={0}
               max={12}
-              step={0.25}
+              step="any"
             />
             <Field label="Tasks performed" name="tasks" type="textarea" />
           </div>
@@ -138,13 +151,18 @@ export function Progress({ id, action }: FeatureProps) {
             <section>
               <h2>Review report</h2>
               <SaveForm
+                revision={db.revision}
                 submit="Mark as Reviewed"
-                save={async (data) => {
-                  await mutate({
-                    type: "report.review",
-                    id: report.id,
-                    remarks: text(data, "remarks"),
-                  });
+                save={async (data, revision) => {
+                  await mutate(
+                    {
+                      type: "report.review",
+                      id: report.id,
+                      remarks: text(data, "remarks"),
+                    },
+                    undefined,
+                    revision,
+                  );
                   setNotice("Review saved and hours recalculated everywhere.");
                 }}
               >

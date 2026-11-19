@@ -165,6 +165,28 @@ export function Requirements({ id, action }: FeatureProps) {
   if (action === "submission-create") {
     if (!["Coordinator", "Student"].includes(account.role))
       return <RecordState title="Access denied" />;
+    if (!db.requirements.length)
+      return (
+        <RecordState
+          title="No requirements configured"
+          message="Requirement definitions must be registered before a document can be submitted."
+          back={
+            coordinator
+              ? "/dashboard/requirements/create"
+              : "/dashboard/requirements"
+          }
+        />
+      );
+    if (!db.students.some((s) => get(db.accounts, s.accountId).active))
+      return (
+        <RecordState
+          title="No active students"
+          message="Register an active student before submitting a requirement."
+          back={
+            coordinator ? "/dashboard/students/create" : "/dashboard/students"
+          }
+        />
+      );
     return (
       <>
         <Back
@@ -177,23 +199,28 @@ export function Requirements({ id, action }: FeatureProps) {
           description="TXT, PDF, PNG or JPEG, up to 5 MB. The actual file is stored in this browser. Only missing or rejected requirements may be submitted again."
         />
         <SaveForm
+          revision={db.revision}
           submit="Store and submit document"
           cancel="/dashboard/requirements?view=submissions"
-          save={async (data) => {
+          save={async (data, revision) => {
             const file = data.get("attachment") as File | null;
             if (!file || !file.size)
               throw new Error("Select a nonempty document.");
-            const result = await mutate({
-              type: "submission.create",
-              studentId: text(data, "studentId"),
-              requirementId: text(data, "requirementId"),
-              file: {
-                name: file.name,
-                mime: file.type,
-                size: file.size,
-                blob: file,
+            const result = await mutate(
+              {
+                type: "submission.create",
+                studentId: text(data, "studentId"),
+                requirementId: text(data, "requirementId"),
+                file: {
+                  name: file.name,
+                  mime: file.type,
+                  size: file.size,
+                  blob: file,
+                },
               },
-            });
+              undefined,
+              revision,
+            );
             setNotice("The file and submission were saved in this browser.");
             router.push(`/dashboard/requirements/submissions/${result}`);
           }}
@@ -295,14 +322,19 @@ export function Requirements({ id, action }: FeatureProps) {
                 </ActionButton>
               </div>
               <SaveForm
+                revision={db.revision}
                 submit="Reject submission"
-                save={async (data) => {
-                  await mutate({
-                    type: "submission.review",
-                    id: s.id,
-                    decision: "Rejected",
-                    reason: text(data, "reason"),
-                  });
+                save={async (data, revision) => {
+                  await mutate(
+                    {
+                      type: "submission.review",
+                      id: s.id,
+                      decision: "Rejected",
+                      reason: text(data, "reason"),
+                    },
+                    undefined,
+                    revision,
+                  );
                   setNotice("Submission rejected; reason retained.");
                 }}
               >
@@ -357,19 +389,24 @@ export function Requirements({ id, action }: FeatureProps) {
           description="Classification changes apply to eligibility for future placements. Existing placement obligations retain their creation-time requirement set."
         />
         <SaveForm
+          revision={db.revision}
           submit="Save Requirement"
           cancel="/dashboard/requirements"
-          save={async (data) => {
-            await mutate({
-              type: "requirement.save",
-              id: definition?.id,
-              input: {
-                name: text(data, "name"),
-                description: text(data, "description"),
-                classification: text(data, "classification") as
-                  "Mandatory" | "Optional",
+          save={async (data, revision) => {
+            await mutate(
+              {
+                type: "requirement.save",
+                id: definition?.id,
+                input: {
+                  name: text(data, "name"),
+                  description: text(data, "description"),
+                  classification: text(data, "classification") as
+                    "Mandatory" | "Optional",
+                },
               },
-            });
+              undefined,
+              revision,
+            );
             setNotice("Requirement definition saved.");
             router.push("/dashboard/requirements");
           }}

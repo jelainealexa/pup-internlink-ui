@@ -18,3 +18,7 @@ Concurrent last-slot creation must serialize or use a transactional conditional 
 Attachment bytes need not be downloaded with every API read. Presentation components request them exclusively through `service.attachment(id)`; the `files` collection is needed by the demonstration store and may be empty in the API read projection while the adapter fetches authorized bytes on demand. Keep metadata/upload references in the transport adapter and resolve fileId on the server. Never substitute an empty Blob for a successful upload/download.
 
 Receiving-team verification must cover unauthenticated/forbidden detail URLs, list-scope leaks, attachment access, inactive accounts, token/session expiry, duplicate retries, stale revisions, network timeouts, upload failure, rollback and multi-client allocation. No real credentials or student records should be introduced into test fixtures.
+
+## Additional verification handover checks
+
+Retain form-specific expected revisions across background refresh. Surface conflicts without discarding user input; do not silently merge stale form bodies. Enforce idempotency intent on the server, including file bytes, and all documented relationship/permission guards. Do not interpret browser readonly snapshots, fingerprints or scoped projections as server security. Verify legacy receipt handling and failed session/reset behavior when replacing adapters. Approved ERD/field mapping, API compatibility and institutional policy remain externally unverified.

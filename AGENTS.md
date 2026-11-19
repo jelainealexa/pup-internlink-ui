@@ -20,3 +20,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Role-aware UI is simulated access control. Backend must enforce every permission/constraint/file access before real use. API mode must remain explicitly unavailable until a real approved adapter exists.
 - Preserve existing server processes. Use INTERNLINK_DIST_DIR for isolated build/start directories and free ports for tests. Never run recursive deletes against unchecked paths.
 - Run npm run typecheck, npm run lint, npm test, relevant Playwright tests and production build after changes. Do not disable meaningful checks or weaken assertions. Update requirement traceability/status/issues/test evidence together; report only executed results.
+
+- Domain SaveForms must receive the loaded database revision and pass the captured revision into mutate; never authorize stale uncontrolled inputs using a newer background snapshot. Preserve conflict input and deliberate reload behavior.
+- Preserve readonly storage access and command-bound idempotency receipts. Run the independent audit regressions in addition to the existing suites. Verification reports must distinguish original d71e726 findings from repaired candidate evidence and disclose self-verification.

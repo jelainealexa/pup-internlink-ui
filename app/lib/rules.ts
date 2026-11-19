@@ -19,8 +19,31 @@ export function get<T extends { id: string }>(items: T[], id: string): T {
     );
   return item;
 }
-export const preferencesOf = (db: Database, accountId: string): Preferences =>
-  db.preferences[accountId] ?? { ...defaultPreferences };
+export function preferencesOf(db: Database, accountId: string): Preferences {
+  if (db.preferences[accountId]) return db.preferences[accountId];
+  const student = db.students.find((s) => s.accountId === accountId);
+  const actor = db.accounts.find((a) => a.id === accountId);
+  const placement = actor
+    ? db.placements
+        .filter((p) => canSeePlacement(db, actor, p))
+        .sort(
+          (a, b) =>
+            Number(b.status === "Ongoing") - Number(a.status === "Ongoing") ||
+            b.createdAt.localeCompare(a.createdAt),
+        )[0]
+    : undefined;
+  const supervisor = db.supervisors.find((s) => s.accountId === accountId);
+  const company = db.companies.find((c) => c.id === supervisor?.companyId);
+  const year = new Date().getUTCFullYear();
+  return {
+    ...defaultPreferences,
+    academicYear:
+      student?.academicYear ??
+      placement?.academicYear ??
+      company?.academicYear ??
+      `${year}-${year + 1}`,
+  };
+}
 export function required(value: string, field: string, max = 500) {
   const text = value.trim();
   if (!text || text.length > max)
@@ -35,6 +58,38 @@ export function email(value: string) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text))
     throw new AppError("VALIDATION", "Enter a valid email address.");
   return text;
+}
+export function validAcademicYear(value: string) {
+  const year = required(value, "Academic year", 9);
+  if (
+    !/^\d{4}-\d{4}$/.test(year) ||
+    Number(year.slice(5)) !== Number(year.slice(0, 4)) + 1
+  )
+    throw new AppError(
+      "VALIDATION",
+      "Academic year must contain consecutive years, such as 2026-2027.",
+    );
+  return year;
+}
+export function validatePhone(value: string) {
+  const phone = required(value, "Contact number", 40);
+  if (!/^[+\d() .-]{5,40}$/.test(phone) || phone.replace(/\D/g, "").length < 5)
+    throw new AppError(
+      "VALIDATION",
+      "Enter a contact number with at least five digits and valid phone punctuation.",
+    );
+  return phone;
+}
+export function sumHours(values: number[]) {
+  let sum = 0,
+    correction = 0;
+  for (const value of values) {
+    const adjusted = value - correction;
+    const next = sum + adjusted;
+    correction = next - sum - adjusted;
+    sum = next;
+  }
+  return Number(sum.toPrecision(12));
 }
 export function positive(
   value: number,
@@ -142,17 +197,17 @@ export const available = (
 export function hours(db: Database, placementId: string) {
   const p = get(db.placements, placementId);
   const reports = db.reports.filter((r) => r.placementId === placementId);
-  const submitted = reports.reduce((sum, r) => sum + r.hours, 0);
-  const reviewed = reports
-    .filter((r) => r.status === "Reviewed")
-    .reduce((sum, r) => sum + r.hours, 0);
+  const submitted = sumHours(reports.map((r) => r.hours));
+  const reviewed = sumHours(
+    reports.filter((r) => r.status === "Reviewed").map((r) => r.hours),
+  );
   return {
     submitted,
     reviewed,
-    remaining: Math.max(0, p.requiredHours - reviewed),
+    remaining: Math.max(0, sumHours([p.requiredHours, -reviewed])),
     percent:
       p.requiredHours > 0
-        ? Math.round((reviewed / p.requiredHours) * 1000) / 10
+        ? Number(((reviewed / p.requiredHours) * 100).toPrecision(12))
         : 0,
   };
 }
