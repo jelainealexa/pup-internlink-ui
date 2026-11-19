@@ -1,0 +1,50 @@
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ❯ tests/components/independent-forms.test.tsx (2 tests | 2 failed) 140ms
+   × IV-13 preserves a legitimate existing program value in the edit form 109ms
+   × IV-13 preserves a legitimate existing yearLevel value in the edit form 29ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/components/independent-forms.test.tsx > IV-13 preserves a legitimate existing program value in the edit form
+Error: expect(element).toHaveValue(BS Audit Studies)
+
+Expected the element to have value:
+  BS Audit Studies
+Received:
+
+ ❯ tests/components/independent-forms.test.tsx:36:7
+     34|     expect(
+     35|       screen.getByLabelText(field === "program" ? "Program *" : "Year …
+     36|     ).toHaveValue(value);
+       |       ^
+     37|   },
+     38| );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/components/independent-forms.test.tsx > IV-13 preserves a legitimate existing yearLevel value in the edit form
+Error: expect(element).toHaveValue(2nd Year)
+
+Expected the element to have value:
+  2nd Year
+Received:
+
+ ❯ tests/components/independent-forms.test.tsx:36:7
+     34|     expect(
+     35|       screen.getByLabelText(field === "program" ? "Program *" : "Year …
+     36|     ).toHaveValue(value);
+       |       ^
+     37|   },
+     38| );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  21:26:05
+   Duration  10.60s (environment 65%, import 28%, transform 3%, setup 2%, tests 1%)
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/independent/baseline-component.json

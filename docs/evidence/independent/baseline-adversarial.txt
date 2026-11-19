@@ -1,0 +1,2970 @@
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ❯ tests/integration/independent-audit.test.ts (14 tests | 13 failed) 206ms
+   ❯ independent adversarial verification (14)
+     × IV-01 reads existing records without requiring a successful write 31ms
+     × IV-02 uses the injected business clock for scoped availability 17ms
+     × IV-03 hides unrelated unapproved postings from students, retaining own history 8ms
+     × IV-04 rejects unknown commands without success receipts or mutations 14ms
+     × IV-05 rejects an idempotency key reused for a different intent 17ms
+     × IV-06 accepts mathematically complete fractional hours consistently 11ms
+     × IV-07 rejects malformed academic year in student maintenance 12ms
+     × IV-07 rejects malformed academic year in company maintenance 12ms
+     × IV-07 rejects malformed academic year in opportunity maintenance 10ms
+     × IV-08 rejects punctuation-only contact numbers 9ms
+     × IV-09 surfaces corrupt NaN grade data as a storage error 22ms
+     × IV-09 surfaces corrupt invalid receipts data as a storage error 9ms
+     × IV-09 surfaces corrupt duplicate profile data as a storage error 17ms
+     ✓ independently reconciles seven report categories and filtered raw totals 17ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-01 reads existing records without requiring a successful write
+AssertionError: promise rejected "DOMException{ stack: 'QuotaExceededE…' }" instead of resolving
+ ❯ tests/integration/independent-audit.test.ts:34:31
+     32|       throw new DOMException("Write quota exhausted", "QuotaExceededEr…
+     33|     });
+     34|     await expect(store.read()).resolves.toMatchObject({
+       |                               ^
+     35|       revision: 0,
+     36|       students: expect.any(Array),
+
+Caused by: QuotaExceededError: Write quota exhausted
+ ❯ FDBObjectStore.<anonymous> tests/integration/independent-audit.test.ts:32:13
+ ❯ FDBRequest.read.onsuccess app/lib/storage.ts:99:17
+ ❯ invoke node_modules/fake-indexeddb/build/esm/lib/FakeEventTarget.js:14:16
+ ❯ invokeEventListeners node_modules/fake-indexeddb/build/esm/lib/FakeEventTarget.js:51:7
+ ❯ FDBRequest.dispatchEvent node_modules/fake-indexeddb/build/esm/lib/FakeEventTarget.js:100:7
+ ❯ FDBTransaction._start node_modules/fake-indexeddb/build/esm/FDBTransaction.js:223:19
+ ❯ Immediate.<anonymous> node_modules/fake-indexeddb/build/esm/lib/Database.js:39:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 22, INDEX_SIZE_ERR: 1, DOMSTRING_SIZE_ERR: 2, HIERARCHY_REQUEST_ERR: 3, WRONG_DOCUMENT_ERR: 4, INVALID_CHARACTER_ERR: 5, NO_DATA_ALLOWED_ERR: 6, NO_MODIFICATION_ALLOWED_ERR: 7, NOT_FOUND_ERR: 8, NOT_SUPPORTED_ERR: 9, INUSE_ATTRIBUTE_ERR: 10, INVALID_STATE_ERR: 11, SYNTAX_ERR: 12, INVALID_MODIFICATION_ERR: 13, NAMESPACE_ERR: 14, INVALID_ACCESS_ERR: 15, VALIDATION_ERR: 16, TYPE_MISMATCH_ERR: 17, SECURITY_ERR: 18, NETWORK_ERR: 19, ABORT_ERR: 20, URL_MISMATCH_ERR: 21, QUOTA_EXCEEDED_ERR: 22, TIMEOUT_ERR: 23, INVALID_NODE_TYPE_ERR: 24, DATA_CLONE_ERR: 25 }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-02 uses the injected business clock for scoped availability
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/integration/independent-audit.test.ts:42:51
+     40|     const { service } = await audit();
+     41|     const view = await service.read();
+     42|     expect(view.availability?.["opp-1"].eligible).toBe(true);
+       |                                                   ^
+     43|     await service.signIn("student5@example.test", DEMO_PASSWORD);
+     44|     expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-03 hides unrelated unapproved postings from students, retaining own history
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/integration/independent-audit.test.ts:52:62
+     50|     await service.signIn("student@example.test", DEMO_PASSWORD);
+     51|     const view = await service.read();
+     52|     expect(view.opportunities.some((o) => o.id === "opp-3")).toBe(fals…
+       |                                                              ^
+     53|     expect(view.opportunities.some((o) => o.id === "opp-1")).toBe(true…
+     54|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-04 rejects unknown commands without success receipts or mutations
+AssertionError: promise resolved "''" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+""
+
+ ❯ tests/integration/independent-audit.test.ts:63:6
+     61|         request(),
+     62|       ),
+     63|     ).rejects.toMatchObject({ code: "VALIDATION" });
+       |      ^
+     64|     expect(await store.read()).toEqual(before);
+     65|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-05 rejects an idempotency key reused for a different intent
+AssertionError: promise resolved "'e2356635-c13a-4945-9482-9f127e99377a'" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+"e2356635-c13a-4945-9482-9f127e99377a"
+
+ ❯ tests/integration/independent-audit.test.ts:84:6
+     82|         key,
+     83|       ),
+     84|     ).rejects.toMatchObject({ code: "CONFLICT" });
+       |      ^
+     85|     expect(await store.read()).toEqual(before);
+     86|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-06 accepts mathematically complete fractional hours consistently
+AssertionError: expected { submitted: 0.9999999999999999, …(3) } to match object { reviewed: 1, remaining: +0, …(1) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "percent": 100,
+-   "remaining": 0,
+-   "reviewed": 1,
++   "remaining": 1.1102230246251565e-16,
++   "reviewed": 0.9999999999999999,
+  }
+
+ ❯ tests/integration/independent-audit.test.ts:118:39
+    116|     const { store, service } = await audit(seed);
+    117|     const data = await store.read();
+    118|     expect(hours(data, placement.id)).toMatchObject({
+       |                                       ^
+    119|       reviewed: 1,
+    120|       remaining: 0,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-07 rejects malformed academic year in student maintenance
+AssertionError: promise resolved "'2024-0001'" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+"2024-0001"
+
+ ❯ tests/integration/independent-audit.test.ts:160:8
+    158|       await expect(
+    159|         service.execute(command as Command, request()),
+    160|       ).rejects.toMatchObject({ code: "VALIDATION" });
+       |        ^
+    161|       expect(await store.read()).toEqual(db);
+    162|     },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-07 rejects malformed academic year in company maintenance
+AssertionError: promise resolved "'company-1'" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+"company-1"
+
+ ❯ tests/integration/independent-audit.test.ts:160:8
+    158|       await expect(
+    159|         service.execute(command as Command, request()),
+    160|       ).rejects.toMatchObject({ code: "VALIDATION" });
+       |        ^
+    161|       expect(await store.read()).toEqual(db);
+    162|     },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-07 rejects malformed academic year in opportunity maintenance
+AssertionError: promise resolved "'opp-1'" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+"opp-1"
+
+ ❯ tests/integration/independent-audit.test.ts:160:8
+    158|       await expect(
+    159|         service.execute(command as Command, request()),
+    160|       ).rejects.toMatchObject({ code: "VALIDATION" });
+       |        ^
+    161|       expect(await store.read()).toEqual(db);
+    162|     },
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-08 rejects punctuation-only contact numbers
+AssertionError: promise resolved "'company-1'" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+"company-1"
+
+ ❯ tests/integration/independent-audit.test.ts:176:6
+    174|         request(),
+    175|       ),
+    176|     ).rejects.toMatchObject({ code: "VALIDATION" });
+       |      ^
+    177|     expect(await store.read()).toEqual(db);
+    178|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-09 surfaces corrupt NaN grade data as a storage error
+AssertionError: promise resolved "{ schemaVersion: 1, …(18) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "accounts": [
++     {
++       "active": true,
++       "email": "coordinator@example.test",
++       "id": "coord-1",
++       "name": "Alex Demo",
++       "role": "Coordinator",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "faculty@example.test",
++       "id": "faculty-1",
++       "name": "Robin Demo",
++       "role": "Faculty Adviser",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "faculty2@example.test",
++       "id": "faculty-2",
++       "name": "Casey Sample",
++       "role": "Faculty Adviser",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "supervisor@example.test",
++       "id": "sup-1",
++       "name": "Morgan Demo",
++       "role": "Company Supervisor",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "supervisor2@example.test",
++       "id": "sup-2",
++       "name": "Jordan Sample",
++       "role": "Company Supervisor",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student@example.test",
++       "id": "student-1",
++       "name": "Mira Demo",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student2@example.test",
++       "id": "student-2",
++       "name": "Theo Sample",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student3@example.test",
++       "id": "student-3",
++       "name": "Luna Example",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student4@example.test",
++       "id": "student-4",
++       "name": "Nico Demo",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student5@example.test",
++       "id": "student-5",
++       "name": "Ari Sample",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": false,
++       "email": "student6@example.test",
++       "id": "student-6",
++       "name": "Inactive Example",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++   ],
++   "activities": [
++     {
++       "actorId": "coord-1",
++       "at": "2032-04-15T12:00:00.000Z",
++       "href": "/dashboard",
++       "id": "activity-seed",
++       "message": "Synthetic demonstration dataset initialized",
++     },
++   ],
++   "applications": [
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-5",
++           "at": "2032-04-12T09:00:00.000Z",
++           "status": "Pending",
++         },
++       ],
++       "id": "app-001",
++       "opportunityId": "opp-1",
++       "status": "Pending",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-04-12T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-4",
++           "at": "2032-04-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-04-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-002",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-04-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-1",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-1",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-2",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-2",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-3",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-3",
++       "opportunityId": "opp-2",
++       "status": "Accepted",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-5",
++           "at": "2032-04-05T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-04-06T09:00:00.000Z",
++           "reason": "Synthetic screening example: posting requirements not met.",
++           "status": "Rejected",
++         },
++       ],
++       "id": "app-003",
++       "opportunityId": "opp-2",
++       "status": "Rejected",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-04-05T09:00:00.000Z",
++     },
++   ],
++   "certificates": [
++     {
++       "id": "cert-seed",
++       "issueDate": "2032-03-16",
++       "number": "DEMO-CERT-001",
++       "placementId": "PL-002",
++       "recordedBy": "coord-1",
++     },
++   ],
++   "companies": [
++     {
++       "academicYear": "2032-2033",
++       "address": "1 Synthetic Avenue, Demo City",
++       "approved": true,
++       "contactPerson": "Morgan Demo",
++       "email": "partners@copperfinch.example",
++       "id": "company-1",
++       "industry": "Technology",
++       "moaEnd": "2033-04-15",
++       "moaStart": "2031-04-16",
++       "name": "Copper Finch Labs",
++       "phone": "000-000-0001",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "2 Sample Road, Demo City",
++       "approved": true,
++       "contactPerson": "Jordan Sample",
++       "email": "partners@riverstone.example",
++       "id": "company-2",
++       "industry": "Design",
++       "moaEnd": "2032-05-05",
++       "moaStart": "2032-01-06",
++       "name": "Riverstone Studio",
++       "phone": "000-000-0002",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "3 Example Street, Demo City",
++       "approved": false,
++       "contactPerson": "Sam Example",
++       "email": "partners@paperkite.example",
++       "id": "company-3",
++       "industry": "Services",
++       "moaEnd": "2032-11-01",
++       "moaStart": "2032-01-06",
++       "name": "Paper Kite Services",
++       "phone": "000-000-0003",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "4 Fictional Lane, Demo City",
++       "approved": true,
++       "contactPerson": "Lee Example",
++       "email": "partners@oldoak.example",
++       "id": "company-4",
++       "industry": "Technology",
++       "moaEnd": "2032-04-05",
++       "moaStart": "2031-04-16",
++       "name": "Old Oak Demo",
++       "phone": "000-000-0004",
++     },
++   ],
++   "evaluations": [
++     {
++       "evaluatorId": "faculty-1",
++       "id": "eval-PL-001-faculty-1",
++       "placementId": "PL-001",
++       "status": "Pending",
++     },
++     {
++       "evaluatorId": "sup-1",
++       "id": "eval-PL-001-sup-1",
++       "placementId": "PL-001",
++       "status": "Pending",
++     },
++     {
++       "comments": "Synthetic evaluation: completed the assigned demonstration tasks.",
++       "evaluatorId": "faculty-1",
++       "grade": NaN,
++       "id": "eval-PL-002-faculty-1",
++       "placementId": "PL-002",
++       "status": "Submitted",
++       "submittedAt": "2032-03-14T09:00:00.000Z",
++     },
++     {
++       "comments": "Synthetic evaluation: completed the assigned demonstration tasks.",
++       "evaluatorId": "sup-1",
++       "grade": 90,
++       "id": "eval-PL-002-sup-1",
++       "placementId": "PL-002",
++       "status": "Submitted",
++       "submittedAt": "2032-03-14T09:00:00.000Z",
++     },
++     {
++       "evaluatorId": "faculty-2",
++       "id": "eval-PL-003-faculty-2",
++       "placementId": "PL-003",
++       "status": "Pending",
++     },
++     {
++       "evaluatorId": "sup-2",
++       "id": "eval-PL-003-sup-2",
++       "placementId": "PL-003",
++       "status": "Pending",
++     },
++   ],
++   "faculty": [
++     {
++       "accountId": "faculty-1",
++       "id": "fac-1",
++     },
++     {
++       "accountId": "faculty-2",
++       "id": "fac-2",
++     },
++   ],
++   "files": [
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0001-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0001-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0002-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0002-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0003-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0003-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0004-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0004-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0005-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0005-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0006-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0006-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++   ],
++   "opportunities": [
++     {
++       "academicYear": "2032-2033",
++       "capacity": 3,
++       "companyId": "company-1",
++       "description": "Build and test demonstration applications.",
++       "id": "opp-1",
++       "status": "Approved",
++       "title": "Software Development Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 1,
++       "companyId": "company-2",
++       "description": "Practice accessible interface design.",
++       "id": "opp-2",
++       "status": "Approved",
++       "title": "Design Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 2,
++       "companyId": "company-1",
++       "description": "Prepare synthetic data reports.",
++       "id": "opp-3",
++       "status": "Pending Approval",
++       "title": "Data Support Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 1,
++       "companyId": "company-4",
++       "description": "An unavailable posting at an expired partner.",
++       "id": "opp-4",
++       "status": "Closed",
++       "title": "Archived Support Intern",
++     },
++   ],
++   "placements": [
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-1",
++       "applicationId": "app-placed-1",
++       "approvedBy": "coord-1",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-06-14",
++       "id": "PL-001",
++       "requiredHours": 80,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Ongoing",
++       "supervisorId": "supervisor-1",
++     },
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-1",
++       "applicationId": "app-placed-2",
++       "approvedBy": "coord-1",
++       "completedAt": "2032-03-15T09:00:00.000Z",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-03-16",
++       "id": "PL-002",
++       "requiredHours": 16,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Completed",
++       "supervisorId": "supervisor-1",
++     },
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-2",
++       "applicationId": "app-placed-3",
++       "approvedBy": "coord-1",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-05-15",
++       "id": "PL-003",
++       "requiredHours": 80,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Terminated",
++       "supervisorId": "supervisor-2",
++       "terminationReason": "Synthetic placement ended by mutual agreement.",
++     },
++   ],
++   "preferences": {
++     "coord-1": {
++       "academicYear": "2032-2033",
++       "density": "Comfortable",
++       "evaluationAlerts": true,
++       "landingPage": "/dashboard",
++       "largerText": false,
++       "partnershipAlerts": true,
++       "progressAlerts": true,
++       "reduceMotion": false,
++       "requirementAlerts": true,
++     },
++   },
++   "receipts": [],
++   "reports": [
++     {
++       "hours": 8,
++       "id": "PR-001",
++       "placementId": "PL-001",
++       "remarks": "Checked against the demonstration task log.",
++       "reviewedAt": "2032-04-09T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-04-08T09:00:00.000Z",
++       "tasks": "Synthetic application testing",
++       "workDate": "2032-04-08",
++     },
++     {
++       "hours": 8,
++       "id": "PR-002",
++       "placementId": "PL-001",
++       "remarks": "",
++       "status": "Pending Review",
++       "submittedAt": "2032-04-14T09:00:00.000Z",
++       "tasks": "Documented demonstration test cases",
++       "workDate": "2032-04-14",
++     },
++     {
++       "hours": 8,
++       "id": "PR-completed-0",
++       "placementId": "PL-002",
++       "remarks": "Reviewed synthetic evidence.",
++       "reviewedAt": "2032-03-07T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-06T09:00:00.000Z",
++       "tasks": "Completed synthetic internship tasks",
++       "workDate": "2032-03-06",
++     },
++     {
++       "hours": 8,
++       "id": "PR-completed-1",
++       "placementId": "PL-002",
++       "remarks": "Reviewed synthetic evidence.",
++       "reviewedAt": "2032-03-08T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-07T09:00:00.000Z",
++       "tasks": "Completed synthetic internship tasks",
++       "workDate": "2032-03-07",
++     },
++     {
++       "hours": 8,
++       "id": "PR-terminated",
++       "placementId": "PL-003",
++       "remarks": "Historical reviewed report.",
++       "reviewedAt": "2032-03-07T09:00:00.000Z",
++       "reviewerId": "faculty-2",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-06T09:00:00.000Z",
++       "tasks": "Synthetic design orientation",
++       "workDate": "2032-03-06",
++     },
++   ],
++   "requirements": [
++     {
++       "classification": "Mandatory",
++       "description": "A synthetic resume for internship screening.",
++       "id": "req-1",
++       "name": "Resume",
++     },
++     {
++       "classification": "Mandatory",
++       "description": "A synthetic academic clearance.",
++       "id": "req-2",
++       "name": "Enrollment Clearance",
++     },
++     {
++       "classification": "Optional",
++       "description": "Optional supporting material.",
++       "id": "req-3",
++       "name": "Additional Document",
++     },
++   ],
++   "revision": 0,
++   "schemaVersion": 1,
++   "students": [
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-1",
++       "email": "student@example.test",
++       "firstName": "Mira",
++       "id": "2024-0001",
++       "lastName": "Demo",
++       "program": "BS Computer Engineering",
++       "section": "4-1",
++       "studentNumber": "SYN-2026-001",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-2",
++       "email": "student2@example.test",
++       "firstName": "Theo",
++       "id": "2024-0002",
++       "lastName": "Sample",
++       "program": "BS Information Technology",
++       "section": "4-2",
++       "studentNumber": "SYN-2026-002",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-3",
++       "email": "student3@example.test",
++       "firstName": "Luna",
++       "id": "2024-0003",
++       "lastName": "Example",
++       "program": "BS Computer Science",
++       "section": "4-3",
++       "studentNumber": "SYN-2026-003",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-4",
++       "email": "student4@example.test",
++       "firstName": "Nico",
++       "id": "2024-0004",
++       "lastName": "Demo",
++       "program": "BS Computer Engineering",
++       "section": "4-1",
++       "studentNumber": "SYN-2026-004",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-5",
++       "email": "student5@example.test",
++       "firstName": "Ari",
++       "id": "2024-0005",
++       "lastName": "Sample",
++       "program": "BS Information Technology",
++       "section": "4-2",
++       "studentNumber": "SYN-2026-005",
++       "yearLevel": "3rd Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-6",
++       "email": "student6@example.test",
++       "firstName": "Inactive",
++       "id": "2024-0006",
++       "lastName": "Example",
++       "program": "BS Computer Science",
++       "section": "4-3",
++       "studentNumber": "SYN-2026-006",
++       "yearLevel": "4th Year",
++     },
++   ],
++   "submissions": [
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0001-req-1",
++       "id": "sub-2024-0001-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0001-req-2",
++       "id": "sub-2024-0001-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0002-req-1",
++       "id": "sub-2024-0002-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0002-req-2",
++       "id": "sub-2024-0002-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0003-req-1",
++       "id": "sub-2024-0003-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0003-req-2",
++       "id": "sub-2024-0003-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0004-req-1",
++       "id": "sub-2024-0004-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0004-req-2",
++       "id": "sub-2024-0004-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0005-req-1",
++       "id": "sub-2024-0005-req-1",
++       "requirementId": "req-1",
++       "status": "Pending",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0005-req-2",
++       "id": "sub-2024-0005-req-2",
++       "reason": "Replace this synthetic document with an updated version.",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Rejected",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0006-req-1",
++       "id": "sub-2024-0006-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0006",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0006-req-2",
++       "id": "sub-2024-0006-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0006",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++   ],
++   "supervisors": [
++     {
++       "accountId": "sup-1",
++       "companyId": "company-1",
++       "id": "supervisor-1",
++       "phone": "000-000-0001",
++     },
++     {
++       "accountId": "sup-2",
++       "companyId": "company-2",
++       "id": "supervisor-2",
++       "phone": "000-000-0002",
++     },
++   ],
+  }
+
+ ❯ tests/integration/independent-audit.test.ts:191:33
+    189|       const store = new IndexedDbStore(`independent-corrupt-${request(…
+    190|       await store.replace(seed);
+    191|       await expect(store.read()).rejects.toMatchObject({
+       |                                 ^
+    192|         code: "STORAGE_UNAVAILABLE",
+    193|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-09 surfaces corrupt invalid receipts data as a storage error
+AssertionError: promise resolved "{ schemaVersion: 1, …(18) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "accounts": [
++     {
++       "active": true,
++       "email": "coordinator@example.test",
++       "id": "coord-1",
++       "name": "Alex Demo",
++       "role": "Coordinator",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "faculty@example.test",
++       "id": "faculty-1",
++       "name": "Robin Demo",
++       "role": "Faculty Adviser",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "faculty2@example.test",
++       "id": "faculty-2",
++       "name": "Casey Sample",
++       "role": "Faculty Adviser",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "supervisor@example.test",
++       "id": "sup-1",
++       "name": "Morgan Demo",
++       "role": "Company Supervisor",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "supervisor2@example.test",
++       "id": "sup-2",
++       "name": "Jordan Sample",
++       "role": "Company Supervisor",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student@example.test",
++       "id": "student-1",
++       "name": "Mira Demo",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student2@example.test",
++       "id": "student-2",
++       "name": "Theo Sample",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student3@example.test",
++       "id": "student-3",
++       "name": "Luna Example",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student4@example.test",
++       "id": "student-4",
++       "name": "Nico Demo",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student5@example.test",
++       "id": "student-5",
++       "name": "Ari Sample",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": false,
++       "email": "student6@example.test",
++       "id": "student-6",
++       "name": "Inactive Example",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++   ],
++   "activities": [
++     {
++       "actorId": "coord-1",
++       "at": "2032-04-15T12:00:00.000Z",
++       "href": "/dashboard",
++       "id": "activity-seed",
++       "message": "Synthetic demonstration dataset initialized",
++     },
++   ],
++   "applications": [
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-5",
++           "at": "2032-04-12T09:00:00.000Z",
++           "status": "Pending",
++         },
++       ],
++       "id": "app-001",
++       "opportunityId": "opp-1",
++       "status": "Pending",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-04-12T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-4",
++           "at": "2032-04-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-04-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-002",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-04-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-1",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-1",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-2",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-2",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-3",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-3",
++       "opportunityId": "opp-2",
++       "status": "Accepted",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-5",
++           "at": "2032-04-05T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-04-06T09:00:00.000Z",
++           "reason": "Synthetic screening example: posting requirements not met.",
++           "status": "Rejected",
++         },
++       ],
++       "id": "app-003",
++       "opportunityId": "opp-2",
++       "status": "Rejected",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-04-05T09:00:00.000Z",
++     },
++   ],
++   "certificates": [
++     {
++       "id": "cert-seed",
++       "issueDate": "2032-03-16",
++       "number": "DEMO-CERT-001",
++       "placementId": "PL-002",
++       "recordedBy": "coord-1",
++     },
++   ],
++   "companies": [
++     {
++       "academicYear": "2032-2033",
++       "address": "1 Synthetic Avenue, Demo City",
++       "approved": true,
++       "contactPerson": "Morgan Demo",
++       "email": "partners@copperfinch.example",
++       "id": "company-1",
++       "industry": "Technology",
++       "moaEnd": "2033-04-15",
++       "moaStart": "2031-04-16",
++       "name": "Copper Finch Labs",
++       "phone": "000-000-0001",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "2 Sample Road, Demo City",
++       "approved": true,
++       "contactPerson": "Jordan Sample",
++       "email": "partners@riverstone.example",
++       "id": "company-2",
++       "industry": "Design",
++       "moaEnd": "2032-05-05",
++       "moaStart": "2032-01-06",
++       "name": "Riverstone Studio",
++       "phone": "000-000-0002",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "3 Example Street, Demo City",
++       "approved": false,
++       "contactPerson": "Sam Example",
++       "email": "partners@paperkite.example",
++       "id": "company-3",
++       "industry": "Services",
++       "moaEnd": "2032-11-01",
++       "moaStart": "2032-01-06",
++       "name": "Paper Kite Services",
++       "phone": "000-000-0003",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "4 Fictional Lane, Demo City",
++       "approved": true,
++       "contactPerson": "Lee Example",
++       "email": "partners@oldoak.example",
++       "id": "company-4",
++       "industry": "Technology",
++       "moaEnd": "2032-04-05",
++       "moaStart": "2031-04-16",
++       "name": "Old Oak Demo",
++       "phone": "000-000-0004",
++     },
++   ],
++   "evaluations": [
++     {
++       "evaluatorId": "faculty-1",
++       "id": "eval-PL-001-faculty-1",
++       "placementId": "PL-001",
++       "status": "Pending",
++     },
++     {
++       "evaluatorId": "sup-1",
++       "id": "eval-PL-001-sup-1",
++       "placementId": "PL-001",
++       "status": "Pending",
++     },
++     {
++       "comments": "Synthetic evaluation: completed the assigned demonstration tasks.",
++       "evaluatorId": "faculty-1",
++       "grade": 90,
++       "id": "eval-PL-002-faculty-1",
++       "placementId": "PL-002",
++       "status": "Submitted",
++       "submittedAt": "2032-03-14T09:00:00.000Z",
++     },
++     {
++       "comments": "Synthetic evaluation: completed the assigned demonstration tasks.",
++       "evaluatorId": "sup-1",
++       "grade": 90,
++       "id": "eval-PL-002-sup-1",
++       "placementId": "PL-002",
++       "status": "Submitted",
++       "submittedAt": "2032-03-14T09:00:00.000Z",
++     },
++     {
++       "evaluatorId": "faculty-2",
++       "id": "eval-PL-003-faculty-2",
++       "placementId": "PL-003",
++       "status": "Pending",
++     },
++     {
++       "evaluatorId": "sup-2",
++       "id": "eval-PL-003-sup-2",
++       "placementId": "PL-003",
++       "status": "Pending",
++     },
++   ],
++   "faculty": [
++     {
++       "accountId": "faculty-1",
++       "id": "fac-1",
++     },
++     {
++       "accountId": "faculty-2",
++       "id": "fac-2",
++     },
++   ],
++   "files": [
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0001-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0001-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0002-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0002-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0003-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0003-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0004-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0004-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0005-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0005-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0006-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0006-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++   ],
++   "opportunities": [
++     {
++       "academicYear": "2032-2033",
++       "capacity": 3,
++       "companyId": "company-1",
++       "description": "Build and test demonstration applications.",
++       "id": "opp-1",
++       "status": "Approved",
++       "title": "Software Development Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 1,
++       "companyId": "company-2",
++       "description": "Practice accessible interface design.",
++       "id": "opp-2",
++       "status": "Approved",
++       "title": "Design Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 2,
++       "companyId": "company-1",
++       "description": "Prepare synthetic data reports.",
++       "id": "opp-3",
++       "status": "Pending Approval",
++       "title": "Data Support Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 1,
++       "companyId": "company-4",
++       "description": "An unavailable posting at an expired partner.",
++       "id": "opp-4",
++       "status": "Closed",
++       "title": "Archived Support Intern",
++     },
++   ],
++   "placements": [
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-1",
++       "applicationId": "app-placed-1",
++       "approvedBy": "coord-1",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-06-14",
++       "id": "PL-001",
++       "requiredHours": 80,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Ongoing",
++       "supervisorId": "supervisor-1",
++     },
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-1",
++       "applicationId": "app-placed-2",
++       "approvedBy": "coord-1",
++       "completedAt": "2032-03-15T09:00:00.000Z",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-03-16",
++       "id": "PL-002",
++       "requiredHours": 16,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Completed",
++       "supervisorId": "supervisor-1",
++     },
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-2",
++       "applicationId": "app-placed-3",
++       "approvedBy": "coord-1",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-05-15",
++       "id": "PL-003",
++       "requiredHours": 80,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Terminated",
++       "supervisorId": "supervisor-2",
++       "terminationReason": "Synthetic placement ended by mutual agreement.",
++     },
++   ],
++   "preferences": {
++     "coord-1": {
++       "academicYear": "2032-2033",
++       "density": "Comfortable",
++       "evaluationAlerts": true,
++       "landingPage": "/dashboard",
++       "largerText": false,
++       "partnershipAlerts": true,
++       "progressAlerts": true,
++       "reduceMotion": false,
++       "requirementAlerts": true,
++     },
++   },
++   "receipts": [
++     null,
++   ],
++   "reports": [
++     {
++       "hours": 8,
++       "id": "PR-001",
++       "placementId": "PL-001",
++       "remarks": "Checked against the demonstration task log.",
++       "reviewedAt": "2032-04-09T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-04-08T09:00:00.000Z",
++       "tasks": "Synthetic application testing",
++       "workDate": "2032-04-08",
++     },
++     {
++       "hours": 8,
++       "id": "PR-002",
++       "placementId": "PL-001",
++       "remarks": "",
++       "status": "Pending Review",
++       "submittedAt": "2032-04-14T09:00:00.000Z",
++       "tasks": "Documented demonstration test cases",
++       "workDate": "2032-04-14",
++     },
++     {
++       "hours": 8,
++       "id": "PR-completed-0",
++       "placementId": "PL-002",
++       "remarks": "Reviewed synthetic evidence.",
++       "reviewedAt": "2032-03-07T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-06T09:00:00.000Z",
++       "tasks": "Completed synthetic internship tasks",
++       "workDate": "2032-03-06",
++     },
++     {
++       "hours": 8,
++       "id": "PR-completed-1",
++       "placementId": "PL-002",
++       "remarks": "Reviewed synthetic evidence.",
++       "reviewedAt": "2032-03-08T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-07T09:00:00.000Z",
++       "tasks": "Completed synthetic internship tasks",
++       "workDate": "2032-03-07",
++     },
++     {
++       "hours": 8,
++       "id": "PR-terminated",
++       "placementId": "PL-003",
++       "remarks": "Historical reviewed report.",
++       "reviewedAt": "2032-03-07T09:00:00.000Z",
++       "reviewerId": "faculty-2",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-06T09:00:00.000Z",
++       "tasks": "Synthetic design orientation",
++       "workDate": "2032-03-06",
++     },
++   ],
++   "requirements": [
++     {
++       "classification": "Mandatory",
++       "description": "A synthetic resume for internship screening.",
++       "id": "req-1",
++       "name": "Resume",
++     },
++     {
++       "classification": "Mandatory",
++       "description": "A synthetic academic clearance.",
++       "id": "req-2",
++       "name": "Enrollment Clearance",
++     },
++     {
++       "classification": "Optional",
++       "description": "Optional supporting material.",
++       "id": "req-3",
++       "name": "Additional Document",
++     },
++   ],
++   "revision": 0,
++   "schemaVersion": 1,
++   "students": [
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-1",
++       "email": "student@example.test",
++       "firstName": "Mira",
++       "id": "2024-0001",
++       "lastName": "Demo",
++       "program": "BS Computer Engineering",
++       "section": "4-1",
++       "studentNumber": "SYN-2026-001",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-2",
++       "email": "student2@example.test",
++       "firstName": "Theo",
++       "id": "2024-0002",
++       "lastName": "Sample",
++       "program": "BS Information Technology",
++       "section": "4-2",
++       "studentNumber": "SYN-2026-002",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-3",
++       "email": "student3@example.test",
++       "firstName": "Luna",
++       "id": "2024-0003",
++       "lastName": "Example",
++       "program": "BS Computer Science",
++       "section": "4-3",
++       "studentNumber": "SYN-2026-003",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-4",
++       "email": "student4@example.test",
++       "firstName": "Nico",
++       "id": "2024-0004",
++       "lastName": "Demo",
++       "program": "BS Computer Engineering",
++       "section": "4-1",
++       "studentNumber": "SYN-2026-004",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-5",
++       "email": "student5@example.test",
++       "firstName": "Ari",
++       "id": "2024-0005",
++       "lastName": "Sample",
++       "program": "BS Information Technology",
++       "section": "4-2",
++       "studentNumber": "SYN-2026-005",
++       "yearLevel": "3rd Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-6",
++       "email": "student6@example.test",
++       "firstName": "Inactive",
++       "id": "2024-0006",
++       "lastName": "Example",
++       "program": "BS Computer Science",
++       "section": "4-3",
++       "studentNumber": "SYN-2026-006",
++       "yearLevel": "4th Year",
++     },
++   ],
++   "submissions": [
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0001-req-1",
++       "id": "sub-2024-0001-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0001-req-2",
++       "id": "sub-2024-0001-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0002-req-1",
++       "id": "sub-2024-0002-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0002-req-2",
++       "id": "sub-2024-0002-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0003-req-1",
++       "id": "sub-2024-0003-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0003-req-2",
++       "id": "sub-2024-0003-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0004-req-1",
++       "id": "sub-2024-0004-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0004-req-2",
++       "id": "sub-2024-0004-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0005-req-1",
++       "id": "sub-2024-0005-req-1",
++       "requirementId": "req-1",
++       "status": "Pending",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0005-req-2",
++       "id": "sub-2024-0005-req-2",
++       "reason": "Replace this synthetic document with an updated version.",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Rejected",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0006-req-1",
++       "id": "sub-2024-0006-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0006",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0006-req-2",
++       "id": "sub-2024-0006-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0006",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++   ],
++   "supervisors": [
++     {
++       "accountId": "sup-1",
++       "companyId": "company-1",
++       "id": "supervisor-1",
++       "phone": "000-000-0001",
++     },
++     {
++       "accountId": "sup-2",
++       "companyId": "company-2",
++       "id": "supervisor-2",
++       "phone": "000-000-0002",
++     },
++   ],
+  }
+
+ ❯ tests/integration/independent-audit.test.ts:191:33
+    189|       const store = new IndexedDbStore(`independent-corrupt-${request(…
+    190|       await store.replace(seed);
+    191|       await expect(store.read()).rejects.toMatchObject({
+       |                                 ^
+    192|         code: "STORAGE_UNAVAILABLE",
+    193|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/13]⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-09 surfaces corrupt duplicate profile data as a storage error
+AssertionError: promise resolved "{ schemaVersion: 1, …(18) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "accounts": [
++     {
++       "active": true,
++       "email": "coordinator@example.test",
++       "id": "coord-1",
++       "name": "Alex Demo",
++       "role": "Coordinator",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "faculty@example.test",
++       "id": "faculty-1",
++       "name": "Robin Demo",
++       "role": "Faculty Adviser",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "faculty2@example.test",
++       "id": "faculty-2",
++       "name": "Casey Sample",
++       "role": "Faculty Adviser",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "supervisor@example.test",
++       "id": "sup-1",
++       "name": "Morgan Demo",
++       "role": "Company Supervisor",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "supervisor2@example.test",
++       "id": "sup-2",
++       "name": "Jordan Sample",
++       "role": "Company Supervisor",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student@example.test",
++       "id": "student-1",
++       "name": "Mira Demo",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student2@example.test",
++       "id": "student-2",
++       "name": "Theo Sample",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student3@example.test",
++       "id": "student-3",
++       "name": "Luna Example",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student4@example.test",
++       "id": "student-4",
++       "name": "Nico Demo",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": true,
++       "email": "student5@example.test",
++       "id": "student-5",
++       "name": "Ari Sample",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++     {
++       "active": false,
++       "email": "student6@example.test",
++       "id": "student-6",
++       "name": "Inactive Example",
++       "role": "Student",
++       "verifier": "a80f26281d717fc07964ed18f638e90c51aa42f468518e3d84d5ff9a5eaa838c",
++     },
++   ],
++   "activities": [
++     {
++       "actorId": "coord-1",
++       "at": "2032-04-15T12:00:00.000Z",
++       "href": "/dashboard",
++       "id": "activity-seed",
++       "message": "Synthetic demonstration dataset initialized",
++     },
++   ],
++   "applications": [
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-5",
++           "at": "2032-04-12T09:00:00.000Z",
++           "status": "Pending",
++         },
++       ],
++       "id": "app-001",
++       "opportunityId": "opp-1",
++       "status": "Pending",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-04-12T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-4",
++           "at": "2032-04-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-04-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-002",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-04-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-1",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-1",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-2",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-2",
++       "opportunityId": "opp-1",
++       "status": "Accepted",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-3",
++           "at": "2032-02-10T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-02-11T09:00:00.000Z",
++           "status": "Accepted",
++         },
++       ],
++       "id": "app-placed-3",
++       "opportunityId": "opp-2",
++       "status": "Accepted",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-10T09:00:00.000Z",
++     },
++     {
++       "academicYear": "2032-2033",
++       "history": [
++         {
++           "actorId": "student-5",
++           "at": "2032-04-05T09:00:00.000Z",
++           "status": "Pending",
++         },
++         {
++           "actorId": "coord-1",
++           "at": "2032-04-06T09:00:00.000Z",
++           "reason": "Synthetic screening example: posting requirements not met.",
++           "status": "Rejected",
++         },
++       ],
++       "id": "app-003",
++       "opportunityId": "opp-2",
++       "status": "Rejected",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-04-05T09:00:00.000Z",
++     },
++   ],
++   "certificates": [
++     {
++       "id": "cert-seed",
++       "issueDate": "2032-03-16",
++       "number": "DEMO-CERT-001",
++       "placementId": "PL-002",
++       "recordedBy": "coord-1",
++     },
++   ],
++   "companies": [
++     {
++       "academicYear": "2032-2033",
++       "address": "1 Synthetic Avenue, Demo City",
++       "approved": true,
++       "contactPerson": "Morgan Demo",
++       "email": "partners@copperfinch.example",
++       "id": "company-1",
++       "industry": "Technology",
++       "moaEnd": "2033-04-15",
++       "moaStart": "2031-04-16",
++       "name": "Copper Finch Labs",
++       "phone": "000-000-0001",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "2 Sample Road, Demo City",
++       "approved": true,
++       "contactPerson": "Jordan Sample",
++       "email": "partners@riverstone.example",
++       "id": "company-2",
++       "industry": "Design",
++       "moaEnd": "2032-05-05",
++       "moaStart": "2032-01-06",
++       "name": "Riverstone Studio",
++       "phone": "000-000-0002",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "3 Example Street, Demo City",
++       "approved": false,
++       "contactPerson": "Sam Example",
++       "email": "partners@paperkite.example",
++       "id": "company-3",
++       "industry": "Services",
++       "moaEnd": "2032-11-01",
++       "moaStart": "2032-01-06",
++       "name": "Paper Kite Services",
++       "phone": "000-000-0003",
++     },
++     {
++       "academicYear": "2032-2033",
++       "address": "4 Fictional Lane, Demo City",
++       "approved": true,
++       "contactPerson": "Lee Example",
++       "email": "partners@oldoak.example",
++       "id": "company-4",
++       "industry": "Technology",
++       "moaEnd": "2032-04-05",
++       "moaStart": "2031-04-16",
++       "name": "Old Oak Demo",
++       "phone": "000-000-0004",
++     },
++   ],
++   "evaluations": [
++     {
++       "evaluatorId": "faculty-1",
++       "id": "eval-PL-001-faculty-1",
++       "placementId": "PL-001",
++       "status": "Pending",
++     },
++     {
++       "evaluatorId": "sup-1",
++       "id": "eval-PL-001-sup-1",
++       "placementId": "PL-001",
++       "status": "Pending",
++     },
++     {
++       "comments": "Synthetic evaluation: completed the assigned demonstration tasks.",
++       "evaluatorId": "faculty-1",
++       "grade": 90,
++       "id": "eval-PL-002-faculty-1",
++       "placementId": "PL-002",
++       "status": "Submitted",
++       "submittedAt": "2032-03-14T09:00:00.000Z",
++     },
++     {
++       "comments": "Synthetic evaluation: completed the assigned demonstration tasks.",
++       "evaluatorId": "sup-1",
++       "grade": 90,
++       "id": "eval-PL-002-sup-1",
++       "placementId": "PL-002",
++       "status": "Submitted",
++       "submittedAt": "2032-03-14T09:00:00.000Z",
++     },
++     {
++       "evaluatorId": "faculty-2",
++       "id": "eval-PL-003-faculty-2",
++       "placementId": "PL-003",
++       "status": "Pending",
++     },
++     {
++       "evaluatorId": "sup-2",
++       "id": "eval-PL-003-sup-2",
++       "placementId": "PL-003",
++       "status": "Pending",
++     },
++   ],
++   "faculty": [
++     {
++       "accountId": "faculty-1",
++       "id": "fac-1",
++     },
++     {
++       "accountId": "faculty-2",
++       "id": "fac-2",
++     },
++   ],
++   "files": [
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0001-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0001-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0002-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0002-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0003-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0003-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0004-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0004-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0005-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0005-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 64,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0006-req-1",
++       "mime": "text/plain",
++       "name": "resume-demo.txt",
++       "size": 64,
++     },
++     {
++       "blob": Blob {
++         Symbol(kHandle): Blob {},
++         Symbol(kLength): 78,
++         Symbol(kType): "text/plain",
++       },
++       "id": "file-sub-2024-0006-req-2",
++       "mime": "text/plain",
++       "name": "enrollment-clearance-demo.txt",
++       "size": 78,
++     },
++   ],
++   "opportunities": [
++     {
++       "academicYear": "2032-2033",
++       "capacity": 3,
++       "companyId": "company-1",
++       "description": "Build and test demonstration applications.",
++       "id": "opp-1",
++       "status": "Approved",
++       "title": "Software Development Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 1,
++       "companyId": "company-2",
++       "description": "Practice accessible interface design.",
++       "id": "opp-2",
++       "status": "Approved",
++       "title": "Design Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 2,
++       "companyId": "company-1",
++       "description": "Prepare synthetic data reports.",
++       "id": "opp-3",
++       "status": "Pending Approval",
++       "title": "Data Support Intern",
++     },
++     {
++       "academicYear": "2032-2033",
++       "capacity": 1,
++       "companyId": "company-4",
++       "description": "An unavailable posting at an expired partner.",
++       "id": "opp-4",
++       "status": "Closed",
++       "title": "Archived Support Intern",
++     },
++   ],
++   "placements": [
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-1",
++       "applicationId": "app-placed-1",
++       "approvedBy": "coord-1",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-06-14",
++       "id": "PL-001",
++       "requiredHours": 80,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Ongoing",
++       "supervisorId": "supervisor-1",
++     },
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-1",
++       "applicationId": "app-placed-2",
++       "approvedBy": "coord-1",
++       "completedAt": "2032-03-15T09:00:00.000Z",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-03-16",
++       "id": "PL-002",
++       "requiredHours": 16,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Completed",
++       "supervisorId": "supervisor-1",
++     },
++     {
++       "academicYear": "2032-2033",
++       "adviserId": "fac-2",
++       "applicationId": "app-placed-3",
++       "approvedBy": "coord-1",
++       "createdAt": "2032-02-12T09:00:00.000Z",
++       "endDate": "2032-05-15",
++       "id": "PL-003",
++       "requiredHours": 80,
++       "requiredRequirementIds": [
++         "req-1",
++         "req-2",
++       ],
++       "startDate": "2032-02-15",
++       "status": "Terminated",
++       "supervisorId": "supervisor-2",
++       "terminationReason": "Synthetic placement ended by mutual agreement.",
++     },
++   ],
++   "preferences": {
++     "coord-1": {
++       "academicYear": "2032-2033",
++       "density": "Comfortable",
++       "evaluationAlerts": true,
++       "landingPage": "/dashboard",
++       "largerText": false,
++       "partnershipAlerts": true,
++       "progressAlerts": true,
++       "reduceMotion": false,
++       "requirementAlerts": true,
++     },
++   },
++   "receipts": [],
++   "reports": [
++     {
++       "hours": 8,
++       "id": "PR-001",
++       "placementId": "PL-001",
++       "remarks": "Checked against the demonstration task log.",
++       "reviewedAt": "2032-04-09T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-04-08T09:00:00.000Z",
++       "tasks": "Synthetic application testing",
++       "workDate": "2032-04-08",
++     },
++     {
++       "hours": 8,
++       "id": "PR-002",
++       "placementId": "PL-001",
++       "remarks": "",
++       "status": "Pending Review",
++       "submittedAt": "2032-04-14T09:00:00.000Z",
++       "tasks": "Documented demonstration test cases",
++       "workDate": "2032-04-14",
++     },
++     {
++       "hours": 8,
++       "id": "PR-completed-0",
++       "placementId": "PL-002",
++       "remarks": "Reviewed synthetic evidence.",
++       "reviewedAt": "2032-03-07T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-06T09:00:00.000Z",
++       "tasks": "Completed synthetic internship tasks",
++       "workDate": "2032-03-06",
++     },
++     {
++       "hours": 8,
++       "id": "PR-completed-1",
++       "placementId": "PL-002",
++       "remarks": "Reviewed synthetic evidence.",
++       "reviewedAt": "2032-03-08T09:00:00.000Z",
++       "reviewerId": "faculty-1",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-07T09:00:00.000Z",
++       "tasks": "Completed synthetic internship tasks",
++       "workDate": "2032-03-07",
++     },
++     {
++       "hours": 8,
++       "id": "PR-terminated",
++       "placementId": "PL-003",
++       "remarks": "Historical reviewed report.",
++       "reviewedAt": "2032-03-07T09:00:00.000Z",
++       "reviewerId": "faculty-2",
++       "status": "Reviewed",
++       "submittedAt": "2032-03-06T09:00:00.000Z",
++       "tasks": "Synthetic design orientation",
++       "workDate": "2032-03-06",
++     },
++   ],
++   "requirements": [
++     {
++       "classification": "Mandatory",
++       "description": "A synthetic resume for internship screening.",
++       "id": "req-1",
++       "name": "Resume",
++     },
++     {
++       "classification": "Mandatory",
++       "description": "A synthetic academic clearance.",
++       "id": "req-2",
++       "name": "Enrollment Clearance",
++     },
++     {
++       "classification": "Optional",
++       "description": "Optional supporting material.",
++       "id": "req-3",
++       "name": "Additional Document",
++     },
++   ],
++   "revision": 0,
++   "schemaVersion": 1,
++   "students": [
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-1",
++       "email": "student@example.test",
++       "firstName": "Mira",
++       "id": "2024-0001",
++       "lastName": "Demo",
++       "program": "BS Computer Engineering",
++       "section": "4-1",
++       "studentNumber": "SYN-2026-001",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-1",
++       "email": "student2@example.test",
++       "firstName": "Theo",
++       "id": "2024-0002",
++       "lastName": "Sample",
++       "program": "BS Information Technology",
++       "section": "4-2",
++       "studentNumber": "SYN-2026-002",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-3",
++       "email": "student3@example.test",
++       "firstName": "Luna",
++       "id": "2024-0003",
++       "lastName": "Example",
++       "program": "BS Computer Science",
++       "section": "4-3",
++       "studentNumber": "SYN-2026-003",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-4",
++       "email": "student4@example.test",
++       "firstName": "Nico",
++       "id": "2024-0004",
++       "lastName": "Demo",
++       "program": "BS Computer Engineering",
++       "section": "4-1",
++       "studentNumber": "SYN-2026-004",
++       "yearLevel": "4th Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-5",
++       "email": "student5@example.test",
++       "firstName": "Ari",
++       "id": "2024-0005",
++       "lastName": "Sample",
++       "program": "BS Information Technology",
++       "section": "4-2",
++       "studentNumber": "SYN-2026-005",
++       "yearLevel": "3rd Year",
++     },
++     {
++       "academicYear": "2032-2033",
++       "accountId": "student-6",
++       "email": "student6@example.test",
++       "firstName": "Inactive",
++       "id": "2024-0006",
++       "lastName": "Example",
++       "program": "BS Computer Science",
++       "section": "4-3",
++       "studentNumber": "SYN-2026-006",
++       "yearLevel": "4th Year",
++     },
++   ],
++   "submissions": [
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0001-req-1",
++       "id": "sub-2024-0001-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0001-req-2",
++       "id": "sub-2024-0001-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0001",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0002-req-1",
++       "id": "sub-2024-0002-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0002-req-2",
++       "id": "sub-2024-0002-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0002",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0003-req-1",
++       "id": "sub-2024-0003-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0003-req-2",
++       "id": "sub-2024-0003-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0003",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0004-req-1",
++       "id": "sub-2024-0004-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0004-req-2",
++       "id": "sub-2024-0004-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0004",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0005-req-1",
++       "id": "sub-2024-0005-req-1",
++       "requirementId": "req-1",
++       "status": "Pending",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0005-req-2",
++       "id": "sub-2024-0005-req-2",
++       "reason": "Replace this synthetic document with an updated version.",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Rejected",
++       "studentId": "2024-0005",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0006-req-1",
++       "id": "sub-2024-0006-req-1",
++       "reason": "",
++       "requirementId": "req-1",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0006",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++     {
++       "attempt": 1,
++       "fileId": "file-sub-2024-0006-req-2",
++       "id": "sub-2024-0006-req-2",
++       "reason": "",
++       "requirementId": "req-2",
++       "reviewedAt": "2032-02-06T09:00:00.000Z",
++       "reviewerId": "coord-1",
++       "status": "Approved",
++       "studentId": "2024-0006",
++       "submittedAt": "2032-02-05T09:00:00.000Z",
++     },
++   ],
++   "supervisors": [
++     {
++       "accountId": "sup-1",
++       "companyId": "company-1",
++       "id": "supervisor-1",
++       "phone": "000-000-0001",
++     },
++     {
++       "accountId": "sup-2",
++       "companyId": "company-2",
++       "id": "supervisor-2",
++       "phone": "000-000-0002",
++     },
++   ],
+  }
+
+ ❯ tests/integration/independent-audit.test.ts:191:33
+    189|       const store = new IndexedDbStore(`independent-corrupt-${request(…
+    190|       await store.replace(seed);
+    191|       await expect(store.read()).rejects.toMatchObject({
+       |                                 ^
+    192|         code: "STORAGE_UNAVAILABLE",
+    193|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/13]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  13 failed | 1 passed (14)
+   Start at  21:15:03
+   Duration  893ms (tests 43%, setup 26%, transform 21%, import 8%, worker 3%)
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/independent/baseline-adversarial.json

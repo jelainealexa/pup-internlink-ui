@@ -1,0 +1,155 @@
+[WebServer] (node:22320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:29964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:31716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:11032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\independent.spec.ts:15:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes (14.7s)
+(node:5616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › tests\e2e\independent.spec.ts:55:1 › IV-11: unauthenticated contextual placement URL survives sign in (16.3s)
+(node:20644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 [chromium] › tests\e2e\independent.spec.ts:72:1 › IV-03: direct navigation does not reveal another draft posting to a student (11.7s)
+
+
+  1) [chromium] › tests\e2e\independent.spec.ts:15:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('.functional-form [role=alert]')
+    Expected pattern: /changed/i
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" locator('.functional-form [role=alert]') with timeout 10000ms
+      - waiting for locator('.functional-form [role=alert]')
+
+
+      42 |   );
+      43 |   await peer.getByRole("button", { name: "Save Changes", exact: true }).click();
+    > 44 |   await expect(peer.locator(".functional-form [role=alert]")).toContainText(
+         |                                                               ^
+      45 |     /changed/i,
+      46 |   );
+      47 |   await expect(peer.getByLabel("Last name")).toHaveValue("Peer Synthetic");
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent.spec.ts:44:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\test-failed-3.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\independent.spec.ts:55:1 › IV-11: unauthenticated contextual placement URL survives sign in 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Create placement', exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Create placement', exact: true }) with timeout 10000ms
+      - waiting for getByRole('heading', { name: 'Create placement', exact: true })
+
+
+      65 |   await expect(
+      66 |     page.getByRole("heading", { name: "Create placement", exact: true }),
+    > 67 |   ).toBeVisible();
+         |     ^
+      68 |   await expect(page.getByLabel("Application ID", { exact: false })).toHaveValue(
+      69 |     "app-002",
+      70 |   );
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent.spec.ts:67:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-11-unauthen-2e56d-cement-URL-survives-sign-in-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\independent-IV-11-unauthen-2e56d-cement-URL-survives-sign-in-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\independent-IV-11-unauthen-2e56d-cement-URL-survives-sign-in-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\independent-IV-11-unauthen-2e56d-cement-URL-survives-sign-in-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\e2e\independent.spec.ts:72:1 › IV-03: direct navigation does not reveal another draft posting to a student 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Record not found', exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Record not found', exact: true }) with timeout 10000ms
+      - waiting for getByRole('heading', { name: 'Record not found', exact: true })
+
+
+      77 |   await expect(
+      78 |     page.getByRole("heading", { name: "Record not found", exact: true }),
+    > 79 |   ).toBeVisible();
+         |     ^
+      80 |   await page.goto("/dashboard/internships/opp-1");
+      81 |   await expect(
+      82 |     page.getByRole("heading", {
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent.spec.ts:79:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-03-direct-n-9754f--draft-posting-to-a-student-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\independent-IV-03-direct-n-9754f--draft-posting-to-a-student-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\independent-IV-03-direct-n-9754f--draft-posting-to-a-student-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\independent-IV-03-direct-n-9754f--draft-posting-to-a-student-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests\e2e\independent.spec.ts:15:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes 
+    [chromium] › tests\e2e\independent.spec.ts:55:1 › IV-11: unauthenticated contextual placement URL survives sign in 
+    [chromium] › tests\e2e\independent.spec.ts:72:1 › IV-03: direct navigation does not reveal another draft posting to a student 
