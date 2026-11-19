@@ -1,0 +1,130 @@
+Original d71e726 production application; read-only/initial empty-data fixture tests; port3113.
+
+Running 3 tests using 1 worker
+
+(node:2032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\independent.spec.ts:4:1 › IV-15: accepted unplaced students receive status rather than a forbidden placement action (13.3s)
+(node:25324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › tests\e2e\independent.spec.ts:16:1 › IV-16: empty eligible data has actionable empty states rather than impossible forms (12.2s)
+(node:28436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 [chromium] › tests\e2e\independent.spec.ts:106:1 › IV-14: failed confirmed mutation explains the failure inside its active dialog (12.7s)
+
+
+  1) [chromium] › tests\e2e\independent.spec.ts:4:1 › IV-15: accepted unplaced students receive status rather than a forbidden placement action
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('The coordinator will create your placement.')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('The coordinator will create your placement.') with timeout 10000ms
+      - waiting for getByText('The coordinator will create your placement.')
+
+
+      12 |   await expect(
+      13 |     page.getByText("The coordinator will create your placement."),
+    > 14 |   ).toBeVisible();
+         |     ^
+      15 | });
+      16 | test("IV-16: empty eligible data has actionable empty states rather than impossible forms", async ({
+      17 |   page,
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent.spec.ts:14:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-15-accepted-7dfec--forbidden-placement-action-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\independent-IV-15-accepted-7dfec--forbidden-placement-action-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\independent-IV-15-accepted-7dfec--forbidden-placement-action-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\independent-IV-15-accepted-7dfec--forbidden-placement-action-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\independent.spec.ts:16:1 › IV-16: empty eligible data has actionable empty states rather than impossible forms
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'No registered partners', exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'No registered partners', exact: true }) with timeout 10000ms
+      - waiting for getByRole('heading', { name: 'No registered partners', exact: true })
+
+
+      22 |   await expect(
+      23 |     page.getByRole("heading", { name: "No registered partners", exact: true }),
+    > 24 |   ).toBeVisible();
+         |     ^
+      25 |   await page.goto("/dashboard/applications/create");
+      26 |   await expect(
+      27 |     page.getByRole("heading", { name: "No active students", exact: true }),
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent.spec.ts:24:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-16-empty-el-52a4d-ather-than-impossible-forms-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\independent-IV-16-empty-el-52a4d-ather-than-impossible-forms-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\independent-IV-16-empty-el-52a4d-ather-than-impossible-forms-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\independent-IV-16-empty-el-52a4d-ather-than-impossible-forms-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\e2e\independent.spec.ts:106:1 › IV-14: failed confirmed mutation explains the failure inside its active dialog
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('dialog').getByRole('alert')
+    Expected substring: "Required reviewed hours"
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByRole('dialog').getByRole('alert') with timeout 10000ms
+      - waiting for getByRole('dialog').getByRole('alert')
+
+
+      114 |   const dialog = page.getByRole("dialog");
+      115 |   await dialog.getByRole("button", { name: "Confirm", exact: true }).click();
+    > 116 |   await expect(dialog.getByRole("alert")).toContainText(
+          |                                           ^
+      117 |     "Required reviewed hours",
+      118 |   );
+      119 | });
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent.spec.ts:116:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-14-failed-c-9c63c-re-inside-its-active-dialog-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\independent-IV-14-failed-c-9c63c-re-inside-its-active-dialog-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\independent-IV-14-failed-c-9c63c-re-inside-its-active-dialog-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\independent-IV-14-failed-c-9c63c-re-inside-its-active-dialog-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests\e2e\independent.spec.ts:4:1 › IV-15: accepted unplaced students receive status rather than a forbidden placement action
+    [chromium] › tests\e2e\independent.spec.ts:16:1 › IV-16: empty eligible data has actionable empty states rather than impossible forms
+    [chromium] › tests\e2e\independent.spec.ts:106:1 › IV-14: failed confirmed mutation explains the failure inside its active dialog

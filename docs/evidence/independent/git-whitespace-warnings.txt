@@ -1,0 +1,12 @@
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/DEFECT_REGISTER.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/DEVELOPMENT_STATUS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/HANDOVER.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/INDEPENDENT_VERIFICATION_REPORT.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/KNOWN_ISSUES.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/PROJECT_PLAN.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/RELEASE_READINESS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/REQUIREMENTS_TRACEABILITY.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/TEST_PLAN.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/TEST_REPORT.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tsconfig.json', LF will be replaced by CRLF the next time Git touches it

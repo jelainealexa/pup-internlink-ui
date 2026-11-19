@@ -1,0 +1,375 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Orca\\Workspace\\pup-internlink-ui\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/independent.spec.ts",
+      "--project=chromium",
+      "--grep",
+      "IV-14|IV-15|IV-16"
+    ],
+    "configFile": "D:\\Orca\\Workspace\\pup-internlink-ui\\playwright.config.ts",
+    "rootDir": "D:/Orca/Workspace/pup-internlink-ui/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Orca/Workspace/pup-internlink-ui/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "D:/Orca/Workspace/pup-internlink-ui/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "D:/Orca/Workspace/pup-internlink-ui/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "D:/Orca/Workspace/pup-internlink-ui/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "smoke.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e",
+        "snapshotDir": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://localhost:3113",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "launchOptions": {
+            "executablePath": "C:/Users/User 1/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe"
+          },
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/159.0.8154.6 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "independent.spec.ts",
+      "file": "independent.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "IV-15: accepted unplaced students receive status rather than a forbidden placement action",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 13256,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('The coordinator will create your placement.')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('The coordinator will create your placement.') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('The coordinator will create your placement.')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('The coordinator will create your placement.')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('The coordinator will create your placement.') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('The coordinator will create your placement.')\u001b[22m\n\n    at D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts:14:5",
+                    "location": {
+                      "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                      "column": 5,
+                      "line": 14
+                    },
+                    "snippet": " \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m expect(\n \u001b[90m 13 |\u001b[39m     page\u001b[33m.\u001b[39mgetByText(\u001b[32m\"The coordinator will create your placement.\"\u001b[39m)\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m   )\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 16 |\u001b[39m test(\u001b[32m\"IV-16: empty eligible data has actionable empty states rather than impossible forms\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({\n \u001b[90m 17 |\u001b[39m   page\u001b[33m,\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                        "column": 5,
+                        "line": 14
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('The coordinator will create your placement.')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('The coordinator will create your placement.') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('The coordinator will create your placement.')\u001b[22m\n\n\n  12 |   await expect(\n  13 |     page.getByText(\"The coordinator will create your placement.\"),\n> 14 |   ).toBeVisible();\n     |     ^\n  15 | });\n  16 | test(\"IV-16: empty eligible data has actionable empty states rather than impossible forms\", async ({\n  17 |   page,\n    at D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts:14:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T13:57:59.218Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-15-accepted-7dfec--forbidden-placement-action-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-15-accepted-7dfec--forbidden-placement-action-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-15-accepted-7dfec--forbidden-placement-action-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                    "column": 5,
+                    "line": 14
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "82f714dc92b415937ba4-88b4192df26492c8195f",
+          "file": "independent.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "IV-16: empty eligible data has actionable empty states rather than impossible forms",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 12227,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'No registered partners', exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'No registered partners', exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'No registered partners', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'No registered partners', exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'No registered partners', exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'No registered partners', exact: true })\u001b[22m\n\n    at D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts:24:5",
+                    "location": {
+                      "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                      "column": 5,
+                      "line": 24
+                    },
+                    "snippet": " \u001b[90m 22 |\u001b[39m   \u001b[36mawait\u001b[39m expect(\n \u001b[90m 23 |\u001b[39m     page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"heading\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"No registered partners\"\u001b[39m\u001b[33m,\u001b[39m exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m   )\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"/dashboard/applications/create\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m   \u001b[36mawait\u001b[39m expect(\n \u001b[90m 27 |\u001b[39m     page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"heading\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"No active students\"\u001b[39m\u001b[33m,\u001b[39m exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m,\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                        "column": 5,
+                        "line": 24
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'No registered partners', exact: true })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'No registered partners', exact: true }) with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'No registered partners', exact: true })\u001b[22m\n\n\n  22 |   await expect(\n  23 |     page.getByRole(\"heading\", { name: \"No registered partners\", exact: true }),\n> 24 |   ).toBeVisible();\n     |     ^\n  25 |   await page.goto(\"/dashboard/applications/create\");\n  26 |   await expect(\n  27 |     page.getByRole(\"heading\", { name: \"No active students\", exact: true }),\n    at D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts:24:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T13:58:14.384Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-16-empty-el-52a4d-ather-than-impossible-forms-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-16-empty-el-52a4d-ather-than-impossible-forms-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-16-empty-el-52a4d-ather-than-impossible-forms-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                    "column": 5,
+                    "line": 24
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "82f714dc92b415937ba4-2fdc718d316cae743070",
+          "file": "independent.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "IV-14: failed confirmed mutation explains the failure inside its active dialog",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 12666,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog').getByRole('alert')\nExpected substring: \u001b[32m\"Required reviewed hours\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('dialog').getByRole('alert') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByRole('alert')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog').getByRole('alert')\nExpected substring: \u001b[32m\"Required reviewed hours\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('dialog').getByRole('alert') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByRole('alert')\u001b[22m\n\n    at D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts:116:43",
+                    "location": {
+                      "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                      "column": 43,
+                      "line": 116
+                    },
+                    "snippet": " \u001b[90m 114 |\u001b[39m   \u001b[36mconst\u001b[39m dialog \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"dialog\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 115 |\u001b[39m   \u001b[36mawait\u001b[39m dialog\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Confirm\"\u001b[39m\u001b[33m,\u001b[39m exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 116 |\u001b[39m   \u001b[36mawait\u001b[39m expect(dialog\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"alert\"\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\n \u001b[90m     |\u001b[39m                                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 117 |\u001b[39m     \u001b[32m\"Required reviewed hours\"\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 118 |\u001b[39m   )\u001b[33m;\u001b[39m\n \u001b[90m 119 |\u001b[39m })\u001b[33m;\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                        "column": 43,
+                        "line": 116
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog').getByRole('alert')\nExpected substring: \u001b[32m\"Required reviewed hours\"\u001b[39m\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('dialog').getByRole('alert') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByRole('alert')\u001b[22m\n\n\n  114 |   const dialog = page.getByRole(\"dialog\");\n  115 |   await dialog.getByRole(\"button\", { name: \"Confirm\", exact: true }).click();\n> 116 |   await expect(dialog.getByRole(\"alert\")).toContainText(\n      |                                           ^\n  117 |     \"Required reviewed hours\",\n  118 |   );\n  119 | });\n    at D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts:116:43"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-19T13:58:28.462Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-14-failed-c-9c63c-re-inside-its-active-dialog-chromium\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-14-failed-c-9c63c-re-inside-its-active-dialog-chromium\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Orca\\Workspace\\pup-internlink-ui\\test-results\\independent-IV-14-failed-c-9c63c-re-inside-its-active-dialog-chromium\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\Orca\\Workspace\\pup-internlink-ui\\tests\\e2e\\independent.spec.ts",
+                    "column": 43,
+                    "line": 116
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "82f714dc92b415937ba4-c2a5f5a2d710581ec96b",
+          "file": "independent.spec.ts",
+          "line": 106,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-19T13:57:57.459Z",
+    "duration": 45504.542,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

@@ -1,4 +1,44 @@
-# Executed test and build report
+# Executed release candidate test report
+
+Reviewed **7ca502cc6260232619570b2ee945da5f5c13145b**; application repair **dcad283780f3b7ab3ca2ee25c792924d695106a5**; original **d71e7265dbb2d136a0ea7f5f08c13e6b24278ba2**. Windows/Node24.15.0/npm11.12.1. Results below actually executed; repair verification is by its author. Historical implementation report follows separately.
+
+| Gate | Actual result | Evidence under docs/evidence/independent |
+| --- | --- | --- |
+| Original clean baseline |ci/lint/typecheck/79tests/build exit0; original18browser pass |baseline-clean-*; baseline-e2e* |
+| Unit |55/55 (47 rules,8 session) |candidate-vitest.json/text |
+| Component |5/5 (3 shared forms,2 independent options) |candidate-vitest.json/text |
+| Integration |42/42 (21 existing,21 independent native adapter) |candidate-vitest.json/text |
+| Combined Vitest |102pass,0failed/skipped,6files |candidate-gates.json; candidate-vitest.json/text |
+| ESLint |exit0,0errors/warnings |candidate-lint.txt; candidate-gates.json |
+| TypeScript |next typegen +tsc --noEmit exit0 |candidate-typecheck.txt; candidate-gates.json |
+| Production E2E |40pass,0failed/skipped/flaky;37desktop/3mobile;301.164s |candidate-e2e.json/text/exit.txt |
+| Repeated stale-student regression |3/3 same assertions/timeouts |foreground-repeat.txt/exit.txt |
+| Dashboard oracle |14cards+5progress values match raw saved data |dashboard-oracle.json/text/cjs.txt |
+| Clean repair archive |427 packages; ci/lint/typecheck/102tests/build/npm ls all0 |candidate-clean-*.txt/results.json |
+| Development startup |isolated3119 HTTP200/login/dashboard |development-start.txt |
+| Production startup/routes |actual next build/start on3105; valid/invalid/history/refresh |E2E build/launcher output and smoke/matrix/independent suites |
+
+Exact commands executed in appropriate workspaces/shells:
+
+~~~powershell
+npm ci --ignore-scripts --no-audit --no-fund
+npm run lint
+npm run typecheck
+npm test -- --reporter=default --reporter=json --outputFile=docs/evidence/independent/candidate-vitest.json
+$env:PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH='C:/Users/User 1/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe'
+npx playwright test tests/e2e/independent.spec.ts --grep IV-10 --repeat-each=3 --project=chromium --reporter=list --output=test-results/foreground-repeat
+npm run test:e2e
+npm run build
+npm ls --depth=0
+~~~
+
+Clean archive: git archive dcad283 into C:/Users/User 1/AppData/Local/Temp/internlink-independent-dcad283, fresh npm ci. Final7ca502c differs only in foreground browser interactions/decision; app/package/lock/unit files identical. Explicit --ignore-scripts means no install lifecycle scripts ran; actual build/runtime succeeded. README normal npm ci is standard setup, not a claim every postinstall environment was separately tested. Development command: node node_modules/next/dist/bin/next dev --port 3119 --hostname 127.0.0.1 with INTERNLINK_DIST_DIR=.next-audit-dev. Generated temporary includes removed. E2E builds .next-e2e then starts production3105; browser executable override is machine-specific, receiving developers can install Chromium normally.
+
+Failures are preserved: initial adversarial/component/browser defects before repairs; early wrong year/selector/lint harness attempts; expanded96/100/102 unit runs and21/15/39browser runs. The exploratory npm run test:e2e -- --workers=2 finished39pass/1failure: a hidden-tab first-save navigation wait. Snapshot/trace show saved email/success/HTTP200 RSC responses. Foregrounding before interaction corrects unrealistic background interaction; all persisted values/conflict/retry assertions and timeouts retained. Target3/3 then configured full40/40 pass. Parallel scheduling/performance remains UNVERIFIED; see parallel-probe-e2e.json/text/context and parallel-navigation-trace.json. No failure/skipped test counted as passed.
+
+Warnings retained: ESLint9.39.5 deprecated; optional @emnapi/runtime1.11.3/@img/sharp-wasm32@0.35.5 extraneous after build though npm ls0; NO_COLOR ignored when FORCE_COLOR set. No checks disabled/dependency security certification claimed. Actual TXT/PDF/PNG/JPEG bytes, decoded images, escaped TXT markup, filtered CSV formula/comma/quote/newline bytes and print invocation/media styles verified. Native PDF plug-in/physical printing/Firefox/WebKit/manual AT/OS quota exhaustion remain unverified. Actual backend/database/security out of scope.
+
+# Historical implementation test and build report
 
 Date: **2026-11-19**, Windows / Asia-Manila. Implementation checkpoint **251410a697333dd08a5a11fa4f6b6f4f6e90e72a**, branch **frontend/complete-demo**. Subsequent changes are documentation/evidence only. No backend integration or production security certification is claimed.
 
@@ -57,7 +97,7 @@ Final output excerpts:
 
 ```text
 Test Files  4 passed (4)
-     Tests  79 passed (78)
+     Tests  79 passed (79)
 
 18 passed (1.2m)
 

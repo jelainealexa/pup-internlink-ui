@@ -1,0 +1,42 @@
+{
+  "candidate": "7ca502cc6260232619570b2ee945da5f5c13145b",
+  "markdownFiles": 25,
+  "brokenLinks": [],
+  "unknownFindingRequirementRefs": [],
+  "applicationTestPackageChangesAfterCandidate": "",
+  "tsconfigSemanticallyUnchanged": true,
+  "main": "2d846774c6dfbc61d675331145bd7b82b301e5a4",
+  "pdfSha256": "a8852a86f90ef6931d20b568f1e7ef3c86c000906520cb4f8bd5abb0b7438458",
+  "finalCandidate": "7ca502cc6260232619570b2ee945da5f5c13145b",
+  "reviewedSourceUnchanged": true,
+  "candidateGates": {
+    "lint": 0,
+    "vitest": 0,
+    "typecheck": 0,
+    "candidate": "7ca502cc6260232619570b2ee945da5f5c13145b"
+  },
+  "vitest": {
+    "passed": 102,
+    "failed": 0,
+    "skipped": 0
+  },
+  "e2e": {
+    "startTime": "2026-11-19T14:48:19.792Z",
+    "duration": 301163.728,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cleanGates": {
+    "lint": 0,
+    "dependencies": 0,
+    "typecheck": 0,
+    "install": 0,
+    "tests": 0,
+    "build": 0
+  },
+  "excludedFromGit": [
+    "PUP INTERNLINK_System Flow.pdf"
+  ]
+}

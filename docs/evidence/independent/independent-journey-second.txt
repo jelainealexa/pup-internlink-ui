@@ -1,0 +1,62 @@
+[WebServer] (node:5788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10316) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30224) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:7004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\independent-lifecycle.spec.ts:13:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip (5.0m)
+
+
+  1) [chromium] › tests\e2e\independent-lifecycle.spec.ts:13:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip
+
+    Test timeout of 300000ms exceeded.
+
+    Error: locator.click: Test timeout of 300000ms exceeded.
+    Call log:
+      - waiting for getByRole('link', { name: /Add supervisor/i })
+
+
+      72 |   await expect(page).toHaveURL(/partners\/(?!create$)[^/?]+$/);
+      73 |   const companyId = page.url().split("/").at(-1)!;
+    > 74 |   await page.getByRole("link", { name: /Add supervisor/i }).click();
+         |                                                             ^
+      75 |   for (const [name, value] of Object.entries({
+      76 |     name: "Audit Supervisor",
+      77 |     email: "audit-supervisor@example.test",
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-lifecycle.spec.ts:74:61
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\journey-round2\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\journey-round2\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\journey-round2\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\journey-round2\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Slow test file: [chromium] › tests\e2e\independent-lifecycle.spec.ts (5.0m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  1 failed
+    [chromium] › tests\e2e\independent-lifecycle.spec.ts:13:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip

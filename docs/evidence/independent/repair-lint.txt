@@ -1,0 +1,9 @@
+
+> internlink-ui@0.1.0 lint
+> eslint
+
+
+D:\Orca\Workspace\pup-internlink-ui\app\components\ui.tsx
+  188:19  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+✖ 1 problem (1 error, 0 warnings)

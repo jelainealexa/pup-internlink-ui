@@ -1,0 +1,12 @@
+
+> internlink-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+
+ Test Files  6 passed (6)
+      Tests  96 passed (96)
+   Start at  21:36:18
+   Duration  8.38s (environment 62%, import 19%, tests 9%, setup 7%, transform 3%, worker 1%)

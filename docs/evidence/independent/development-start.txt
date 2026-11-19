@@ -1,0 +1,21 @@
+node node_modules/next/dist/bin/next dev --port 3119 --hostname 127.0.0.1
+INTERNLINK_DIST_DIR=.next-audit-dev
+▲ Next.js 16.4.6 (Turbopack)
+- Local:         http://127.0.0.1:3119
+- Network:       http://127.0.0.1:3119
+✓ Ready in 12.3s
+✓ Running next.config.ts took 1683ms
+
+  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+    - include was updated to add '.next-audit-dev/types/**/*.ts'
+    - include was updated to add '.next-audit-dev/dev/types/**/*.ts'
+
+
+○ Compiling / ...
+ GET / 200 in 4.3s (next.js: 1881ms, application-code: 2.4s)
+ GET / 200 in 367ms (next.js: 64ms, application-code: 304ms)
+ GET /dashboard 200 in 273ms (next.js: 100ms, application-code: 173ms)
+
+PASS HTTP200 and actual demonstration login/dashboard in development mode

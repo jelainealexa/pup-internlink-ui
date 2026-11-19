@@ -1,0 +1,40 @@
+[WebServer] (node:11456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 15 tests using 1 worker
+
+(node:3748) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\independent-concurrency.spec.ts:10:3 › independent stale companies edit cannot overwrite another tab (4.6s)
+  ok  2 [chromium] › tests\e2e\independent-concurrency.spec.ts:10:3 › independent stale accounts edit cannot overwrite another tab (3.9s)
+  ok  3 [chromium] › tests\e2e\independent-concurrency.spec.ts:10:3 › independent stale requirements edit cannot overwrite another tab (4.1s)
+  ok  4 [chromium] › tests\e2e\independent-concurrency.spec.ts:10:3 › independent stale opportunities edit cannot overwrite another tab (3.0s)
+  ok  5 [chromium] › tests\e2e\independent-lifecycle.spec.ts:14:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip (40.4s)
+  ok  6 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: students every filter option, search, reset, sort and refresh (17.2s)
+  ok  7 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: partners every filter option, search, reset, sort and refresh (11.3s)
+  ok  8 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: internships every filter option, search, reset, sort and refresh (10.1s)
+  ok  9 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: applications every filter option, search, reset, sort and refresh (19.6s)
+  ok 10 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: placements every filter option, search, reset, sort and refresh (19.5s)
+  ok 11 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: progress every filter option, search, reset, sort and refresh (20.1s)
+  ok 12 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: evaluations every filter option, search, reset, sort and refresh (17.5s)
+  ok 13 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: requirements every filter option, search, reset, sort and refresh (4.5s)
+  ok 14 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: submissions every filter option, search, reset, sort and refresh (8.2s)
+  ok 15 [chromium] › tests\e2e\independent-matrix.spec.ts:89:1 › independent settings: computed styles, all reminder effects, persisted year and landing preference (11.6s)
+
+  15 passed (3.9m)

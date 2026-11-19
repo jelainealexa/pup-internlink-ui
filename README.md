@@ -67,3 +67,9 @@ See [actual test results](docs/TEST_REPORT.md), [handover](docs/HANDOVER.md), [a
 ## Boundaries
 
 The 23-page system-flow PDF is the available primary specification; approved ERD, SQL schema, API, institutional permission matrix and grading rubric were not supplied. Reversible demo policies are documented, not presented as institutional approval. API mode (`NEXT_PUBLIC_DATA_MODE=api`) explicitly reports unavailable operations and never falls back to demonstration success. Backend implementation/integration is outside this delivery. Certificate entries are metadata, not official issued documents; alerts are local dashboard reminders, not emails/SMS. Data is not shared across devices/profiles. Firefox/WebKit, manual screen-reader certification and production security are not verified.
+
+## Verified release candidate
+
+Reviewed **7ca502cc6260232619570b2ee945da5f5c13145b**, branch audit/independent-front-end:102unit/component/integration and40 configured production browser tests pass. See [release readiness](docs/RELEASE_READINESS.md), [verification report](docs/INDEPENDENT_VERIFICATION_REPORT.md), [defects](docs/DEFECT_REGISTER.md), [test evidence](docs/TEST_REPORT.md). The same agent authored repairs and verification; this is not third-party/security certification. Exact approved backend compatibility remains unverified.
+
+Multi-tab edits retain their loaded revision. On conflict, preserve input and deliberately reload latest records before retrying. Old version1 snapshots remain readable; idempotency receipts without fingerprints cannot safely replay. Normal navigation never resets data.

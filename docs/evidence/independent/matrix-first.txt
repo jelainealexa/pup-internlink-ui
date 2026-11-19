@@ -1,0 +1,484 @@
+[WebServer] (node:31480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 11 tests using 1 worker
+
+(node:23504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [chromium] › tests\e2e\independent-lifecycle.spec.ts:13:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip (47.7s)
+(node:21564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   2 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: students every filter option, search, reset, sort and refresh (2.9s)
+(node:20028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   3 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: partners every filter option, search, reset, sort and refresh (3.5s)
+(node:31024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   4 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: internships every filter option, search, reset, sort and refresh (3.1s)
+(node:16012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   5 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: applications every filter option, search, reset, sort and refresh (3.1s)
+(node:17600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   6 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: placements every filter option, search, reset, sort and refresh (2.8s)
+(node:18508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   7 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: progress every filter option, search, reset, sort and refresh (3.3s)
+(node:17136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   8 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: evaluations every filter option, search, reset, sort and refresh (4.2s)
+(node:20248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   9 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: requirements every filter option, search, reset, sort and refresh (6.0s)
+(node:28012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  10 [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: submissions every filter option, search, reset, sort and refresh (3.9s)
+(node:16252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [chromium] › tests\e2e\independent-matrix.spec.ts:88:1 › independent settings: computed styles, all reminder effects, persisted year and landing preference (9.7s)
+
+
+  1) [chromium] › tests\e2e\independent-lifecycle.spec.ts:13:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('dl')
+    Expected substring: "SYN-INDEPENDENT-CERT"
+    Error: strict mode violation: locator('dl') resolved to 2 elements:
+        1) <dl class="record-list">…</dl> aka getByText('StudentAudit, "CSV" Revised (AUDIT-001)Applicationd98b5468-9bee-4374-b38f-')
+        2) <dl class="record-list">…</dl> aka getByText('Demonstration certificate numberSYN-INDEPENDENT-CERTIssue date2026-11-')
+
+    Call log:
+      - Expect "toContainText" locator('dl') with timeout 10000ms
+      - waiting for locator('dl')
+
+
+      393 |     })
+      394 |     .click();
+    > 395 |   await page.reload();
+          |                       ^
+      396 |   await expect(page.locator("dl")).toContainText("SYN-INDEPENDENT-CERT");
+      397 |   await page.goto("/dashboard/reports");
+      398 |   await page.locator("[name=category]").selectOption("Evaluations");
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-lifecycle.spec.ts:395:36
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-lifecycle-inde-b0c97-pagation-and-CSV-round-trip-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: students every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-8929a-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-8929a-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-8929a-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-8929a-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: partners every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-fef14-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-fef14-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-fef14-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-fef14-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: internships every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-ade23-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-ade23-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-ade23-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-ade23-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: applications every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-07f79-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-07f79-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-07f79-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-07f79-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: placements every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-a2ef5-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-a2ef5-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-a2ef5-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-a2ef5-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: progress every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-becae-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-becae-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-becae-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-becae-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: evaluations every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-38c7c-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-38c7c-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-38c7c-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-38c7c-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: requirements every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-a50e7-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-a50e7-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-a50e7-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-a50e7-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: submissions every filter option, search, reset, sort and refresh
+
+    Error: locator.selectOption: SyntaxError: Failed to execute 'querySelectorAll' on 'Document': 'select[name=]' is not a valid selector.
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+    Call log:
+      - waiting for locator('.filter-panel select[name=]')
+
+        at query (<anonymous>:5868:41)
+        at <anonymous>:5878:7
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl._queryCSS (<anonymous>:5865:17)
+        at SelectorEvaluatorImpl._querySimple (<anonymous>:5745:19)
+        at <anonymous>:5693:29
+        at SelectorEvaluatorImpl._cached (<anonymous>:5655:20)
+        at SelectorEvaluatorImpl.query (<anonymous>:5686:19)
+        at Object.query (<anonymous>:5900:44)
+        at <anonymous>:5858:21
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent-matrix.spec.ts:61:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-9cc04-arch-reset-sort-and-refresh-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\matrix-first\independent-matrix-indepen-9cc04-arch-reset-sort-and-refresh-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\matrix-first\independent-matrix-indepen-9cc04-arch-reset-sort-and-refresh-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\matrix-first\independent-matrix-indepen-9cc04-arch-reset-sort-and-refresh-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10 failed
+    [chromium] › tests\e2e\independent-lifecycle.spec.ts:13:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: students every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: partners every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: internships every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: applications every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: placements every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: progress every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: evaluations every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: requirements every filter option, search, reset, sort and refresh
+    [chromium] › tests\e2e\independent-matrix.spec.ts:50:3 › independent directory matrix: submissions every filter option, search, reset, sort and refresh
+  1 passed (2.8m)

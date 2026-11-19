@@ -1,0 +1,92 @@
+[
+  {
+    "file": "1-trace.network",
+    "url": "http://localhost:3105/dashboard/students/2024-0001/edit",
+    "status": 200,
+    "time": 21.462,
+    "timings": {
+      "dns": -1,
+      "connect": -1,
+      "ssl": -1,
+      "send": 0,
+      "wait": 18.307,
+      "receive": 3.155
+    },
+    "started": "2026-11-19T14:42:44.450Z"
+  },
+  {
+    "file": "1-trace.network",
+    "url": "http://localhost:3105/dashboard/students/2024-0001/edit",
+    "status": 200,
+    "time": 16.13,
+    "timings": {
+      "dns": -1,
+      "connect": -1,
+      "ssl": -1,
+      "send": 0,
+      "wait": 11.942,
+      "receive": 4.188
+    },
+    "started": "2026-11-19T14:42:44.760Z"
+  },
+  {
+    "file": "1-trace.network",
+    "url": "http://localhost:3105/dashboard/students/2024-0001?_rsc=odK2TG721DFakZ-M",
+    "status": 200,
+    "time": 59.928,
+    "timings": {
+      "dns": -1,
+      "connect": -1,
+      "ssl": -1,
+      "send": 0,
+      "wait": 59.928,
+      "receive": -1
+    },
+    "started": "2026-11-19T14:42:45.494Z"
+  },
+  {
+    "file": "1-trace.network",
+    "url": "http://localhost:3105/dashboard/students/2024-0001?_rsc=D72RbWhwK4a6c8fC",
+    "status": 200,
+    "time": 54.495,
+    "timings": {
+      "dns": -1,
+      "connect": -1,
+      "ssl": -1,
+      "send": 0,
+      "wait": 54.495,
+      "receive": -1
+    },
+    "started": "2026-11-19T14:42:45.864Z"
+  },
+  {
+    "file": "1-trace.network",
+    "url": "http://localhost:3105/dashboard/students/2024-0001?_rsc=odK2TG721DFakZ-M",
+    "status": 200,
+    "time": 70.174,
+    "timings": {
+      "dns": -1,
+      "connect": -1,
+      "ssl": -1,
+      "send": 0,
+      "wait": 3.869,
+      "receive": 66.305
+    },
+    "started": "2026-11-19T14:42:48.700Z"
+  },
+  {
+    "file": "1-trace.network",
+    "url": "http://localhost:3105/dashboard/students/2024-0001?_rsc=LocCn09EGavtIPwm",
+    "status": 200,
+    "time": 5177.5960000000005,
+    "timings": {
+      "dns": -1,
+      "connect": -1,
+      "ssl": -1,
+      "send": 0,
+      "wait": 5.706,
+      "receive": 5171.89
+    },
+    "started": "2026-11-19T14:43:00.171Z"
+  }
+]

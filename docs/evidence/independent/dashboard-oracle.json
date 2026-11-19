@@ -1,0 +1,52 @@
+{
+  "candidate": "dcad283780f3b7ab3ca2ee25c792924d695106a5",
+  "status": "PASS",
+  "cardAssertions": 14,
+  "expected": {
+    "Registered students": 6,
+    "Industry partners": 4,
+    "Available opportunities": 2,
+    "Pending applications": 1,
+    "Accepted applications": 4,
+    "Rejected applications": 1,
+    "Ongoing placements": 1,
+    "Completed placements": 1,
+    "Terminated placements": 1,
+    "Pending requirement reviews": 1,
+    "Rejected submissions": 1,
+    "Pending progress reviews": 1,
+    "Pending evaluations": 2,
+    "Expiring partnerships (30 days)": 1
+  },
+  "actual": {
+    "Registered students": 6,
+    "Industry partners": 4,
+    "Available opportunities": 2,
+    "Pending applications": 1,
+    "Accepted applications": 4,
+    "Rejected applications": 1,
+    "Ongoing placements": 1,
+    "Completed placements": 1,
+    "Terminated placements": 1,
+    "Pending requirement reviews": 1,
+    "Rejected submissions": 1,
+    "Pending progress reviews": 1,
+    "Pending evaluations": 2,
+    "Expiring partnerships (30 days)": 1
+  },
+  "progressExpected": [
+    1,
+    1,
+    32,
+    0,
+    0
+  ],
+  "progressActual": [
+    1,
+    1,
+    32,
+    0,
+    0
+  ],
+  "storageAccess": "readonly; no workflow bypass"
+}

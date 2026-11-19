@@ -1,0 +1,12 @@
+
+> internlink-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.1 C:/Users/User 1/AppData/Local/Temp/internlink-independent-d71e726
+
+
+ Test Files  4 passed (4)
+      Tests  79 passed (79)
+   Start at  21:04:01
+   Duration  4.09s (environment 63%, import 16%, tests 8%, transform 7%, setup 6%)

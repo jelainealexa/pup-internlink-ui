@@ -1,0 +1,52 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:19936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:29272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 1 worker
+
+(node:28592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\auth.spec.ts:3:1 › A: invalid/inactive credentials, direct URL guard, role restriction and logout (4.5s)
+  ok  2 [chromium] › tests\e2e\auth.spec.ts:35:1 › supervisor and adviser portals restrict unrelated records (2.6s)
+  ok  3 [chromium] › tests\e2e\guards.spec.ts:3:1 › F: placement date/hour/affiliation guards and capacity are enforced before persistence (3.6s)
+  ok  4 [chromium] › tests\e2e\guards.spec.ts:54:1 › E: acceptance blocks missing approvals; requirement rejection and application reason guards (3.2s)
+  ok  5 [chromium] › tests\e2e\independent.spec.ts:15:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes (3.9s)
+  ok  6 [chromium] › tests\e2e\independent.spec.ts:55:1 › IV-11: unauthenticated contextual placement URL survives sign in (1.2s)
+  ok  7 [chromium] › tests\e2e\independent.spec.ts:72:1 › IV-03: direct navigation does not reveal another draft posting to a student (1.6s)
+  ok  8 [chromium] › tests\e2e\lifecycle.spec.ts:10:1 › B–J: entire persisted internship lifecycle through supported UI actions (25.7s)
+  ok  9 [chromium] › tests\e2e\maintenance.spec.ts:4:1 › every dashboard summary opens the matching filtered records (5.3s)
+  ok 10 [chromium] › tests\e2e\maintenance.spec.ts:24:1 › dashboard document alerts exclude superseded rejected attempts while retaining history (3.2s)
+  ok 11 [chromium] › tests\e2e\maintenance.spec.ts:56:1 › shared browser tabs refresh after a persisted mutation (5.5s)
+  ok 12 [chromium] › tests\e2e\maintenance.spec.ts:73:1 › academic year and default landing preferences have observable effects (4.0s)
+  ok 13 [chromium] › tests\e2e\maintenance.spec.ts:94:1 › company, supervisor, opportunity and requirement edits persist and propagate (5.8s)
+  ok 14 [chromium] › tests\e2e\maintenance.spec.ts:154:1 › directory controls, URL back/forward and filtered dashboard destinations (4.3s)
+  ok 15 [chromium] › tests\e2e\restart.spec.ts:3:1 › saved synthetic records and demonstration session survive a supported browser restart (9.3s)
+  ok 16 [chromium] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (20.3s)
+  ok 17 [chromium] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (2.9s)
+  ok 18 [chromium] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (3.3s)
+(node:1852) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 19 [mobile] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (24.4s)
+  ok 20 [mobile] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (2.5s)
+  ok 21 [mobile] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (3.4s)
+
+  21 passed (2.9m)

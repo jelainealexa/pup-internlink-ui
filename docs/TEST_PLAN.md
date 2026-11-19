@@ -34,3 +34,7 @@ Run with Node 24 / npm 11 using the committed lockfile. `npm ci --ignore-scripts
 Tests assert actual persisted results and relations, not just visible button labels. Service/unit tests may construct isolated fixtures to test invalid records; browser acceptance tests never manipulate saved data to bypass prerequisite steps (DOM select tampering tests a rejected affiliation). Print tests intercept window.print and emulate print CSS; they do not certify a physical printer or every browser's pagination.
 
 Independent verification still recommended: Firefox/WebKit, screen-reader/manual keyboard sweep of every form, large datasets/quota exhaustion/OS storage eviction, real backend contract/security/concurrency and institutional policy approval. Current evidence is not a production security or universal accessibility certification.
+
+## Additional verification coverage
+
+Independent native-adapter regressions cover readonly reads/retry, future clock/year, draft scope, unknown commands/no mutation, idempotency/file bytes/legacy receipts, corrupt grades/receipts/profiles, formats, fractional completion/reset failure. Browser additions cover foreground multi-tab edits/reload/retry, deep-link login, modal errors, empty prerequisites, every directory filter/sort option and retained setting, and a fractional lifecycle with actual PDF/PNG/JPEG/TXT/CSV bytes. Dashboard/report oracles read raw persisted data without implementation rules. Preserve failed exploratory/harness evidence. Actual results belong in TEST_REPORT; a plan is not test evidence.

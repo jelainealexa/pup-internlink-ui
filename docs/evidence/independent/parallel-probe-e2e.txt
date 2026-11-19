@@ -1,0 +1,119 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test --workers=2
+
+[WebServer] (node:22464) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 40 tests using 2 workers
+
+(node:30772) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\auth.spec.ts:3:1 › A: invalid/inactive credentials, direct URL guard, role restriction and logout (8.5s)
+  ok  2 [chromium] › tests\e2e\guards.spec.ts:3:1 › F: placement date/hour/affiliation guards and capacity are enforced before persistence (9.7s)
+  ok  3 [chromium] › tests\e2e\auth.spec.ts:35:1 › supervisor and adviser portals restrict unrelated records (7.3s)
+  ok  4 [chromium] › tests\e2e\guards.spec.ts:54:1 › E: acceptance blocks missing approvals; requirement rejection and application reason guards (9.7s)
+  ok  5 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale companies edit cannot overwrite another tab (56.7s)
+  ok  6 [chromium] › tests\e2e\independent-lifecycle.spec.ts:14:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip (53.8s)
+  ok  8 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: students every filter option, search, reset, sort and refresh (17.8s)
+  ok  9 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: partners every filter option, search, reset, sort and refresh (11.3s)
+  ok  7 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale accounts edit cannot overwrite another tab (32.0s)
+  ok 10 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: internships every filter option, search, reset, sort and refresh (13.5s)
+  ok 12 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: applications every filter option, search, reset, sort and refresh (24.3s)
+  ok 13 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: placements every filter option, search, reset, sort and refresh (19.2s)
+  ok 14 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: progress every filter option, search, reset, sort and refresh (23.4s)
+  ok 15 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: evaluations every filter option, search, reset, sort and refresh (20.1s)
+  ok 11 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale requirements edit cannot overwrite another tab (1.7m)
+  ok 16 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: requirements every filter option, search, reset, sort and refresh (5.2s)
+  ok 18 [chromium] › tests\e2e\independent-matrix.spec.ts:206:3 › independent directory matrix: submissions every filter option, search, reset, sort and refresh (8.4s)
+  ok 19 [chromium] › tests\e2e\independent-matrix.spec.ts:325:1 › independent settings: computed styles, all reminder effects, persisted year and landing preference (11.8s)
+  ok 20 [chromium] › tests\e2e\independent.spec.ts:4:1 › invalid edit and nested record identifiers remain explicit not-found states (4.5s)
+  ok 21 [chromium] › tests\e2e\independent.spec.ts:27:1 › accepted unplaced students have an accurate status and no forbidden placement action (2.1s)
+  ok 22 [chromium] › tests\e2e\independent.spec.ts:37:1 › IV-15: empty eligible data has actionable empty states rather than impossible forms (2.9s)
+  ok 17 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale opportunities edit cannot overwrite another tab (34.5s)
+  x  23 [chromium] › tests\e2e\independent.spec.ts:74:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes (26.7s)
+(node:28204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 24 [chromium] › tests\e2e\lifecycle.spec.ts:10:1 › B–J: entire persisted internship lifecycle through supported UI actions (44.9s)
+  ok 25 [chromium] › tests\e2e\independent.spec.ts:127:1 › IV-14: failed confirmed mutation explains the failure inside its active dialog (5.7s)
+  ok 27 [chromium] › tests\e2e\independent.spec.ts:141:1 › IV-11: unauthenticated contextual placement URL survives sign in (3.5s)
+  ok 28 [chromium] › tests\e2e\independent.spec.ts:158:1 › IV-03: direct navigation does not reveal another draft posting to a student (3.6s)
+  ok 26 [chromium] › tests\e2e\maintenance.spec.ts:4:1 › every dashboard summary opens the matching filtered records (12.7s)
+  ok 30 [chromium] › tests\e2e\maintenance.spec.ts:24:1 › dashboard document alerts exclude superseded rejected attempts while retaining history (4.5s)
+  ok 31 [chromium] › tests\e2e\maintenance.spec.ts:56:1 › shared browser tabs refresh after a persisted mutation (3.9s)
+  ok 32 [chromium] › tests\e2e\maintenance.spec.ts:73:1 › academic year and default landing preferences have observable effects (7.4s)
+  ok 33 [chromium] › tests\e2e\maintenance.spec.ts:94:1 › company, supervisor, opportunity and requirement edits persist and propagate (9.4s)
+  ok 29 [chromium] › tests\e2e\restart.spec.ts:3:1 › saved synthetic records and demonstration session survive a supported browser restart (35.6s)
+  ok 34 [chromium] › tests\e2e\maintenance.spec.ts:154:1 › directory controls, URL back/forward and filtered dashboard destinations (5.3s)
+(node:22284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 35 [chromium] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (33.1s)
+  ok 37 [chromium] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (3.1s)
+  ok 36 [mobile] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (29.6s)
+  ok 38 [chromium] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (4.6s)
+  ok 39 [mobile] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (3.5s)
+  ok 40 [mobile] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (3.7s)
+
+
+  1) [chromium] › tests\e2e\independent.spec.ts:74:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Mira Demo', exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Mira Demo', exact: true }) with timeout 10000ms
+      - waiting for getByRole('heading', { name: 'Mira Demo', exact: true })
+
+
+      90 |   await expect(
+      91 |     page.getByRole("heading", { name: "Mira Demo", exact: true }),
+    > 92 |   ).toBeVisible();
+         |     ^
+      93 |   const observer = await context.newPage();
+      94 |   await observer.goto("/dashboard/students/2024-0001");
+      95 |   await expect(observer.locator("dl")).toContainText(
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\independent.spec.ts:92:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\independent-IV-10-a-stale--03c2e-s-persisted-student-changes-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\independent.spec.ts:74:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes
+  39 passed (6.8m)

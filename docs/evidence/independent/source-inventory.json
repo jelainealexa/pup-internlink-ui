@@ -1,0 +1,1994 @@
+{
+  "candidate": "7ca502cc6260232619570b2ee945da5f5c13145b",
+  "files": [
+    {
+      "path": "scripts/e2e-server.mjs",
+      "sha256": "f64a4a874bdd4e76a107ba0617be6a8c753a3015750c026933c7c54ab502966c"
+    },
+    {
+      "path": "app/page.tsx",
+      "sha256": "a9cbf6e031a5fa3d71baac170990c8b7bed4023c7923c8316deed5d5e54383f8"
+    },
+    {
+      "path": "app/page.module.css",
+      "sha256": "fcd4be75c65409c07ec69664a0990efea426a3e0e03961ca8f8f648eaf8be4c3"
+    },
+    {
+      "path": "app/not-found.tsx",
+      "sha256": "2677c7ad28b3a8830fe8dfe139df3cad377202935ddf7d8c517a9d335445877c"
+    },
+    {
+      "path": "tests/unit/session.test.ts",
+      "sha256": "dd6733b5d49e84c429635337630a09186ccf3ecedc6aeb35550bc13e3d435e1d"
+    },
+    {
+      "path": "tests/unit/rules.test.ts",
+      "sha256": "1944a7b43cd725a49025f41c441f8d7ace72d9b465fcc0d0092c7da7be6a59a8"
+    },
+    {
+      "path": "tests/setup.ts",
+      "sha256": "063a1b601fd84ac4cdcc40a81a22b3c87d7d91875f8780d646500e4233bcf8cf"
+    },
+    {
+      "path": "app/lib/storage.ts",
+      "sha256": "42d944224805a3261b9ad281ae0e4d59eed36383dcf4df90c892cb48e472c5e7"
+    },
+    {
+      "path": "app/lib/service.ts",
+      "sha256": "14234eb49dc54c06825e5982eeb320c0de83482c848b9d9a95503f432951fc74"
+    },
+    {
+      "path": "app/lib/seed.ts",
+      "sha256": "ed7ad547ae07d2f0b4c0cba79d29490e5deb00b381720d51727ef3e456ae164c"
+    },
+    {
+      "path": "app/lib/rules.ts",
+      "sha256": "cf90598a6bee01d74b2eadd436ef2edb93582659eaa8d8669a790b02dab6d4ee"
+    },
+    {
+      "path": "app/lib/reporting.ts",
+      "sha256": "91e3463f850a27207c57d75bdff48c1151049e5a9b94cdafabdc2a7236ab55ac"
+    },
+    {
+      "path": "app/lib/integrity.ts",
+      "sha256": "611e526570405819e503a427c77a68ae157647db6e7733124be28fa541ad1b07"
+    },
+    {
+      "path": "app/lib/fingerprint.ts",
+      "sha256": "2343f28864b8bc501cb2c63fa5db653aa98ec80a567febbcc08237b2e35b925c"
+    },
+    {
+      "path": "app/lib/domain.ts",
+      "sha256": "1f9ba65d11a33eb5a8df7deff09e03135942b762883ad338092b830c5cabe604"
+    },
+    {
+      "path": "app/lib/commands.ts",
+      "sha256": "3566988d8ff28fe9e0d594eca82fef7996d587b98ea544e4297516fd28f7a68a"
+    },
+    {
+      "path": "app/layout.tsx",
+      "sha256": "019782ee739cca0d1ca8091b1c3cc0f6ac593ce4c57d554e10d3ab88954295aa"
+    },
+    {
+      "path": "app/globals.css",
+      "sha256": "ccdd6dba2e3f44d70daf2b15f0a5673b9f81ef70b55c641b9c2a857e8e185654"
+    },
+    {
+      "path": "app/globals-backup.css",
+      "sha256": "ce9ba863763f6e230de921f8067e78c496c429c2851126be5981b16001de7846"
+    },
+    {
+      "path": "tests/integration/services.test.ts",
+      "sha256": "1489b76b413c609f264139de1e4fba13ffbefb4e9f97c97ebde00abfae143591"
+    },
+    {
+      "path": "tests/integration/independent-audit.test.ts",
+      "sha256": "e2f2300b7b0a04eea642a889bccccd2b0c99f2139f99d141b448c030861c8fd4"
+    },
+    {
+      "path": "tests/helpers.ts",
+      "sha256": "7d44830ae687f5f1107e92b4a89055bcbc4f1fd3a0a82336e357a408c31c623e"
+    },
+    {
+      "path": "tests/fixtures/audit-document.png",
+      "sha256": "de6f9779cd4dd15d35407378976cdfcb1ae725f55e96c15404c8d4e7d46f0d8c"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "sha256": "4d0d93fe80001f51903e8d6a48aa3986d89c33c52ccb0f68621b8669d4142959"
+    },
+    {
+      "path": "tests/fixtures/audit-document.pdf",
+      "sha256": "b312b8a1181efb1d220e85e200a9bfca663808e527faf9e1ec6b4f2239625e5d"
+    },
+    {
+      "path": "app/features/shared.tsx",
+      "sha256": "38dedbe37cd2e2cb0771d4dd22fc713665d2e1c135e888079e52a715842fb6ad"
+    },
+    {
+      "path": "tests/fixtures/audit-document.jpg",
+      "sha256": "3fc6d305630c99063905394c2bc096640dbdd2b87dc01d5118960dd91b16229e"
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "sha256": "964368d72ea12db7f321b97105136c931fa85c0689f30b384b3ebe42b99ef069"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "sha256": "c5e852abc3f4777a9c81030a43c0283b0608903c6e0fd27af1603bb85d08ba8c"
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "sha256": "cc1e66c206f4c93dd57710d740f1b64224b26ca346aebc7393f5cbd35b818c14"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "sha256": "8431f52f5fde23265104cee246678cb6acd07e1c498aeeb374d9e76f5371197c"
+    },
+    {
+      "path": "app/features/PortalPage.tsx",
+      "sha256": "c709d2e2813f360f16e87716413d07cf49d304a23f436e9ff32d109a6ac7869a"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "sha256": "d1ec387968b22445740f1358b7883dd8cf7af0402811ebd0ed94e4b7f72a3e19"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "sha256": "806aaed41be333524840140f4f97d2e41015309360c81fb66592072e1a829554"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "sha256": "d054bdfface2aab717b38f06938d0caa8a8738aabff6d2dfb98fbec9fcd5d511"
+    },
+    {
+      "path": "app/features/Login.tsx",
+      "sha256": "e4020794f03fdb30579f5b482314495d724afc426e1ec3019de70330459e3188"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "sha256": "1efa3a1db64fbbe0c93602f6c6218bed18be2458474e361bec99f4220f377e16"
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "sha256": "653e3edc8feb660146040774786ad47257383da54e655a7b0455c149d1ff0679"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "sha256": "78b889b58300f25a4432b74bae48d2b4f8986200487513b7d0c72e56f9609dbc"
+    },
+    {
+      "path": "app/favicon.ico",
+      "sha256": "c28fdd2a4f31e2dc64f653962286da5c82a4cdfc518b242d32812c624e9a19a4"
+    },
+    {
+      "path": "app/error.tsx",
+      "sha256": "f89ae200f86bd38460a7df713ef4e756a1a2955b51da3c501e3d848f25019949"
+    },
+    {
+      "path": "tests/e2e/smoke.spec.ts",
+      "sha256": "9dd771884c1a7a71904e18d4171d10dc0ad5be303f4afff99eb29b8c33051635"
+    },
+    {
+      "path": "tests/e2e/restart.spec.ts",
+      "sha256": "89ffc0b631435f8ac43c7e6a894588f988f7d7bcde2d37d27f1c71fa87b27cc5"
+    },
+    {
+      "path": "tests/e2e/maintenance.spec.ts",
+      "sha256": "3b1af53ddb90ad85244976568beb2fffaf61c008fe702ddc4b5ec5bcaf356518"
+    },
+    {
+      "path": "tests/e2e/lifecycle.spec.ts",
+      "sha256": "bd55eda0c91a563f9d888f50d221532c59c7e9161a0c98f04d2c05e5fa99b0a3"
+    },
+    {
+      "path": "tests/e2e/independent.spec.ts",
+      "sha256": "7465a168cf0967afef10b37911453179d4ab4b41464d91fb91e8df81b12162a8"
+    },
+    {
+      "path": "tests/e2e/independent-matrix.spec.ts",
+      "sha256": "64dd5e6490ab89c6942b256eac7e7d02a4c548f7d4a8faa3aeafb251a15ee7d8"
+    },
+    {
+      "path": "tests/e2e/independent-lifecycle.spec.ts",
+      "sha256": "37368084f6c3dbbe81d333ece6654071db8cd20d5502c88826d1c31116b68fdf"
+    },
+    {
+      "path": "tests/e2e/independent-concurrency.spec.ts",
+      "sha256": "26d03a68e78a530ab910bc50fb9486bfd775a644f68b528d8ddc0513951156c8"
+    },
+    {
+      "path": "tests/e2e/helpers.ts",
+      "sha256": "c5faa7e892e47722a7fecbcaff965f83d670ab95cf6ea5b3046f42f45cb53767"
+    },
+    {
+      "path": "tests/e2e/guards.spec.ts",
+      "sha256": "6c51de3afda0417178e075acdfcee72571da40bd343e0880e81a30b70e7a79c5"
+    },
+    {
+      "path": "tests/e2e/auth.spec.ts",
+      "sha256": "3af1ce2f01ba59bdfd1dda01a18d3abb1518ed7b12f3a594cce075b5b855d035"
+    },
+    {
+      "path": "tests/e2e/audit-helpers.ts",
+      "sha256": "86f45fb4097474a48f9a2d185bb6c0f512f346170c17cbf235fca0b9cfabb149"
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "sha256": "967fccb9215a55ff6bbc6cafc482fcfaf4382e61fa131ecaefb67a2d73ce3190"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "sha256": "efdcc655be8c0648e2f9963a7a67aafb38e727af7303ce13af72e0687e00591a"
+    },
+    {
+      "path": "app/components/AppProvider.tsx",
+      "sha256": "4442a7b4deccab3510a649795e449216de0ccdeb9583ab8d6a926510816f7948"
+    },
+    {
+      "path": "tests/components/independent-forms.test.tsx",
+      "sha256": "682872ee96846c3438ee731cca6b7e96f6da8c5469d04d688ee442f22fdc8b4f"
+    },
+    {
+      "path": "tests/components/forms.test.tsx",
+      "sha256": "0759592f86b6e7eaeda28e8b1d304b224016d4af91e9018fe723c90a9f323945"
+    },
+    {
+      "path": "app/dashboard/students/[id]/page.tsx",
+      "sha256": "b0ae15d42ce3e277fd97bbcbd06ae5ce3155e822b256b0b62ae708bd40bdb600"
+    },
+    {
+      "path": "app/dashboard/students/create/page.tsx",
+      "sha256": "d9c642c3ffee2effef94db82b9efad2b75b60fffc4104f6c91d618f23a74cdea"
+    },
+    {
+      "path": "app/dashboard/reports/page.tsx",
+      "sha256": "5b47cb752dc75122ec28cdf08ea8184adfce81dadc7cde40f6027a907de1ad54"
+    },
+    {
+      "path": "app/dashboard/placements/[id]/page.tsx",
+      "sha256": "cbe8e25ab4ca1e9ac68441cd1ed0e7bb63a121dec9e8422d7766965b1acfcc3e"
+    },
+    {
+      "path": "app/dashboard/placements/page.tsx",
+      "sha256": "ce3ad0829e1480fc38ffd031a4528436d2bdacdbe7551c393e6ac833e88dd48a"
+    },
+    {
+      "path": "app/dashboard/settings/page.tsx",
+      "sha256": "ef015d669adf4745cd2a4e41fda887e518c80f019034c27d3a94a906636b2500"
+    },
+    {
+      "path": "app/dashboard/students/page.tsx",
+      "sha256": "e5cb9cb85ea249eda9676c1cd5424901182b301e357e29024eef833d21cee591"
+    },
+    {
+      "path": "app/dashboard/internships/[id]/page.tsx",
+      "sha256": "3b61e7aa421aa8301e9802710591751e26aa546a8cbe5cc3882f3ed5cc4a0e35"
+    },
+    {
+      "path": "app/dashboard/progress/[id]/page.tsx",
+      "sha256": "9bddfc2c797625d1f4a5c918d1324890463d3936e1f2575bed2f122ad97eff90"
+    },
+    {
+      "path": "app/dashboard/placements/create/page.tsx",
+      "sha256": "257b17e233a3fdd388819294486b7b95cc9af2a5a24dc1f7e1af3f0fd3fc58cd"
+    },
+    {
+      "path": "app/dashboard/internships/[id]/edit/page.tsx",
+      "sha256": "db5f3efbaec4cffbc9d1e84ddb22fdfd9c6b574542721db96bdfdb8dc01ed7c7"
+    },
+    {
+      "path": "app/dashboard/internships/page.tsx",
+      "sha256": "e7531efb2f99b0261bb0271bd63be9cb7615405cd5544f87ed41f9f824022ed4"
+    },
+    {
+      "path": "app/dashboard/evaluations/[id]/page.tsx",
+      "sha256": "554b0713dec961354809affd812de1ac7a6bf6554e0d01a761bdd34bdaaf27b2"
+    },
+    {
+      "path": "app/dashboard/evaluations/page.tsx",
+      "sha256": "a4b71e22c0785e448e6e57a28246d4826f74b398b76f5fcaaab545ff92cad2ec"
+    },
+    {
+      "path": "app/dashboard/requirements/[id]/edit/page.tsx",
+      "sha256": "11196664f14c08d43b558e3536aea4bd6766c6045e952815d4341acbc88e2be3"
+    },
+    {
+      "path": "app/dashboard/applications/[id]/page.tsx",
+      "sha256": "0094b553761974f33a2ac285643463b1f07ec1abf8a5e884d088dc46011c664e"
+    },
+    {
+      "path": "app/dashboard/applications/page.tsx",
+      "sha256": "94574dc44fcc7b693a2057566684bbd19cefb72f7df29a491a7ceb51ed6089e0"
+    },
+    {
+      "path": "app/dashboard/progress/page.tsx",
+      "sha256": "45bb9cb53bab78b5bd93dea29b3fa239c2a65f70bfb1b0269378b536efcfb882"
+    },
+    {
+      "path": "app/dashboard/progress/create/page.tsx",
+      "sha256": "d9800070c974dd2de5ab010aa5caf2f861d163a696f4e1a826b888cc0c9578eb"
+    },
+    {
+      "path": "app/dashboard/requirements/page.tsx",
+      "sha256": "ccb14017ac2818297fb14ae3a70e2d2da07b35f894bf081aaf4f511fb5e7a376"
+    },
+    {
+      "path": "app/dashboard/page.tsx",
+      "sha256": "a9592b469058d3dee4d6482bdca4e394fb7ac40b4135d671a434ca9ef3d4ca61"
+    },
+    {
+      "path": "app/dashboard/layout.tsx",
+      "sha256": "e15130ab79a2786b2e12aca4a941e36e9ec871ab86032c13248dcd821f02ee36"
+    },
+    {
+      "path": "app/dashboard/internships/create/page.tsx",
+      "sha256": "8df399f95b081d158d27e06c119d77b4a4da36c39fd42eebf57fbf1cca582ca2"
+    },
+    {
+      "path": "app/dashboard/partners/page.tsx",
+      "sha256": "11b90a712e035812c127c5306359cd4e8dcf5630414137aed39da70bcd09e1cf"
+    },
+    {
+      "path": "app/dashboard/progress/reports/[id]/page.tsx",
+      "sha256": "3a065926e4852690e78c736c2eb71170fa5e3dcddbed77b654b9ae4f970c17b3"
+    },
+    {
+      "path": "app/dashboard/applications/create/page.tsx",
+      "sha256": "bf7c7f0fb2bf2869faa58cd2308d8bf82d32cd5b6d90ee159d34cfa0c33043c1"
+    },
+    {
+      "path": "app/dashboard/partners/create/page.tsx",
+      "sha256": "1cf36181aa0d0277cc84fac6c661b036b790ee05ea20ca81c50a6586c1779da4"
+    },
+    {
+      "path": "app/dashboard/partners/[id]/page.tsx",
+      "sha256": "4407c0ce7931cbd1f7b7e361bff3a07efae81fe5945e7c271737d934a6dae6ce"
+    },
+    {
+      "path": "app/dashboard/requirements/create/page.tsx",
+      "sha256": "9438b27c9d7d65d987eabd6be01146f19395ff3dc963d697773be1b510cf1b14"
+    },
+    {
+      "path": "app/dashboard/students/[id]/edit/page.tsx",
+      "sha256": "76c96fa2895b0a9c41f2fff414dfe015df2c1b77ff3f4a323276c0f2ca11a6a4"
+    },
+    {
+      "path": "app/dashboard/partners/[id]/edit/page.tsx",
+      "sha256": "e51989039c52b157aa02692289a685cef428a19be0790c91b580eb7cf3e1566f"
+    },
+    {
+      "path": "app/dashboard/requirements/submissions/[id]/page.tsx",
+      "sha256": "e537488372c231b04b4cf624473a0dcd65ff0400325cc91ceb156ddef4be07e6"
+    },
+    {
+      "path": "app/dashboard/requirements/submissions/create/page.tsx",
+      "sha256": "af86458f49fd17d59e82f75d03300fcf41ca891adf5afeab5891a747abf94c41"
+    },
+    {
+      "path": "app/dashboard/partners/[id]/supervisors/create/page.tsx",
+      "sha256": "2ccf3e042d7dbbd9ca8cdaa8e80b405b37db68fd4034dde2d6f89ac4a75e50d7"
+    },
+    {
+      "path": "app/dashboard/partners/[id]/supervisors/[supervisorId]/page.tsx",
+      "sha256": "19d6139a6400819d50c6856725b63d2b04e39372989884e52019991a860160a2"
+    },
+    {
+      "path": "app/dashboard/partners/[id]/supervisors/[supervisorId]/edit/page.tsx",
+      "sha256": "dae2be00cf72e7fa590fbe0c3074d96a643e5693c8d826c9b558e2c986798fab"
+    }
+  ],
+  "routeTemplates": [
+    "app/page.tsx",
+    "app/dashboard/students/[id]/page.tsx",
+    "app/dashboard/students/create/page.tsx",
+    "app/dashboard/reports/page.tsx",
+    "app/dashboard/placements/[id]/page.tsx",
+    "app/dashboard/placements/page.tsx",
+    "app/dashboard/settings/page.tsx",
+    "app/dashboard/students/page.tsx",
+    "app/dashboard/internships/[id]/page.tsx",
+    "app/dashboard/progress/[id]/page.tsx",
+    "app/dashboard/placements/create/page.tsx",
+    "app/dashboard/internships/[id]/edit/page.tsx",
+    "app/dashboard/internships/page.tsx",
+    "app/dashboard/evaluations/[id]/page.tsx",
+    "app/dashboard/evaluations/page.tsx",
+    "app/dashboard/requirements/[id]/edit/page.tsx",
+    "app/dashboard/applications/[id]/page.tsx",
+    "app/dashboard/applications/page.tsx",
+    "app/dashboard/progress/page.tsx",
+    "app/dashboard/progress/create/page.tsx",
+    "app/dashboard/requirements/page.tsx",
+    "app/dashboard/page.tsx",
+    "app/dashboard/internships/create/page.tsx",
+    "app/dashboard/partners/page.tsx",
+    "app/dashboard/progress/reports/[id]/page.tsx",
+    "app/dashboard/applications/create/page.tsx",
+    "app/dashboard/partners/create/page.tsx",
+    "app/dashboard/partners/[id]/page.tsx",
+    "app/dashboard/requirements/create/page.tsx",
+    "app/dashboard/students/[id]/edit/page.tsx",
+    "app/dashboard/partners/[id]/edit/page.tsx",
+    "app/dashboard/requirements/submissions/[id]/page.tsx",
+    "app/dashboard/requirements/submissions/create/page.tsx",
+    "app/dashboard/partners/[id]/supervisors/create/page.tsx",
+    "app/dashboard/partners/[id]/supervisors/[supervisorId]/page.tsx",
+    "app/dashboard/partners/[id]/supervisors/[supervisorId]/edit/page.tsx"
+  ],
+  "controls": [
+    {
+      "path": "app/not-found.tsx",
+      "line": 7,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard\""
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 66,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit={student ? \"Save Changes\" : \"Save Student\"}\n          cancel={\n            student\n              ? `/dashboard/students/${student.id}`\n              : \"/dashboard/students\"\n          }\n          save={async (data, revision) => {\n            const result = await mutate(\n              {\n                type: \"student.save\",\n                id: student?.id,\n                input: {\n                  studentNumber: text(data, \"studentNumber\"),\n                  firstName: text(data, \"firstName\"),\n                  lastName: text(data, \"lastName\"),\n                  email: text(data, \"email\"),\n                  program: text(data, \"program\"),\n                  yearLevel: text(data, \"yearLevel\"),\n                  section: text(data, \"section\"),\n                  academicYear: text(data, \"academicYear\"),\n                },\n              },\n              "
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 98,
+      "tag": "Field",
+      "attributes": "label=\"Student ID\"\n              name=\"studentNumber\"\n              value={student?.studentNumber}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 103,
+      "tag": "Field",
+      "attributes": "label=\"Email\"\n              name=\"email\"\n              type=\"email\"\n              value={student?.email}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 109,
+      "tag": "Field",
+      "attributes": "label=\"First name\"\n              name=\"firstName\"\n              value={student?.firstName}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 114,
+      "tag": "Field",
+      "attributes": "label=\"Last name\"\n              name=\"lastName\"\n              value={student?.lastName}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 119,
+      "tag": "Field",
+      "attributes": "label=\"Program\"\n              name=\"program\"\n              value={student?.program}\n              options={options([\n                ...db.students.map((s) => s.program),\n                \"BS Computer Engineering\",\n                \"BS Information Technology\",\n                \"BS Computer Science\",\n              ])}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 130,
+      "tag": "Field",
+      "attributes": "label=\"Year level\"\n              name=\"yearLevel\"\n              value={student?.yearLevel}\n              options={options([\n                ...db.students.map((s) => s.yearLevel),\n                \"3rd Year\",\n                \"4th Year\",\n              ])}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 140,
+      "tag": "Field",
+      "attributes": "label=\"Section\" name=\"section\" value={student?.section}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 141,
+      "tag": "Field",
+      "attributes": "label=\"Academic year\"\n              name=\"academicYear\"\n              value={student?.academicYear ?? prefs.academicYear}\n              hint=\"Format: 2026-2027\""
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 164,
+      "tag": "Link",
+      "attributes": "className=\"secondary-action\"\n              href={`/dashboard/students/${id}/edit`}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 193,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/requirements?student=${id}&view=submissions`}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 199,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/applications?student=${id}`}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 202,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/placements?student=${id}`}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 203,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/progress?student=${id}`}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 206,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/evaluations?student=${id}`}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 257,
+      "tag": "Link",
+      "attributes": "className=\"primary-action\" href=\"/dashboard/students/create\""
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 263,
+      "tag": "Search",
+      "attributes": "placeholder=\"Student name or ID\""
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 264,
+      "tag": "Filter",
+      "attributes": "name=\"program\"\n          label=\"Program\"\n          choices={options(db.students.map((s) => s.program))}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 269,
+      "tag": "Filter",
+      "attributes": "name=\"yearLevel\"\n          label=\"Year level\"\n          choices={options(db.students.map((s) => s.yearLevel))}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 274,
+      "tag": "Filter",
+      "attributes": "name=\"section\"\n          label=\"Section\"\n          choices={options(db.students.map((s) => s.section))}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 279,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n          label=\"Status\"\n          choices={options([\n            \"Not Yet Placed\",\n            \"Applying\",\n            \"Awaiting Placement\",\n            \"Ongoing\",\n            \"Completed\",\n            \"Terminated\",\n          ])}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 291,
+      "tag": "Filter",
+      "attributes": "name=\"sort\"\n          label=\"Sort by\"\n          choices={[\n            { value: \"name\", label: \"Student Name\" },\n            { value: \"id\", label: \"Student ID\" },\n            { value: \"hours\", label: \"Rendered Hours\" },\n          ]}"
+    },
+    {
+      "path": "app/features/Students.tsx",
+      "line": 322,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/students/${s.id}`} key={6406}"
+    },
+    {
+      "path": "app/features/shared.tsx",
+      "line": 74,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/placements/${p.id}`} key={1785}"
+    },
+    {
+      "path": "app/features/shared.tsx",
+      "line": 103,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/applications/${a.id}`} key={2331}"
+    },
+    {
+      "path": "app/features/shared.tsx",
+      "line": 146,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/evaluations/${e.id}`} key={3021}"
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 74,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n        submit=\"Save Preferences\"\n        success=\"Preferences saved and applied throughout this browser workspace.\"\n        save={async (data, revision) => {\n          await mutate(\n            {\n              type: \"preferences.save\",\n              input: {\n                academicYear: text(data, \"academicYear\"),\n                landingPage: text(data, \"landingPage\"),\n                density: text(data, \"density\") as \"Comfortable\" | \"Compact\",\n                requirementAlerts: data.has(\"requirementAlerts\"),\n                evaluationAlerts: data.has(\"evaluationAlerts\"),\n                progressAlerts: data.has(\"progressAlerts\"),\n                partnershipAlerts: data.has(\"partnershipAlerts\"),\n                largerText: data.has(\"largerText\"),\n                reduceMotion: data.has(\"reduceMotion\"),\n              },\n            },\n            undefined,\n       "
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 100,
+      "tag": "Field",
+      "attributes": "label=\"Academic year preference\"\n            name=\"academicYear\"\n            value={prefs.academicYear}\n            options={options(years)}\n            hint=\"Changes the default year shown in directories, dashboard summaries and reports.\""
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 107,
+      "tag": "Field",
+      "attributes": "label=\"Default landing page\"\n            name=\"landingPage\"\n            value={prefs.landingPage}\n            options={\n              account.role === \"Coordinator\"\n                ? [\n                    { value: \"/dashboard\", label: \"Overview\" },\n                    { value: \"/dashboard/students\", label: \"Students\" },\n                    { value: \"/dashboard/applications\", label: \"Applications\" },\n                    {\n                      value: \"/dashboard/progress\",\n                      label: \"Progress Monitoring\",\n                    },\n                  ]\n                : [{ value: \"/dashboard\", label: \"My dashboard\" }]\n            }"
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 125,
+      "tag": "Field",
+      "attributes": "label=\"Table density\"\n            name=\"density\"\n            value={prefs.density}\n            options={options([\"Comfortable\", \"Compact\"])}"
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 145,
+      "tag": "input",
+      "attributes": "id={`pref-${key}`}\n                type=\"checkbox\"\n                name={key}\n                defaultChecked={prefs[key]}"
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 162,
+      "tag": "button",
+      "attributes": "className=\"secondary-action\"\n            onClick={() => setResetOpen(!resetOpen)}"
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 169,
+      "tag": "SaveForm",
+      "attributes": "submit=\"Permanently reset this browser's demo\"\n              save={async (data) => {\n                await service.reset(text(data, \"confirmation\"));\n                await refresh();\n              }}"
+    },
+    {
+      "path": "app/features/Settings.tsx",
+      "line": 176,
+      "tag": "Field",
+      "attributes": "label=\"Type RESET DEMO\" name=\"confirmation\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 74,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/requirements/submissions/${s.id}`}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 80,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/requirements/submissions/create?student=${studentId}&requirement=${r.id}`}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 129,
+      "tag": "a",
+      "attributes": "href={preview.url} download={preview.name} className=\"simple-action\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 201,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Store and submit document\"\n          cancel=\"/dashboard/requirements?view=submissions\"\n          save={async (data, revision) => {\n            const file = data.get(\"attachment\") as File | null;\n            if (!file || !file.size)\n              throw new Error(\"Select a nonempty document.\");\n            const result = await mutate(\n              {\n                type: \"submission.create\",\n                studentId: text(data, \"studentId\"),\n                requirementId: text(data, \"requirementId\"),\n                file: {\n                  name: file.name,\n                  mime: file.type,\n                  size: file.size,\n                  blob: file,\n                },\n              },\n              undefined,\n              revision,\n            );\n            setNotice(\"The file and submission were saved in this browser.\");\n            rout"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 229,
+      "tag": "Field",
+      "attributes": "label=\"Student\"\n              name=\"studentId\"\n              value={studentId}\n              options={db.students.map((s) => ({\n                value: s.id,\n                label: `${nameOf(s)} (${s.studentNumber})`,\n              }))}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 238,
+      "tag": "Field",
+      "attributes": "label=\"Requirement\"\n              name=\"requirementId\"\n              value={filters.value(\"requirement\")}\n              options={db.requirements.map((r) => ({\n                value: r.id,\n                label: `${r.name} (${r.classification})`,\n              }))}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 249,
+      "tag": "input",
+      "attributes": "id=\"submission-file\"\n                name=\"attachment\"\n                type=\"file\"\n                accept=\".txt,.pdf,.png,.jpg,.jpeg\"\n                required"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 284,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/students/${student.id}`} key={5750}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 309,
+      "tag": "ActionButton",
+      "attributes": "confirm=\"Approve this stored document? Your identity and review time will be recorded.\"\n                  action={async () => {\n                    await mutate({\n                      type: \"submission.review\",\n                      id: s.id,\n                      decision: \"Approved\",\n                      reason: \"\",\n                    });\n                    setNotice(\"Submission approved.\");\n                  }}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 324,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n                submit=\"Reject submission\"\n                save={async (data, revision) => {\n                  await mutate(\n                    {\n                      type: \"submission.review\",\n                      id: s.id,\n                      decision: \"Rejected\",\n                      reason: text(data, \"reason\"),\n                    },\n                    undefined,\n                    revision,\n                  );\n                  setNotice(\"Submission rejected; reason retained.\");\n                }}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 341,
+      "tag": "Field",
+      "attributes": "label=\"Rejection reason\" name=\"reason\" type=\"textarea\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 348,
+      "tag": "Link",
+      "attributes": "className=\"primary-action\"\n              href={`/dashboard/requirements/submissions/create?student=${s.studentId}&requirement=${s.requirementId}`}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 369,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/requirements/submissions/${x.id}`}\n                key={7513}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 391,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Save Requirement\"\n          cancel=\"/dashboard/requirements\"\n          save={async (data, revision) => {\n            await mutate(\n              {\n                type: \"requirement.save\",\n                id: definition?.id,\n                input: {\n                  name: text(data, \"name\"),\n                  description: text(data, \"description\"),\n                  classification: text(data, \"classification\") as\n                    \"Mandatory\" | \"Optional\",\n                },\n              },\n              undefined,\n              revision,\n            );\n            setNotice(\"Requirement definition saved.\");\n            router.push(\"/dashboard/requirements\");\n          }}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 415,
+      "tag": "Field",
+      "attributes": "label=\"Requirement name\"\n              name=\"name\"\n              value={definition?.name}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 420,
+      "tag": "Field",
+      "attributes": "label=\"Classification\"\n              name=\"classification\"\n              value={definition?.classification ?? \"Mandatory\"}\n              options={options([\"Mandatory\", \"Optional\"])}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 426,
+      "tag": "Field",
+      "attributes": "label=\"Description\"\n              name=\"description\"\n              type=\"textarea\"\n              value={definition?.description}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 466,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements/create\"\n            className=\"primary-action\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 474,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/requirements/submissions/create${studentId ? `?student=${studentId}` : \"\"}`}\n            className=\"secondary-action\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 484,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements\"\n            aria-current={!submissionsView ? \"page\" : undefined}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 491,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements?view=submissions\"\n          aria-current={submissionsView ? \"page\" : undefined}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 497,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements?view=submissions&status=Pending\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 500,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements?view=submissions&status=Rejected\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 511,
+      "tag": "Search",
+      "attributes": "placeholder=\"Student or requirement\""
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 513,
+      "tag": "Filter",
+      "attributes": "name=\"attempt\"\n            label=\"Submission attempts\"\n            choices={[{ value: \"latest\", label: \"Latest per requirement\" }]}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 520,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n            label=\"Submission status\"\n            choices={options([\"Pending\", \"Approved\", \"Rejected\"])}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 526,
+      "tag": "Filter",
+      "attributes": "name=\"classification\"\n            label=\"Classification\"\n            choices={options([\"Mandatory\", \"Optional\"])}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 553,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/requirements/submissions/${s.id}`}\n              key={11216}"
+    },
+    {
+      "path": "app/features/Requirements.tsx",
+      "line": 581,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/requirements/${r.id}/edit`} key={11651}"
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "line": 48,
+      "tag": "SaveForm",
+      "attributes": "submit=\"Generate Report\"\n          success=\"Report generated from saved records.\"\n          save={async (data) => {\n            setReport(\n              generateReport(db, {\n                category: text(data, \"category\") as ReportCategory,\n                academicYear: text(data, \"academicYear\"),\n                companyId: text(data, \"companyId\"),\n                status: text(data, \"status\"),\n              }),\n            );\n          }}"
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "line": 63,
+      "tag": "Field",
+      "attributes": "label=\"Report category\"\n              name=\"category\"\n              value=\"Students\"\n              options={options([...reportCategories])}"
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "line": 69,
+      "tag": "Field",
+      "attributes": "label=\"Academic year\"\n              name=\"academicYear\"\n              value={prefs.academicYear}\n              options={options(years)}\n              required={false}\n              hint=\"Leave blank for all academic years.\""
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "line": 77,
+      "tag": "Field",
+      "attributes": "label=\"Company\"\n              name=\"companyId\"\n              options={db.companies.map((c) => ({\n                value: c.id,\n                label: c.name,\n              }))}\n              required={false}"
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "line": 86,
+      "tag": "Field",
+      "attributes": "label=\"Status\"\n              name=\"status\"\n              required={false}\n              options={options([\n                \"Not Yet Placed\",\n                \"Applying\",\n                \"Awaiting Placement\",\n                \"Ongoing\",\n                \"Completed\",\n                \"Terminated\",\n                \"Pending\",\n                \"Active\",\n                \"Expiring Soon\",\n                \"Expired\",\n                \"Pending Approval\",\n                \"Approved\",\n                \"Closed\",\n                \"Accepted\",\n                \"Rejected\",\n                \"Submitted\",\n              ])}\n              hint=\"Choose a status applicable to the selected report; an incompatible status returns an empty result.\""
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "line": 133,
+      "tag": "button",
+      "attributes": "className=\"primary-action\" onClick={download}"
+    },
+    {
+      "path": "app/features/Reports.tsx",
+      "line": 136,
+      "tag": "button",
+      "attributes": "className=\"secondary-action\" onClick={() => window.print()}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 61,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Submit Report\"\n          cancel=\"/dashboard/progress\"\n          save={async (data, revision) => {\n            const result = await mutate(\n              {\n                type: \"report.create\",\n                placementId: text(data, \"placementId\"),\n                workDate: text(data, \"workDate\"),\n                hours: number(data, \"hours\"),\n                tasks: text(data, \"tasks\"),\n              },\n              undefined,\n              revision,\n            );\n            setNotice(\"Progress report saved for review.\");\n            router.push(`/dashboard/progress/reports/${result}`);\n          }}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 82,
+      "tag": "Field",
+      "attributes": "label=\"Placement\"\n              name=\"placementId\"\n              value={filters.value(\"placement\")}\n              options={db.placements\n                .filter((p) => p.status === \"Ongoing\")\n                .map((p) => ({\n                  value: p.id,\n                  label: `${p.id} — ${nameOf(studentFor(db, p))}`,\n                }))}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 93,
+      "tag": "Field",
+      "attributes": "label=\"Work date\"\n              name=\"workDate\"\n              type=\"date\"\n              max={new Date().toISOString().slice(0, 10)}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 99,
+      "tag": "Field",
+      "attributes": "label=\"Hours rendered\"\n              name=\"hours\"\n              type=\"number\"\n              min={0}\n              max={12}\n              step=\"any\""
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 107,
+      "tag": "Field",
+      "attributes": "label=\"Tasks performed\" name=\"tasks\" type=\"textarea\""
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 128,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/placements/${p.id}`} key={2340}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 153,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n                submit=\"Mark as Reviewed\"\n                save={async (data, revision) => {\n                  await mutate(\n                    {\n                      type: \"report.review\",\n                      id: report.id,\n                      remarks: text(data, \"remarks\"),\n                    },\n                    undefined,\n                    revision,\n                  );\n                  setNotice(\"Review saved and hours recalculated everywhere.\");\n                }}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 169,
+      "tag": "Field",
+      "attributes": "label=\"Reviewer remarks\"\n                  name=\"remarks\"\n                  type=\"textarea\"\n                  value={report.remarks}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 198,
+      "tag": "Link",
+      "attributes": "className=\"primary-action\"\n              href={`/dashboard/progress/create?placement=${p.id}`}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 210,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/students/${student.id}`} key={3929}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 216,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/placements/${p.id}`} key={4019}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 258,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/progress/reports/${r.id}`} key={4763}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 294,
+      "tag": "Link",
+      "attributes": "className=\"primary-action\" href=\"/dashboard/progress/create\""
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 300,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/progress?review=pending&status=Ongoing\""
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 314,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/progress?status=Ongoing&near=true\""
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 326,
+      "tag": "Search",
+      "attributes": "placeholder=\"Student name or number\""
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 327,
+      "tag": "Filter",
+      "attributes": "name=\"near\"\n          label=\"Completion focus\"\n          choices={[\n            { value: \"true\", label: \"Near completion (75%+ reviewed)\" },\n          ]}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 334,
+      "tag": "Filter",
+      "attributes": "name=\"student\"\n          label=\"Student\"\n          choices={db.students.map((s) => ({ value: s.id, label: nameOf(s) }))}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 339,
+      "tag": "Filter",
+      "attributes": "name=\"company\"\n          label=\"Company\"\n          choices={db.companies.map((c) => ({ value: c.id, label: c.name }))}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 344,
+      "tag": "Filter",
+      "attributes": "name=\"adviser\"\n          label=\"Faculty adviser\"\n          choices={db.faculty.map((f) => ({\n            value: f.id,\n            label: accountName(db, f.accountId),\n          }))}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 352,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n          label=\"Placement status\"\n          choices={options([\"Ongoing\", \"Completed\", \"Terminated\"])}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 357,
+      "tag": "Filter",
+      "attributes": "name=\"review\"\n          label=\"Review queue\"\n          choices={[{ value: \"pending\", label: \"Has pending reports\" }]}"
+    },
+    {
+      "path": "app/features/Progress.tsx",
+      "line": 401,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/progress/${p.id}`} key={7457}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 73,
+      "tag": "Link",
+      "attributes": "className=\"simple-action\"\n            href={`/dashboard/placements/${existing.id}`}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 94,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Review and Save Placement\"\n          cancel={`/dashboard/applications/${a.id}`}\n          save={async (data, revision) => {\n            if (text(data, \"confirmation\") !== \"reviewed\")\n              throw new Error(\n                \"Confirm that you reviewed the placement information.\",\n              );\n            const result = await mutate(\n              {\n                type: \"placement.create\",\n                input: {\n                  applicationId: a.id,\n                  adviserId: text(data, \"adviserId\"),\n                  supervisorId: text(data, \"supervisorId\"),\n                  startDate: text(data, \"startDate\"),\n                  endDate: text(data, \"endDate\"),\n                  requiredHours: number(data, \"requiredHours\"),\n                },\n              },\n              undefined,\n              revision,\n            );\n           "
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 127,
+      "tag": "Field",
+      "attributes": "label=\"Application ID\"\n                name=\"application\"\n                value={a.id}\n                readOnly"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 133,
+      "tag": "Field",
+      "attributes": "label=\"Student ID\"\n                name=\"student\"\n                value={s.studentNumber}\n                readOnly"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 139,
+      "tag": "Field",
+      "attributes": "label=\"Student name\"\n                name=\"studentName\"\n                value={nameOf(s)}\n                readOnly"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 145,
+      "tag": "Field",
+      "attributes": "label=\"Company\" name=\"company\" value={c.name} readOnly"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 146,
+      "tag": "Field",
+      "attributes": "label=\"Opportunity\"\n                name=\"opportunity\"\n                value={o.title}\n                readOnly"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 152,
+      "tag": "Field",
+      "attributes": "label=\"Application status\"\n                name=\"applicationStatus\"\n                value={a.status}\n                readOnly"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 178,
+      "tag": "Field",
+      "attributes": "label=\"Start date\" name=\"startDate\" type=\"date\""
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 179,
+      "tag": "Field",
+      "attributes": "label=\"End date\" name=\"endDate\" type=\"date\""
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 180,
+      "tag": "Field",
+      "attributes": "label=\"Required hours\"\n                name=\"requiredHours\"\n                type=\"number\"\n                min={0}\n                max={10000}\n                step=\"any\"\n                value={486}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 189,
+      "tag": "Field",
+      "attributes": "label=\"Faculty adviser\"\n                name=\"adviserId\"\n                options={db.faculty\n                  .filter((f) => get(db.accounts, f.accountId).active)\n                  .map((f) => ({\n                    value: f.id,\n                    label: accountName(db, f.accountId),\n                  }))}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 199,
+      "tag": "Field",
+      "attributes": "label=\"Company supervisor\"\n                name=\"supervisorId\"\n                options={db.supervisors\n                  .filter(\n                    (s) =>\n                      s.companyId === c.id &&\n                      get(db.accounts, s.accountId).active,\n                  )\n                  .map((s) => ({\n                    value: s.id,\n                    label: accountName(db, s.accountId),\n                  }))}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 216,
+      "tag": "input",
+      "attributes": "id=\"placement-confirm\"\n              name=\"confirmation\"\n              value=\"reviewed\"\n              type=\"checkbox\"\n              required"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 252,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/students/${student.id}`} key={5018}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 258,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/applications/${p.applicationId}`}\n                key={5136}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 267,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/partners/${company.id}`} key={5233}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 273,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/internships/${opportunityFor(db, p).id}`}\n                key={5322}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 298,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/progress/${p.id}`}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 301,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/evaluations?placement=${p.id}`}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 329,
+      "tag": "ActionButton",
+      "attributes": "confirm=\"Confirm demonstration completion? This preserves the placement and its capacity allocation.\"\n              action={async () => {\n                await mutate({ type: \"placement.complete\", id: p.id });\n                setNotice(\"Placement completed under demonstration policy.\");\n              }}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 357,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n              submit=\"Record demonstration certificate\"\n              save={async (data, revision) => {\n                await mutate(\n                  {\n                    type: \"certificate.record\",\n                    placementId: p.id,\n                    number: text(data, \"number\"),\n                    issueDate: text(data, \"issueDate\"),\n                  },\n                  undefined,\n                  revision,\n                );\n                setNotice(\n                  \"Demonstration certificate information saved; no official certificate was issued.\",\n                );\n              }}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 381,
+      "tag": "Field",
+      "attributes": "label=\"Demonstration certificate number\" name=\"number\""
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 382,
+      "tag": "Field",
+      "attributes": "label=\"Issue date\" name=\"issueDate\" type=\"date\""
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 390,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n              submit=\"Confirm termination\"\n              save={async (data, revision) => {\n                if (text(data, \"confirm\") !== \"terminate\")\n                  throw new Error(\"Confirm the termination first.\");\n                await mutate(\n                  {\n                    type: \"placement.terminate\",\n                    id: p.id,\n                    reason: text(data, \"reason\"),\n                  },\n                  undefined,\n                  revision,\n                );\n                setNotice(\n                  \"Placement terminated; history retained and capacity released.\",\n                );\n              }}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 410,
+      "tag": "Field",
+      "attributes": "label=\"Termination reason\" name=\"reason\" type=\"textarea\""
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 412,
+      "tag": "input",
+      "attributes": "type=\"checkbox\"\n                  name=\"confirm\"\n                  value=\"terminate\"\n                  id=\"terminate-confirm\"\n                  required"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 457,
+      "tag": "Link",
+      "attributes": "key={status} href={`/dashboard/placements?status=${status}`}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 470,
+      "tag": "Search",
+      "attributes": "placeholder=\"Student name or placement ID\""
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 471,
+      "tag": "Filter",
+      "attributes": "name=\"student\"\n          label=\"Student\"\n          choices={db.students.map((s) => ({ value: s.id, label: nameOf(s) }))}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 476,
+      "tag": "Filter",
+      "attributes": "name=\"company\"\n          label=\"Company\"\n          choices={db.companies.map((c) => ({ value: c.id, label: c.name }))}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 481,
+      "tag": "Filter",
+      "attributes": "name=\"adviser\"\n          label=\"Faculty adviser\"\n          choices={db.faculty.map((f) => ({\n            value: f.id,\n            label: accountName(db, f.accountId),\n          }))}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 489,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n          label=\"Placement status\"\n          choices={options([\"Ongoing\", \"Completed\", \"Terminated\"])}"
+    },
+    {
+      "path": "app/features/Placements.tsx",
+      "line": 494,
+      "tag": "Filter",
+      "attributes": "name=\"sort\"\n          label=\"Sort dates\"\n          choices={[\n            { value: \"start-newest\", label: \"Start newest\" },\n            { value: \"start-oldest\", label: \"Start oldest\" },\n            { value: \"end-newest\", label: \"End latest\" },\n            { value: \"end-oldest\", label: \"End earliest\" },\n          ]}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 58,
+      "tag": "Link",
+      "attributes": "className=\"secondary-action\"\n                href={`/dashboard/partners/${company.id}/supervisors/${supervisor.id}/edit`}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 92,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Save supervisor\"\n          cancel={`/dashboard/partners/${company.id}`}\n          save={async (data, revision) => {\n            const result = await mutate(\n              {\n                type: \"supervisor.save\",\n                id: supervisor?.id,\n                input: {\n                  companyId: company.id,\n                  name: text(data, \"name\"),\n                  email: text(data, \"email\"),\n                  phone: text(data, \"phone\"),\n                  active: text(data, \"active\") === \"true\",\n                },\n              },\n              undefined,\n              revision,\n            );\n            setNotice(\"Supervisor and linked account saved.\");\n            router.push(\n              `/dashboard/partners/${company.id}/supervisors/${result}`,\n            );\n          }}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 119,
+      "tag": "Field",
+      "attributes": "label=\"Supervisor name\" name=\"name\" value={person?.name}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 120,
+      "tag": "Field",
+      "attributes": "label=\"Email\"\n              name=\"email\"\n              type=\"email\"\n              value={person?.email}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 126,
+      "tag": "Field",
+      "attributes": "label=\"Contact number\"\n              name=\"phone\"\n              value={supervisor?.phone}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 131,
+      "tag": "Field",
+      "attributes": "label=\"Account status\"\n              name=\"active\"\n              value={person?.active === false ? \"false\" : \"true\"}\n              options={[\n                { value: \"true\", label: \"Active\" },\n                { value: \"false\", label: \"Inactive\" },\n              ]}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 162,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Save Partner\"\n          cancel={\n            company\n              ? `/dashboard/partners/${company.id}`\n              : \"/dashboard/partners\"\n          }\n          save={async (data, revision) => {\n            const result = await mutate(\n              {\n                type: \"company.save\",\n                id: company?.id,\n                input: {\n                  name: text(data, \"name\"),\n                  industry: text(data, \"industry\"),\n                  address: text(data, \"address\"),\n                  contactPerson: text(data, \"contactPerson\"),\n                  email: text(data, \"email\"),\n                  phone: text(data, \"phone\"),\n                  moaStart: text(data, \"moaStart\"),\n                  moaEnd: text(data, \"moaEnd\"),\n                  approved: text(data, \"approved\") === \"true\",\n                  academicYear: text(data, \""
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 196,
+      "tag": "Field",
+      "attributes": "label=\"Company name\" name=\"name\" value={company?.name}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 197,
+      "tag": "Field",
+      "attributes": "label=\"Industry\" name=\"industry\" value={company?.industry}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 198,
+      "tag": "Field",
+      "attributes": "label=\"Address\" name=\"address\" value={company?.address}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 199,
+      "tag": "Field",
+      "attributes": "label=\"Contact person\"\n              name=\"contactPerson\"\n              value={company?.contactPerson}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 204,
+      "tag": "Field",
+      "attributes": "label=\"Contact email\"\n              name=\"email\"\n              type=\"email\"\n              value={company?.email}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 210,
+      "tag": "Field",
+      "attributes": "label=\"Contact number\" name=\"phone\" value={company?.phone}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 211,
+      "tag": "Field",
+      "attributes": "label=\"MOA start date\"\n              name=\"moaStart\"\n              type=\"date\"\n              value={company?.moaStart}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 217,
+      "tag": "Field",
+      "attributes": "label=\"MOA end date\"\n              name=\"moaEnd\"\n              type=\"date\"\n              value={company?.moaEnd}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 223,
+      "tag": "Field",
+      "attributes": "label=\"Partnership approval\"\n              name=\"approved\"\n              value={String(company?.approved ?? false)}\n              options={[\n                { value: \"false\", label: \"Pending\" },\n                { value: \"true\", label: \"Approved\" },\n              ]}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 232,
+      "tag": "Field",
+      "attributes": "label=\"Academic year\"\n              name=\"academicYear\"\n              value={company?.academicYear ?? prefs.academicYear}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 257,
+      "tag": "Link",
+      "attributes": "className=\"secondary-action\"\n              href={`/dashboard/partners/${company.id}/edit`}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 289,
+      "tag": "Link",
+      "attributes": "className=\"simple-action\"\n              href={`/dashboard/partners/${company.id}/supervisors/create`}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 304,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/partners/${company.id}/supervisors/${s.id}`}\n                  key={6443}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 316,
+      "tag": "Link",
+      "attributes": "className=\"simple-action\"\n              href={`/dashboard/internships/create?company=${company.id}`}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 330,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/internships/${o.id}`} key={6879}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 371,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/partners/create\" className=\"primary-action\""
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 376,
+      "tag": "Search",
+      "attributes": "placeholder=\"Company name\""
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 377,
+      "tag": "Filter",
+      "attributes": "name=\"industry\"\n          label=\"Industry\"\n          choices={options(db.companies.map((c) => c.industry))}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 382,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n          label=\"Partnership status\"\n          choices={options([\"Active\", \"Pending\", \"Expiring Soon\", \"Expired\"])}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 387,
+      "tag": "Filter",
+      "attributes": "name=\"sort\"\n          label=\"Sort by\"\n          choices={[\n            { value: \"name\", label: \"Company name\" },\n            { value: \"expiration\", label: \"MOA expiration\" },\n          ]}"
+    },
+    {
+      "path": "app/features/Partners.tsx",
+      "line": 421,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/partners/${c.id}`} key={8514}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 57,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Save Opportunity\"\n          cancel={\n            opportunity\n              ? `/dashboard/internships/${opportunity.id}`\n              : \"/dashboard/internships\"\n          }\n          save={async (data, revision) => {\n            const result = await mutate(\n              {\n                type: \"opportunity.save\",\n                id: opportunity?.id,\n                input: {\n                  companyId: text(data, \"companyId\"),\n                  title: text(data, \"title\"),\n                  description: text(data, \"description\"),\n                  capacity: number(data, \"capacity\"),\n                  academicYear: text(data, \"academicYear\"),\n                },\n              },\n              undefined,\n              revision,\n            );\n            setNotice(\"Opportunity saved.\");\n            router.push(`/dashboard/internships/${result}`);\n   "
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 86,
+      "tag": "Field",
+      "attributes": "label=\"Company\"\n              name=\"companyId\"\n              value={opportunity?.companyId ?? filters.value(\"company\")}\n              options={db.companies.map((c) => ({\n                value: c.id,\n                label: c.name,\n              }))}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 95,
+      "tag": "Field",
+      "attributes": "label=\"Position title\"\n              name=\"title\"\n              value={opportunity?.title}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 100,
+      "tag": "Field",
+      "attributes": "label=\"Description\"\n              name=\"description\"\n              type=\"textarea\"\n              value={opportunity?.description}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 106,
+      "tag": "Field",
+      "attributes": "label=\"Total capacity\"\n              name=\"capacity\"\n              type=\"number\"\n              min={1}\n              max={10000}\n              step={1}\n              value={opportunity?.capacity}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 115,
+      "tag": "Field",
+      "attributes": "label=\"Academic year\"\n              name=\"academicYear\"\n              value={opportunity?.academicYear ?? prefs.academicYear}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 136,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/internships/${opportunity.id}/edit`}\n              className=\"secondary-action\""
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 148,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/partners/${company.id}`} key={2788}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 171,
+      "tag": "ActionButton",
+      "attributes": "confirm=\"Approve or reopen this posting? New applications still require an eligible MOA and remaining capacity.\"\n              action={async () => {\n                await mutate({\n                  type: \"opportunity.status\",\n                  id: opportunity.id,\n                  status: \"Approved\",\n                });\n              }}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 185,
+      "tag": "ActionButton",
+      "attributes": "confirm=\"Close this opportunity to new applications and placements? Existing records will be retained.\"\n              action={async () => {\n                await mutate({\n                  type: \"opportunity.status\",\n                  id: opportunity.id,\n                  status: \"Closed\",\n                });\n              }}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 200,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/applications/create?opportunity=${opportunity.id}`}\n                className=\"primary-action\""
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 210,
+      "tag": "Link",
+      "attributes": "className=\"simple-action\"\n            href={`/dashboard/applications?opportunity=${opportunity.id}`}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 253,
+      "tag": "Link",
+      "attributes": "className=\"primary-action\" href=\"/dashboard/internships/create\""
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 259,
+      "tag": "Search",
+      "attributes": "placeholder=\"Position or company\""
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 260,
+      "tag": "Filter",
+      "attributes": "name=\"company\"\n          label=\"Company\"\n          choices={db.companies.map((c) => ({ value: c.id, label: c.name }))}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 265,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n          label=\"Status\"\n          choices={options([\"Pending Approval\", \"Approved\", \"Closed\"])}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 270,
+      "tag": "Filter",
+      "attributes": "name=\"available\"\n          label=\"Availability\"\n          choices={[{ value: \"true\", label: \"Available only\" }]}"
+    },
+    {
+      "path": "app/features/Opportunities.tsx",
+      "line": 291,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/internships/${o.id}`} key={5872}"
+    },
+    {
+      "path": "app/features/Login.tsx",
+      "line": 40,
+      "tag": "SaveForm",
+      "attributes": "submit=\"Sign in\"\n            save={async (data) => {\n              await login(\n                text(data, \"email\"),\n                String(data.get(\"password\") ?? \"\"),\n              );\n            }}"
+    },
+    {
+      "path": "app/features/Login.tsx",
+      "line": 49,
+      "tag": "Field",
+      "attributes": "label=\"Email address\" name=\"email\" type=\"email\""
+    },
+    {
+      "path": "app/features/Login.tsx",
+      "line": 50,
+      "tag": "Field",
+      "attributes": "label=\"Password\" name=\"password\" type=\"password\""
+    },
+    {
+      "path": "app/features/Login.tsx",
+      "line": 85,
+      "tag": "button",
+      "attributes": "className=\"secondary-action\"\n            onClick={() => setRecover(!recover)}"
+    },
+    {
+      "path": "app/features/Login.tsx",
+      "line": 99,
+      "tag": "SaveForm",
+      "attributes": "submit=\"Reset damaged demo data\"\n                save={async (data) => {\n                  await service.reset(text(data, \"confirmation\"));\n                  await refresh();\n                  setRecover(false);\n                }}"
+    },
+    {
+      "path": "app/features/Login.tsx",
+      "line": 107,
+      "tag": "Field",
+      "attributes": "label=\"Type RESET DEMO\" name=\"confirmation\""
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 59,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/students/${student.id}`} key={1020}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 65,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/placements/${p.id}`} key={1110}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 89,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n            submit=\"Submit Evaluation\"\n            save={async (data, revision) => {\n              await mutate(\n                {\n                  type: \"evaluation.submit\",\n                  id: e.id,\n                  grade: number(data, \"grade\"),\n                  comments: text(data, \"comments\"),\n                },\n                undefined,\n                revision,\n              );\n              setNotice(\"Assigned evaluation saved.\");\n            }}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 107,
+      "tag": "Field",
+      "attributes": "label=\"Demonstration score (0–100)\"\n                name=\"grade\"\n                type=\"number\"\n                min={0}\n                max={100}\n                step={0.01}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 115,
+      "tag": "Field",
+      "attributes": "label=\"Evaluation comments\"\n                name=\"comments\"\n                type=\"textarea\""
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 138,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/evaluations/${x.id}`} key={2636}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 171,
+      "tag": "Search",
+      "attributes": "placeholder=\"Student, placement or evaluator\""
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 172,
+      "tag": "Filter",
+      "attributes": "name=\"placementStatus\"\n          label=\"Placement status\"\n          choices={options([\"Ongoing\", \"Completed\", \"Terminated\"])}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 177,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n          label=\"Evaluation status\"\n          choices={options([\"Pending\", \"Submitted\"])}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 182,
+      "tag": "Filter",
+      "attributes": "name=\"role\"\n          label=\"Evaluator role\"\n          choices={options([\"Faculty Adviser\", \"Company Supervisor\"])}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 187,
+      "tag": "Filter",
+      "attributes": "name=\"evaluator\"\n          label=\"Assigned evaluator\"\n          choices={db.accounts\n            .filter((a) =>\n              [\"Faculty Adviser\", \"Company Supervisor\"].includes(a.role),\n            )\n            .map((a) => ({ value: a.id, label: a.name }))}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 196,
+      "tag": "Filter",
+      "attributes": "name=\"student\"\n          label=\"Student\"\n          choices={db.students.map((s) => ({ value: s.id, label: nameOf(s) }))}"
+    },
+    {
+      "path": "app/features/Evaluations.tsx",
+      "line": 225,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/evaluations/${e.id}`} key={4397}"
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 73,
+      "tag": "Link",
+      "attributes": "key={label} href={href}"
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 84,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements?view=submissions&status=Pending&attempt=latest\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 92,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements?view=submissions&status=Rejected&attempt=latest\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 100,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/progress?review=pending&status=Ongoing\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 116,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/evaluations?status=Pending&placementStatus=Ongoing\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 132,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/partners?status=Expiring%20Soon\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 190,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/students/create\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 191,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/partners/create\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 194,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/internships/create\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 197,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/applications?status=Pending\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 200,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/reports\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 204,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/requirements/submissions/create\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 207,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/applications/create\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 210,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/progress/create\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 216,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/placements\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 217,
+      "tag": "Link",
+      "attributes": "href=\"/dashboard/evaluations?status=Pending\""
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 228,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/students/${db.students.find((s) => s.accountId === account.id)!.id}`}"
+    },
+    {
+      "path": "app/features/Dashboard.tsx",
+      "line": 242,
+      "tag": "Link",
+      "attributes": "href={a.href} key={5403}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 73,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n          submit=\"Submit Application\"\n          cancel=\"/dashboard/applications\"\n          save={async (data, revision) => {\n            const result = await mutate(\n              {\n                type: \"application.create\",\n                studentId: text(data, \"studentId\"),\n                opportunityId: text(data, \"opportunityId\"),\n              },\n              undefined,\n              revision,\n            );\n            setNotice(\"Application submitted and stored locally.\");\n            router.push(`/dashboard/applications/${result}`);\n          }}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 92,
+      "tag": "Field",
+      "attributes": "label=\"Student\"\n              name=\"studentId\"\n              value={ownStudent?.id ?? filters.value(\"student\")}\n              options={(ownStudent ? [ownStudent] : db.students).map((s) => ({\n                value: s.id,\n                label: `${nameOf(s)} (${s.studentNumber})`,\n              }))}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 101,
+      "tag": "Field",
+      "attributes": "label=\"Opportunity\"\n              name=\"opportunityId\"\n              value={filters.value(\"opportunity\")}\n              options={db.opportunities\n                .filter((o) => available(db, o.id))\n                .map((o) => ({\n                  value: o.id,\n                  label: `${o.title} — ${get(db.companies, o.companyId).name} (${remainingSlots(db, o.id)} remaining)`,\n                }))}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 144,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/students/${student.id}`} key={2856}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 154,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/internships/${opportunity.id}`}\n                key={3070}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 164,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/partners/${company.id}`} key={3209}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 184,
+      "tag": "ActionButton",
+      "attributes": "confirm=\"Accept this application after reviewing its requirements and availability? Capacity will be consumed only when a placement is saved.\"\n              action={async () => {\n                await mutate({\n                  type: \"application.decide\",\n                  id: application.id,\n                  decision: \"Accepted\",\n                  reason: \"\",\n                });\n                setNotice(\"Application accepted; related views updated.\");\n              }}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 198,
+      "tag": "SaveForm",
+      "attributes": "revision={db.revision}\n              submit=\"Confirm Rejection\"\n              save={async (data, revision) => {\n                if (text(data, \"confirm\") !== \"reject\")\n                  throw new Error(\n                    \"Select the rejection confirmation before saving.\",\n                  );\n                await mutate(\n                  {\n                    type: \"application.decide\",\n                    id: application.id,\n                    decision: \"Rejected\",\n                    reason: text(data, \"reason\"),\n                  },\n                  undefined,\n                  revision,\n                );\n                setNotice(\"Application rejected; reason and history saved.\");\n              }}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 219,
+      "tag": "Field",
+      "attributes": "label=\"Rejection reason\" name=\"reason\" type=\"textarea\""
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 221,
+      "tag": "input",
+      "attributes": "id=\"reject-confirm\"\n                  type=\"checkbox\"\n                  name=\"confirm\"\n                  value=\"reject\"\n                  required"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 238,
+      "tag": "Link",
+      "attributes": "className=\"simple-action\"\n                href={`/dashboard/placements/${placement.id}`}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 246,
+      "tag": "Link",
+      "attributes": "className=\"primary-action\"\n                  href={`/dashboard/placements/create?application=${application.id}`}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 298,
+      "tag": "Link",
+      "attributes": "className=\"primary-action\"\n            href=\"/dashboard/applications/create\""
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 308,
+      "tag": "Link",
+      "attributes": "key={status} href={`/dashboard/applications?status=${status}`}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 321,
+      "tag": "Search",
+      "attributes": "placeholder=\"Student name or number\""
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 322,
+      "tag": "Filter",
+      "attributes": "name=\"student\"\n          label=\"Student\"\n          choices={db.students.map((s) => ({ value: s.id, label: nameOf(s) }))}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 327,
+      "tag": "Filter",
+      "attributes": "name=\"status\"\n          label=\"Status\"\n          choices={options([\"Pending\", \"Accepted\", \"Rejected\"])}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 332,
+      "tag": "Filter",
+      "attributes": "name=\"company\"\n          label=\"Company\"\n          choices={db.companies.map((c) => ({ value: c.id, label: c.name }))}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 337,
+      "tag": "Filter",
+      "attributes": "name=\"opportunity\"\n          label=\"Opportunity\"\n          choices={db.opportunities.map((o) => ({\n            value: o.id,\n            label: o.title,\n          }))}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 345,
+      "tag": "Filter",
+      "attributes": "name=\"sort\"\n          label=\"Submission date\"\n          choices={[\n            { value: \"newest\", label: \"Newest first\" },\n            { value: \"oldest\", label: \"Oldest first\" },\n          ]}"
+    },
+    {
+      "path": "app/features/Applications.tsx",
+      "line": 376,
+      "tag": "Link",
+      "attributes": "href={`/dashboard/applications/${a.id}`} key={7459}"
+    },
+    {
+      "path": "app/error.tsx",
+      "line": 11,
+      "tag": "button",
+      "attributes": "onClick={reset}"
+    },
+    {
+      "path": "app/error.tsx",
+      "line": 16,
+      "tag": "Link",
+      "attributes": "href=\"/\""
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "line": 34,
+      "tag": "button",
+      "attributes": "onClick={() => void refresh()}"
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "line": 35,
+      "tag": "Link",
+      "attributes": "href=\"/\""
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "line": 99,
+      "tag": "a",
+      "attributes": "className=\"skip-link\" href=\"#main-content\""
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "line": 105,
+      "tag": "Link",
+      "attributes": "className=\"brand-title\" href=\"/dashboard\""
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "line": 115,
+      "tag": "button",
+      "attributes": "className=\"secondary-action\"\n              onClick={async () => {\n                try {\n                  await logout();\n                  router.replace(\"/\");\n                } catch (error) {\n                  setLogoutError(\n                    error instanceof Error\n                      ? error.message\n                      : \"Could not end the demonstration session.\",\n                  );\n                }\n              }}"
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "line": 146,
+      "tag": "button",
+      "attributes": "type=\"button\"\n              className=\"sidebar-toggle\"\n              aria-label={open ? \"Collapse navigation\" : \"Open navigation\"}\n              aria-expanded={open}\n              aria-controls=\"module-navigation\"\n              onClick={() => setOpen(!open)}"
+    },
+    {
+      "path": "app/components/Workspace.tsx",
+      "line": 163,
+      "tag": "Link",
+      "attributes": "className={`sidebar-link ${pathname === href.split(\"?\")[0] || (href !== \"/dashboard\" && pathname.startsWith(href.split(\"?\")[0] + \"/\")) ? \"sidebar-link-active\" : \"\"}`}\n                aria-current={\n                  pathname === href.split(\"?\")[0] ? \"page\" : undefined\n                }\n                aria-label={\n                  open\n                    ? undefined\n                    : `${String(index + 1).padStart(2, \"0\")} ${label}`\n                }\n                href={href}\n                key={label}\n                title={label}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 73,
+      "tag": "select",
+      "attributes": "id={id}\n            name={name}\n            defaultValue={value ?? \"\"}\n            required={required}\n            aria-describedby={hint ? hintId : undefined}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 88,
+      "tag": "textarea",
+      "attributes": "id={id}\n            name={name}\n            defaultValue={value}\n            required={required}\n            maxLength={4000}\n            aria-describedby={hint ? hintId : undefined}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 97,
+      "tag": "input",
+      "attributes": "id={id}\n            name={name}\n            defaultValue={value}\n            type={type}\n            required={required}\n            readOnly={readOnly}\n            min={min}\n            max={max}\n            step={step}\n            maxLength={type === \"text\" ? 500 : undefined}\n            aria-describedby={hint ? hintId : undefined}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 190,
+      "tag": "button",
+      "attributes": "type=\"button\"\n              className=\"secondary-action\"\n              onClick={() => window.location.reload()}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 200,
+      "tag": "Link",
+      "attributes": "href={cancel} className=\"secondary-action\""
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 204,
+      "tag": "button",
+      "attributes": "type=\"submit\" disabled={pending} className=\"primary-action\""
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 291,
+      "tag": "Link",
+      "attributes": "className=\"simple-action\" href={back}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 324,
+      "tag": "button",
+      "attributes": "className=\"secondary-action\"\n        type=\"button\"\n        onClick={filters.reset}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 364,
+      "tag": "input",
+      "attributes": "id={id}\n        type=\"search\"\n        ref={input}\n        defaultValue={query}\n        placeholder={placeholder}\n        onChange={(e) => filters.set(\"q\", e.target.value)}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 389,
+      "tag": "select",
+      "attributes": "id={id}\n        value={filters.value(name)}\n        onChange={(e) => filters.set(name, e.target.value)}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 436,
+      "tag": "button",
+      "attributes": "className=\"secondary-action\"\n        disabled={pending || disabled}\n        onClick={() => {\n          if (confirm) {\n            setError(\"\");\n            setOpen(true);\n          } else void run();\n        }}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 454,
+      "tag": "Dialog",
+      "attributes": "title=\"Confirm action\" close={() => setOpen(false)}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 461,
+      "tag": "button",
+      "attributes": "className=\"primary-action\"\n            disabled={pending}\n            onClick={() => void run()}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 505,
+      "tag": "button",
+      "attributes": "type=\"button\"\n          onClick={close}\n          aria-label=\"Close dialog\"\n          className=\"secondary-action\""
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 526,
+      "tag": "Link",
+      "attributes": "className=\"back-link\" href={href}"
+    },
+    {
+      "path": "app/components/ui.tsx",
+      "line": 536,
+      "tag": "button",
+      "attributes": "aria-label=\"Dismiss saved message\" onClick={() => setNotice(\"\")}"
+    },
+    {
+      "path": "tests/components/forms.test.tsx",
+      "line": 22,
+      "tag": "Field",
+      "attributes": "label=\"First name\" name=\"firstName\""
+    },
+    {
+      "path": "tests/components/forms.test.tsx",
+      "line": 28,
+      "tag": "SaveForm",
+      "attributes": "save={async () => {\n          throw new Error(\"Duplicate student identifier\");\n        }}"
+    },
+    {
+      "path": "tests/components/forms.test.tsx",
+      "line": 33,
+      "tag": "Field",
+      "attributes": "label=\"Student ID\" name=\"studentNumber\""
+    },
+    {
+      "path": "tests/components/forms.test.tsx",
+      "line": 54,
+      "tag": "SaveForm",
+      "attributes": "save={save}"
+    },
+    {
+      "path": "tests/components/forms.test.tsx",
+      "line": 55,
+      "tag": "Field",
+      "attributes": "label=\"Name\" name=\"name\" value=\"Synthetic\""
+    }
+  ],
+  "note": "Source inventory aids inspection; hashes and JSX presence alone do not prove behavior. See executed browser assertions and route/control matrix."
+}
