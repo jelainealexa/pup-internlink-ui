@@ -1,0 +1,190 @@
+{
+  "baseline": "2d846774c6dfbc61d675331145bd7b82b301e5a4",
+  "files": [
+    {
+      "file": ".gitignore",
+      "bytes": 521,
+      "sha256": "cfdbd5a321f3ba279e434c025fc9a44bf2d3bd3a1af5affb8429d79bd18af054"
+    },
+    {
+      "file": "AGENTS.md",
+      "bytes": 688,
+      "sha256": "d273860cb120cdc0c127d565b196d6846274ad3933d5848932659c2a0b193898"
+    },
+    {
+      "file": "README.md",
+      "bytes": 1486,
+      "sha256": "3b3ed71ebf50e973209bc634f6849e8ecf235a6c0686c285e1f36af5caa1c2cc"
+    },
+    {
+      "file": "app/components/ModuleNav.tsx",
+      "bytes": 1411,
+      "sha256": "9d90466e066ce5aa8b31a690f47a845508d3a467cc34b39ed14ceee81a1a2586"
+    },
+    {
+      "file": "app/dashboard/applications/[id]/page.tsx",
+      "bytes": 6999,
+      "sha256": "547f260fcc19fab3e547bb27fe6cbe59bb8acaa52cb669523666ff2c20f15501"
+    },
+    {
+      "file": "app/dashboard/applications/page.tsx",
+      "bytes": 4410,
+      "sha256": "d6924217a8acd842afc296066c702994864cc41822a9432bda94c28c04c33d18"
+    },
+    {
+      "file": "app/dashboard/evaluations/[id]/page.tsx",
+      "bytes": 4055,
+      "sha256": "d6939c7ba1e8968e11fabff02f73cc1f5ca42fc62c435eb96734dd3a82474d7c"
+    },
+    {
+      "file": "app/dashboard/evaluations/page.tsx",
+      "bytes": 2572,
+      "sha256": "b47e8c066ccebf3aa1d198e2283255383342b7f793bdd6182a10d956b770423e"
+    },
+    {
+      "file": "app/dashboard/internships/[id]/page.tsx",
+      "bytes": 4371,
+      "sha256": "8cd794390dc20ccf4aa72a248da8edabd80ed7af4b783f388ce3064aec3fc30f"
+    },
+    {
+      "file": "app/dashboard/internships/page.tsx",
+      "bytes": 1755,
+      "sha256": "ea093c5c025c83f256a6d6423a00d8528136f8758f10b2864cda0f00a14af919"
+    },
+    {
+      "file": "app/dashboard/layout.tsx",
+      "bytes": 1129,
+      "sha256": "05a321f60c708d8e74cb14d1797326557289bb311c6529c3172b05485323332b"
+    },
+    {
+      "file": "app/dashboard/page.tsx",
+      "bytes": 7273,
+      "sha256": "e03f17b8008d683684224b103143cd6de3091b7df4a1c4a93da011a06ceb558c"
+    },
+    {
+      "file": "app/dashboard/partners/[id]/page.tsx",
+      "bytes": 4122,
+      "sha256": "ed49c30b8e3af878def22d3740d950cc6e8d0cd0e11616d8a9c580e203f92ab5"
+    },
+    {
+      "file": "app/dashboard/partners/page.tsx",
+      "bytes": 2821,
+      "sha256": "421f49b7e8f464a2a96622e8f7bb3537e6548658b198749658508b0b120d501b"
+    },
+    {
+      "file": "app/dashboard/placements/[id]/page.tsx",
+      "bytes": 5491,
+      "sha256": "d82c6eed9a761e2be0584be0ed91b67687d52da229554879b4d46ce9d15c78db"
+    },
+    {
+      "file": "app/dashboard/placements/create/page.tsx",
+      "bytes": 3521,
+      "sha256": "78aec2a2235cfa3af20900738c867ae3e50dfb4c7d45e91744f7c66bb93cdb32"
+    },
+    {
+      "file": "app/dashboard/placements/page.tsx",
+      "bytes": 4001,
+      "sha256": "cca26dddb551c79de4854fc7980d6d7e8453a853abc6a88919401b118dad3f87"
+    },
+    {
+      "file": "app/dashboard/progress/[id]/page.tsx",
+      "bytes": 6021,
+      "sha256": "cdfbb78fd6ad07de31b309e9ff6df71d98f0b59aabeb8e842b2b75fae2730c10"
+    },
+    {
+      "file": "app/dashboard/progress/page.tsx",
+      "bytes": 4824,
+      "sha256": "5b173e482c49b4e3eba4f8641d5886e5032086af2ba994ccf044d633af57a963"
+    },
+    {
+      "file": "app/dashboard/settings/page.tsx",
+      "bytes": 3731,
+      "sha256": "76b6d60601d9fab9c35452ecb53281b2927a9e4948a2e8d8a35f50929b7baa90"
+    },
+    {
+      "file": "app/dashboard/students/[id]/page.tsx",
+      "bytes": 8093,
+      "sha256": "18b4937d290ee9596315900056c60063d5b3ce19c867bbe1520305c81f2c2885"
+    },
+    {
+      "file": "app/dashboard/students/page.tsx",
+      "bytes": 5778,
+      "sha256": "9c5f73e9a3c224bfef1cf04c24e2a628dbadfb4589589a10bd468a44e66a4116"
+    },
+    {
+      "file": "app/favicon.ico",
+      "bytes": 15086,
+      "sha256": "c28fdd2a4f31e2dc64f653962286da5c82a4cdfc518b242d32812c624e9a19a4"
+    },
+    {
+      "file": "app/globals.css",
+      "bytes": 32601,
+      "sha256": "b65ff9085286cf3f6d235e058f16ec6f310f9b52c99f88287118f00196e9c0e9"
+    },
+    {
+      "file": "app/layout.tsx",
+      "bytes": 324,
+      "sha256": "4386d17944033e1d89766ca8cbcf24e7109321e4d79ca7b05949c7ed9d953a2e"
+    },
+    {
+      "file": "app/page.module.css",
+      "bytes": 2762,
+      "sha256": "fcd4be75c65409c07ec69664a0990efea426a3e0e03961ca8f8f648eaf8be4c3"
+    },
+    {
+      "file": "app/page.tsx",
+      "bytes": 854,
+      "sha256": "dab2c1580637304766859cd66e7e73fe16335f74e64d8e94e72156bf35898abe"
+    },
+    {
+      "file": "eslint.config.mjs",
+      "bytes": 483,
+      "sha256": "275a07c13fc7c83a652efcfa9fb6a207c451a2f5088e6793415ce44281285720"
+    },
+    {
+      "file": "next.config.ts",
+      "bytes": 140,
+      "sha256": "a972c4f0ffa6dd714e7909b02d1ac19d2f2fe3d01f191efd2c5054bd6f142ec1"
+    },
+    {
+      "file": "package-lock.json",
+      "bytes": 218761,
+      "sha256": "9b1182b5b34804ad520d83c90c9da9af0986f6d5ad41344dfab9455e5d990103"
+    },
+    {
+      "file": "package.json",
+      "bytes": 500,
+      "sha256": "1c445bde3e580b3da725556d9a0521c56b7ad1600bd6bbc329027d81031c1059"
+    },
+    {
+      "file": "public/file.svg",
+      "bytes": 391,
+      "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4"
+    },
+    {
+      "file": "public/globe.svg",
+      "bytes": 1035,
+      "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf"
+    },
+    {
+      "file": "public/next.svg",
+      "bytes": 1375,
+      "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc"
+    },
+    {
+      "file": "public/vercel.svg",
+      "bytes": 128,
+      "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4"
+    },
+    {
+      "file": "public/window.svg",
+      "bytes": 385,
+      "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1"
+    },
+    {
+      "file": "tsconfig.json",
+      "bytes": 700,
+      "sha256": "fbff01604d6cb54694be707f26e7a0eb21a6ef796b888c6a1dab1839fa7c6ccc"
+    }
+  ]
+}

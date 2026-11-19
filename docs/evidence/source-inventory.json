@@ -1,0 +1,263 @@
+{
+  "baseline": "aae8d8781c3cbb44094e1aa8dcabc398d913514c",
+  "files": [
+    {
+      "file": ".gitignore",
+      "bytes": 521,
+      "lines": 42,
+      "sha256": "cfdbd5a321f3ba279e434c025fc9a44bf2d3bd3a1af5affb8429d79bd18af054"
+    },
+    {
+      "file": "AGENTS.md",
+      "bytes": 688,
+      "lines": 10,
+      "sha256": "d273860cb120cdc0c127d565b196d6846274ad3933d5848932659c2a0b193898"
+    },
+    {
+      "file": "README.md",
+      "bytes": 1486,
+      "lines": 37,
+      "sha256": "3b3ed71ebf50e973209bc634f6849e8ecf235a6c0686c285e1f36af5caa1c2cc"
+    },
+    {
+      "file": "app/components/ApplicationDecision.tsx",
+      "bytes": 3470,
+      "lines": 144,
+      "sha256": "4ce6fb61a14f6ef914d2195601a01e892cbe9eaf36f57ce111b856a72b9ef3d8"
+    },
+    {
+      "file": "app/components/ModuleNav.tsx",
+      "bytes": 3860,
+      "lines": 166,
+      "sha256": "88e71e69338ba4720815603cb2576d37058d0b3d46d8448e69eb17590fb6c656"
+    },
+    {
+      "file": "app/components/ProgressReportReview.tsx",
+      "bytes": 2424,
+      "lines": 98,
+      "sha256": "0f8bf069a7d9f3581936314e2668d290f645cd4ea9dc46da867bb28d7bf958c9"
+    },
+    {
+      "file": "app/dashboard/applications/[id]/page.tsx",
+      "bytes": 4463,
+      "lines": 181,
+      "sha256": "99f76a9f7a813e95002a3a85905213ea296d871182f424041a846837f697135d"
+    },
+    {
+      "file": "app/dashboard/applications/page.tsx",
+      "bytes": 11389,
+      "lines": 453,
+      "sha256": "2413a93616c86b929150f8831edba9e2d53d2bdc0d81372cc7838569d9b4d6b3"
+    },
+    {
+      "file": "app/dashboard/evaluations/[id]/page.tsx",
+      "bytes": 4055,
+      "lines": 170,
+      "sha256": "d6939c7ba1e8968e11fabff02f73cc1f5ca42fc62c435eb96734dd3a82474d7c"
+    },
+    {
+      "file": "app/dashboard/evaluations/page.tsx",
+      "bytes": 2572,
+      "lines": 109,
+      "sha256": "b47e8c066ccebf3aa1d198e2283255383342b7f793bdd6182a10d956b770423e"
+    },
+    {
+      "file": "app/dashboard/internships/[id]/page.tsx",
+      "bytes": 4371,
+      "lines": 184,
+      "sha256": "8cd794390dc20ccf4aa72a248da8edabd80ed7af4b783f388ce3064aec3fc30f"
+    },
+    {
+      "file": "app/dashboard/internships/page.tsx",
+      "bytes": 1755,
+      "lines": 76,
+      "sha256": "ea093c5c025c83f256a6d6423a00d8528136f8758f10b2864cda0f00a14af919"
+    },
+    {
+      "file": "app/dashboard/layout.tsx",
+      "bytes": 1277,
+      "lines": 56,
+      "sha256": "a34fa6f61e9de6f72584fb9e74666eb1c67f1d23dd964bee60da9b00caa863c9"
+    },
+    {
+      "file": "app/dashboard/page.tsx",
+      "bytes": 7265,
+      "lines": 276,
+      "sha256": "d382db194bae7406cacdab8a8d15832e20d90707829620b977150e1558c7ca0d"
+    },
+    {
+      "file": "app/dashboard/partners/[id]/page.tsx",
+      "bytes": 4122,
+      "lines": 176,
+      "sha256": "ed49c30b8e3af878def22d3740d950cc6e8d0cd0e11616d8a9c580e203f92ab5"
+    },
+    {
+      "file": "app/dashboard/partners/page.tsx",
+      "bytes": 2821,
+      "lines": 117,
+      "sha256": "421f49b7e8f464a2a96622e8f7bb3537e6548658b198749658508b0b120d501b"
+    },
+    {
+      "file": "app/dashboard/placements/[id]/page.tsx",
+      "bytes": 6706,
+      "lines": 274,
+      "sha256": "249852450955a3f68c954d6fbb2aaa61ac08c8e8bbee894049b0973b50a86a3a"
+    },
+    {
+      "file": "app/dashboard/placements/create/page.tsx",
+      "bytes": 9126,
+      "lines": 368,
+      "sha256": "d141bd47c1c1e7464cc4bc0a94fb8601f6b2f93d45ac8dac99c4941cf5fdd868"
+    },
+    {
+      "file": "app/dashboard/placements/page.tsx",
+      "bytes": 12143,
+      "lines": 474,
+      "sha256": "954ed5cf86910b59f1737f787d61f7673bec9b61e2b41ce02d22cefe6373bd6d"
+    },
+    {
+      "file": "app/dashboard/progress/[id]/page.tsx",
+      "bytes": 5537,
+      "lines": 228,
+      "sha256": "b2bb19c652d1562d7ee7df30a71ca24a7198d89ca3eff00b78d83caaf4ccd1bf"
+    },
+    {
+      "file": "app/dashboard/progress/page.tsx",
+      "bytes": 9950,
+      "lines": 390,
+      "sha256": "96d1be4ae89ac6a8c12111f9a018f3cff61f9cb028f04aaf8fcbc89cf3d63152"
+    },
+    {
+      "file": "app/dashboard/settings/page.tsx",
+      "bytes": 6393,
+      "lines": 276,
+      "sha256": "0b73a81429048ef54d61008adb6ec57529cb265ff1469c90f15a1818df2d1e2b"
+    },
+    {
+      "file": "app/dashboard/students/[id]/edit/page.tsx",
+      "bytes": 3467,
+      "lines": 140,
+      "sha256": "d329f43ed5cc7f11aa1c7884681efcafd0b4e7efb6030b2665d767749a6a266b"
+    },
+    {
+      "file": "app/dashboard/students/[id]/page.tsx",
+      "bytes": 9601,
+      "lines": 426,
+      "sha256": "6579621392db66555cafccb65a320cbb9939830042f198c5737f0ca4f63f653b"
+    },
+    {
+      "file": "app/dashboard/students/create/page.tsx",
+      "bytes": 5772,
+      "lines": 230,
+      "sha256": "125ef3bdbaf76be13ee9c22d4abd6a03a657218a90f177568eb961d08458f8d4"
+    },
+    {
+      "file": "app/dashboard/students/page.tsx",
+      "bytes": 6603,
+      "lines": 264,
+      "sha256": "08fc3b729666011a9d6c7b68cc0d6b8b1b446ae6796dafb2c908a5c39d6b852f"
+    },
+    {
+      "file": "app/favicon.ico",
+      "bytes": 15086,
+      "lines": 13,
+      "sha256": "c28fdd2a4f31e2dc64f653962286da5c82a4cdfc518b242d32812c624e9a19a4"
+    },
+    {
+      "file": "app/globals-backup.css",
+      "bytes": 88056,
+      "lines": 5900,
+      "sha256": "ce9ba863763f6e230de921f8067e78c496c429c2851126be5981b16001de7846"
+    },
+    {
+      "file": "app/globals.css",
+      "bytes": 50075,
+      "lines": 3319,
+      "sha256": "8a4eb7771187abe55b1f3b62ed72f39dd3ada4e96ee6ce83c016827442c269c9"
+    },
+    {
+      "file": "app/layout.tsx",
+      "bytes": 324,
+      "lines": 18,
+      "sha256": "4386d17944033e1d89766ca8cbcf24e7109321e4d79ca7b05949c7ed9d953a2e"
+    },
+    {
+      "file": "app/lib/mockData.ts",
+      "bytes": 7209,
+      "lines": 293,
+      "sha256": "71f9436bcb3cf2a2c100d54ca7608e2df80e5006ce38faa3daa5bdce309cf37c"
+    },
+    {
+      "file": "app/page.module.css",
+      "bytes": 2762,
+      "lines": 151,
+      "sha256": "fcd4be75c65409c07ec69664a0990efea426a3e0e03961ca8f8f648eaf8be4c3"
+    },
+    {
+      "file": "app/page.tsx",
+      "bytes": 854,
+      "lines": 40,
+      "sha256": "dab2c1580637304766859cd66e7e73fe16335f74e64d8e94e72156bf35898abe"
+    },
+    {
+      "file": "eslint.config.mjs",
+      "bytes": 483,
+      "lines": 19,
+      "sha256": "275a07c13fc7c83a652efcfa9fb6a207c451a2f5088e6793415ce44281285720"
+    },
+    {
+      "file": "next.config.ts",
+      "bytes": 140,
+      "lines": 8,
+      "sha256": "a972c4f0ffa6dd714e7909b02d1ac19d2f2fe3d01f191efd2c5054bd6f142ec1"
+    },
+    {
+      "file": "package-lock.json",
+      "bytes": 218761,
+      "lines": 6147,
+      "sha256": "9b1182b5b34804ad520d83c90c9da9af0986f6d5ad41344dfab9455e5d990103"
+    },
+    {
+      "file": "package.json",
+      "bytes": 500,
+      "lines": 25,
+      "sha256": "1c445bde3e580b3da725556d9a0521c56b7ad1600bd6bbc329027d81031c1059"
+    },
+    {
+      "file": "public/file.svg",
+      "bytes": 391,
+      "lines": 1,
+      "sha256": "2b67812c325c199a02536cdbeea0c593a72f707d323b72ee3e08dbab06753bd4"
+    },
+    {
+      "file": "public/globe.svg",
+      "bytes": 1035,
+      "lines": 1,
+      "sha256": "b614b9bf183925957661ac851498fe1d8029fd43a62fbfed86f9e2624a57e7cf"
+    },
+    {
+      "file": "public/next.svg",
+      "bytes": 1375,
+      "lines": 1,
+      "sha256": "55995dfad6ecb4945a1e856ddca03c5e16aa5bf13fd21b4df6a74ae79357bcfc"
+    },
+    {
+      "file": "public/vercel.svg",
+      "bytes": 128,
+      "lines": 1,
+      "sha256": "f081337b2fee635b455b63275406a3e7f39d6a014e25ad90dab5a67e62a12ac4"
+    },
+    {
+      "file": "public/window.svg",
+      "bytes": 385,
+      "lines": 1,
+      "sha256": "644768c4aaeb4767bce293344eeb0c125fb804a94d801440424072202d85e3a1"
+    },
+    {
+      "file": "tsconfig.json",
+      "bytes": 700,
+      "lines": 35,
+      "sha256": "fbff01604d6cb54694be707f26e7a0eb21a6ef796b888c6a1dab1839fa7c6ccc"
+    }
+  ]
+}

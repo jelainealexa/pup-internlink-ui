@@ -1,0 +1,48 @@
+
+> internlink-ui@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\User 1 because it would include your home directory (C:\Users\User 1).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 49ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.2s
+  Running TypeScript ...
+  Finished TypeScript in 4.9s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/15) ...
+  Generating static pages using 7 workers (3/15)
+  Generating static pages using 7 workers (7/15)
+  Generating static pages using 7 workers (11/15)
+✓ Generating static pages using 7 workers (15/15) in 622ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /dashboard
+├ ○ /dashboard/applications
+├ ƒ /dashboard/applications/[id]
+├ ○ /dashboard/evaluations
+├ ƒ /dashboard/evaluations/[id]
+├ ○ /dashboard/internships
+├ ƒ /dashboard/internships/[id]
+├ ○ /dashboard/partners
+├ ƒ /dashboard/partners/[id]
+├ ○ /dashboard/placements
+├ ƒ /dashboard/placements/[id]
+├ ○ /dashboard/placements/create
+├ ○ /dashboard/progress
+├ ƒ /dashboard/progress/[id]
+├ ○ /dashboard/settings
+├ ○ /dashboard/students
+├ ƒ /dashboard/students/[id]
+├ ƒ /dashboard/students/[id]/edit
+└ ○ /dashboard/students/create
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

@@ -1,0 +1,25 @@
+{
+  "requirements": 86,
+  "uniqueIds": 86,
+  "statusCounts": {
+    "Placeholder": 15,
+    "Missing": 25,
+    "Blocked by external dependency": 7,
+    "Partially implemented": 31,
+    "Implemented and verified": 2,
+    "Proposed expansion": 5,
+    "Implemented but unverified": 1
+  },
+  "missingFields": [],
+  "badDependencies": [],
+  "brokenLocalLinks": [],
+  "baselineFilesChanged": [
+    "AGENTS.md"
+  ],
+  "routeVisits": 48,
+  "observationGroups": 16,
+  "browser": "156.0.8078.4",
+  "pageErrors": [],
+  "harnessErrors": [],
+  "requiredDocuments": 13
+}

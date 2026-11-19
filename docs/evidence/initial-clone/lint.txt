@@ -1,0 +1,12 @@
+
+> internlink-ui@0.1.0 lint
+> eslint
+
+
+C:\Users\User 1\AppData\Local\Temp\internlink-phase0-20261119\app\dashboard\applications\[id]\page.tsx
+  253:71  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\User 1\AppData\Local\Temp\internlink-phase0-20261119\app\dashboard\students\page.tsx
+  93:20  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+✖ 2 problems (2 errors, 0 warnings)

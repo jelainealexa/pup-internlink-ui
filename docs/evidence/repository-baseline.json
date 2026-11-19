@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-11-19T08:25:47.536Z",
+  "cwd": "D:\\Orca\\Workspace\\pup-internlink-ui",
+  "initial": {
+    "branch": "main",
+    "head": "2d846774c6dfbc61d675331145bd7b82b301e5a4",
+    "status": "?? PUP INTERNLINK_System Flow.pdf"
+  },
+  "auditedSource": "aae8d8781c3cbb44094e1aa8dcabc398d913514c",
+  "branch": "audit/phase-0-baseline",
+  "main": "2d846774c6dfbc61d675331145bd7b82b301e5a4",
+  "originMain": "aae8d8781c3cbb44094e1aa8dcabc398d913514c",
+  "remotes": "origin\thttps://github.com/jelainealexa/pup-internlink-ui (fetch)\norigin\thttps://github.com/jelainealexa/pup-internlink-ui (push)",
+  "branches": "* audit/phase-0-baseline\n  main\n  remotes/origin/HEAD -> origin/main\n  remotes/origin/main",
+  "node": "v24.15.0",
+  "npm": "11.12.1",
+  "package": {
+    "name": "internlink-ui",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "eslint"
+    },
+    "dependencies": {
+      "next": "16.4.6",
+      "react": "19.3.0",
+      "react-dom": "19.3.0"
+    },
+    "devDependencies": {
+      "@types/node": "^20",
+      "@types/react": "^19",
+      "@types/react-dom": "^19",
+      "eslint": "^9",
+      "eslint-config-next": "16.4.6",
+      "typescript": "^5"
+    }
+  },
+  "lockfileVersion": 3,
+  "resolvedDependencies": {
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "@types/node": "20.19.43",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "typescript": "5.9.3"
+  },
+  "pdfSHA256": "a8852a86f90ef6931d20b568f1e7ef3c86c000906520cb4f8bd5abb0b7438458"
+}

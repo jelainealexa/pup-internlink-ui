@@ -1,0 +1,139 @@
+// Phase 0 observation harness. These checks characterize the prototype; they are not feature acceptance tests.
+const fs = require('node:fs');
+const path = require('node:path');
+const { chromium } = require(process.argv[2]);
+const base = process.argv[3] || 'http://localhost:3100';
+const output = process.argv[4] || __dirname;
+const routes = ['/', '/dashboard', '/dashboard/students', '/dashboard/partners', '/dashboard/internships', '/dashboard/applications', '/dashboard/placements', '/dashboard/placements/create', '/dashboard/progress', '/dashboard/evaluations', '/dashboard/settings',
+  ...['2024-0001', '2024-0002', '2024-0003', '2024-0004'].map(id => '/dashboard/students/' + id),
+  ...['accenture-philippines', 'ibm-philippines', 'globe-telecom'].map(id => '/dashboard/partners/' + id),
+  ...['software-development-intern', 'it-support-intern', 'data-analytics-intern'].map(id => '/dashboard/internships/' + id),
+  ...['app-001', 'app-002', 'app-003'].map(id => '/dashboard/applications/' + id),
+  ...['PL-001', 'PL-002', 'PL-003'].map(id => '/dashboard/placements/' + id),
+  ...['2024-0001', '2024-0002', '2024-0003'].map(id => '/dashboard/progress/' + id),
+  ...['eval-001', 'eval-002', 'eval-003'].map(id => '/dashboard/evaluations/' + id),
+  ...['students', 'partners', 'internships', 'applications', 'placements', 'progress', 'evaluations'].map(module => '/dashboard/' + module + '/unknown'),
+  '/dashboard/requirements', '/dashboard/reports', '/dashboard/students/create', '/dashboard/students/2024-0001/edit'];
+(async () => {
+  const browser = await chromium.launch({headless: true, ...(process.env.AUDIT_CHROMIUM ? {executablePath: process.env.AUDIT_CHROMIUM} : {})});
+  const context = await browser.newContext({viewport: {width: 1440, height: 1000}});
+  const page = await context.newPage();
+  const report = {base, generatedAt: new Date().toISOString(), browser: await browser.version(), routes: [], observations: [], errors: []};
+  page.on('pageerror', error => report.errors.push(String(error)));
+  const goto = route => page.goto(base + route, {waitUntil: 'networkidle'});
+  const observe = async (id, action) => {
+    try {report.observations.push({id, ...(await action())});}
+    catch(error) {report.observations.push({id, harnessError: String(error)});}
+  };
+  try {
+    for (const route of routes) {
+      const response = await goto(route);
+      report.routes.push({route, status: response.status(), heading: await page.locator('h1').allTextContents()});
+    }
+    await observe('B01', async () => {
+      await goto('/'); await page.getByRole('button', {name: 'Enter Coordinator Portal'}).click();
+      await page.waitForURL('**/dashboard');
+      return {finding: 'Empty credentials enter the coordinator dashboard', url: page.url(), cookies: await context.cookies()};
+    });
+    await observe('B02', async () => {
+      await goto('/dashboard/students');
+      const rowsBefore = await page.locator('tbody tr').count();
+      await page.getByRole('searchbox').fill('2024-0002');
+      const rowsAfter = await page.locator('tbody tr').count();
+      const matching = await page.locator('tbody').innerText();
+      await page.getByRole('searchbox').fill('no-synthetic-match');
+      return {rowsBefore, rowsAfter, matching, emptyMessage: await page.locator('.empty-directory').innerText()};
+    });
+    await observe('B03', async () => {
+      await goto('/dashboard/students');
+      await page.locator('select').nth(0).selectOption({label: 'BS Information Technology'});
+      const programRows = await page.locator('tbody tr').count();
+      await page.locator('select').nth(1).selectOption({label: 'Ongoing'});
+      const intersectionRows = await page.locator('tbody tr').count();
+      await page.locator('select').nth(0).selectOption({label: 'All'});
+      await page.locator('select').nth(1).selectOption({label: 'All'});
+      await page.locator('select').nth(2).selectOption('hours');
+      const firstByHours = await page.locator('tbody tr').first().innerText();
+      await page.locator('select').nth(2).selectOption('id');
+      return {programRows, intersectionRows, firstByHours, firstById: await page.locator('tbody tr').first().innerText()};
+    });
+    await observe('B04', async () => {
+      await goto('/dashboard/students'); await page.getByRole('button', {name: '+ Add Student'}).click();
+      return {url: page.url(), forms: await page.locator('form').count(), dialogs: await page.getByRole('dialog').count()};
+    });
+    await observe('B05', async () => {
+      await goto('/dashboard/applications/app-001');
+      const before = await page.locator('main').innerText();
+      await page.getByRole('button', {name: 'Accept Application', exact: true}).click();
+      const unchangedAfterAccept = before === await page.locator('main').innerText();
+      await page.getByRole('button', {name: 'Reject Application', exact: true}).click();
+      return {unchangedAfterAccept, unchangedAfterReject: before === await page.locator('main').innerText(), dialogs: await page.getByRole('dialog').count()};
+    });
+    await observe('B06', async () => {
+      await goto('/dashboard/placements/create?application=app-001');
+      const application = await page.locator('input').first().inputValue();
+      await page.getByRole('button', {name: 'Save Placement'}).click();
+      return {requestedApplication: 'app-001', displayedApplication: application, urlAfterBlankSave: page.url(), forms: await page.locator('form').count(), cancelHref: await page.getByRole('link', {name: 'Cancel', exact: true}).getAttribute('href')};
+    });
+    await observe('B07', async () => {
+      await goto('/dashboard/progress/2024-0001');
+      const before = await page.locator('main').innerText();
+      await page.getByRole('button', {name: 'Review →'}).first().click();
+      const unchanged = before === await page.locator('main').innerText();
+      await page.getByRole('link', {name: /View Placement Details/}).click();
+      return {unchangedAfterReview: unchanged, linkedPlacementUrl: page.url(), placementHeading: await page.locator('h1').allTextContents()};
+    });
+    await observe('B08', async () => {
+      await goto('/dashboard/settings');
+      await page.locator('select').first().selectOption('2025-2026');
+      await page.locator('select').nth(1).selectOption('10');
+      await page.locator('input[type=checkbox]').first().uncheck();
+      await page.reload({waitUntil: 'networkidle'});
+      return {yearAfterReload: await page.locator('select').first().inputValue(), sizeAfterReload: await page.locator('select').nth(1).inputValue(), notificationAfterReload: await page.locator('input[type=checkbox]').first().isChecked()};
+    });
+    await observe('B09', async () => {
+      await goto('/dashboard/applications?status=pending&student=2024-0001');
+      const before = await page.locator('tbody').innerText();
+      await page.getByRole('searchbox').fill('no-synthetic-match');
+      await page.locator('select').first().selectOption({label: 'Rejected'});
+      return {rows: await page.locator('tbody tr').count(), unchangedBySearchAndFilter: before === await page.locator('tbody').innerText(), selectedStatus: await page.locator('select').first().inputValue()};
+    });
+    await observe('B10', async () => {
+      const counts = {};
+      for (const route of ['/dashboard/placements?student=2024-0001&status=ongoing', '/dashboard/progress?student=2024-0002', '/dashboard/evaluations?student=2024-0001&status=pending', '/dashboard/partners?status=expiring']) {
+        await goto(route); counts[route] = {rows: await page.locator('tbody tr').count(), indexRows: await page.locator('.page-index .index-row').count()};
+      }
+      return {counts};
+    });
+    await observe('B11', async () => {
+      await goto('/dashboard');
+      const navigation = await page.locator('nav a').allTextContents();
+      await page.screenshot({path: path.join(output, 'dashboard-desktop.png'), fullPage: true});
+      return {navigation};
+    });
+    await observe('B12', async () => {
+      await page.setViewportSize({width: 390, height: 844});
+      const measurements = {};
+      for (const route of ['/dashboard', '/dashboard/students', '/dashboard/students/2024-0001', '/dashboard/placements/create', '/dashboard/settings']) {
+        await goto(route);
+        measurements[route] = await page.evaluate(() => ({viewport: innerWidth, document: document.documentElement.scrollWidth, tables: [...document.querySelectorAll('.table-shell')].map(e => ({client: e.clientWidth, scroll: e.scrollWidth}))}));
+      }
+      await goto('/dashboard/students');
+      await page.screenshot({path: path.join(output, 'students-mobile.png'), fullPage: true});
+      return {measurements};
+    });
+    await observe('B13', async () => {
+      await goto('/dashboard/settings');
+      return {unlabelledControls: await page.locator('input,select,textarea').evaluateAll(els => els.filter(e => !e.labels?.length && !e.getAttribute('aria-label') && !e.getAttribute('aria-labelledby')).length), totalControls: await page.locator('input,select,textarea').count()};
+    });
+    await observe('B14', async () => {
+      await goto('/dashboard/progress/2024-0001'); const a = await page.locator('.progress-history tbody').innerText();
+      await goto('/dashboard/progress/2024-0002'); return {sameReportsForDifferentStudents: a === await page.locator('.progress-history tbody').innerText()};
+    });
+  } finally {
+    fs.writeFileSync(path.join(output, 'browser-results.json'), JSON.stringify(report, null, 2) + '\n');
+    await browser.close();
+  }
+  console.log(JSON.stringify({routes: report.routes.length, observations: report.observations.length, pageErrors: report.errors, harnessErrors: report.observations.filter(x => x.harnessError)}, null, 2));
+  if(report.observations.some(x => x.harnessError)) process.exitCode = 1;
+})().catch(error => {console.error(error); process.exitCode = 1;});

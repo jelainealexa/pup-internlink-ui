@@ -1,0 +1,1104 @@
+{
+  "base": "http://localhost:3101",
+  "baseline": "aae8d8781c3cbb44094e1aa8dcabc398d913514c",
+  "generatedAt": "2026-11-19T08:08:10.241Z",
+  "browser": "156.0.8078.4",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "heading": [
+        "PUP InternLink"
+      ],
+      "links": [
+        {
+          "text": "Enter Coordinator Portal",
+          "href": "/dashboard"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard",
+      "status": 200,
+      "heading": [
+        "Good afternoon, Coordinator."
+      ],
+      "links": [
+        {
+          "text": "Applications→12Pending review",
+          "href": "/dashboard/applications?status=pending"
+        },
+        {
+          "text": "Requirements→04Awaiting review",
+          "href": "/dashboard/requirements?status=pending"
+        },
+        {
+          "text": "Evaluations→02Pending",
+          "href": "/dashboard/evaluations?status=pending"
+        },
+        {
+          "text": "Students124",
+          "href": "/dashboard/students"
+        },
+        {
+          "text": "Industry Partners32",
+          "href": "/dashboard/partners"
+        },
+        {
+          "text": "Opportunities46",
+          "href": "/dashboard/internships"
+        },
+        {
+          "text": "Active Placements87",
+          "href": "/dashboard/placements?status=ongoing"
+        },
+        {
+          "text": "View progress →",
+          "href": "/dashboard/progress"
+        },
+        {
+          "text": "Add Student＋",
+          "href": "/dashboard/students/create"
+        },
+        {
+          "text": "Add Industry Partner→",
+          "href": "/dashboard/partners/create"
+        },
+        {
+          "text": "Create Opportunity→",
+          "href": "/dashboard/internships/create"
+        },
+        {
+          "text": "Review Applications→",
+          "href": "/dashboard/applications?status=pending"
+        },
+        {
+          "text": "Joshua TanSubmitted an application10m→",
+          "href": "/dashboard/applications/app-001"
+        },
+        {
+          "text": "Nicole GarciaApplication accepted1h→",
+          "href": "/dashboard/applications/app-002"
+        },
+        {
+          "text": "Sofia CruzCompleted internship hours3h→",
+          "href": "/dashboard/progress/2024-0003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students",
+      "status": 200,
+      "heading": [
+        "Students"
+      ],
+      "links": [
+        {
+          "text": "+ Add Student",
+          "href": "/dashboard/students/create"
+        },
+        {
+          "text": "Open →",
+          "href": "/dashboard/students/2024-0001"
+        },
+        {
+          "text": "Open →",
+          "href": "/dashboard/students/2024-0004"
+        },
+        {
+          "text": "Open →",
+          "href": "/dashboard/students/2024-0002"
+        },
+        {
+          "text": "Open →",
+          "href": "/dashboard/students/2024-0005"
+        },
+        {
+          "text": "Open →",
+          "href": "/dashboard/students/2024-0003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/partners",
+      "status": 200,
+      "heading": [
+        "Partners"
+      ],
+      "links": [
+        {
+          "text": "01Accenture PhilippinesTechnology · Active8 interns / 12 slots →",
+          "href": "/dashboard/partners/accenture-philippines"
+        },
+        {
+          "text": "02IBM PhilippinesTechnology · Active6 interns / 8 slots →",
+          "href": "/dashboard/partners/ibm-philippines"
+        },
+        {
+          "text": "03Globe TelecomTelecommunications · Active7 interns / 10 slots →",
+          "href": "/dashboard/partners/globe-telecom"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/internships",
+      "status": 200,
+      "heading": [
+        "Open opportunities"
+      ],
+      "links": [
+        {
+          "text": "01Software Development InternAccenture PhilippinesHybrid · 4 slots →",
+          "href": "/dashboard/internships/software-development-intern"
+        },
+        {
+          "text": "02Data Analytics InternGlobe TelecomHybrid · 3 slots →",
+          "href": "/dashboard/internships/data-analytics-intern"
+        },
+        {
+          "text": "03IT Support InternIBM PhilippinesOn-site · 2 slots →",
+          "href": "/dashboard/internships/it-support-intern"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/applications",
+      "status": 200,
+      "heading": [
+        "Applications"
+      ],
+      "links": [
+        {
+          "text": "Review →",
+          "href": "/dashboard/applications/app-001"
+        },
+        {
+          "text": "Review →",
+          "href": "/dashboard/applications/app-001"
+        },
+        {
+          "text": "Review →",
+          "href": "/dashboard/applications/app-002"
+        },
+        {
+          "text": "Review →",
+          "href": "/dashboard/applications/app-003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/placements",
+      "status": 200,
+      "heading": [
+        "Placements"
+      ],
+      "links": [
+        {
+          "text": "Open →",
+          "href": "/dashboard/placements/PL-001"
+        },
+        {
+          "text": "Open →",
+          "href": "/dashboard/placements/PL-003"
+        },
+        {
+          "text": "Open →",
+          "href": "/dashboard/placements/PL-002"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/progress",
+      "status": 200,
+      "heading": [
+        "Progress monitoring"
+      ],
+      "links": [
+        {
+          "text": "Review next report →",
+          "href": "/dashboard/progress/2024-0001"
+        },
+        {
+          "text": "Miguel Santos2024-0002IBM PhilippinesProf. Maria Santos280 / 486 hrs58%206 hours remaining1 review→",
+          "href": "/dashboard/progress/2024-0002"
+        },
+        {
+          "text": "Sofia Cruz2024-0003Globe TelecomProf. Carlo Mendoza486 / 486 hrs100%0 hours remainingCompleted→",
+          "href": "/dashboard/progress/2024-0003"
+        },
+        {
+          "text": "Angela Reyes2024-0001Accenture PhilippinesProf. Maria Santos320 / 486 hrs66%166 hours remaining1 review→",
+          "href": "/dashboard/progress/2024-0001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/evaluations",
+      "status": 200,
+      "heading": [
+        "Evaluations"
+      ],
+      "links": [
+        {
+          "text": "01Angela ReyesAccenture Philippines · 320 hoursIncomplete →",
+          "href": "/dashboard/evaluations/eval-001"
+        },
+        {
+          "text": "02Miguel SantosIBM Philippines · 280 hoursCompleted →",
+          "href": "/dashboard/evaluations/eval-002"
+        },
+        {
+          "text": "03Sofia CruzGlobe Telecom · 400 hoursCompleted →",
+          "href": "/dashboard/evaluations/eval-003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/settings",
+      "status": 200,
+      "heading": [
+        "Settings"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/requirements",
+      "status": 404,
+      "heading": [
+        "404"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/reports",
+      "status": 404,
+      "heading": [
+        "404"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/students/2024-0001",
+      "status": 200,
+      "heading": [
+        "Angela Reyes"
+      ],
+      "links": [
+        {
+          "text": "Students",
+          "href": "/dashboard/students"
+        },
+        {
+          "text": "Edit Profile",
+          "href": "/dashboard/students/2024-0001/edit"
+        },
+        {
+          "text": "01RequirementsDocuments and review status→",
+          "href": "/dashboard/requirements?student=2024-0001"
+        },
+        {
+          "text": "02Applications0 applications→",
+          "href": "/dashboard/applications?student=2024-0001"
+        },
+        {
+          "text": "03PlacementAccenture Philippines→",
+          "href": "/dashboard/placements/PL-003"
+        },
+        {
+          "text": "04Progress66% completed→",
+          "href": "/dashboard/progress/2024-0001"
+        },
+        {
+          "text": "05EvaluationsCompany and faculty records→",
+          "href": "/dashboard/evaluations?student=2024-0001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students/2024-0002",
+      "status": 200,
+      "heading": [
+        "Miguel Santos"
+      ],
+      "links": [
+        {
+          "text": "Students",
+          "href": "/dashboard/students"
+        },
+        {
+          "text": "Edit Profile",
+          "href": "/dashboard/students/2024-0002/edit"
+        },
+        {
+          "text": "01RequirementsDocuments and review status→",
+          "href": "/dashboard/requirements?student=2024-0002"
+        },
+        {
+          "text": "02Applications0 applications→",
+          "href": "/dashboard/applications?student=2024-0002"
+        },
+        {
+          "text": "03PlacementIBM Philippines→",
+          "href": "/dashboard/placements/PL-001"
+        },
+        {
+          "text": "04Progress58% completed→",
+          "href": "/dashboard/progress/2024-0002"
+        },
+        {
+          "text": "05EvaluationsCompany and faculty records→",
+          "href": "/dashboard/evaluations?student=2024-0002"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students/2024-0003",
+      "status": 200,
+      "heading": [
+        "Sofia Cruz"
+      ],
+      "links": [
+        {
+          "text": "Students",
+          "href": "/dashboard/students"
+        },
+        {
+          "text": "Edit Profile",
+          "href": "/dashboard/students/2024-0003/edit"
+        },
+        {
+          "text": "01RequirementsDocuments and review status→",
+          "href": "/dashboard/requirements?student=2024-0003"
+        },
+        {
+          "text": "02Applications1 application→",
+          "href": "/dashboard/applications?student=2024-0003"
+        },
+        {
+          "text": "03PlacementGlobe Telecom→",
+          "href": "/dashboard/placements/PL-002"
+        },
+        {
+          "text": "04Progress100% completed→",
+          "href": "/dashboard/progress/2024-0003"
+        },
+        {
+          "text": "05EvaluationsCompany and faculty records→",
+          "href": "/dashboard/evaluations?student=2024-0003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students/2024-0004",
+      "status": 200,
+      "heading": [
+        "Joshua Tan"
+      ],
+      "links": [
+        {
+          "text": "Students",
+          "href": "/dashboard/students"
+        },
+        {
+          "text": "Edit Profile",
+          "href": "/dashboard/students/2024-0004/edit"
+        },
+        {
+          "text": "01RequirementsDocuments and review status→",
+          "href": "/dashboard/requirements?student=2024-0004"
+        },
+        {
+          "text": "02Applications1 application→",
+          "href": "/dashboard/applications?student=2024-0004"
+        },
+        {
+          "text": "05EvaluationsCompany and faculty records→",
+          "href": "/dashboard/evaluations?student=2024-0004"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students/2024-0005",
+      "status": 200,
+      "heading": [
+        "Nicole Garcia"
+      ],
+      "links": [
+        {
+          "text": "Students",
+          "href": "/dashboard/students"
+        },
+        {
+          "text": "Edit Profile",
+          "href": "/dashboard/students/2024-0005/edit"
+        },
+        {
+          "text": "01RequirementsDocuments and review status→",
+          "href": "/dashboard/requirements?student=2024-0005"
+        },
+        {
+          "text": "02Applications1 application→",
+          "href": "/dashboard/applications?student=2024-0005"
+        },
+        {
+          "text": "05EvaluationsCompany and faculty records→",
+          "href": "/dashboard/evaluations?student=2024-0005"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students/unknown",
+      "status": 200,
+      "heading": [
+        "Student not found"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/students/create",
+      "status": 200,
+      "heading": [
+        "Add student"
+      ],
+      "links": [
+        {
+          "text": "Students",
+          "href": "/dashboard/students"
+        },
+        {
+          "text": "Cancel",
+          "href": "/dashboard/students"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students/2024-0001/edit",
+      "status": 200,
+      "heading": [
+        "Edit student"
+      ],
+      "links": [
+        {
+          "text": "Angela Reyes",
+          "href": "/dashboard/students/2024-0001"
+        },
+        {
+          "text": "Cancel",
+          "href": "/dashboard/students/2024-0001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/students/unknown/edit",
+      "status": 200,
+      "heading": [
+        "Student not found"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/partners/accenture-philippines",
+      "status": 200,
+      "heading": [
+        "Accenture Philippines"
+      ],
+      "links": [
+        {
+          "text": "Partners",
+          "href": "/dashboard/partners"
+        },
+        {
+          "text": "OPPORTUNITYSoftware Development Intern→",
+          "href": "/dashboard/internships/software-development-intern"
+        },
+        {
+          "text": "STUDENTAngela Reyes→",
+          "href": "/dashboard/students/2024-0001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/partners/ibm-philippines",
+      "status": 200,
+      "heading": [
+        "IBM Philippines"
+      ],
+      "links": [
+        {
+          "text": "Partners",
+          "href": "/dashboard/partners"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/partners/globe-telecom",
+      "status": 200,
+      "heading": [
+        "Globe Telecom"
+      ],
+      "links": [
+        {
+          "text": "Partners",
+          "href": "/dashboard/partners"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/partners/unknown",
+      "status": 404,
+      "heading": [
+        "404"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/partners/create",
+      "status": 404,
+      "heading": [
+        "404"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/internships/software-development-intern",
+      "status": 200,
+      "heading": [
+        "Software Development Intern"
+      ],
+      "links": [
+        {
+          "text": "Opportunities",
+          "href": "/dashboard/internships"
+        },
+        {
+          "text": "Accenture Philippines →",
+          "href": "/dashboard/partners/accenture-philippines"
+        },
+        {
+          "text": "SCREENINGAngela Reyes→",
+          "href": "/dashboard/applications/app-001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/internships/it-support-intern",
+      "status": 200,
+      "heading": [
+        "IT Support Intern"
+      ],
+      "links": [
+        {
+          "text": "Opportunities",
+          "href": "/dashboard/internships"
+        },
+        {
+          "text": "IBM Philippines →",
+          "href": "/dashboard/partners/ibm-philippines"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/internships/data-analytics-intern",
+      "status": 200,
+      "heading": [
+        "Data Analytics Intern"
+      ],
+      "links": [
+        {
+          "text": "Opportunities",
+          "href": "/dashboard/internships"
+        },
+        {
+          "text": "Globe Telecom →",
+          "href": "/dashboard/partners/globe-telecom"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/internships/unknown",
+      "status": 404,
+      "heading": [
+        "404"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/internships/create",
+      "status": 404,
+      "heading": [
+        "404"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/applications/app-001",
+      "status": 200,
+      "heading": [
+        "Joshua Tan"
+      ],
+      "links": [
+        {
+          "text": "Applications",
+          "href": "/dashboard/applications"
+        },
+        {
+          "text": "View Student Profile →",
+          "href": "/dashboard/students/2024-0004"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/applications/app-002",
+      "status": 200,
+      "heading": [
+        "Nicole Garcia"
+      ],
+      "links": [
+        {
+          "text": "Applications",
+          "href": "/dashboard/applications"
+        },
+        {
+          "text": "Create Placement →",
+          "href": "/dashboard/placements/create?application=app-002"
+        },
+        {
+          "text": "View Student Profile →",
+          "href": "/dashboard/students/2024-0005"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/applications/app-003",
+      "status": 200,
+      "heading": [
+        "Sofia Cruz"
+      ],
+      "links": [
+        {
+          "text": "Applications",
+          "href": "/dashboard/applications"
+        },
+        {
+          "text": "View Student Profile →",
+          "href": "/dashboard/students/2024-0003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/applications/unknown",
+      "status": 200,
+      "heading": [
+        "Application not found"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/placements/PL-001",
+      "status": 200,
+      "heading": [
+        "Miguel Santos"
+      ],
+      "links": [
+        {
+          "text": "Placements",
+          "href": "/dashboard/placements"
+        },
+        {
+          "text": "View Student Profile →",
+          "href": "/dashboard/students/2024-0002"
+        },
+        {
+          "text": "View Progress Details →",
+          "href": "/dashboard/progress/2024-0002"
+        },
+        {
+          "text": "Review Reports →",
+          "href": "/dashboard/progress/2024-0002"
+        },
+        {
+          "text": "View Evaluations →",
+          "href": "/dashboard/evaluations?student=2024-0002"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/placements/PL-002",
+      "status": 200,
+      "heading": [
+        "Sofia Cruz"
+      ],
+      "links": [
+        {
+          "text": "Placements",
+          "href": "/dashboard/placements"
+        },
+        {
+          "text": "View Student Profile →",
+          "href": "/dashboard/students/2024-0003"
+        },
+        {
+          "text": "View Progress Details →",
+          "href": "/dashboard/progress/2024-0003"
+        },
+        {
+          "text": "Review Reports →",
+          "href": "/dashboard/progress/2024-0003"
+        },
+        {
+          "text": "View Evaluations →",
+          "href": "/dashboard/evaluations?student=2024-0003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/placements/PL-003",
+      "status": 200,
+      "heading": [
+        "Angela Reyes"
+      ],
+      "links": [
+        {
+          "text": "Placements",
+          "href": "/dashboard/placements"
+        },
+        {
+          "text": "View Student Profile →",
+          "href": "/dashboard/students/2024-0001"
+        },
+        {
+          "text": "View Progress Details →",
+          "href": "/dashboard/progress/2024-0001"
+        },
+        {
+          "text": "Review Reports →",
+          "href": "/dashboard/progress/2024-0001"
+        },
+        {
+          "text": "View Evaluations →",
+          "href": "/dashboard/evaluations?student=2024-0001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/placements/unknown",
+      "status": 200,
+      "heading": [
+        "Placement not found"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/placements/create",
+      "status": 200,
+      "heading": [
+        "Create placement"
+      ],
+      "links": [
+        {
+          "text": "Placements",
+          "href": "/dashboard/placements"
+        },
+        {
+          "text": "Cancel",
+          "href": "/dashboard/applications/app-002"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/progress/2024-0001",
+      "status": 200,
+      "heading": [
+        "Angela Reyes"
+      ],
+      "links": [
+        {
+          "text": "Progress Monitoring",
+          "href": "/dashboard/progress"
+        },
+        {
+          "text": "STUDENTView Student Profile→",
+          "href": "/dashboard/students/2024-0001"
+        },
+        {
+          "text": "PLACEMENTView Placement Details→",
+          "href": "/dashboard/placements/PL-003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/progress/2024-0002",
+      "status": 200,
+      "heading": [
+        "Miguel Santos"
+      ],
+      "links": [
+        {
+          "text": "Progress Monitoring",
+          "href": "/dashboard/progress"
+        },
+        {
+          "text": "STUDENTView Student Profile→",
+          "href": "/dashboard/students/2024-0002"
+        },
+        {
+          "text": "PLACEMENTView Placement Details→",
+          "href": "/dashboard/placements/PL-001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/progress/2024-0003",
+      "status": 200,
+      "heading": [
+        "Sofia Cruz"
+      ],
+      "links": [
+        {
+          "text": "Progress Monitoring",
+          "href": "/dashboard/progress"
+        },
+        {
+          "text": "STUDENTView Student Profile→",
+          "href": "/dashboard/students/2024-0003"
+        },
+        {
+          "text": "PLACEMENTView Placement Details→",
+          "href": "/dashboard/placements/PL-002"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/progress/unknown",
+      "status": 200,
+      "heading": [
+        "Progress record not found"
+      ],
+      "links": []
+    },
+    {
+      "route": "/dashboard/evaluations/eval-001",
+      "status": 200,
+      "heading": [
+        "Angela Reyes"
+      ],
+      "links": [
+        {
+          "text": "Evaluations",
+          "href": "/dashboard/evaluations"
+        },
+        {
+          "text": "STUDENT RECORDView Angela Reyes→",
+          "href": "/dashboard/students/2024-0001"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/evaluations/eval-002",
+      "status": 200,
+      "heading": [
+        "Miguel Santos"
+      ],
+      "links": [
+        {
+          "text": "Evaluations",
+          "href": "/dashboard/evaluations"
+        },
+        {
+          "text": "STUDENT RECORDView Miguel Santos→",
+          "href": "/dashboard/students/2024-0002"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/evaluations/eval-003",
+      "status": 200,
+      "heading": [
+        "Sofia Cruz"
+      ],
+      "links": [
+        {
+          "text": "Evaluations",
+          "href": "/dashboard/evaluations"
+        },
+        {
+          "text": "STUDENT RECORDView Sofia Cruz→",
+          "href": "/dashboard/students/2024-0003"
+        }
+      ]
+    },
+    {
+      "route": "/dashboard/evaluations/unknown",
+      "status": 404,
+      "heading": [
+        "404"
+      ],
+      "links": []
+    }
+  ],
+  "observations": [
+    {
+      "id": "B01",
+      "emptyCredentialsEnterDashboard": true,
+      "cookies": []
+    },
+    {
+      "id": "B02",
+      "before": 5,
+      "after": 1,
+      "match": "2024-0002\tMiguel Santos\tBS Information Technology\t4th Year / 4-2\tIBM Philippines\tOngoing\t280\tOpen →",
+      "empty": "No students found.\n\nTry changing your search or filters."
+    },
+    {
+      "id": "B03",
+      "program": 2,
+      "section": 1,
+      "ongoing": 2,
+      "hoursFirst": "2024-0003\tSofia Cruz\tBS Computer Science\t4th Year / 4-1\tGlobe Telecom\tCompleted\t486\tOpen →",
+      "idFirst": "2024-0001\tAngela Reyes\tBS Computer Engineering\t4th Year / 4-1\tAccenture Philippines\tOngoing\t320\tOpen →"
+    },
+    {
+      "id": "B04",
+      "blankError": "Complete all required fields.",
+      "duplicateError": "This student ID already exists.",
+      "duplicateEmail": "This email address already exists.",
+      "message": "Student record validated.\n\nIn the production system, this record would now be saved and the coordinator would be redirected to the newly created Student Profile.",
+      "afterSaveUrl": "http://localhost:3101/dashboard/students/create",
+      "createdHeading": "Student not found"
+    },
+    {
+      "id": "B05",
+      "message": "Prototype update successful. No database changes are being stored yet.",
+      "profileHeading": "Angela Reyes"
+    },
+    {
+      "id": "B06",
+      "href": "/dashboard/placements/create?application=app-001",
+      "header": "STATUS\nPending",
+      "placementError": "A placement can only be created from an accepted application.",
+      "acceptStillVisible": 1
+    },
+    {
+      "id": "B07",
+      "blankDisabled": true,
+      "whitespaceDisabled": true,
+      "displayed": "REJECTION REASON\n\nSynthetic audit reason",
+      "header": "STATUS\nPending",
+      "acceptVisibleAfterReload": 1
+    },
+    {
+      "id": "B08",
+      "blankError": "Complete all required fields.",
+      "dateError": "End date must be later than the start date.",
+      "negativeHoursMessage": "Placement validated successfully. In the production system, the placement would now be saved, assigned a Placement ID, and opened in Placement Details.",
+      "afterSaveUrl": "http://localhost:3101/dashboard/placements/create?application=app-002",
+      "placementCount": 3
+    },
+    {
+      "id": "B09",
+      "dialog": "PROGRESS REPORT\nPR-003\n×\nSubmission Date\nOctober 24, 2026\nHours Rendered\n35\nTasks Reported\nDocumentation\nSupervisor Remarks\nUnder review\nReview Status\nReviewed\nClose",
+      "row": "PR-003\tOctober 24, 2026\t35\tDocumentation\tUnder review\tPending Review\tReview →",
+      "markReviewAfterReload": 1
+    },
+    {
+      "id": "B10",
+      "largerTextChanged": "true",
+      "bodyClass": null,
+      "selectedAfterReload": [
+        "2026-2027",
+        "Overview",
+        "Comfortable"
+      ],
+      "largerTextAfterReload": "false"
+    },
+    {
+      "id": "B11",
+      "filtered": 1,
+      "empty": 0,
+      "opportunityQueryRows": 3,
+      "opportunitySelectedRows": 1,
+      "placementStudentRows": 1
+    },
+    {
+      "id": "B12",
+      "counts": {
+        "/dashboard/progress?student=2024-0002": {
+          "progressRows": 3,
+          "indexRows": 0
+        },
+        "/dashboard/evaluations?student=2024-0001&status=pending": {
+          "progressRows": 0,
+          "indexRows": 3
+        },
+        "/dashboard/partners?status=expiring": {
+          "progressRows": 0,
+          "indexRows": 3
+        }
+      }
+    },
+    {
+      "id": "B13",
+      "collapsed": "sidebar-shell sidebar-collapsed",
+      "reopened": "sidebar-shell sidebar-open"
+    },
+    {
+      "id": "B14",
+      "measurements": {
+        "/dashboard": {
+          "viewport": 390,
+          "document": 449,
+          "tables": []
+        },
+        "/dashboard/students": {
+          "viewport": 390,
+          "document": 390,
+          "tables": [
+            {
+              "client": 150,
+              "scroll": 750
+            }
+          ]
+        },
+        "/dashboard/students/2024-0001": {
+          "viewport": 390,
+          "document": 423,
+          "tables": []
+        },
+        "/dashboard/placements/create": {
+          "viewport": 390,
+          "document": 390,
+          "tables": []
+        },
+        "/dashboard/settings": {
+          "viewport": 390,
+          "document": 391,
+          "tables": []
+        }
+      }
+    },
+    {
+      "id": "B15",
+      "unnamedSwitches": 6,
+      "unlabelledSelects": 3
+    },
+    {
+      "id": "B16",
+      "applications": {
+        "rows": 0,
+        "progressRows": 0,
+        "emptyMessage": 1
+      },
+      "placements": {
+        "rows": 0,
+        "progressRows": 0,
+        "emptyMessage": 0
+      },
+      "progress": {
+        "rows": 0,
+        "progressRows": 0,
+        "emptyMessage": 0
+      }
+    }
+  ],
+  "errors": []
+}
