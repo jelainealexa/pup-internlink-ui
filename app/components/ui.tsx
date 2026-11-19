@@ -285,9 +285,12 @@ export function useFilters() {
         "",
         `${window.location.pathname}${next.size ? `?${next}` : ""}`,
       );
+      window.dispatchEvent(new Event("internlink-filter-change"));
     },
-    reset: () =>
-      window.history.replaceState(null, "", window.location.pathname),
+    reset: () => {
+      window.history.replaceState(null, "", window.location.pathname);
+      window.dispatchEvent(new Event("internlink-filter-change"));
+    },
   };
 }
 export function Filters({ children }: { children: ReactNode }) {
@@ -314,13 +317,32 @@ export function Search({
 }) {
   const filters = useFilters(),
     id = useId();
+  const input = useRef<HTMLInputElement>(null);
+  const query = filters.value("q");
+  useEffect(() => {
+    const current = () =>
+      new URLSearchParams(window.location.search).get("q") ?? "";
+    const synchronize = () => {
+      if (input.current && input.current.value !== current())
+        input.current.value = current();
+    };
+    // A delayed URL render must not restore an older value over newer keystrokes.
+    if (query === current()) synchronize();
+    window.addEventListener("popstate", synchronize);
+    window.addEventListener("internlink-filter-change", synchronize);
+    return () => {
+      window.removeEventListener("popstate", synchronize);
+      window.removeEventListener("internlink-filter-change", synchronize);
+    };
+  }, [query]);
   return (
     <div className="field">
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
         type="search"
-        value={filters.value("q")}
+        ref={input}
+        defaultValue={query}
         placeholder={placeholder}
         onChange={(e) => filters.set("q", e.target.value)}
       />

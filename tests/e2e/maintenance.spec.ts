@@ -5,14 +5,12 @@ test("every dashboard summary opens the matching filtered records", async ({
   page,
 }) => {
   await login(page);
-  const cards = await page
-    .locator(".metric-links a")
-    .evaluateAll((links) =>
-      links.map((link) => ({
-        href: link.getAttribute("href")!,
-        count: Number(link.querySelector("strong")!.textContent),
-      })),
-    );
+  const cards = await page.locator(".metric-links a").evaluateAll((links) =>
+    links.map((link) => ({
+      href: link.getAttribute("href")!,
+      count: Number(link.querySelector("strong")!.textContent),
+    })),
+  );
   expect(cards).toHaveLength(14);
   for (const card of cards) {
     await page.goto(card.href);
@@ -30,15 +28,13 @@ test("dashboard document alerts exclude superseded rejected attempts while retai
   await page.goto(
     "/dashboard/requirements/submissions/create?requirement=req-2",
   );
-  await page
-    .getByLabel("Document *", { exact: true })
-    .setInputFiles({
-      name: "resubmitted-synthetic.txt",
-      mimeType: "text/plain",
-      buffer: Buffer.from(
-        "Synthetic resubmission for latest-attempt filter regression",
-      ),
-    });
+  await page.getByLabel("Document *", { exact: true }).setInputFiles({
+    name: "resubmitted-synthetic.txt",
+    mimeType: "text/plain",
+    buffer: Buffer.from(
+      "Synthetic resubmission for latest-attempt filter regression",
+    ),
+  });
   await page
     .getByRole("button", { name: "Store and submit document", exact: true })
     .click();
@@ -160,6 +156,19 @@ test("directory controls, URL back/forward and filtered dashboard destinations",
 }) => {
   await login(page);
   await page.goto("/dashboard/students");
+  await page
+    .getByRole("searchbox")
+    .pressSequentially("SYN-2026-001", { delay: 0 });
+  await expect(page.getByRole("searchbox")).toHaveValue("SYN-2026-001");
+  await expect(page.locator("tbody tr")).toHaveCount(1);
+  await expect(page.locator("tbody")).toContainText("Mira Demo");
+  await page.getByRole("button", { name: "Reset filters" }).click();
+  await expect(page.getByRole("searchbox")).toHaveValue("");
+  await page.getByRole("searchbox").pressSequentially("Sample", { delay: 0 });
+  await expect(page.getByRole("searchbox")).toHaveValue("Sample");
+  await expect(page.locator("tbody tr")).toHaveCount(2);
+  await page.getByRole("button", { name: "Reset filters" }).click();
+  await expect(page.getByRole("searchbox")).toHaveValue("");
   await page
     .getByLabel("Program", { exact: true })
     .selectOption("BS Information Technology");
