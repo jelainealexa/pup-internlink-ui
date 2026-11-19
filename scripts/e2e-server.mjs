@@ -1,0 +1,10 @@
+import { spawn, spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+const next = require.resolve("next/dist/bin/next");
+const env = { ...process.env, INTERNLINK_DIST_DIR: ".next-e2e" };
+const build = spawnSync(process.execPath, [next, "build"], { env, stdio: "inherit" });
+if (build.status !== 0) process.exit(build.status ?? 1);
+const server = spawn(process.execPath, [next, "start", "--port", "3105", "--hostname", "127.0.0.1"], { env, stdio: "inherit" });
+for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => { server.kill(); process.exit(); });
+server.on("exit", code => process.exit(code ?? 0));

@@ -1,5 +1,23 @@
 # Decision log
 
+## Autonomous front-end implementation decisions — 2026-11-19
+
+The user's complete front-end instruction supersedes Phase 0-only execution limits and excludes actual backend development/integration. The following reversible demonstration policies are implemented in `app/lib/rules.ts` and `commands.ts`; none is asserted to be an approved institutional rule.
+
+- D-016: Preserve Next/React/TypeScript/CSS and existing URL paths. Thin explicit route files compose module components; replace disconnected fixture pages/local-only mutation components because they cannot satisfy shared persistence. Preserve historical CSS backups unimported.
+- D-017: IndexedDB stores one versioned normalized snapshot including actual attachment Blobs, with readwrite transactions, revision conflicts and bounded idempotency receipts. No automatic reseeding when data exists or is damaged. Reset requires the exact phrase RESET DEMO; valid data reset is coordinator-only. Corrupt-schema recovery is explicitly destructive and available from the error state.
+- D-018: Synthetic authentication uses a public demonstration password verifier in seed/account records, never plaintext stored passwords. A non-secret account ID/expiry marker in localStorage persists an eight-hour simulated session. New student/supervisor profiles get linked synthetic accounts. Real server security remains out of scope.
+- D-019: Demo acceptance and placement require all current mandatory documents Approved, deliberately stricter than the PDF's ambiguous Submitted wording. Rejected requirements can be resubmitted as new immutable attempts; only the latest Pending attempt can be reviewed. Requirement classification changes affect future placement obligations; each placement freezes its required definition IDs at creation.
+- D-020: New opportunities require coordinator approval. Approved, current MOAs are eligible; expiration within 30 inclusive calendar days is Expiring Soon. Pending/future/expired MOAs block new applications/placements. Existing records remain visible.
+- D-021: Capacity is consumed only by placement creation, not acceptance; Completed placements retain their slot, Terminated placements release it. Unique application/placement and one ongoing placement per student are transactional guards. One application per student/opportunity is retained permanently; rejection is not erased by reapplying.
+- D-022: Dates use ISO calendar dates; equal start/end is permitted. Required hours are positive finite numbers; reports are one per placement/work-date, positive up to 12 hours, within placement dates and not future. Submitted and Reviewed totals stay separate; only Reviewed hours count officially. Ongoing placements with no work-date report for over seven days are flagged. Near-completion means at least 75% Reviewed hours.
+- D-023: Each new placement creates exactly two obligations for its assigned faculty/supervisor. Only that active evaluator can submit once. Demo grade range is 0–100 with comments; no institutional pass threshold is invented. Coordinator completion requires reviewed hours, no pending reports, frozen mandatory approvals and both evaluations. Synthetic certificate metadata is separately recorded after completion, never automatically generated or represented as official issuance.
+- D-024: Coordinator has maintenance/decision rights; students submit their own records; faculty review assigned students; supervisors review/evaluate assigned placements and see their own company. Complementary interfaces are explicitly labelled demonstration extensions. Read projections remove unrelated student records and credential verifiers; these are client simulation boundaries, not production confidentiality guarantees.
+- D-025: Seven report categories derive from saved records; CSV uses the exact generated snapshot, quotes fields and prefixes formula-like strings. Settings persist per account and affect default year/landing, table density, dashboard reminder counts, text size and motion. No email/SMS notifications are claimed.
+- D-026: Test stack uses Vitest/Testing Library/fake-indexeddb and Playwright/axe. The first install detected a genuine peer mismatch with Node 20 type definitions; @types/node was aligned to running Node 24 without force/legacy-peer-deps. Framework/runtime versions remain unchanged. Isolated Next build directories preserve pre-existing dev processes.
+
+## Historical Phase 0 decisions
+
 Date 2026-11-19. Statuses distinguish adopted audit handling from implementation proposals requiring later work. No proposed architecture was implemented in Phase 0.
 
 | ID | Status | Decision / rationale | Consequences / revisit gate |

@@ -1,0 +1,134 @@
+import { expect, test } from "@playwright/test";
+import { login } from "./helpers";
+import { fillStudent, logout } from "./helpers";
+test("shared browser tabs refresh after a persisted mutation", async ({
+  page,
+  context,
+}) => {
+  await login(page);
+  const other = await context.newPage();
+  await other.goto("/dashboard/students");
+  await expect(other.locator("tbody tr")).toHaveCount(6);
+  await page.goto("/dashboard/students/create");
+  await fillStudent(page, "SYN-TAB-001", "tabs@example.test", "Tab");
+  await page.getByRole("button", { name: "Save Student", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Tab Synthetic", exact: true }),
+  ).toBeVisible();
+  await expect(other.locator("tbody tr")).toHaveCount(7);
+  await other.close();
+});
+test("academic year and default landing preferences have observable effects", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/dashboard/settings");
+  await page
+    .getByLabel("Default landing page")
+    .selectOption("/dashboard/students");
+  await page.getByLabel("Academic year preference").selectOption("2025-2026");
+  await page.getByRole("button", { name: "Save Preferences" }).click();
+  await expect(page.getByRole("status")).toContainText("Preferences saved");
+  await logout(page);
+  await login(page);
+  await expect(page).toHaveURL(/\/dashboard\/students$/);
+  await expect(page.getByText("No records match these filters.")).toBeVisible();
+  await page.goto("/dashboard/settings");
+  await page.getByLabel("Academic year preference").selectOption("2026-2027");
+  await page.getByRole("button", { name: "Save Preferences" }).click();
+  await page.goto("/dashboard/students");
+  await expect(page.locator("tbody tr")).toHaveCount(6);
+});
+test("company, supervisor, opportunity and requirement edits persist and propagate", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/dashboard/partners/company-1/edit");
+  await page.getByLabel("Company name").fill("Updated Synthetic Labs");
+  await page.getByRole("button", { name: "Save Partner" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Updated Synthetic Labs", exact: true }),
+  ).toBeVisible();
+  await page.goto("/dashboard/internships/opp-1");
+  await expect(page.locator("#main-content")).toContainText(
+    "Updated Synthetic Labs",
+  );
+  await page.goto(
+    "/dashboard/partners/company-1/supervisors/supervisor-1/edit",
+  );
+  await page.getByLabel("Supervisor name").fill("Updated Demo Supervisor");
+  await page.getByRole("button", { name: "Save supervisor" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Updated Demo Supervisor", exact: true }),
+  ).toBeVisible();
+  await page.goto("/dashboard/placements/PL-001");
+  await expect(page.locator("dl")).toContainText("Updated Demo Supervisor");
+  await page.goto("/dashboard/internships/opp-1/edit");
+  await page.getByLabel("Position title").fill("Updated Synthetic Opportunity");
+  await page.getByRole("button", { name: "Save Opportunity" }).click();
+  await expect(
+    page.getByRole("heading", {
+      name: "Updated Synthetic Opportunity",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await page.goto("/dashboard/applications/app-002");
+  await expect(page.locator("#main-content")).toContainText(
+    "Updated Synthetic Opportunity",
+  );
+  await page.goto("/dashboard/requirements/req-1/edit");
+  await page
+    .getByLabel("Description *", { exact: true })
+    .fill("Updated synthetic requirement instructions.");
+  await page.getByRole("button", { name: "Save Requirement" }).click();
+  await expect(page.locator("tbody")).toContainText(
+    "Updated synthetic requirement instructions.",
+  );
+  await page.reload();
+  await expect(page.locator("tbody")).toContainText(
+    "Updated synthetic requirement instructions.",
+  );
+  await page.goto("/dashboard/requirements/submissions/sub-2024-0001-req-1");
+  const download = page.waitForEvent("download");
+  await page
+    .getByRole("link", { name: "Download resume-demo.txt", exact: true })
+    .click();
+  const file = await download;
+  const stream = await file.createReadStream();
+  const chunks = [];
+  for await (const chunk of stream!) chunks.push(chunk);
+  expect(Buffer.concat(chunks).toString("utf8")).toContain("Synthetic Resume");
+});
+test("directory controls, URL back/forward and filtered dashboard destinations", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/dashboard/students");
+  await page
+    .getByLabel("Program", { exact: true })
+    .selectOption("BS Information Technology");
+  await expect(page.locator("tbody tr")).toHaveCount(2);
+  await page.getByRole("button", { name: "Reset filters" }).click();
+  await page.getByLabel("Year level", { exact: true }).selectOption("3rd Year");
+  await expect(page.locator("tbody tr")).toHaveCount(1);
+  await page.getByRole("button", { name: "Reset filters" }).click();
+  await page.getByLabel("Sort by", { exact: true }).selectOption("hours");
+  await expect(page.locator("tbody tr").first()).toContainText("Theo Sample");
+  await page.goto("/dashboard/partners?status=Expiring%20Soon");
+  await expect(page.locator("tbody tr")).toHaveCount(1);
+  await expect(page.locator("tbody")).toContainText("Riverstone Studio");
+  await page.goto("/dashboard");
+  await page.getByRole("link", { name: /Pending applications/ }).click();
+  await expect(page.getByLabel("Status", { exact: true })).toHaveValue(
+    "Pending",
+  );
+  await expect(page.locator("tbody tr")).toHaveCount(1);
+  await page.goBack();
+  await expect(
+    page.getByRole("heading", { name: "Coordinator overview" }),
+  ).toBeVisible();
+  await page.goForward();
+  await expect(page.getByLabel("Status", { exact: true })).toHaveValue(
+    "Pending",
+  );
+});

@@ -1,8 +1,10 @@
 import "./globals.css";
+import { Suspense } from "react";
+import { AppProvider } from "./components/AppProvider";
 
 export const metadata = {
   title: "PUP InternLink",
-  description: "Internship Management System Prototype",
+  description: "Academic internship management — browser-local demonstration",
 };
 
 export default function RootLayout({
@@ -12,7 +14,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Suspense
+          fallback={
+            <main className="page">
+              <p role="status">Loading PUP InternLink…</p>
+            </main>
+          }
+        >
+          <AppProvider>{children}</AppProvider>
+        </Suspense>
+      </body>
     </html>
   );
 }
