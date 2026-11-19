@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { DemoService, UnconnectedApiService } from "../../app/lib/service";
 import { IndexedDbStore } from "../../app/lib/storage";
 import { createSeed, DEMO_PASSWORD } from "../../app/lib/seed";
-import { Database, StudentInput } from "../../app/lib/domain";
+import { AppError, Database, StudentInput } from "../../app/lib/domain";
 import { hours, remainingSlots } from "../../app/lib/rules";
 import { fixture, MemorySession, now } from "../helpers";
 
@@ -27,6 +27,26 @@ async function persisted() {
   return { name, store, session, service };
 }
 describe("authentication and mode isolation", () => {
+  it("preserves valid records when session storage fails during recovery reset", async () => {
+    const { store, service } = await fixture();
+    await service.signIn("coordinator@example.test", DEMO_PASSWORD);
+    await service.execute({ type: "student.save", input }, key());
+    const before = await store.read();
+    const failedSession = new DemoService(
+      store,
+      {
+        get() {
+          throw new AppError("STORAGE_UNAVAILABLE", "Session storage blocked");
+        },
+        set() {},
+      },
+      () => now,
+    );
+    await expect(failedSession.reset("RESET DEMO")).rejects.toThrow(
+      "Session storage blocked",
+    );
+    expect(await store.read()).toEqual(before);
+  });
   it("verifies credentials, inactive accounts, logout and session expiry", async () => {
     const { service, session } = await fixture();
     await expect(service.signIn("", "")).rejects.toThrow(/required/);

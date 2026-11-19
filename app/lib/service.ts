@@ -195,17 +195,21 @@ export class DemoService implements InternLinkService {
         "Type RESET DEMO exactly to discard browser-local demonstration data.",
       );
     let damaged = false;
+    let saved: Database | undefined;
     try {
-      const actor = this.actor(await this.store.read());
+      saved = await this.store.read();
+    } catch (error) {
+      if (error instanceof AppError && error.code === "STORAGE_UNAVAILABLE")
+        damaged = true;
+      else throw error;
+    }
+    if (!damaged) {
+      const actor = this.actor(saved!);
       if (actor?.role !== "Coordinator")
         throw new AppError(
           "FORBIDDEN",
           "Only a coordinator can reset valid demonstration data.",
         );
-    } catch (error) {
-      if (error instanceof AppError && error.code === "STORAGE_UNAVAILABLE")
-        damaged = true;
-      else throw error;
     }
     const seed = await createSeed(this.clock());
     if (damaged && this.store instanceof IndexedDbStore)

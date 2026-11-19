@@ -20,9 +20,12 @@ Additional implementation review decisions:
 
 - D-027: Use installed Next documentation's native history integration for URL-only filters. Read current location inside the handler so rapid reset/sort/search changes cannot reuse stale router parameters. The originally intermittent browser regression now passes.
 - D-028: Preserve existing workspace installations/processes; verify the lockfile separately in a fresh git-archive of implementation checkpoint 10d77a3. Local commits use the same explicit Codex identity as the Phase 0 audit through command-local git configuration; no user/global identity configuration is changed.
-- D-029: Attention cards explicitly constrain their destination to latest document attempts/current academic year and ongoing evaluation/report obligations. Historical attempts remain available through an explicit filter. Near-completion quick links select only ongoing placements with at least75% reviewed hours; progress summary metrics use the selected academic year. Dedicated browser regressions compare each dashboard count to its destination.
+- D-029: Attention cards explicitly constrain their destination to latest document attempts/current academic year and ongoing evaluation/report obligations. Historical attempts remain available through an explicit filter. Near-completion quick links select only ongoing placements with at least 75% reviewed hours; progress summary metrics use the selected academic year. Dedicated browser regressions compare each dashboard count to its destination.
+- D-030: Demo date-only comparisons use UTC ISO days; audit timestamps are ISO UTC and display in browser locale. Engineering input bounds are 10,000 capacity/required hours and 12 daily report hours. These are reversible synthetic safeguards, not an approved institutional calendar or maxima. The final source checkpoint 5bec604 was independently archived and clean-installed after the initial 10d77a3 verification.
 
 ## Historical Phase 0 decisions
+
+Current safeguard D-031: Recovery reset distinguishes unreadable record storage from unreadable session storage. Only an actual record-store failure can enter explicit damaged-data recovery; a session-storage exception preserves valid records and propagates the error. A dedicated service regression verifies the existing records remain identical.
 
 Date 2026-11-19. Statuses distinguish adopted audit handling from implementation proposals requiring later work. No proposed architecture was implemented in Phase 0.
 
