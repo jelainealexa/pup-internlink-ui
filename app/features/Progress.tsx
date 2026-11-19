@@ -246,6 +246,7 @@ export function Progress({ id, action }: FeatureProps) {
     );
   }
   const today = new Date().toISOString().slice(0, 10);
+  const yearPlacements = db.placements.filter((p) => p.academicYear === year);
   const ps = db.placements.filter(
     (p) =>
       p.academicYear === year &&
@@ -258,6 +259,8 @@ export function Progress({ id, action }: FeatureProps) {
       matches(filters.value("company"), companyFor(db, p).id) &&
       matches(filters.value("adviser"), p.adviserId) &&
       matches(filters.value("status"), p.status) &&
+      (!filters.value("near") ||
+        (p.status === "Ongoing" && hours(db, p.id).percent >= 75)) &&
       (!filters.value("review") ||
         db.reports.some(
           (r) => r.placementId === p.id && r.status === "Pending Review",
@@ -276,22 +279,24 @@ export function Progress({ id, action }: FeatureProps) {
         )}
       </PageHeader>
       <div className="metric-links">
-        <Link href="/dashboard/progress?review=pending">
+        <Link href="/dashboard/progress?review=pending&status=Ongoing">
           <strong>
             {
               db.reports.filter(
                 (r) =>
                   r.status === "Pending Review" &&
-                  get(db.placements, r.placementId).status === "Ongoing",
+                  yearPlacements.some(
+                    (p) => p.id === r.placementId && p.status === "Ongoing",
+                  ),
               ).length
             }
           </strong>
           Pending reviews
         </Link>
-        <Link href="/dashboard/progress?status=Ongoing">
+        <Link href="/dashboard/progress?status=Ongoing&near=true">
           <strong>
             {
-              db.placements.filter(
+              yearPlacements.filter(
                 (p) => p.status === "Ongoing" && hours(db, p.id).percent >= 75,
               ).length
             }
@@ -301,6 +306,13 @@ export function Progress({ id, action }: FeatureProps) {
       </div>
       <Filters>
         <Search placeholder="Student name or number" />
+        <Filter
+          name="near"
+          label="Completion focus"
+          choices={[
+            { value: "true", label: "Near completion (75%+ reviewed)" },
+          ]}
+        />
         <Filter
           name="student"
           label="Student"

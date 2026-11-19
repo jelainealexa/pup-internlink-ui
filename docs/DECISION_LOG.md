@@ -16,6 +16,12 @@ The user's complete front-end instruction supersedes Phase 0-only execution limi
 - D-025: Seven report categories derive from saved records; CSV uses the exact generated snapshot, quotes fields and prefixes formula-like strings. Settings persist per account and affect default year/landing, table density, dashboard reminder counts, text size and motion. No email/SMS notifications are claimed.
 - D-026: Test stack uses Vitest/Testing Library/fake-indexeddb and Playwright/axe. The first install detected a genuine peer mismatch with Node 20 type definitions; @types/node was aligned to running Node 24 without force/legacy-peer-deps. Framework/runtime versions remain unchanged. Isolated Next build directories preserve pre-existing dev processes.
 
+Additional implementation review decisions:
+
+- D-027: Use installed Next documentation's native history integration for URL-only filters. Read current location inside the handler so rapid reset/sort/search changes cannot reuse stale router parameters. The originally intermittent browser regression now passes.
+- D-028: Preserve existing workspace installations/processes; verify the lockfile separately in a fresh git-archive of implementation checkpoint 10d77a3. Local commits use the same explicit Codex identity as the Phase 0 audit through command-local git configuration; no user/global identity configuration is changed.
+- D-029: Attention cards explicitly constrain their destination to latest document attempts/current academic year and ongoing evaluation/report obligations. Historical attempts remain available through an explicit filter. Near-completion quick links select only ongoing placements with at least75% reviewed hours; progress summary metrics use the selected academic year. Dedicated browser regressions compare each dashboard count to its destination.
+
 ## Historical Phase 0 decisions
 
 Date 2026-11-19. Statuses distinguish adopted audit handling from implementation proposals requiring later work. No proposed architecture was implemented in Phase 0.

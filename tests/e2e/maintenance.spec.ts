@@ -1,6 +1,62 @@
 import { expect, test } from "@playwright/test";
 import { login } from "./helpers";
 import { fillStudent, logout } from "./helpers";
+test("every dashboard summary opens the matching filtered records", async ({
+  page,
+}) => {
+  await login(page);
+  const cards = await page
+    .locator(".metric-links a")
+    .evaluateAll((links) =>
+      links.map((link) => ({
+        href: link.getAttribute("href")!,
+        count: Number(link.querySelector("strong")!.textContent),
+      })),
+    );
+  expect(cards).toHaveLength(14);
+  for (const card of cards) {
+    await page.goto(card.href);
+    await expect(page.locator("tbody tr")).toHaveCount(card.count);
+  }
+  await page.goto("/dashboard/progress");
+  await page.getByRole("link", { name: /Near completion/ }).click();
+  await expect(page.getByLabel("Completion focus")).toHaveValue("true");
+  await expect(page.getByText("No records match these filters.")).toBeVisible();
+});
+test("dashboard document alerts exclude superseded rejected attempts while retaining history", async ({
+  page,
+}) => {
+  await login(page, "student5@example.test");
+  await page.goto(
+    "/dashboard/requirements/submissions/create?requirement=req-2",
+  );
+  await page
+    .getByLabel("Document *", { exact: true })
+    .setInputFiles({
+      name: "resubmitted-synthetic.txt",
+      mimeType: "text/plain",
+      buffer: Buffer.from(
+        "Synthetic resubmission for latest-attempt filter regression",
+      ),
+    });
+  await page
+    .getByRole("button", { name: "Store and submit document", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Enrollment Clearance", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".content-header")).toContainText("Attempt 2");
+  await logout(page);
+  await login(page);
+  const rejected = page.getByRole("link", { name: /Rejected submissions/ });
+  await expect(rejected.locator("strong")).toHaveText("0");
+  await rejected.click();
+  await expect(page.getByLabel("Submission attempts")).toHaveValue("latest");
+  await expect(page.getByText("No records match these filters.")).toBeVisible();
+  await page.getByLabel("Submission attempts").selectOption("");
+  await expect(page.locator("tbody tr")).toHaveCount(1);
+  await expect(page.locator("tbody")).toContainText("Rejected");
+});
 test("shared browser tabs refresh after a persisted mutation", async ({
   page,
   context,

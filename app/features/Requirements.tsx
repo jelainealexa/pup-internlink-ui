@@ -32,6 +32,7 @@ import {
   matches,
   searchMatches,
   useData,
+  useYear,
 } from "./shared";
 
 export function RequirementChecklist({ studentId }: { studentId: string }) {
@@ -154,7 +155,8 @@ export function AttachmentPreview({ fileId }: { fileId: string }) {
 export function Requirements({ id, action }: FeatureProps) {
   const { db, account, mutate, setNotice } = useData();
   const router = useRouter(),
-    filters = useFilters();
+    filters = useFilters(),
+    year = useYear();
   const coordinator = account.role === "Coordinator";
   const studentId =
     account.role === "Student"
@@ -404,6 +406,9 @@ export function Requirements({ id, action }: FeatureProps) {
   const submissions = db.submissions
     .filter(
       (s) =>
+        get(db.students, s.studentId).academicYear === year &&
+        (filters.value("attempt") !== "latest" ||
+          latestSubmission(db, s.studentId, s.requirementId)?.id === s.id) &&
         (!studentId || s.studentId === studentId) &&
         searchMatches(
           query,
@@ -418,7 +423,7 @@ export function Requirements({ id, action }: FeatureProps) {
     <>
       <PageHeader
         title="Requirements"
-        description="Connected master definitions, stored documents, review history and student eligibility."
+        description={`Connected master definitions, stored documents, review history and student eligibility. Submission year: ${year}.`}
       >
         {coordinator && (
           <Link
@@ -467,6 +472,13 @@ export function Requirements({ id, action }: FeatureProps) {
       )}
       <Filters>
         <Search placeholder="Student or requirement" />
+        {submissionsView && (
+          <Filter
+            name="attempt"
+            label="Submission attempts"
+            choices={[{ value: "latest", label: "Latest per requirement" }]}
+          />
+        )}
         {submissionsView ? (
           <Filter
             name="status"

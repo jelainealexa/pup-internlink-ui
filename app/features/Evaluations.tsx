@@ -144,6 +144,7 @@ export function Evaluations({ id }: FeatureProps) {
       p.academicYear === year &&
       matches(filters.value("student"), applicationFor(db, p).studentId) &&
       matches(filters.value("placement"), p.id) &&
+      matches(filters.value("placementStatus"), p.status) &&
       matches(filters.value("status"), e.status) &&
       matches(filters.value("role"), get(db.accounts, e.evaluatorId).role) &&
       matches(filters.value("evaluator"), e.evaluatorId) &&
@@ -163,6 +164,11 @@ export function Evaluations({ id }: FeatureProps) {
       />
       <Filters>
         <Search placeholder="Student, placement or evaluator" />
+        <Filter
+          name="placementStatus"
+          label="Placement status"
+          choices={options(["Ongoing", "Completed", "Terminated"])}
+        />
         <Filter
           name="status"
           label="Evaluation status"

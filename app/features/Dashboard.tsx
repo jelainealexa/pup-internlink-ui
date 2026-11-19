@@ -80,7 +80,7 @@ export function Dashboard() {
         <h2>Needs attention</h2>
         <div className="metric-links">
           {prefs.requirementAlerts && account.role !== "Company Supervisor" && (
-            <Link href="/dashboard/requirements?view=submissions&status=Pending">
+            <Link href="/dashboard/requirements?view=submissions&status=Pending&attempt=latest">
               <strong>
                 {currentSubs.filter((s) => s.status === "Pending").length}
               </strong>
@@ -88,7 +88,7 @@ export function Dashboard() {
             </Link>
           )}
           {prefs.requirementAlerts && account.role !== "Company Supervisor" && (
-            <Link href="/dashboard/requirements?view=submissions&status=Rejected">
+            <Link href="/dashboard/requirements?view=submissions&status=Rejected&attempt=latest">
               <strong>
                 {currentSubs.filter((s) => s.status === "Rejected").length}
               </strong>
@@ -96,7 +96,7 @@ export function Dashboard() {
             </Link>
           )}
           {prefs.progressAlerts && (
-            <Link href="/dashboard/progress?review=pending">
+            <Link href="/dashboard/progress?review=pending&status=Ongoing">
               <strong>
                 {
                   db.reports.filter(
@@ -112,7 +112,7 @@ export function Dashboard() {
             </Link>
           )}
           {prefs.evaluationAlerts && (
-            <Link href="/dashboard/evaluations?status=Pending">
+            <Link href="/dashboard/evaluations?status=Pending&placementStatus=Ongoing">
               <strong>
                 {
                   db.evaluations.filter(
