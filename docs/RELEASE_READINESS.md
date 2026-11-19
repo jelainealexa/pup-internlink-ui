@@ -1,3 +1,5 @@
+> Historical verification of the previous release. Superseded by the DSI interface-update development candidate; final independent review is postponed. See INTERFACE_UPDATE_IMPLEMENTATION_REPORT.md for current internal verification.
+
 # Release readiness
 
 **PASS for the verified browser-local front-end demonstration only.** Original d71e726 was **FAIL**; application repairs at **dcad283780f3b7ab3ca2ee25c792924d695106a5**; final reviewed application/test candidate **7ca502cc6260232619570b2ee945da5f5c13145b**, branch audit/independent-front-end. The final documentation/evidence commit is its descendant, identifiable with git log (a commit cannot embed its own final hash).

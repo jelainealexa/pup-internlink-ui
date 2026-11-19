@@ -1,3 +1,5 @@
+> Historical verification of the previous release. Superseded by the DSI interface-update development candidate; final independent review is postponed. See INTERFACE_UPDATE_IMPLEMENTATION_REPORT.md for current internal verification.
+
 # Front-end verification and release assessment
 
 **Final verdict: PASS for the verified front-end demonstration operating scope.** Original reviewed commit **d71e7265dbb2d136a0ea7f5f08c13e6b24278ba2**: **FAIL**. Application repair checkpoint **dcad283780f3b7ab3ca2ee25c792924d695106a5**. Final reviewed application/test candidate **7ca502cc6260232619570b2ee945da5f5c13145b** on **audit/independent-front-end**. The final evidence/docs commit is its descendant, identified by Git history. No push or merge.

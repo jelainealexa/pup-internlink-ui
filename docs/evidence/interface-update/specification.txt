@@ -1,0 +1,343 @@
+=== PAGE 1 ===
+ 
+LOGIN AND ACCOUNT MANAGEMENT 
+Initial Option: Login/Activate Account 
+Login Page 
+Email 
+Password 
+Show/Hide Password 
+Forgot Password 
+Student Pre-Registration 
+ 
+(OJT Coordinator/Faculty Adviser ONLY) 
+Student Number 
+Name 
+Program, Year Level, and Section 
+Email Address 
+ 
+Add/Pre-Register Student 
+Edit Student Information 
+Generate Invitation 
+View Account Activation Status 
+Deactivate Student Account 
+Account Activation 
+(Activate Account Page, available only if 
+account is pre-registered but not yet 
+activated) 
+Student Number 
+Email Address 
+Password 
+Confirm Password 
+Activate Account Button 
+Forgot Password 
+Registered Email Address 
+Send Password Reset Link 
+ 
+New Password 
+Confirm New Password 
+Reset Password Button 
+Account Settings 
+View Account Information 
+Change Password 
+Update Email Address 
+Logout 
+ 
+STUDENT DASHBOARD 
+Internship Opportunities 
+View Available Opportunities (Scrollable) 
+Filter by Location, Modality, Required Hrs., 
+etc 
+ 
+Opportunity Title, Description, Company 
+(can be redirected to view Company Profile 
+
+=== PAGE 2 ===
+and MOA), Available Slots, Status 
+ 
+Apply for Internship 
+My Profile 
+Student Information Summary​
+Current Internship Placement 
+Profile Completion Status 
+Faculty Adviser 
+Account Settings 
+Internship Requirements 
+Before Internship, During Internship, and 
+After Internship Tabs:  
+ 
+Requirement List 
+(Name/Description/Classification ex. 
+Mandatory or Optional) 
+Submission Status 
+Upload/View Document 
+Faculty Remarks 
+Resubmit Rejected Documents 
+Submission History 
+Requirement Completion Status 
+My Applications 
+Application History (Submission Date, 
+Status, Application Details, Company 
+Decision) 
+My Internship Placement 
+Placement ID 
+Assigned Company, Supervisor 
+Required Hrs - Hrs Rendered - Approved 
+Hours - Remaining Hours 
+Completion Percentage 
+ 
+Placement Start Date 
+Placement End Date 
+Placement Status 
+ 
+Internship Progress Monitoring 
+Internship Evaluation 
+Internship Progress Monitoring 
+Weekly Report 
+Daily Attendance Record 
+View Submitted Reports 
+Report Approval Status/Supervisor Remarks 
+Internship Evaluation 
+My Evaluations 
+Supervisor Evaluations 
+Evaluation Grades, Dates 
+ 
+
+=== PAGE 3 ===
+OJT COORDINATOR DASHBOARD 
+Dashboard Overview 
+Registered Students 
+Active Companies 
+Expired MOAs 
+Ongoing Application 
+Active Internship Opportunities 
+Ongoing Placement 
+Completed Internship 
+Student Management 
+Total Registered Students 
+Pending Account Activations 
+View Student Records 
+Add/Pre-Register Student 
+Edit Student Information 
+Search / Filter Students 
+View Student Profile 
+View Academic Information 
+View Documentary Requirements 
+View Application History 
+View Internship History 
+Internship Opportunity Management 
+Monitor Company Internship Offerings 
+Approve/Reject Internship Opportunities 
+Submitted for Posting 
+Provide Approval / Rejection Remarks 
+Update Opportunity Status 
+View Available Internship Slots 
+Company Management 
+View Partner Companies 
+Register New Company 
+View Company Records 
+View Company Records 
+Partnership Status 
+MOA Status 
+Faculty Management 
+Register Faculty Account 
+View Faculty Records 
+Assign Students to Faculty Advisers 
+View Faculty Adviser Assignments 
+Monitor Assigned Students per Adviser 
+Internship Monitoring 
+APPLICATION 
+View All Internship Applications 
+Search / Filter Applications 
+View Student Information 
+View Selected Opportunity 
+View Company Information 
+View Application Status 
+View Company Supervisor Decisions 
+
+=== PAGE 4 ===
+Monitor Accepted Applications 
+Identify Students with Existing Placements 
+ 
+PLACEMENTS 
+View All Internship Placements 
+Monitor Student Internship Hours 
+View Submitted Progress Reports 
+View Supervisor Approval Status 
+Monitor Approved Accumulated Hours 
+Monitor Internship Completion 
+View Placement Status 
+ 
+ADVISER DASHBOARD 
+Dashboard Overview 
+Total Assigned Students 
+Pending Requirement Reviews 
+Active Internship Placements 
+Pending Progress Reports 
+Students Nearing Completion 
+Completed Internship Placements 
+Pending Evaluations 
+Student Management 
+View Assigned Students (All, By Company) 
+Search / Filter Students 
+View Student Profile 
+View Academic Information 
+View Documentary Requirements 
+(Approve/Reject Submissions, Provide 
+Remarks) 
+View Internship Application History 
+View Internship Placement Details 
+(Assigned Placement, Position, Company 
+Info, Assigned Supervisor, Required Hours, 
+Accumulated Hrs, Remaining Hrs, 
+Completion Percentage) 
+Progress Monitoring 
+BY COMPANY 
+ 
+View Submitted Progress Reports 
+View Reported Tasks / Activities 
+View Hours Rendered 
+View Submission Date 
+View Supervisor Approval Status 
+View Company Supervisor Remarks 
+Review Student Progress 
+Provide Faculty Adviser Monitoring 
+Remarks 
+
+=== PAGE 5 ===
+Monitor Approved Accumulated Hours 
+Student Evaluation 
+View Assigned Students for Evaluation 
+Create Faculty Adviser Evaluation 
+Enter Evaluation Grade 
+Record Evaluation Date 
+View Previous Evaluations 
+View Evaluation History 
+ 
+COMPANY SUPERVISOR - MAIN DASHBOARD 
+Dashboard Overview 
+Total Internship Opportunities 
+Pending Internship Posting Approvals 
+Approved Internship Postings 
+Active Internship Postings 
+Total Available Internship Slots 
+Total Intern Supervisors 
+Total Current Interns 
+Active MOA Status 
+MOA Expiration Date 
+Company Profile 
+View Company Information 
+-Manage/Edit Company Information 
+  Company Name 
+  Company Address 
+  Contact Information 
+  Company Email Address 
+Internship Posting 
+Create Internship Posting 
+Edit Internship Posting 
+View Internship Postings 
+Review Internship Posting Details 
+(Approve/Reject -> Submit) 
+View Posting Status (Pending Approval 
+COMPANY, Pending Approval 
+Coordinator, Approved, Active, Filled, 
+Deactivated)  
+Activate / Deactivate Approved Internship 
+Postings 
+ 
+Internship Opportunity Title 
+Opportunity Description 
+Number of Available Slots 
+Required Qualifications 
+Required Skills 
+Modality 
+Internship Responsibilities 
+
+=== PAGE 6 ===
+Supervisor-Intern Management 
+Create Intern Supervisor Accounts 
+View Registered Intern Supervisors 
+Assign Internship Opportunities to Intern 
+Supervisors 
+Assign Interns to Intern Supervisors 
+Activate / Deactivate Intern Supervisor 
+Accounts 
+View Intern Supervisor Workload 
+Monitor Assigned Interns 
+ 
+INTERN SUPERVISOR DASHBOARD 
+Dashboard Overview 
+Total Assigned Internship Opportunities 
+Total Applications Received 
+Pending Applications 
+Accepted Applications 
+Rejected Applications 
+Total Assigned Interns 
+Pending Progress Reports 
+Approved Progress Reports 
+Pending Student Evaluations 
+Completed Student Evaluations 
+Supervisor Profile 
+View Personal Information 
+View Company Information 
+Update Contact Information 
+View Assigned Internship Opportunities 
+Application Management 
+View Received Applications 
+Search / Filter Applicants 
+View Applicant Information 
+View Student Academic Information 
+View Submitted Application Requirements 
+Review Applications 
+Accept Applications 
+Reject Applications 
+Provide Application Remarks 
+View Application Submission Date 
+View Application Status 
+View Application Decision History 
+My Interns 
+View Assigned Interns 
+Search / Filter Assigned Interns 
+View Student Information 
+View Internship Placement Details 
+View Assigned Faculty Adviser 
+View Internship Start and End Dates 
+
+=== PAGE 7 ===
+View Required Internship Hours 
+View Approved Accumulated Hours 
+View Internship Completion Progress 
+View Placement Status 
+ 
+Monitor Assigned Intern Progress 
+View Approved Accumulated Internship 
+Hours 
+View Remaining Required Internship Hours 
+View Internship Completion Percentage 
+Monitor Pending Progress Reports 
+View Student Evaluation Status 
+View Internship Placement Status 
+ 
+Progress Management​
+View Submitted Progress Reports 
+View Reported Tasks / Activities 
+View Hours Rendered 
+View Submission Date 
+Review Submitted Progress Reports 
+Validate Reported Activities 
+Approve Progress Reports 
+Reject Progress Reports 
+Provide Supervisor Remarks 
+View Progress Report History 
+ 
+Student Evaluation 
+View Assigned Interns for Evaluation 
+Create Company Evaluation 
+Evaluate Student Performance 
+Enter Evaluation Grade / Rating 
+Provide Evaluation Comments 
+Record Evaluation Date 
+Submit Student Evaluation 
+View Previous Evaluations 
+View Evaluation History 
+ 
+ 
