@@ -1,0 +1,16 @@
+{
+  "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+  "branch": "frontend/interface-update",
+  "status": "?? \"DSI - Interface Content.pdf\"\n?? \"PUP INTERNLINK_System Flow.pdf\"\n",
+  "independence": "Same root session and implementation history; no fresh-context/personnel independence. New evidence collected skeptically; own repairs self-verified.",
+  "pdfs": {
+    "PUP INTERNLINK_System Flow.pdf": {
+      "pages": 23,
+      "sha256": "a8852a86f90ef6931d20b568f1e7ef3c86c000906520cb4f8bd5abb0b7438458"
+    },
+    "DSI - Interface Content.pdf": {
+      "pages": 7,
+      "sha256": "d471342919000a49dfee9bf411336c1dcc58d63046f099e7141919d79ea3cadf"
+    }
+  }
+}

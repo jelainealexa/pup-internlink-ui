@@ -1,0 +1,152 @@
+
+> internlink-ui@0.1.0 test
+> vitest run tests/integration/final-review.test.ts --reporter=default --reporter=json --outputFile=docs/evidence/final-review/initial-adversarial-confirmed.json
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ❯ tests/integration/final-review.test.ts (8 tests | 6 failed) 111ms
+   ❯ final review: account revocation and posting policy (6)
+     × FR-01 revokes a faculty session even if deactivated and reactivated before it next refreshes 35ms
+     × FR-01 administrative student email changes revoke sessions and outstanding reset links 8ms
+     × FR-01 administrative faculty email changes revoke sessions and outstanding reset links 12ms
+     × FR-01 administrative supervisor email changes revoke sessions and outstanding reset links 7ms
+     × FR-01 invalidates an outstanding recovery request when an administrator changes the registered email 8ms
+     × FR-04 activation enforces the documented current-MOA prerequisite and preserves rejected state 8ms
+   ✓ final review: genuine original-version data (2)
+     ✓ preserves the exact old seed records, credentials, files, certificates and official totals; never invents an administrator 21ms
+     ✓ keeps the original version-one snapshot intact when its atomic upgrade write fails 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/final-review.test.ts > final review: account revocation and posting policy > FR-01 revokes a faculty session even if deactivated and reactivated before it next refreshes
+AssertionError: expected { …(8) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "activationState": "Active",
+  "active": true,
+  "credentialVersion": 1,
+  "email": "final-faculty@example.test",
+  "id": "bf85d9de-26a1-4fcb-9a35-647aa8b31143",
+  "name": "Synthetic Final Adviser",
+  "role": "Faculty Adviser",
+  "verifier": "",
+}
+
+ ❯ tests/integration/final-review.test.ts:14:151
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/integration/final-review.test.ts > final review: account revocation and posting policy > FR-01 administrative student email changes revoke sessions and outstanding reset links
+AssertionError: expected { id: 'student-1', …(7) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "activationState": "Active",
+  "active": true,
+  "credentialVersion": 1,
+  "email": "revised-student@example.test",
+  "id": "student-1",
+  "name": "Mira Demo",
+  "role": "Student",
+  "verifier": "",
+}
+
+ ❯ tests/integration/final-review.test.ts:23:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/integration/final-review.test.ts > final review: account revocation and posting policy > FR-01 administrative faculty email changes revoke sessions and outstanding reset links
+AssertionError: expected { id: 'faculty-1', …(7) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "activationState": "Active",
+  "active": true,
+  "credentialVersion": 1,
+  "email": "revised-faculty@example.test",
+  "id": "faculty-1",
+  "name": "Revised Synthetic Adviser",
+  "role": "Faculty Adviser",
+  "verifier": "",
+}
+
+ ❯ tests/integration/final-review.test.ts:23:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/integration/final-review.test.ts > final review: account revocation and posting policy > FR-01 administrative supervisor email changes revoke sessions and outstanding reset links
+AssertionError: expected { id: 'sup-1', …(7) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "activationState": "Active",
+  "active": true,
+  "credentialVersion": 1,
+  "email": "revised-supervisor@example.test",
+  "id": "sup-1",
+  "name": "Morgan Demo",
+  "role": "Intern Supervisor",
+  "verifier": "",
+}
+
+ ❯ tests/integration/final-review.test.ts:23:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/integration/final-review.test.ts > final review: account revocation and posting policy > FR-01 invalidates an outstanding recovery request when an administrator changes the registered email
+AssertionError: promise resolved "'student-1'" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+"student-1"
+
+ ❯ tests/integration/final-review.test.ts:25:600
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/integration/final-review.test.ts > final review: account revocation and posting policy > FR-04 activation enforces the documented current-MOA prerequisite and preserves rejected state
+AssertionError: promise resolved "'opp-1'" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+"opp-1"
+
+ ❯ tests/integration/final-review.test.ts:27:403
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 2 passed (8)
+   Start at  16:14:50
+   Duration  509ms (tests 36%, transform 27%, setup 24%, import 11%, worker 2%)
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/initial-adversarial-confirmed.json

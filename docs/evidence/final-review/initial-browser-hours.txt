@@ -1,0 +1,68 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test tests/e2e/final-review.spec.ts --grep FR-05 --reporter=list --output=test-results/final-initial-hours
+
+[WebServer] (node:28740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:26828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:28796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\final-review.spec.ts:29:1 › FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval (11.2s)
+
+
+  1) [chromium] › tests\e2e\final-review.spec.ts:29:1 › FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('columnheader', { name: 'Rendered Hours', exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('columnheader', { name: 'Rendered Hours', exact: true }) with timeout 10000ms
+      - waiting for getByRole('columnheader', { name: 'Rendered Hours', exact: true })
+
+
+      28 |
+      29 | test("FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval",async({page})=>{
+    > 30 |  await auditLogin(page);const db=await auditSnapshot(page);const total=(studentId:string)=>db.placements.filter(p=>db.applications.find(a=>a.id===p.applicationId)!.studentId===studentId).reduce((n,p)=>n+db.reports.filter(r=>r.placementId===p.id).reduce((m,r)=>m+r.hours,0),0);await page.goto("/dashboard/students");await expect(page.getByRole("columnheader",{name:"Rendered Hours",exact:true})).toBeVisible();const target=page.locator("tbody tr").filter({hasText:"2024-0001"});await expect(target.locator("td").nth(6)).toHaveText(String(total("2024-0001")));await page.getByLabel("Sort by",{exact:true}).selectOption("hours");const expected=[...db.students].sort((a,b)=>total(b.id)-total(a.id)).map(s=>s.studentNumber);await expect(page.locator("tbody td:first-child")).toHaveText(expected);await expect(page.getByLabel("Sort by").locator("option[value=approvedHours]")).toHaveText("Approved Hours");
+         |                                                                                                                                                                                                                                                                                                                                                                                                            ^
+      31 | });
+      32 |
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\final-review.spec.ts:30:396
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\final-initial-hours\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\final-initial-hours\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\final-initial-hours\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\final-initial-hours\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\final-review.spec.ts:29:1 › FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval 

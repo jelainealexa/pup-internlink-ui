@@ -1,0 +1,8 @@
+{
+  "sourceCommit": "5daa83a96bd3b4c2afdf1821b8a7fcbd2764ca6a",
+  "files": {
+    "tests\\fixtures\\legacy-v1\\domain.ts": "1f9ba65d11a33eb5a8df7deff09e03135942b762883ad338092b830c5cabe604",
+    "tests\\fixtures\\legacy-v1\\seed.ts": "ed7ad547ae07d2f0b4c0cba79d29490e5deb00b381720d51727ef3e456ae164c"
+  },
+  "method": "Byte-for-byte git show of original seed and domain, not down-conversion of updated seed."
+}

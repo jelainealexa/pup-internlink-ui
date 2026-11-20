@@ -1,0 +1,1 @@
+Frozen seed.ts and domain.ts copied byte-for-byte from commit5daa83a96bd3b4c2afdf1821b8a7fcbd2764ca6a for genuine version-one migration verification. Not a runtime dataset or a down-converted version-two seed. Only synthetic records/public demo credentials.

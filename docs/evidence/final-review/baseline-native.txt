@@ -1,0 +1,26 @@
+
+> internlink-ui@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/baseline-native.json
+
+
+ RUN  v5.1.1 C:/Users/User 1/AppData/Local/Temp/internlink-final-3698-_jvqbvj0
+
+ ✓ tests/integration/interface-upgrade.test.ts (4 tests) 165ms
+ ✓ tests/unit/rules.test.ts (47 tests) 186ms
+ ✓ tests/integration/interface-permissions.test.ts (6 tests) 453ms
+ ✓ tests/integration/independent-audit.test.ts (21 tests) 580ms
+ ✓ tests/integration/services.test.ts (21 tests) 589ms
+ ✓ tests/integration/interface-update.test.ts (8 tests) 635ms
+ ✓ tests/unit/session.test.ts (8 tests) 10ms
+ ✓ tests/components/independent-forms.test.tsx (2 tests) 71ms
+ ✓ tests/components/forms.test.tsx (3 tests) 277ms
+
+ Test Files  9 passed (9)
+      Tests  120 passed (120)
+   Start at  16:08:18
+   Duration  6.86s (environment 55%, tests 14%, import 12%, transform 12%, setup 6%, worker 1%)
+
+    Isolate  9 workers spawned · ~1.81s startup each (spawn + environment, per file)
+             at least ~517ms faster with isolate: false — reuses workers across files instead of one per file
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/baseline-native.json

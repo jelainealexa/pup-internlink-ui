@@ -1,0 +1,119 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test tests/e2e/final-review.spec.ts --reporter=list --output=test-results/final-initial
+
+[WebServer] (node:32024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:19216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:11848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\final-review.spec.ts:5:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort (12.1s)
+(node:912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › tests\e2e\final-review.spec.ts:9:1 › FR-03 Active posting state and application availability have distinct accurate summaries (11.4s)
+(node:33028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [chromium] › tests\e2e\final-review.spec.ts:14:1 › final I: genuine original snapshot upgrades with retrievable attachments and deliberate administrator provisioning (3.0s)
+  ok 4 [chromium] › tests\e2e\final-review.spec.ts:25:1 › final H: supported same-account tabs revoke together after a password change (1.7s)
+
+
+  1) [chromium] › tests\e2e\final-review.spec.ts:5:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByRole('link', { name: /Total assigned interns$/ }).locator('strong')
+    Expected: "1"
+    Received: "2"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveText" getByRole('link', { name: /Total assigned interns$/ }).locator('strong') with timeout 10000ms
+      - waiting for getByRole('link', { name: /Total assigned interns$/ }).locator('strong')
+        23 × locator resolved to <strong>2</strong>
+           - unexpected value "2"
+
+
+      4 |
+      5 | test("FR-02 My Interns follows placement year rather than hiding an earlier student cohort",async({page})=>{
+    > 6 |  await auditLogin(page);await page.goto("/dashboard/students/2024-0001/edit");const y=new Date().getUTCFullYear();await page.locator("[name=academicYear]").fill(`${y-1}-${y}`);await page.getByRole("button",{name:"Save Changes",exact:true}).click();await expect(page.locator("h1")).toHaveText("Mira Demo");await auditLogout(page);await auditLogin(page,"supervisor@example.test");const card=page.getByRole("link",{name:/Total assigned interns$/});await expect(card.locator("strong")).toHaveText("1");await card.click();await expect(page.locator("tbody tr")).toHaveCount(1);await expect(page.locator("tbody")).toContainText("Mira Demo");await page.reload();await expect(page.locator("tbody")).toContainText("Mira Demo");
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      7 | });
+      8 |
+      9 | test("FR-03 Active posting state and application availability have distinct accurate summaries",async({page})=>{
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\final-review.spec.ts:6:483
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\final-initial\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\final-initial\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\final-initial\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\final-initial\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\final-review.spec.ts:9:1 › FR-03 Active posting state and application availability have distinct accurate summaries 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByRole('link', { name: /Active internship opportunities$/ }).locator('strong')
+    Expected: "2"
+    Received: "1"
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveText" getByRole('link', { name: /Active internship opportunities$/ }).locator('strong') with timeout 10000ms
+      - waiting for getByRole('link', { name: /Active internship opportunities$/ }).locator('strong')
+        23 × locator resolved to <strong>1</strong>
+           - unexpected value "1"
+
+
+       9 | test("FR-03 Active posting state and application availability have distinct accurate summaries",async({page})=>{
+      10 |  await auditLogin(page);await page.goto("/dashboard/partners/company-1/edit");await page.locator("[name=moaEnd]").fill(auditDay(-1));await page.getByRole("button",{name:"Save Partner",exact:true}).click();await expect(page.locator("h1")).toHaveText("Copper Finch Labs");await page.goto("/dashboard");const db=await auditSnapshot(page);const occupied=(id:string)=>db.placements.filter(p=>p.status!=="Terminated"&&db.applications.find(a=>a.id===p.applicationId)!.opportunityId===id).length;const active=db.opportunities.filter(o=>o.status==="Active"&&occupied(o.id)<o.capacity);const eligible=active.filter(o=>{const c=db.companies.find(c=>c.id===o.companyId)!;return c.approved&&c.moaStart<=auditDay()&&c.moaEnd>=auditDay()&&o.supervisorIds?.some(id=>{const s=db.supervisors.find(s=>s.id===id)!;return db.accounts.find(a=>a.id===s.accountId)!.active;});});
+    > 11 |  const card=page.getByRole("link",{name:/Active internship opportunities$/});await expect(card.locator("strong")).toHaveText(String(active.length));await card.click();await expect(page.locator("[name=status]")).toHaveValue("Active");await expect(page.locator("tbody tr")).toHaveCount(active.length);await page.goto("/dashboard");const available=page.getByRole("link",{name:/Available opportunities$/});await expect(available.locator("strong")).toHaveText(String(eligible.length));await available.click();await expect(page.locator("tbody tr")).toHaveCount(eligible.length);
+         |                                                                                                                   ^
+      12 | });
+      13 |
+      14 | test("final I: genuine original snapshot upgrades with retrievable attachments and deliberate administrator provisioning",async({page})=>{
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\final-review.spec.ts:11:115
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\final-initial\final-review-FR-03-Active--605ca-distinct-accurate-summaries-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\final-initial\final-review-FR-03-Active--605ca-distinct-accurate-summaries-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\final-initial\final-review-FR-03-Active--605ca-distinct-accurate-summaries-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\final-initial\final-review-FR-03-Active--605ca-distinct-accurate-summaries-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests\e2e\final-review.spec.ts:5:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort 
+    [chromium] › tests\e2e\final-review.spec.ts:9:1 › FR-03 Active posting state and application availability have distinct accurate summaries 
+  2 passed (43.8s)

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "FR-01",
+    "severity": "MEDIUM",
+    "requirements": [
+      "AUTH-005",
+      "IU-006",
+      "IU-019",
+      "IU-032"
+    ],
+    "module": "Account lifecycle",
+    "location": "app/lib/updates.ts:249; app/lib/commands.ts:120,283",
+    "reproduction": "Use a separate signed-in faculty session. Coordinator deactivates/reactivates the unassigned faculty before that session refreshes. Also edit a student/faculty/supervisor email administratively after generating recovery.",
+    "expected": "Activation/email changes advance credential version and revoke outstanding requests; old supported sessions and requests cannot revive.",
+    "observed": "Faculty activation leaves version unchanged; all three administrative email edit paths retain the old version and request. Prior session still returns account; old reset request succeeds with the changed email.",
+    "evidence": [
+      "initial-adversarial-confirmed.txt/json"
+    ],
+    "impact": "Inconsistent documented session/request revocation; inactive accounts are denied while inactive, so no system-wide role escalation.",
+    "repair": "Apply shared revocation on changed administrative email or activation state, preserving harmless profile-only edits.",
+    "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+    "initialStatus": "Open"
+  },
+  {
+    "id": "FR-02",
+    "severity": "MEDIUM",
+    "requirements": [
+      "IU-035",
+      "IU-038",
+      "DSH-003"
+    ],
+    "module": "Intern Supervisor directory",
+    "location": "app/features/Students.tsx:360-379",
+    "reproduction": "Coordinator changes Mira academic year to prior year; Intern dashboard in current placement year shows2 assigned interns. Follow Total assigned interns.",
+    "expected": "My Interns lists the2 authorized placements in selected placement year regardless of registration cohort.",
+    "observed": "Directory filters Student.academicYear and shows1, omitting Mira despite current assigned placement.",
+    "evidence": [
+      "initial-browser-corrected.txt"
+    ],
+    "impact": "Assigned intern and dashboard directory disagree across legitimate cohorts.",
+    "repair": "Use placement year for interns=true while retaining ordinary student-directory cohort filtering.",
+    "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+    "initialStatus": "Open"
+  },
+  {
+    "id": "FR-03",
+    "severity": "MEDIUM",
+    "requirements": [
+      "DSH-001",
+      "DSH-003",
+      "IU-015"
+    ],
+    "module": "Coordinator dashboard",
+    "location": "app/features/Dashboard.tsx:34-36",
+    "reproduction": "Expire company1 MOA through partner form; both posting records remain Active with slots, only1 remains eligible.",
+    "expected": "Active status summary2; distinct Available summary1, each links to corresponding filter.",
+    "observed": "Card labeled Active internship opportunities displays1 using availability and available=true. Original available summary was relabelled, not retained separately.",
+    "evidence": [
+      "initial-browser.txt"
+    ],
+    "impact": "Incorrect required metric and conflation of posting state with eligibility.",
+    "repair": "Count derived Active posting state with status filter; retain original Available opportunities card separately.",
+    "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+    "initialStatus": "Open"
+  },
+  {
+    "id": "FR-04",
+    "severity": "MEDIUM",
+    "requirements": [
+      "IU-031",
+      "OPP-003"
+    ],
+    "module": "Posting activation",
+    "location": "app/lib/updates.ts:407-448; docs/BUSINESS_RULES.md updated policy",
+    "reproduction": "Deactivate previously approved opp1, expire its company MOA, request activation.",
+    "expected": "Published demo activation policy rejects expired/unapproved MOA without mutation.",
+    "observed": "Activation succeeds and writes Active despite documented current-MOA prerequisite. Student availability independently still blocks applications.",
+    "evidence": [
+      "initial-adversarial-confirmed.txt/json"
+    ],
+    "impact": "Posting lifecycle violates published demonstration rule; no student availability bypass.",
+    "repair": "Enforce existing documented eligibility on activation using the service clock; retain deactivation and historical records.",
+    "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+    "initialStatus": "Open"
+  },
+  {
+    "id": "FR-05",
+    "severity": "MEDIUM",
+    "requirements": [
+      "STU-004",
+      "STU-001"
+    ],
+    "module": "Student directory hours",
+    "location": "app/features/Students.tsx:354-357,387,481-514",
+    "reproduction": "Open student directory containing pending reports, inspect hour columns and sort modes.",
+    "expected": "Original specified rendered-hour display/sort remains alongside updated approved-hour accounting.",
+    "observed": "Only Approved Hours column/sort is exposed; hours sort computes approved, not rendered, despite STU-004 markedPASS.",
+    "evidence": [
+      "initial-browser-hours.txt"
+    ],
+    "impact": "Previously required rendered-hour functionality omitted rather than explicitly superseded.",
+    "repair": "Restore rendered column and hours sort; retain approved display/sort as separate choices with independent oracle.",
+    "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+    "initialStatus": "Open"
+  }
+]

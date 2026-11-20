@@ -1,0 +1,71 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test tests/e2e/final-review.spec.ts --grep FR-02 --reporter=list --output=test-results/final-initial-corrected
+
+[WebServer] (node:17944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:11672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:4116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\final-review.spec.ts:5:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort (11.9s)
+
+
+  1) [chromium] › tests\e2e\final-review.spec.ts:5:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('tbody tr')
+    Expected: 2
+    Received: 1
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('tbody tr') with timeout 10000ms
+      - waiting for locator('tbody tr')
+        23 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      4 |
+      5 | test("FR-02 My Interns follows placement year rather than hiding an earlier student cohort",async({page})=>{
+    > 6 |  await auditLogin(page);await page.goto("/dashboard/students/2024-0001/edit");const y=new Date().getUTCFullYear();await page.locator("[name=academicYear]").fill(`${y-1}-${y}`);await page.getByRole("button",{name:"Save Changes",exact:true}).click();await expect(page.locator("h1")).toHaveText("Mira Demo");await auditLogout(page);await auditLogin(page,"supervisor@example.test");const card=page.getByRole("link",{name:/Total assigned interns$/});await expect(card.locator("strong")).toHaveText("2");await card.click();await expect(page.locator("tbody tr")).toHaveCount(2);await expect(page.locator("tbody")).toContainText("Mira Demo");await page.reload();await expect(page.locator("tbody")).toContainText("Mira Demo");
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+      7 | });
+      8 |
+      9 | test("FR-03 Active posting state and application availability have distinct accurate summaries",async({page})=>{
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\final-review.spec.ts:6:557
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\final-initial-corrected\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\final-initial-corrected\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\final-initial-corrected\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\final-initial-corrected\final-review-FR-02-My-Inte-a7ea2-g-an-earlier-student-cohort-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\final-review.spec.ts:5:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort 

@@ -1,0 +1,1076 @@
+=== PAGE 1 ===
+PROPOSED OVERALL SYSTEM FLOW and PAGE - PUP INTERNLINK 
+1. OVERALL SYSTEM NAVIGATION 
+-​
+The system will initially focus on the Internship Coordinator 
+ 
+LOGIN PAGE  
+PUP InternLink  
+Email Address  
+Password  
+Enter  
+​
+Login functionality: 
+●​ The user enters an email address and password. 
+●​ The system checks the account credentials 
+●​ Only active accounts can access the system 
+●​ The user's role determines which pages and functions they can access 
+SIDEBAR PAGES  
+-​
+After login, the coordinator is redirected to the dashboard 
+ 
+PUP InternLink  
+ 
+INTERNSHIP COORDINATOR  
+Overview / Dashboard 
+ 
+INTERNSHIP MANAGEMENT 
+Students 
+Industry Partners 
+Requirements 
+Opportunities 
+Applications 
+Placements 
+Progress Monitoring 
+Evaluations 
+ 
+Reports & Analytics 
+Settings 
+ 
+2. DASHBOARD / OVERVIEW  - (hindi pa final here dikopa mafinal if ano ididisplay) 
+Purpose: Provide the coordinator with a summary of the entire internship program and direct 
+access to tasks that need attention. 
+The dashboard should answer these questions immediately: 
+ 
+
+=== PAGE 2 ===
+●​ How many students are registered? 
+●​ How many industry partners are registered? 
+●​ How many internship opportunities are available? 
+●​ How many applications are pending? 
+●​ How many students are currently placed? 
+●​ How many students still need progress monitoring or evaluation? 
+ 
+Recommended Dashboard Sections  
+ 
+Section  
+Information to Display  
+Summary Cards  
+Total Students, Industry Partners, Opportunities, Applications  
+Application Summary  
+Pending, Accepted, and Rejected applications  
+Placement Summary  
+Ongoing, Completed, and Terminated placements  
+Requirements Summary  Pending document reviews and rejected submissions  
+Progress Summary  
+Total students with ongoing placements and their rendered hours  
+Evaluation Summary  
+Pending company and faculty evaluations  
+Recent Activities  
+Recently registered students, companies, applications, and 
+placements  
+Quick Actions  
+Add Student, Add Partner, Create Opportunity, Review 
+Applications  
+ 
+Dashboard interaction flow  
+-​
+The summary cards here is dapat clickable 
+ 
+Dashboard Item  
+When Clicked  
+Total Students  
+Opens Students with all student records  
+Industry Partners  
+Opens Industry Partners  
+Available Opportunities  
+Opens Opportunities  
+Pending Applications  
+Opens Applications filtered to Pending  
+Ongoing Placements  
+Opens Placements filtered to Ongoing  
+Pending Requirements  
+Opens Requirements filtered to pending submissions  
+Pending Evaluations  
+Opens Evaluations filtered to pending evaluations  
+ 
+ 
+
+=== PAGE 3 ===
+3. STUDENTS PAGE  
+Purpose: Manage student records and provide access to each student's complete internship 
+information 
+ 
+A. Student Directory  
+-​
+When the coordinator clicks Students, the system displays a student directory 
+ 
+Recommended table columns  
+ 
+Column  
+Description  
+Student ID  
+Unique student record identifier  
+Student Name  
+First and last name  
+Program  
+Academic program  
+Year Level & Section 
+Current year level & section 
+Placement  
+Assigned company or Not Yet Placed  
+Status  
+Internship or application status summary  
+Hours  
+Accumulated rendered hours  
+ 
+Directory functionality (additional display don sa page aside sa student directory?) 
+ 
+●​ Search by student name or student ID 
+●​ Filter by program, year level, section, and internship status 
+●​ Sort by student name, student ID, or rendered hours 
+●​ Add Student 
+●​ View Student Profile 
+●​ Edit Student Information 
+●​ Export Student Records? optional 
+ 
+Add Student  
+-​
+When the coordinator clicks Add Student, open a form containing:  
+ 
+Field  
+Requirement  
+Student ID 
+Required and unique  
+First Name  
+Required  
+Last Name  
+Required  
+Email  
+Required and unique  
+ 
+
+=== PAGE 4 ===
+Program  
+Required  
+Year Level & Section 
+Required  
+ 
+After saving: 
+1.​ Validate the required information 
+2.​ Check for duplicate student numbers and email addresses 
+3.​ Save the student record 
+4.​ Display a success message 
+5.​ Redirect to the newly created Student Profile 
+B. Student Profile – (when a Student Record is clicked) 
+-​
+This is where the coordinator should be able to see the student's complete information 
+without searching through multiple pages 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Student Profile Sections 
+ 
+Section  
+Information Displayed  
+Profile  
+Student information, student number, program, year, and section  
+Requirements  
+Submitted documents, submission dates, review status, and remarks  
+Applications  
+Internship opportunities applied for and their statuses  
+Placement  
+Assigned company, opportunity, supervisor, adviser, start date, end 
+date, and required hours  
+Progress  
+Progress reports, tasks, rendered hours, and accumulated hours  
+Evaluations  
+Company supervisor and faculty adviser evaluation records  
+ 
+ 
+
+=== PAGE 5 ===
+Example: Coordinator clicks a student 
+The flow should work like this: 
+1.​ Coordinator opens Students. 
+2.​ Searches for a student by name or student ID. 
+3.​ Clicks the student's record 
+4.​ System opens the Student Profile 
+5.​ Coordinator reviews the student's information 
+6.​ Coordinator clicks Applications to check application history 
+7.​ Coordinator clicks Placement to view the assigned company and internship details 
+8.​ Coordinator clicks Progress to review rendered hours and submitted reports. 
+9.​ Coordinator clicks Evaluations to check evaluation records 
+Purpose nyan is itez: The coordinator should not have to return to the main sidebar every time 
+they want to inspect another part of the same student's record 
+The Student Profile should act as a central access point for that student's related information 
+4. INDUSTRY PARTNERS PAGE  
+Purpose: Manage registered partner companies, their contact information, MOA records, 
+company supervisors, and internship opportunities 
+ 
+A. Industry Partners Director 
+-​
+When the coordinator clicks Industry Partners, display all registered companies 
+Recommended summary filters 
+●​ All Partners 
+●​ Active 
+●​ Pending 
+●​ Expiring Soon 
+●​ Expired 
+Recommended table columns  
+ 
+Column  
+Description  
+Company ID  
+Unique company identifier  
+Company Name  
+Registered company name  
+Industry  
+Company's industry  
+Contact Person  
+Main company representative  
+Email  
+Company contact email  
+Contact Number  
+Company contact number  
+ 
+
+=== PAGE 6 ===
+Available Slots  
+Total internship slots offered  
+MOA Expiration  
+Partnership end date  
+Status  
+Computed partnership status  
+Actions  
+View Profile, Edit  
+ 
+Directory functionality 
+ 
+●​ Search by company name 
+●​ Filter by partnership status and industry 
+●​ Sort by company name or MOA expiration 
+●​ Add Partner 
+●​ View Company Profile 
+●​ Edit Company Information 
+ 
+B. Add Partner 
+-​
+When the coordinator clicks Add Partner, display the registration form 
+ 
+Field  
+Requirement  
+Company Name  
+Required and unique  
+Industry  
+Required  
+Address  
+Required  
+Contact Person  
+Required  
+Contact Email  
+Required and unique  
+Contact Number  
+Required  
+MOA Start Date  
+Required  
+MOA End Date  
+Required  
+After saving: 
+1.​ Validate company information 
+2.​ Check for duplicate company names and contact emails 
+3.​ Save the company record 
+4.​ Display a success message 
+5.​ Redirect to the Company Profile 
+6.​ Allow the coordinator to register company supervisors 
+ 
+
+=== PAGE 7 ===
+C. Company Profile 
+-​
+Every company should have its own profile page 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Company Profile Sections  
+Section  
+Information  
+Overview  
+Company details, address, and contact information  
+Partnership  
+MOA start date, expiration date, and partnership status  
+Supervisors  
+Registered company supervisors and their contact information  
+Opportunities  
+Internship postings offered by the company  
+Placements  
+Students currently or previously assigned to the company  
+ 
+Company Supervisor Management 
+-​
+Inside the Supervisors section, the coordinator should be able to: 
+●​ View registered supervisors 
+●​ Add Company Supervisor 
+●​ Edit supervisor information 
+●​ View assigned internship placements 
+Each company supervisor must belong to exactly one registered company and be associated 
+with a user account 
+After clicking a company: 
+1.​ Coordinator opens Industry Partners 
+ 
+
+=== PAGE 8 ===
+2.​ Searches for a company 
+3.​ Clicks the company record 
+4.​ Opens the Company Profile 
+5.​ Reviews company and MOA information 
+6.​ Clicks Supervisors to manage company representatives 
+7.​ Clicks Opportunities to review available internship postings 
+8.​ Clicks Placements to view students assigned to the company 
+Important UX decision: Company supervisors should be managed inside the Company Profile 
+instead of requiring a completely separate sidebar page 
+5. REQUIREMENTS PAGE 
+Purpose: Manage the documents required from students and review their submitted 
+requirements 
+A. Requirements Dashboard 
+Recommended sections: 
+●​ All Requirements 
+●​ Mandatory Requirements 
+●​ Optional Requirements 
+●​ Student Submissions 
+●​ Pending Reviews 
+●​ Approved Submissions 
+●​ Rejected Submissions 
+ 
+Requirements List  
+Column  
+Description  
+Requirement ID  
+Unique requirement identifier  
+Requirement Name  
+Name of the required document  
+Description  
+Explanation of the requirement  
+Classification  
+Mandatory or Optional  
+Submission Count  
+Number of student submissions  
+Actions  
+View, Edit  
+ 
+Add Requirement 
+Fields: 
+●​ Requirement Name 
+●​ Description 
+●​ Classification: Mandatory or Optional 
+ 
+
+=== PAGE 9 ===
+After saving: Return to the Requirements List and display the newly created requirement 
+ 
+B. Student Submissions 
+When the coordinator opens Student Submissions, display uploaded documents 
+Column  
+Description  
+Submission ID  
+Unique submission identifier  
+Student Name  
+Student who submitted the file  
+Requirement  
+Name of the document  
+Submission Date  
+Date submitted  
+Status  
+Pending, Approved, or Rejected  
+Reviewed By  
+Authorized faculty reviewer  
+Actions  
+View Submission, Review  
+Review Submission Flow 
+1.​ Coordinator opens Student Submissions 
+2.​ Searches for a student or requirement 
+3.​ Clicks View Submission 
+4.​ System displays the uploaded file and student details 
+5.​ Coordinator reviews the document 
+6.​ Selects Approve or Reject 
+7.​ If rejected, the coordinator must enter a rejection reason 
+8.​ System saves the review result and reviewer information 
+C. Student Requirements Connection 
+When the coordinator opens a Student Profile and clicks Requirements, they should see the 
+student's document checklist 
+Example:  
+Requirement  
+Classification  
+Submission Status  
+Resume  
+Mandatory  
+Approved  
+Transcript of Records  
+Mandatory  
+Pending  
+Medical Certificate  
+Mandatory  
+Rejected  
+ 
+
+=== PAGE 10 ===
+Additional Documents  
+Optional  
+Not Submitted  
+The coordinator should be able to click a document and open its submission details directly 
+Important UX decision: Requirements should have two connected views: the master list of 
+required documents and the student submission review list. This avoids mixing document 
+configuration with individual student submissions 
+The system should also identify students with incomplete mandatory requirements because the 
+ERD specifies that all mandatory requirements must be submitted before a student becomes 
+eligible for placement 
+6. OPPORTUNITIES PAGE 
+Purpose: Manage internship opportunities offered by registered industry partners 
+ 
+A. Opportunities Directory 
+Recommended filters: 
+●​ All Opportunities 
+●​ Active / Approved 
+●​ Pending Approval 
+●​ Closed 
+Recommended table columns  
+Column  
+Description  
+Opportunity ID  
+Unique opportunity identifier  
+Position Title  
+Internship position  
+Company  
+Partner company  
+Description  
+Internship description  
+Available Slots  
+Number of available internship slots  
+Applications  
+Number of submitted applications  
+Status  
+Opportunity status  
+Actions  
+View, Edit  
+Directory functionality 
+●​ Search by position title or company 
+●​ Filter by company and opportunity status 
+ 
+
+=== PAGE 11 ===
+●​ Add Opportunity 
+●​ View Opportunity Details 
+●​ Edit Opportunity 
+●​ Approve Opportunity, if approval is required 
+B. Add Opportunity 
+When the coordinator clicks Add Opportunity, display: 
+Field  
+Requirement  
+Company  
+Required; select registered company  
+Position Title  
+Required  
+Description  
+Required  
+Available Slots  
+Required; must be greater than zero  
+Status  
+System-managed or selected according to approval rules  
+After saving: 
+1.​ Validate the information 
+2.​ Confirm that the selected company exists 
+3.​ Save the opportunity 
+4.​ If approval is required, keep it unavailable to students until approved 
+5.​ Redirect to Opportunity Details 
+C. Opportunity Details 
+Every opportunity should have its own details page. 
+Recommended sections: 
+●​ Opportunity Overview 
+●​ Company Information 
+●​ Available Slots 
+●​ Application Summary 
+●​ Applicants 
+●​ Assigned Placements 
+Example: Coordinator opens an opportunity 
+1.​ Opens Opportunities 
+2.​ Searches for Software Developer Intern 
+3.​ Opens the opportunity 
+4.​ Reviews the company and available slots 
+ 
+
+=== PAGE 12 ===
+5.​ Clicks Applicants 
+6.​ System displays students who applied 
+7.​ Coordinator can open an application to review the student's information 
+Important UX decision: The Applicants section should be directly accessible from Opportunity 
+Details. This avoids requiring the coordinator to search for the same opportunity again in 
+Applications 
+7. APPLICATIONS PAGE 
+Purpose: Review student applications and manage their application statuses 
+This page is one of the most important parts of the system because it connects students to 
+internship opportunities. 
+A. Applications Directory 
+Recommended status filters: 
+●​ All Applications 
+●​ Pending 
+●​ Accepted 
+●​ Rejected 
+These three application statuses follow the approved project requirements and ERD business 
+rules 
+Recommended table columns  
+Column  
+Description  
+Application ID  
+Unique application identifier  
+Student Name  
+Applicant  
+Student Number  
+Official student number  
+Opportunity  
+Applied internship position  
+Company  
+Company offering the position  
+Application Date  
+Date submitted  
+Status  
+Pending, Accepted, or Rejected  
+Actions  
+View Application  
+Directory functionality 
+ 
+
+=== PAGE 13 ===
+●​ Search by student name or student number 
+●​ Filter by application status 
+●​ Filter by company 
+●​ Filter by opportunity 
+●​ Sort by application date 
+●​ View Application Details 
+B. Application Details 
+When the coordinator clicks an application, display: 
+Student Information 
+●​ Student Name 
+●​ Student Number 
+●​ Program 
+●​ Year Level 
+●​ Section 
+Opportunity Information 
+●​ Position Title 
+●​ Company Name 
+●​ Opportunity Description 
+●​ Available Slots 
+Application Information 
+●​ Application ID 
+●​ Submission Date 
+●​ Application Status 
+Related Requirements 
+●​ Mandatory requirement checklist 
+●​ Submission status 
+●​ Document review results 
+Available Actions  
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== PAGE 14 ===
+Accept Application Flow 
+1.​ Coordinator opens the application 
+2.​ Reviews the student's information and application 
+3.​ Checks the student's mandatory requirements 
+4.​ Confirms the opportunity and available slots 
+5.​ Clicks Accept 
+6.​ System updates the application status to Accepted 
+7.​ System displays a Create Placement action 
+Reject Application Flow 
+1.​ Coordinator opens the application 
+2.​ Reviews the application 
+3.​ Clicks Reject 
+4.​ System asks for confirmation and a rejection reason 
+5.​ Coordinator confirms 
+6.​ System updates the application status to Rejected 
+7.​ The application remains available in the student's application history 
+What happens when the coordinator clicks Create Placement? 
+The coordinator should be directed to the Create Placement form, with the student, application, 
+opportunity, and company information already populated 
+This is where Applications connects directly to Placements 
+8. PLACEMENTS PAGE 
+Purpose: Manage the official internship assignments of students whose applications have been 
+accepted 
+ 
+A. Placements Directory 
+Recommended filters: 
+●​ All Placements 
+●​ Ongoing 
+●​ Completed 
+●​ Terminated 
+These statuses follow the placement statuses identified in the database design and business 
+rules 
+ 
+ 
+ 
+
+=== PAGE 15 ===
+Recommended table columns  
+Column  
+Description  
+Placement ID  
+Unique placement identifier  
+Student Name  
+Assigned student  
+Company  
+Assigned industry partner  
+Opportunity  
+Internship position  
+Faculty Adviser  
+Assigned PUP faculty adviser  
+Company Supervisor  
+Assigned company supervisor  
+Start Date  
+Internship start date  
+End Date  
+Expected internship end date  
+Required Hours  
+Total required internship hours  
+Rendered Hours  
+Accumulated submitted hours  
+Status  
+Ongoing, Completed, or Terminated  
+Actions  
+View Placement  
+Directory functionality 
+●​ Search by student name or placement ID 
+●​ Filter by company 
+●​ Filter by faculty adviser 
+●​ Filter by placement status 
+●​ Sort by start date or end date 
+●​ View Placement Details 
+B. Create Placement 
+The Create Placement action should be available from an accepted application. 
+Section 1: Application Information 
+Automatically retrieve: 
+●​ Application ID 
+●​ Student ID 
+●​ Student Name 
+●​ Internship Opportunity 
+ 
+
+=== PAGE 16 ===
+●​ Company 
+These fields should be read-only because they already exist in the related database records 
+Section 2: Placement Information  
+Field  
+Requirement  
+Placement ID  
+Auto-generated  
+Start Date  
+Required  
+End Date  
+Required  
+Required Hours  
+Required  
+Placement Status  
+System-managed  
+Approved By  
+Assigned coordinator, if approval is recorded  
+Section 3: Supervisor Assignment  
+Field  
+Requirement  
+Faculty Adviser  
+Required  
+Company Supervisor  
+Required  
+The selected company supervisor must belong to the company offering the internship 
+opportunity 
+The faculty adviser must be a registered faculty member 
+Section 4: Review and Save 
+Before creating the placement, display a summary of the information 
+ 
+After clicking Save: 
+1.​ Validate all required fields 
+2.​ Confirm that the application is Accepted 
+3.​ Confirm that no placement already exists for that application 
+4.​ Validate the start and end dates 
+5.​ Save the placement and its assignments 
+6.​ Generate the Placement ID 
+7.​ Redirect to Placement Details 
+ 
+C. Placement Details 
+ 
+
+=== PAGE 17 ===
+This should serve as the central record for the student's internship assignment 
+Section  
+Information  
+Overview  
+Student, company, opportunity, placement ID, status  
+Placement Information  
+Start date, end date, required hours  
+Supervisors  
+Assigned faculty adviser and company supervisor  
+Progress  
+Rendered hours, remaining hours, completion percentage  
+Progress Reports  
+Submitted tasks, dates, hours, supervisor remarks  
+Evaluations  
+Company and faculty evaluation records  
+Certificate  
+Certificate number and issue date, when completed  
+Example: Coordinator opens a placement 
+1.​ Opens Placements 
+2.​ Searches for a student or placement ID 
+3.​ Opens the Placement Details page 
+4.​ Reviews the student's assigned company and supervisors 
+5.​ Clicks Progress Reports to review submitted hours and activities 
+6.​ Clicks Evaluations to check whether the company and faculty evaluations are complete 
+7.​ Once completion conditions are satisfied, the coordinator can review the completion 
+record and certificate information 
+9. PROGRESS MONITORING PAGE 
+Purpose: Monitor student internship progress through submitted progress reports and 
+accumulated rendered hours. 
+ 
+A. Progress Monitoring Dashboard 
+Recommended summary cards: 
+●​ Total Ongoing Placements 
+●​ Students Currently Reporting 
+●​ Pending Progress Reviews 
+●​ Students Near Completion 
+●​ Students Who Completed Required Hours 
+Progress Monitoring Table  
+Column  
+Description  
+ 
+
+=== PAGE 18 ===
+Student Name  
+Student being monitored  
+Student Number  
+Official student number  
+Company  
+Assigned company  
+Faculty Adviser  
+Assigned adviser  
+Required Hours  
+Total internship hours  
+Rendered Hours  
+Accumulated submitted hours  
+Remaining Hours  
+Required minus rendered hours  
+Progress  
+Completion percentage  
+Status  
+Placement status  
+Actions  
+View Progress  
+Progress calculation 
+ 
+ 
+𝐶𝑜𝑚𝑝𝑙𝑒𝑡𝑖𝑜𝑛𝑃𝑒𝑟𝑐𝑒𝑛𝑡𝑎𝑔𝑒= 𝑅𝑒𝑛𝑑𝑒𝑟𝑒𝑑𝐻𝑜𝑢𝑟𝑠
+𝑅𝑒𝑞𝑢𝑖𝑟𝑒𝑑𝐻𝑜𝑢𝑟𝑠× 100
+For example: 
+●​ Required Hours: 486 
+●​ Rendered Hours: 243 
+●​ Remaining Hours: 243 
+●​ Completion: 50% 
+B. Progress Details 
+When the coordinator clicks a student record, display: 
+Placement Summary 
+●​ Student Information 
+●​ Company 
+●​ Opportunity 
+●​ Faculty Adviser 
+●​ Company Supervisor 
+●​ Required Hours 
+●​ Accumulated Rendered Hours 
+Progress Report History (sample records) 
+ 
+
+=== PAGE 19 ===
+Report ID  
+Submission 
+Date  
+Hours 
+Rendered  
+Tasks Reported  
+Remarks  
+PR-001 
+Oct. 10  
+40  
+Website 
+development  
+Good progress  
+PR-002 
+Oct. 17  
+40  
+Database testing  Satisfactory  
+PR-003 
+Oct. 24  
+35 
+Documentation  
+Under review  
+Available Actions 
+●​ View Progress Report 
+●​ Review Report 
+●​ View Student Profile 
+●​ View Placement Details 
+The system should display the report's hours, tasks, submission date, and supervisor remarks. 
+Progress Monitoring Flow 
+1.​ Coordinator opens Progress Monitoring 
+2.​ Searches for a student or filters by company or adviser 
+3.​ Clicks a student record 
+4.​ Opens Progress Details 
+5.​ Reviews the submitted reports 
+6.​ Checks accumulated rendered hours 
+7.​ Identifies missing or delayed reports 
+8.​ Returns to the placement record when further action is needed 
+10. EVALUATIONS PAGE  
+Purpose: Monitor and manage the internship evaluation records submitted by company 
+supervisors and faculty advisers.  
+ 
+A. Evaluations Dashboard 
+Recommended filters: 
+●​ All Evaluations 
+●​ Pending 
+●​ Submitted 
+●​ Company Evaluation 
+●​ Faculty Evaluation 
+The evaluation type can be identified through the evaluator's role and related record, rather than 
+adding an unnecessary evaluator type field 
+ 
+Evaluations Table  
+ 
+
+=== PAGE 20 ===
+Column  
+Description  
+Evaluation ID  
+Unique evaluation identifier  
+Student Name  
+Student being evaluated  
+Company  
+Assigned industry partner  
+Placement ID  
+Related placement  
+Evaluator  
+Company supervisor or faculty adviser  
+Evaluation Date  
+Date evaluated  
+Grade  
+Evaluation score  
+Status  
+Pending or Submitted  
+Actions  
+View Evaluation  
+ 
+Evaluation Details 
+When the coordinator clicks an evaluation record, display: 
+●​ Student Information 
+●​ Placement Information 
+●​ Company Information 
+●​ Evaluator Information 
+●​ Evaluation Date 
+●​ Evaluation Grade 
+●​ Evaluation Comments 
+Evaluation Flow 
+1.​ Coordinator opens Evaluations 
+2.​ Views all evaluation records 
+3.​ Filters by pending evaluations 
+4.​ Opens a student's evaluation details 
+5.​ Checks whether the company supervisor has submitted an evaluation 
+6.​ Checks whether the faculty adviser has submitted an evaluation 
+7.​ Confirms that both required evaluations are recorded 
+8.​ The system updates the evaluation completion summary 
+The system should prevent more than two evaluations per placement and ensure that only 
+authorized company supervisors or faculty advisers evaluate their assigned students 
+ 
+11. REPORTS & ANALYTICS PAGE  
+Purpose: Generate consolidated reports about students, companies, applications, placements, 
+and evaluations 
+ 
+
+=== PAGE 21 ===
+This page is included because generating reports is one of the nine approved functional 
+requirements 
+Recommended report categories  
+Report  
+Information  
+Student Report  
+Registered students, programs, year levels, and sections  
+Industry Partner Report  
+Registered companies and MOA information  
+Opportunity Report  
+Internship opportunities and available slots  
+Application Report  
+Pending, accepted, and rejected applications  
+Placement Report  
+Student placements, companies, and placement statuses  
+Progress Report  
+Required hours, rendered hours, and completion  
+Evaluation Report  
+Company and faculty evaluation scores  
+ 
+Report Generation Flow 
+1.​ Coordinator opens Reports & Analytics 
+2.​ Selects a report category 
+3.​ Selects available filters, such as academic year, company, or status 
+4.​ Clicks Generate Report 
+5.​ System retrieves the related records 
+6.​ Displays the generated report 
+7.​ Coordinator can export or print the report 
+ 
+PAGE-TO-PAGE CONNECTIONS 
+This table summarizes where the important buttons and actions should lead 
+ 
+Current Page  
+Action  
+Destination  
+Dashboard  
+Total Students  
+Students  
+Dashboard  
+Pending Applications  
+Applications filtered by Pending  
+Dashboard  
+Expiring Partners  
+Industry Partners filtered by expiration  
+Students  
+Click Student  
+Student Profile  
+Student Profile  
+View Application  
+Application Details  
+Student Profile  
+View Placement  
+Placement Details  
+Student Profile  
+View Progress  
+Progress Details  
+ 
+
+=== PAGE 22 ===
+Industry Partners  
+Click Company  
+Company Profile  
+Company Profile  
+View Supervisor  
+Supervisor Details  
+Company Profile  
+View Opportunity  
+Opportunity Details  
+Opportunities  
+View Applicants  
+Applications filtered by opportunity  
+Applications  
+View Student  
+Student Profile  
+Applications  
+Accept  
+Update Application Status  
+Applications  
+Create Placement  
+Create Placement Form  
+Placements  
+Click Placement  
+Placement Details  
+Placement Details  
+View Progress  
+Progress Details  
+Placement Details  
+View Evaluations  
+Evaluation Details  
+Progress Monitoring  
+Click Student  
+Progress Details  
+Evaluations  
+Click Evaluation  
+Evaluation Details  
+Reports & Analytics  
+Generate Report  
+Report Results  
+ 
+COMPLETE USER NAVIGATION EXAMPLES  
+Scenario A: Checking a Student's Internship Status  
+Student Record Navigation 
+1.​ Dashboard​
+Coordinator clicks Students 
+2.​ Students Directory​
+Searches for a student by name or student number 
+3.​ Student Profile​
+Opens the student's complete information 
+4.​ Applications​
+Checks the student's submitted internship applications and their statuses 
+5.​ Placement​
+Opens the assigned company, internship position, and supervisor information 
+6.​ Progress​
+Checks rendered hours and submitted progress reports 
+7.​ Evaluations​
+Checks whether the company supervisor and faculty adviser have submitted their 
+evaluations 
+ 
+Scenario B: Registering a New Industry Partner  
+ 
+
+=== PAGE 23 ===
+Industry Partner Registration 
+1.​ Dashboard → Industry Partners 
+2.​ Click Add Partner 
+3.​ Enter company information and MOA details 
+4.​ Save the company record 
+5.​ Open the newly created Company Profile 
+6.​ Open Supervisors and register company representatives 
+7.​ Open Opportunities and create internship postings for the company 
+ 
+Scenario C: Processing an Internship Application  
+Application Processing 
+1.​ Dashboard → Applications 
+2.​ Open Pending Applications 
+3.​ Search for the applicant 
+4.​ Open Application Details 
+5.​ Review student information and mandatory requirements 
+6.​ Check the internship opportunity and available slots 
+7.​ Accept or Reject the application 
+8.​ If Accepted: Show Create Placement 
+9.​ If Rejected: Save the rejection reason and return to the Applications Directory 
+ 
+Scenario D: Creating and Monitoring a Placement  
+Placement and Monitoring 
+1.​ Applications → Accepted Application 
+2.​ Click Create Placement 
+3.​ Complete placement dates and required hours 
+4.​ Assign a faculty adviser and company supervisor 
+5.​ Review and save the placement 
+6.​ Open Placement Details 
+7.​ Monitor submitted progress reports and rendered hours 
+8.​ Review company and faculty evaluations 
+9.​ Verify internship completion and certificate information 
+ 
+ 
+ 
+ 
+ 
+SUMMARIZE SYSTEM FLOW  
+ 
+ 
+ 
