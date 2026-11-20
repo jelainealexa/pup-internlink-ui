@@ -1,6 +1,6 @@
 # API contract — draft for backend agreement
 
-Updated for the implemented front-end demonstration, 2026-11-19. The actual client boundary is `InternLinkService` and `Command` in `app/lib/domain.ts`, implemented by `DemoService` for IndexedDB. `UnconnectedApiService` explicitly rejects every operation with BACKEND_UNAVAILABLE. There are no HTTP endpoints or actual API integration in this delivery.
+Updated for the seven-page interface development candidate, 2026-11-20. The actual client boundary is `InternLinkService` and `Mutation`/`AccessCommand` in `app/lib/domain.ts`, implemented by `DemoService` for IndexedDB. `UnconnectedApiService` explicitly rejects every operation with BACKEND_UNAVAILABLE. There are no HTTP endpoints or actual API integration in this delivery.
 
 **There is no existing API integration or approved API specification in this repository.** All routes/payloads below are proposed interface examples, not working endpoints or database facts. Do not build production behavior against them until the backend owner confirms the ERD/DTO/session/upload contract. An unavailable API must produce an error, never synthetic success.
 
@@ -64,7 +64,7 @@ External agreement needed: base URL/version; schema and identifiers; auth/sessio
 
 ## Implemented client contract versus proposed HTTP mapping
 
-`InternLinkService` exposes `mode`, `signIn(email,password)`, `signOut()`, `currentAccount()`, `read()`, `execute(command,requestId,expectedRevision?)`, `attachment(id)`, `reset(confirmation)` and `subscribe(listener)`. All except mode/subscribe return Promises. Mutations return the saved record ID; errors reject with `AppError {code,message}`. Current codes are VALIDATION, UNAUTHENTICATED, FORBIDDEN, NOT_FOUND, CONFLICT, STORAGE_UNAVAILABLE and BACKEND_UNAVAILABLE. Proposed transport envelopes/codes above may differ and need one explicit adapter mapping.
+`InternLinkService` exposes `mode`, `signIn(email,password)`, `signOut()`, `currentAccount()`, `read()`, `execute(command,requestId,expectedRevision?)`, `access(command,requestId)`, `attachment(id)`, `reset(confirmation)` and `subscribe(listener)`. All except mode/subscribe return Promises. Mutations return the saved record ID; errors reject with `AppError {code,message}`. Current codes are VALIDATION, UNAUTHENTICATED, FORBIDDEN, NOT_FOUND, CONFLICT, STORAGE_UNAVAILABLE and BACKEND_UNAVAILABLE. Proposed transport envelopes/codes above may differ and need one explicit adapter mapping.
 
 All IDs are opaque strings; dates YYYY-MM-DD, timestamps UTC ISO strings; booleans actual booleans; hours/scores finite numbers; capacity integer. Required/optional fields and exact current enums are authoritative in [domain.ts](../app/lib/domain.ts) and summarized in [DATA_MODEL.md](DATA_MODEL.md). Request bodies should reject unknown privileged fields. Server-generated IDs, reviewers, approvers, status/history/time and available capacity must never be trusted from clients.
 
@@ -72,24 +72,24 @@ All IDs are opaque strings; dates YYYY-MM-DD, timestamps UTC ISO strings; boolea
 | --- | --- | --- |
 | student.save | input: studentNumber,firstName,lastName,email,program,yearLevel,section,academicYear; optional id for edit | POST /students or PATCH /students/{id}; production account provisioning to agree |
 | company.save | input: name,industry,address,contactPerson,email,phone,moaStart,moaEnd,approved,academicYear; optional id | POST/PATCH /companies; approval authority server-enforced |
-| supervisor.save | input: companyId,name,email,phone,active; optional id | POST /companies/{id}/supervisors or PATCH /supervisors/{id} |
-| requirement.save | input: name,description,classification; optional id | POST/PATCH /requirements |
+| supervisor.save | input: companyId,name,email,phone,active, optional role (Company Supervisor/Intern Supervisor); optional id | POST /companies/{id}/supervisors or PATCH /supervisors/{id} |
+| requirement.save | input: name,description,classification,phase; optional id | POST/PATCH /requirements |
 | submission.create | studentId,requirementId,file {name,mime,size,blob} | POST /submissions using multipart (Blob is not JSON); server validates actual content and creates file reference/attempt atomically |
 | submission.review | id,decision Approved/Rejected,reason (nonempty for rejection) | POST /submissions/{id}/review |
-| opportunity.save | input: companyId,title,description,capacity,academicYear; optional id | POST/PATCH /opportunities; title maps to positionTitle only if backend adopts that DTO |
-| opportunity.status | id,status Approved/Closed | POST /opportunities/{id}/approve or /close (reopen policy to agree) |
+| opportunity.save | input: companyId,title,description,capacity,academicYear,location,modality,requiredHours,qualifications,skills,responsibilities; optional id | POST/PATCH /opportunities; title maps to positionTitle only if backend adopts that DTO |
+| opportunity.status | id,status Approved/Closed | Legacy alias: Approved maps to coordinator-stage decision, Closed maps to deactivation; cannot bypass approval prerequisites |
 | application.create | studentId,opportunityId | POST /applications; derive own student from session when applicable |
 | application.decide | id,decision Accepted/Rejected,reason | POST /applications/{id}/decision |
-| placement.create | input: applicationId,adviserId,supervisorId,startDate,endDate,requiredHours | POST /placements; map adviserId/supervisorId to approved facultyAdviserId/companySupervisorId DTO names if adopted |
+| placement.create | input: applicationId,adviserId,supervisorId,startDate,endDate,requiredHours | POST /placements; map adviserId/supervisorId to approved facultyAdviserId/internSupervisorId DTO names if adopted |
 | placement.terminate | id,reason | POST /placements/{id}/terminate; transactional release/history |
 | placement.complete | id | POST /placements/{id}/complete; authoritative completion predicate |
 | report.create | placementId,workDate,hours,tasks | POST /placements/{id}/progress-reports |
 | report.review | id,remarks | POST /progress-reports/{id}/review |
-| evaluation.submit | id,grade,comments | POST /evaluations/{id}/submit; obligation already exists, evaluator from session |
+| evaluation.submit | id,grade,comments,evaluationDate | POST /evaluations/{id}/submit; obligation already exists, evaluator from session |
 | certificate.record | placementId,number,issueDate | Proposed metadata recording endpoint only after institution agrees authority; demo does not issue official documents |
 | preferences.save | academicYear,landingPage,density,requirementAlerts,evaluationAlerts,progressAlerts,partnershipAlerts,largerText,reduceMotion | PATCH /me/preferences |
 
-Additional required reads: accounts/roles permitted to caller (`GET /me`, optional authorized account administration contract), registered faculty, company supervisors, current obligations and completion metadata. The UI has no independent faculty-registration requirement; do not invent an admin API as implemented front-end functionality.
+Additional required reads: accounts/roles permitted to caller (`GET /me`, optional authorized account administration contract), registered faculty, company supervisors, current obligations and completion metadata. The update adds coordinator faculty registration and pre-placement assignments; these proposed endpoints must be agreed with the backend owner.
 
 Example proposed successful list response: `{ "items": [], "total": 0, "page": 1, "pageSize": 25, "revision": 12 }`; detail/mutation: `{ "data": { "id": "opaque-synthetic-id" }, "revision": 13 }`. Error: `{ "error": { "code": "CONFLICT", "message": "Placement already exists", "fieldErrors": {}, "requestId": "opaque-request-id" } }`. Field-level errors are a proposed transport enhancement; current AppError has code/message only. Return safe messages without SQL details or existence leaks.
 
@@ -100,3 +100,34 @@ File response proposal: `{id,name,mime,size,downloadUrl?,expiresAt?}` after auth
 ## Verification clarification
 
 All paths above remain proposed, not implemented endpoints. Exact ERD/API compatibility is UNVERIFIED without approved external sources. A production idempotency implementation must bind key, principal and canonical request/file content, reject changed-payload key reuse, and return the original result for genuine retries. Browser demonstration receipts do this locally using an internal optional fingerprint; the receiving server owns its own durable implementation and concurrency policy. UI forms supply the revision they originally loaded, not a background-refreshed revision, when saving.
+
+## Interface-update operations (proposed HTTP mapping)
+
+These endpoints are proposals only. Front-end `execute` accepts the authenticated `Mutation` union; public `access` accepts `AccessCommand`. IDs/string/date/number/enum conventions above apply. Successful demo commands return a persisted record ID; failures reject AppError and leave the snapshot unchanged. The server must derive identity, authorization, timestamps and all audit fields. Never expose browser verifiers or raw demonstration reset codes as production infrastructure.
+
+| Client operation / minimum payload | Proposed endpoint | Server responsibility / response |
+| --- | --- | --- |
+| student.save (new) | POST /students/pre-registrations | Create exactly one Pending Activation account/student; authorize coordinator or scoped faculty; return studentId/account activation state. |
+| account.invite {studentId} | POST /students/{id}/invitations | Bind intended existing pending account; return safe invitation status; generate secure hashed expiring token and send real email only server-side. Demo returns a local request ID/link, no email. |
+| account.deactivate {accountId} | POST /accounts/{id}/deactivate | Revoke sessions/invitations, preserve history, enforce adviser scope. |
+| account.activate {token,studentNumber,email,password,confirmPassword} | POST /auth/activate | Verify secure token/purpose/binding/expiry/use/activation state atomically; set strong password hash without a new student. Confirmation is a client field; approved API may omit it. |
+| password.request {email} | POST /auth/password-reset-requests | Rate-limit and prevent account enumeration; send real reset email. Demo explicitly returns a local link and an active-account error. Do not carry that enumeration behavior into production. |
+| password.reset {token,email,password,confirmPassword} | POST /auth/password-resets | Atomically consume bound token, require active account, revoke sessions, enforce secure password policy. |
+| account.credentials {currentPassword,newPassword?,email?} | PATCH /me/credentials | Verify current credential/duplicate email; synchronize profile; verified email-change policy and session revocation server-owned. |
+| faculty.save {id?,name,email,active} | POST /faculty or PATCH /faculty/{id} | Coordinator only; provision linked account/profile; unique email; preserve assignments. Initial account delivery policy needs agreement. |
+| faculty.assign {studentId,adviserId} | PUT /students/{id}/adviser | One current adviser; conflict with ongoing placement must be resolved explicitly; preserve historical evaluations. |
+| supervisor.save role-aware | POST /companies/{id}/intern-supervisors; authorized admin provisioning separately | Company may create only own Intern role. Coordinator explicitly provisions company administrator. Enforce deactivation/assignment policy. |
+| opportunity.assign {id,supervisorIds[]} | PUT /opportunities/{id}/supervisors | Validate own-company active Intern profiles; audit previous/new assignments. |
+| opportunity.decide {id,stage,decision,remarks} | POST /opportunities/{id}/decisions | Company stage then coordinator stage; authorize stage; reject missing remarks; audit actual actor/time. |
+| opportunity.activate {id,active} | POST /opportunities/{id}/activation | Require current approval cycle, active assigned Intern; availability additionally depends on MOA/capacity; deactivation preserves applications/placements. |
+| placement.supervisor.assign {id,supervisorId} | PUT /placements/{id}/intern-supervisor | Own-company assigned active Intern; change pending company evaluation in-place; preserve history, reject ongoing submitted-evaluation transfer. |
+| attendance.create {placementId,date,hours,activity} | POST /placements/{id}/attendance | Own student; placement/date uniqueness; valid hours/dates and no legacy daily overlap. |
+| report.weekly {placementId,fromDate,toDate,attendanceIds[],tasks} | POST /placements/{id}/weekly-reports | Derive hours from authorized attendance; prevent reuse of pending/approved entries; preserve rejected attempts; atomic report/attendance linkage. |
+| report.decide {id,decision,remarks} | POST /progress-reports/{id}/decisions | Assigned Intern only; pending→Approved/Rejected once; immutable history; approved hours derived once. |
+| report.monitor {id,remarks} | POST /progress-reports/{id}/faculty-remarks | Assigned faculty only; append separate remark; never change supervisor state/hours. |
+
+New list/filter proposals: activationState,adviserId,requirementPhase,location,modality,requiredHours,postingStage,assignedSupervisorId,reportApprovalStatus. Returned posting summary should distinguish persisted status and derived Filled; fields missing on migrated data must stay explicitly unknown until edited. Return assigned supervisor and faculty references without unrelated private records; authoritative remaining slots/application aggregates are needed in filtered projections.
+
+Examples (all fictional): pre-registration `{studentNumber:"SYN-NEW",firstName:"Demo",lastName:"Student",email:"demo@example.test",program:"BS Computer Science",yearLevel:"4th Year",section:"4-A",academicYear:"2026-2027"}`; posting decision `{stage:"Company",decision:"Approved",remarks:"Synthetic review"}`; weekly report `{fromDate:"2026-11-09",toDate:"2026-11-15",attendanceIds:["opaque-attendance-id"],tasks:"Synthetic work"}`. Demo optional contract fields support old callers; the UI requires the updated posting fields on newly entered postings. The approved backend should explicitly decide nullability and reject privileged/unknown writable fields.
+
+Public local account operations use namespaced content-bound receipt keys, in addition to expiring single-use requests: an identical bounded request retry returns the prior result without another write, changed content conflicts, and token reuse under a new request ID fails. Server idempotency must not return credentials/tokens to unauthorized principals; design recovery retry behavior and request retention explicitly. A demo request UUID is not proof of email ownership.

@@ -1,0 +1,62 @@
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-05 binds file retries to actual bytes and accepts genuine same-intent retries 88ms
+ ✓ tests/integration/interface-upgrade.test.ts > compatible versioned local upgrades > preserves legacy IDs, attachments, assignments, credentials, evaluations and approved totals without granting company admin 47ms
+ ✓ tests/integration/interface-upgrade.test.ts > compatible versioned local upgrades > aborts a failed upgrade write without replacing the version-one snapshot or files 20ms
+ ✓ tests/integration/interface-upgrade.test.ts > compatible versioned local upgrades > rejects expired reset links, mismatched confirmation and unknown public commands without partial mutation 16ms
+ ✓ tests/integration/services.test.ts > authentication and mode isolation > preserves valid records when session storage fails during recovery reset 65ms
+ ✓ tests/integration/services.test.ts > authentication and mode isolation > verifies credentials, inactive accounts, logout and session expiry 21ms
+ ✓ tests/integration/services.test.ts > authentication and mode isolation > scopes records and strips credential verifiers 14ms
+ ✓ tests/integration/interface-upgrade.test.ts > compatible versioned local upgrades > rejects combined password/email changes atomically when the email belongs to another account 41ms
+ ✓ tests/integration/interface-update.test.ts > interface update account and relationship boundaries > pre-registers, binds an invitation, activates the existing account once and changes credentials without plaintext 113ms
+ ✓ tests/integration/interface-update.test.ts > interface update account and relationship boundaries > performs expiring single-use local reset without activating pending or deactivated accounts 52ms
+ ✓ tests/integration/interface-update.test.ts > interface update account and relationship boundaries > allows faculty pre-registration in its own scope and preserves placement adviser history 36ms
+ ✓ tests/integration/services.test.ts > authentication and mode isolation > restricts faculty and supervisors to assigned placements and attachments 36ms
+ ✓ tests/integration/services.test.ts > authentication and mode isolation > never falls back to demo data in API mode 1ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > serializes different applications racing for the last slot 39ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-05 preserves legacy snapshots while rejecting ambiguous legacy receipt replay 21ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-16 does not erase saved records when reset cannot clear the session 14ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-01 retries after a transient storage initialization failure without a fake success 5ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-06 keeps cross-placement report totals and almost-complete percentages accurate 9ms
+ ✓ tests/integration/interface-update.test.ts > interface update account and relationship boundaries > separates company administration, opportunity assignments and application decisions 24ms
+ ✓ tests/integration/interface-update.test.ts > interface update account and relationship boundaries > enforces company then coordinator approval then activation and preserves decisions after material edits 84ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > creates and edits a student/account across independent service instances 24ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > preserves new records rather than reseeding on ordinary reads 9ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > rolls back invalid writes and rejects stale revisions 26ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > deduplicates retried commands with the same request key 10ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > stores actual attachment bytes, rejection history and resubmission 43ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > rejects unsupported and empty attachments 9ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > saves company and supervisor account relationships and uniqueness 15ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > reads, updates and reports a thousand additional coherent synthetic students 135ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-02 derives the unsaved role year preference from its actual records 9ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-01 reads existing records without requiring a successful write 9ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-02 uses the injected business clock for scoped availability 9ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-03 hides unrelated unapproved postings from students, retaining own history 10ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-04 rejects unknown commands without success receipts or mutations 12ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-05 rejects an idempotency key reused for a different intent 13ms
+ ✓ tests/integration/interface-update.test.ts > interface update account and relationship boundaries > links attendance to weekly decisions without double-counting and keeps faculty remarks separate 65ms
+ ✓ tests/integration/interface-update.test.ts > interface update account and relationship boundaries > gates placement on Before documents, preserving mandatory During/After completion obligations 22ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > persists application decisions and disallows repeats 10ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > does not accept an ineligible pending application 8ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > atomically prevents duplicate placement and over-allocation under concurrent commands 11ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > maintains slot policy on termination, preserves history 30ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > reviews hours exactly once and propagates the aggregate 16ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > rejects duplicate daily reports and out-of-range dates 8ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > does not silently reset damaged data; explicit recovery is required 11ms
+ ✓ tests/integration/services.test.ts > persisted commands and relational consistency > reset requires coordinator and intentional phrase 6ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-06 accepts mathematically complete fractional hours consistently 18ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-07 rejects malformed academic year in student maintenance 24ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-07 rejects malformed academic year in company maintenance 10ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-07 rejects malformed academic year in opportunity maintenance 8ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-08 rejects punctuation-only contact numbers 10ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-09 surfaces corrupt NaN grade data as a storage error 4ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-09 surfaces corrupt invalid receipts data as a storage error 3ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > IV-09 surfaces corrupt duplicate profile data as a storage error 5ms
+ ✓ tests/integration/independent-audit.test.ts > independent adversarial verification > independently reconciles seven report categories and filtered raw totals 7ms
+
+ Test Files  4 passed (4)
+      Tests  53 passed (53)
+   Start at  02:22:17
+   Duration  1.08s (tests 50%, transform 20%, setup 19%, import 9%, worker 2%)
+

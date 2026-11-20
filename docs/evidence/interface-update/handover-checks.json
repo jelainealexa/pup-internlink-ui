@@ -1,0 +1,33 @@
+{
+  "sourceCommit": "7f2873a60160060bae8140c0769e7545a3aa3154",
+  "documentsPresent": [
+    "README.md",
+    "AGENTS.md",
+    "docs/REQUIREMENTS.md",
+    "docs/REQUIREMENTS_TRACEABILITY.md",
+    "docs/ARCHITECTURE.md",
+    "docs/DATA_MODEL.md",
+    "docs/BUSINESS_RULES.md",
+    "docs/API_CONTRACT.md",
+    "docs/BACKEND_INTEGRATION_GUIDE.md",
+    "docs/DECISION_LOG.md",
+    "docs/DEVELOPMENT_STATUS.md",
+    "docs/TEST_PLAN.md",
+    "docs/TEST_REPORT.md",
+    "docs/KNOWN_ISSUES.md",
+    "docs/HANDOVER.md",
+    "docs/RELEASE_READINESS.md",
+    "docs/INTERFACE_UPDATE_GAP_ANALYSIS.md",
+    "docs/INTERFACE_UPDATE_IMPLEMENTATION_REPORT.md"
+  ],
+  "relativeMarkdownLinksMissing": [],
+  "canonicalRequirementCount": 131,
+  "deltaCount": 42,
+  "sourceAndPackageDiffSinceTestedCommit": "",
+  "main": "2d846774c6dfbc61d675331145bd7b82b301e5a4",
+  "pdfHashes": {
+    "PUP INTERNLINK_System Flow.pdf": "a8852a86f90ef6931d20b568f1e7ef3c86c000906520cb4f8bd5abb0b7438458",
+    "DSI - Interface Content.pdf": "d471342919000a49dfee9bf411336c1dcc58d63046f099e7141919d79ea3cadf"
+  },
+  "limits": "Documentation consistency check, not final independent review."
+}

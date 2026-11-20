@@ -1,0 +1,67 @@
+[WebServer] (node:32312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:30544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\interface-update.spec.ts:53:1 › updated A-B: pre-registration, faculty scope, invitation activation, recovery and account credentials (6.7s)
+  x  2 [chromium] › tests\e2e\interface-update.spec.ts:258:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion (14.6s)
+
+
+  1) [chromium] › tests\e2e\interface-update.spec.ts:258:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Opportunity assignments saved.', { exact: true })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Opportunity assignments saved.', { exact: true }) with timeout 10000ms
+      - waiting for getByText('Opportunity assignments saved.', { exact: true })
+
+
+      372 |     .getByRole("button", { name: "Save Opportunity Assignments", exact: true })
+      373 |     .click();
+    > 374 |   await expect(page.getByText("Opportunity assignments saved.",{exact:true})).toBeVisible();
+          |                                                                               ^
+      375 |   await changeRole(page);
+      376 |   await page.goto(`/dashboard/internships/${opportunityId}`);
+      377 |   await page.locator("[name=decision]").selectOption("Rejected");
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\interface-update.spec.ts:374:79
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\interface-second\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\interface-second\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\interface-second\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\interface-second\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\interface-update.spec.ts:258:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion 
+  1 passed (34.6s)

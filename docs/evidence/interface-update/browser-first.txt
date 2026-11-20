@@ -1,0 +1,91 @@
+[WebServer] (node:24632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:4892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:20208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:25764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\interface-update.spec.ts:53:1 › updated A-B: pre-registration, faculty scope, invitation activation, recovery and account credentials (3.8s)
+(node:26016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 [chromium] › tests\e2e\interface-update.spec.ts:260:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion (24.7s)
+
+
+  1) [chromium] › tests\e2e\interface-update.spec.ts:53:1 › updated A-B: pre-registration, faculty scope, invitation activation, recovery and account credentials 
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "/activate?token=ae48d01d-e5ee-468f-8ce6-50277ea4e615&email=updated-student%40example.test"
+
+       95 |     .getByRole("link", { name: "Open demonstration activation link" })
+       96 |     .getAttribute("href"))!;
+    >  97 |   expect(invitation).not.toBe(original);
+          |                          ^
+       98 |   const extra = await registerStudent(
+       99 |     page,
+      100 |     "IU-FACULTY-02",
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\interface-update.spec.ts:97:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\interface-first\interface-update-updated-A-8917e-ery-and-account-credentials-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\interface-first\interface-update-updated-A-8917e-ery-and-account-credentials-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\interface-first\interface-update-updated-A-8917e-ery-and-account-credentials-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\interface-first\interface-update-updated-A-8917e-ery-and-account-credentials-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests\e2e\interface-update.spec.ts:260:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').getByRole('button', { name: 'Cancel', exact: true })
+
+
+      447 |     .getByRole("dialog")
+      448 |     .getByRole("button", { name: "Cancel", exact: true })
+    > 449 |     .click();
+          |      ^
+      450 |   const submit = async (phase: string, version: string) => {
+      451 |     await page.goto(
+      452 |       `/dashboard/requirements/submissions/create?requirement=${definitions[phase]}`,
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\interface-update.spec.ts:449:6
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\interface-first\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\interface-first\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\interface-first\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\interface-first\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests\e2e\interface-update.spec.ts:53:1 › updated A-B: pre-registration, faculty scope, invitation activation, recovery and account credentials 
+    [chromium] › tests\e2e\interface-update.spec.ts:260:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion 

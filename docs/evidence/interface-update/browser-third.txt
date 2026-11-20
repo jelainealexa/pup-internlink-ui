@@ -1,0 +1,64 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test tests/e2e/interface-update.spec.ts --reporter=list --output=test-results/interface-third
+
+[WebServer] (node:19776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:14184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32772) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:27668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\interface-update.spec.ts:53:1 › updated A-B: pre-registration, faculty scope, invitation activation, recovery and account credentials (7.3s)
+  x  2 [chromium] › tests\e2e\interface-update.spec.ts:258:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion (24.3s)
+
+
+  1) [chromium] › tests\e2e\interface-update.spec.ts:258:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').getByRole('button', { name: 'Close', exact: true })
+
+
+      450 |     .getByRole("dialog")
+      451 |     .getByRole("button", { name: "Close", exact: true })
+    > 452 |     .click();
+          |      ^
+      453 |   const submit = async (phase: string, version: string) => {
+      454 |     await page.goto(
+      455 |       `/dashboard/requirements/submissions/create?requirement=${definitions[phase]}`,
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\interface-update.spec.ts:452:6
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\interface-third\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\interface-third\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\interface-third\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\interface-third\interface-update-updated-C-1c0bf-ly-decisions-and-completion-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\interface-update.spec.ts:258:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion 
+  1 passed (43.7s)

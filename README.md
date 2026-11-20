@@ -24,11 +24,11 @@ For isolated build output, set `INTERNLINK_DIST_DIR` consistently for both build
 
 ## Synthetic accounts
 
-All accounts use the public demonstration password **InternLink!2026**. It is intentionally not a secret. No plaintext password is stored in browser data; the verifier and simulated session are inspectable client data, not security.
+Fresh seeded accounts use the public demonstration password **InternLink!2026**. It is intentionally not a secret. No plaintext password is stored in browser data; the verifier and simulated session are inspectable client data, not security.
 
 | Email | Role / useful scenario |
 | --- | --- |
-| coordinator@example.test | Coordinator; all eleven modules |
+| coordinator@example.test | OJT Coordinator; coordinator modules including faculty management |
 | student@example.test | Mira Demo; ongoing PL-001 |
 | student2@example.test | Theo Sample; completed PL-002 |
 | student3@example.test | Luna Example; terminated PL-003 |
@@ -37,16 +37,18 @@ All accounts use the public demonstration password **InternLink!2026**. It is in
 | student6@example.test | Inactive account; sign-in is rejected |
 | faculty@example.test | Assigned faculty adviser Robin Demo |
 | faculty2@example.test | Faculty adviser Casey Sample |
-| supervisor@example.test | Copper Finch Labs supervisor Morgan Demo |
-| supervisor2@example.test | Riverstone Studio supervisor Jordan Sample |
+| supervisor@example.test | Intern Supervisor Morgan Demo, Copper Finch Labs |
+| supervisor2@example.test | Intern Supervisor Jordan Sample, Riverstone Studio |
+| company@example.test | Company Supervisor administrator, Copper Finch Labs |
+| company2@example.test | Company Supervisor administrator, Riverstone Studio |
 
-New student and supervisor forms create linked synthetic accounts using the same public password. Switch roles by logging out and signing in. One simulated session is shared by tabs on the same origin; it expires after eight hours.
+Students are now pre-registered as Pending Activation. Generate a local invitation in the student profile, open it on the same origin/browser profile, and establish a demonstration password (8–128 characters including a letter and digit). No email is sent. New faculty and supervisor accounts start with the public password and can change it in Settings. Local password recovery returns an expiring reset link; it is a simulation, not secure email verification. Switch roles by logging out and signing in. One simulated session is shared by tabs on the same origin; it expires after eight hours.
 
 Reset deliberately from Coordinator Settings: enter **RESET DEMO** and submit the reset form. This discards local records/files and signs out. Invalid saved schemas are never silently reseeded; the login recovery control supports explicit destructive recovery. Valid saved data can only be reset by a coordinator through supported workflows.
 
 ## Functionality
 
-Coordinator dashboard; student and partner maintenance; nested supervisor management; requirement definitions and real local file submissions/reviews; opportunity approval/closure and capacity; application history/decisions; accepted-application placement creation; daily progress submission/review and calculated hours; assigned faculty/company evaluations; completion and synthetic certificate metadata; seven filtered reports with CSV/print; effective per-account preferences. Minimal complementary student/faculty/supervisor interfaces exercise the same lifecycle and are labelled demonstration extensions.
+Coordinator dashboard; student and partner maintenance; nested supervisor management; requirement definitions and real local file submissions/reviews; opportunity approval/closure and capacity; application history/decisions; accepted-application placement creation; daily attendance and weekly reports, explicit Intern Supervisor approval/rejection, separate faculty monitoring remarks and calculated hours; assigned faculty/Intern Supervisor evaluations; completion and synthetic certificate metadata; seven filtered reports with CSV/print; effective per-account preferences. Five distinct portals implement the updated interface scope. Company Supervisors administer their company/postings/accounts/assignments; Intern Supervisors decide assigned applications, approve assigned progress and submit company evaluations. Faculty management supports assignment before placement. Requirements have Before/During/After phases. Postings require company approval, coordinator approval and activation.
 
 All domain writes use shared typed services and transactional IndexedDB. Cross-module names, availability and totals derive from relationships. Form errors preserve inputs. Role restrictions are simulated client behavior and require server enforcement in any real deployment.
 
@@ -66,10 +68,12 @@ See [actual test results](docs/TEST_REPORT.md), [handover](docs/HANDOVER.md), [a
 
 ## Boundaries
 
-The 23-page system-flow PDF is the available primary specification; approved ERD, SQL schema, API, institutional permission matrix and grading rubric were not supplied. Reversible demo policies are documented, not presented as institutional approval. API mode (`NEXT_PUBLIC_DATA_MODE=api`) explicitly reports unavailable operations and never falls back to demonstration success. Backend implementation/integration is outside this delivery. Certificate entries are metadata, not official issued documents; alerts are local dashboard reminders, not emails/SMS. Data is not shared across devices/profiles. Firefox/WebKit, manual screen-reader certification and production security are not verified.
+The 23-page system-flow PDF and seven-page DSI - Interface Content.pdf are available specifications; the latter controls explicit interface changes. An approved ERD, SQL schema, API, institutional permission matrix and grading rubric were not supplied. Reversible demo policies are documented, not presented as institutional approval. API mode (`NEXT_PUBLIC_DATA_MODE=api`) explicitly reports unavailable operations and never falls back to demonstration success. Backend implementation/integration is outside this delivery. Certificate entries are metadata, not official issued documents; alerts are local dashboard reminders, not emails/SMS. Data is not shared across devices/profiles. Firefox/WebKit, manual screen-reader certification and production security are not verified.
 
-## Verified release candidate
+## Updated development candidate
 
-Reviewed **7ca502cc6260232619570b2ee945da5f5c13145b**, branch audit/independent-front-end:102unit/component/integration and40 configured production browser tests pass. See [release readiness](docs/RELEASE_READINESS.md), [verification report](docs/INDEPENDENT_VERIFICATION_REPORT.md), [defects](docs/DEFECT_REGISTER.md), [test evidence](docs/TEST_REPORT.md). The same agent authored repairs and verification; this is not third-party/security certification. Exact approved backend compatibility remains unverified.
+Branch `frontend/interface-update` started from `5daa83a96bd3b4c2afdf1821b8a7fcbd2764ca6a`. The previous certification is historical and superseded for these updates. See [incremental implementation report](docs/INTERFACE_UPDATE_IMPLEMENTATION_REPORT.md), [delta matrix](docs/INTERFACE_UPDATE_GAP_ANALYSIS.md) and [current results](docs/TEST_REPORT.md). Internal verification passes120 native tests and43 production browser cases; lint/typecheck/build and separate production smoke pass. Internal development verification is not the postponed final independent review.
 
-Multi-tab edits retain their loaded revision. On conflict, preserve input and deliberately reload latest records before retrying. Old version1 snapshots remain readable; idempotency receipts without fingerprints cannot safely replay. Normal navigation never resets data.
+Version-one saved records upgrade atomically to version two without reset. Legacy Company Supervisor accounts become **Intern Supervisors**, preserving IDs, placements, evaluations and file bytes; they do not acquire company administration. No administrator is inserted during upgrade. A coordinator can explicitly create a Company Supervisor account in its company profile (Add Supervisor Account). Fresh seeds include the two administrator accounts above. Previously Reviewed hours remain approved with visible historical provenance.
+
+Multi-tab edits retain their loaded revision. On conflict, preserve input and deliberately reload latest records before retrying. Old receipts without fingerprints remain readable but cannot safely replay. Local storage is per origin/profile, not shared across devices. Never reset solely to install this update.

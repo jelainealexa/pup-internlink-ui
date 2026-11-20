@@ -17,7 +17,8 @@
     "baselineMissing": "Credentials and active flag never checked",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "AUTH-002",
@@ -37,7 +38,8 @@
     "baselineMissing": "No role, record or server checks",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "AUTH-003",
@@ -57,7 +59,8 @@
     "baselineMissing": "Exit only navigates",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "AUTH-004",
@@ -66,18 +69,19 @@
     "source": "PDF pp.1,7; user Task 7",
     "implementation": "app/features/Login.tsx; app/lib/service.ts; app/components/Workspace.tsx",
     "status": "Blocked by external dependency",
-    "missing": "Synthetic linked accounts are implemented; approved real account/profile provisioning and invitation lifecycle still require external agreement.",
+    "missing": "Local pre-registration/invitation/activation/provisioning is implemented. Approved institutional provisioning/assignment policy and exact ERD mapping remain externally unconfirmed.",
     "acceptance": "Approved account/profile mapping and active-role lifecycle are documented and integration-tested",
     "tests": "Provision/disable and duplicate-account tests after agreement",
     "dependencies": "Approved ERD/account provisioning policy/backend owner; demo student/supervisor account linkage already functional.",
-    "evidence": "tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation)",
+    "evidence": "tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation); tests/integration/interface-update.test.ts; tests/e2e/interface-update.spec.ts",
     "testId": "T-AUTH-004",
     "baselineStatus": "Blocked by external dependency",
     "baselineImplementation": "none",
     "baselineMissing": "Approved lifecycle and password/invite process absent",
     "verdict": "BLOCKED",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Synthetic linked accounts are implemented; approved real account/profile provisioning and invitation lifecycle still require external agreement.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "BLOCKED"
   },
   {
     "id": "NAV-001",
@@ -97,7 +101,8 @@
     "baselineMissing": "Requirements/Reports destinations absent; active semantics incomplete",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "NAV-002",
@@ -117,7 +122,8 @@
     "baselineMissing": "Several query keys ignored; one-time effects; no URL sync",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "NAV-003",
@@ -137,7 +143,8 @@
     "baselineMissing": "Several not-found headings return 200; no shared forbidden state",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "DSH-001",
@@ -157,7 +164,8 @@
     "baselineMissing": "Totals and current term hardcoded",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "DSH-002",
@@ -177,7 +185,8 @@
     "baselineMissing": "Illustrative counts, percent and incomplete summary categories",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "DSH-003",
@@ -197,7 +206,8 @@
     "baselineMissing": "Broken create/Requirements links and ignored evaluation filter",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "DSH-004",
@@ -217,7 +227,8 @@
     "baselineMissing": "Names/actions/times static",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-001",
@@ -237,7 +248,8 @@
     "baselineMissing": "Only immutable seed records",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-002",
@@ -257,7 +269,8 @@
     "baselineMissing": "No gap in tested fixture search; production data future",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-003",
@@ -277,7 +290,8 @@
     "baselineMissing": "Program/section/status verified; year filter lacks diverse fixture/browser case",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-004",
@@ -297,7 +311,8 @@
     "baselineMissing": "No gap in tested ID/hours and observed default name ordering; future aggregate source",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-005",
@@ -317,7 +332,8 @@
     "baselineMissing": "Validates only; no save or redirect",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-006",
@@ -337,7 +353,8 @@
     "baselineMissing": "Truthiness/static duplicates only; no trim/durable/concurrency enforcement",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-007",
@@ -357,7 +374,8 @@
     "baselineMissing": "Input values unused; no write/required/duplicate checks",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-008",
@@ -377,7 +395,8 @@
     "baselineMissing": "Requirements missing/evaluation context lost; totals duplicated",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "STU-009",
@@ -397,7 +416,8 @@
     "baselineMissing": "Optional export not approved/implemented",
     "verdict": "NOT APPLICABLE",
     "frontEndAcceptance": "Dedicated directory export is optional; Students report CSV is delivered. Export of every directory-specific program/section filter is a proposed expansion.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "NOT APPLICABLE"
   },
   {
     "id": "PAR-001",
@@ -417,7 +437,8 @@
     "baselineMissing": "3 fixtures; no address/MOA/phone IDs or computed status",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PAR-002",
@@ -437,7 +458,8 @@
     "baselineMissing": "No controls or query support",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PAR-003",
@@ -457,7 +479,8 @@
     "baselineMissing": "No form, uniqueness, save or redirect",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PAR-004",
@@ -477,7 +500,8 @@
     "baselineMissing": "No edit flow",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PAR-005",
@@ -497,7 +521,8 @@
     "baselineMissing": "MOA/supervisors/history absent and non-Accenture placeholders",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PAR-006",
@@ -517,7 +542,8 @@
     "baselineMissing": "No supervisor entities/forms/detail view",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PAR-007",
@@ -537,7 +563,8 @@
     "baselineMissing": "Single hardcoded student link only",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-001",
@@ -557,7 +584,8 @@
     "baselineMissing": "Route/master list absent",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-002",
@@ -577,7 +605,8 @@
     "baselineMissing": "No configuration form",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-003",
@@ -597,7 +626,8 @@
     "baselineMissing": "Submission data/view/upload preview absent",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-004",
@@ -617,7 +647,8 @@
     "baselineMissing": "Review and audit metadata absent",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-005",
@@ -637,7 +668,8 @@
     "baselineMissing": "No route/checklist; app requirements fabricated",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-006",
@@ -657,7 +689,8 @@
     "baselineMissing": "Eligibility not computed",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Latest mandatory attempts must be Approved before acceptance/placement (stricter demo assumption, not approved ERD rule).",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-007",
@@ -677,7 +710,8 @@
     "baselineMissing": "Resubmission lifecycle unspecified",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Only missing/rejected resubmission, immutable attempts; placements snapshot required IDs; no review reversal.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-008",
@@ -697,7 +731,8 @@
     "baselineMissing": "No upload interaction/service",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "OPP-001",
@@ -717,7 +752,8 @@
     "baselineMissing": "Read-only list; no search/filters/status data",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "OPP-002",
@@ -737,7 +773,8 @@
     "baselineMissing": "No form/save",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "OPP-003",
@@ -757,7 +794,8 @@
     "baselineMissing": "Edit missing; approval requirement/state authority unresolved",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Coordinator approval adopted in demo; Pending Approval → Approved/Closed and coordinator reopen.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "OPP-004",
@@ -777,7 +815,8 @@
     "baselineMissing": "Hardcoded count/applicants and incorrect person-link; no placement section",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "OPP-005",
@@ -797,16 +836,17 @@
     "baselineMissing": "Accepted/slots label misleading; no shared capacity accounting",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Non-terminated placements consume slots; acceptance reserves none; atomically rechecked on placement creation.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "OPP-006",
     "module": "Opportunities",
-    "description": "Retain deadline/program/setup only within approved rules",
+    "description": "Optional deadline/program restrictions beyond specified posting fields",
     "source": "Existing opportunity UI; user scope constraint",
     "implementation": "app/features/Opportunities.tsx; app/lib/commands.ts (opportunity commands); app/lib/rules.ts",
     "status": "Proposed expansion",
-    "missing": "Deadline/program/work-setup fields have no approved policy and were not retained as misleading controls.",
+    "missing": "Only optional deadline/program metadata remains excluded; modality/location/required hours are now specified and delivered under IU-007.",
     "acceptance": "Retain useful display; do not invent mandatory eligibility rules from fixtures; approved metadata maps consistently",
     "tests": "Display fixtures and policy tests if later approved",
     "dependencies": "Typed domain/service/rules and documented D-016–026 demo policies. Production agreement only needed for future real integration.",
@@ -817,7 +857,8 @@
     "baselineMissing": "Static metadata; no approved eligibility/deadline enforcement",
     "verdict": "NOT APPLICABLE",
     "frontEndAcceptance": "Deadline/program/work-setup fields have no approved policy and were not retained as misleading controls.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "NOT APPLICABLE"
   },
   {
     "id": "APP-001",
@@ -837,7 +878,8 @@
     "baselineMissing": "Immutable records; repeated profile/opportunity data",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "APP-002",
@@ -857,7 +899,8 @@
     "baselineMissing": "UI filters work; opportunity query absent; URL sync incomplete",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "APP-003",
@@ -877,7 +920,8 @@
     "baselineMissing": "Local status only; checklist constant; no slot/eligibility/authorization",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "APP-004",
@@ -897,7 +941,8 @@
     "baselineMissing": "Local confirm/trim guard only; reason/state lost",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "APP-005",
@@ -917,7 +962,8 @@
     "baselineMissing": "Query read works but accepted local decision not shared/default context unsafe",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "APP-006",
@@ -937,7 +983,8 @@
     "baselineMissing": "No application-create service or student interaction",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-001",
@@ -957,7 +1004,8 @@
     "baselineMissing": "Read-only list with no empty explanation; durable writes absent",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-002",
@@ -977,7 +1025,8 @@
     "baselineMissing": "Static Accepted guard; no duplicate relation/save",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-003",
@@ -997,7 +1046,8 @@
     "baselineMissing": "Truthy fields/date order only; negative hours and unrelated supervisor accepted",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-004",
@@ -1017,7 +1067,8 @@
     "baselineMissing": "Mandatory submissions, duplicate/capacity checks not centralized",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Approved mandatory documents, available approved posting/date-valid MOA, accepted application, one ongoing placement and same-company supervisor.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-005",
@@ -1037,7 +1088,8 @@
     "baselineMissing": "Only validation message",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-006",
@@ -1057,7 +1109,8 @@
     "baselineMissing": "Student-linked reports not placement-linked; evaluation/certificate inferred",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-007",
@@ -1077,7 +1130,8 @@
     "baselineMissing": "Fabricated certificate ID/status; no issue date/record",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Actual separately recorded synthetic certificate metadata after eligible completion; no official document issuance.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-008",
@@ -1097,7 +1151,8 @@
     "baselineMissing": "Transitions/authority/reasons/release rules absent",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Ongoing → Terminated with reason; history retained, capacity released; no separate Cancelled state.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PRG-001",
@@ -1117,7 +1172,8 @@
     "baselineMissing": "UI filters work in source; no student query/empty message; near-completion threshold unapproved",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PRG-002",
@@ -1137,7 +1193,8 @@
     "baselineMissing": "Filtered by student; no placement history association",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PRG-003",
@@ -1157,7 +1214,8 @@
     "baselineMissing": "Totals hardcoded independently from reports; most ratios unguarded",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Official reviewed hours distinct from submitted; percent=reviewed/required×100 and remaining≥0.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PRG-004",
@@ -1177,7 +1235,8 @@
     "baselineMissing": "Only child state; row/summary stale; no reviewer/time",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PRG-005",
@@ -1197,7 +1256,8 @@
     "baselineMissing": "Reporting interval/due-date/grace rules unspecified",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Local >7-day gap reminder and ≥75% near-completion heuristic, not an approved institutional reporting schedule.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PRG-006",
@@ -1217,7 +1277,8 @@
     "baselineMissing": "No authoring service/workflow",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "EVA-001",
@@ -1237,7 +1298,8 @@
     "baselineMissing": "Checklist only, no actual evaluator/placement/date/grade/comments",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "EVA-002",
@@ -1257,7 +1319,8 @@
     "baselineMissing": "No filters; student/status URL ignored",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "EVA-003",
@@ -1277,7 +1340,8 @@
     "baselineMissing": "No assignment checks or limit enforcement",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "EVA-004",
@@ -1297,7 +1361,8 @@
     "baselineMissing": "Uses placement Completed/static evaluation counts",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "EVA-005",
@@ -1317,7 +1382,8 @@
     "baselineMissing": "Submission missing; grade scale/rubric/edit/finalization unspecified",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Demo score 0–100/comments; no final grade weights/pass threshold.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "RPT-001",
@@ -1337,7 +1403,8 @@
     "baselineMissing": "Entire route missing",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "RPT-002",
@@ -1357,7 +1424,8 @@
     "baselineMissing": "No filters/query/results",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "RPT-003",
@@ -1377,7 +1445,8 @@
     "baselineMissing": "No report data model/aggregation",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "RPT-004",
@@ -1397,7 +1466,8 @@
     "baselineMissing": "No output flow; formats unspecified",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "SET-001",
@@ -1417,7 +1487,8 @@
     "baselineMissing": "Only local selected values; no behavior or persistence",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Browser-local per-account preferences, not institutional term administration.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "SET-002",
@@ -1437,7 +1508,8 @@
     "baselineMissing": "Six toggles affect only pressed state",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. Alert flags affect dashboard reminders, not email/SMS; text/motion/density have actual CSS effects.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "SET-003",
@@ -1457,67 +1529,71 @@
     "baselineMissing": "Account email/role constant",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "ROLE-001",
     "module": "Additional portals",
-    "description": "Provide full student portal beyond specified related submissions",
-    "source": "PDF p.23 limited flows; user Phase 9 scope",
-    "implementation": "app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx",
-    "status": "Proposed expansion",
-    "missing": "Full additional student product is unapproved; minimal connected demonstration extension is delivered under ROLE-005.",
+    "description": "Specified Student portal",
+    "source": "PDF p.23 limited flows; user Phase 9 scope; DSI Interface Content pp.1–7 (expanded explicit role scope)",
+    "implementation": "Students/Requirements/Applications/Attendance/Progress/Evaluations; RoleDashboard; shared services",
+    "status": "Implemented and verified",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
     "acceptance": "Approve portal UX/requirements before implementation; own-record boundaries preserved",
     "tests": "Role E2E after approved scope",
     "dependencies": "Typed domain/service/rules and documented D-016–026 demo policies. Production agreement only needed for future real integration.",
-    "evidence": "Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend.",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
     "testId": "T-ROLE-001",
     "baselineStatus": "Proposed expansion",
     "baselineImplementation": "none",
     "baselineMissing": "Full student pages/navigation not specified",
-    "verdict": "NOT APPLICABLE",
-    "frontEndAcceptance": "Full additional student product is unapproved; minimal connected demonstration extension is delivered under ROLE-005.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verdict": "PASS",
+    "frontEndAcceptance": "Specified five-role scope operates on shared records with assignment/company restrictions; see IU delta requirements.",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "NOT APPLICABLE"
   },
   {
     "id": "ROLE-002",
     "module": "Additional portals",
-    "description": "Provide full faculty adviser portal beyond assigned review/evaluation",
-    "source": "PDF pp.19-20; user Phase 9 scope",
-    "implementation": "app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx",
-    "status": "Proposed expansion",
-    "missing": "Full additional faculty product is unapproved; assigned-work demonstration extension is delivered under ROLE-006.",
+    "description": "Specified Faculty Adviser portal",
+    "source": "PDF pp.19-20; user Phase 9 scope; DSI Interface Content pp.1–7 (expanded explicit role scope)",
+    "implementation": "Students/Requirements/Progress/Evaluations; Faculty/RoleDashboard; shared assignment guards",
+    "status": "Implemented and verified",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
     "acceptance": "Approve adviser UX/permissions; assigned-only access and required evaluation work",
     "tests": "Assigned/unassigned role E2E after scope",
     "dependencies": "Typed domain/service/rules and documented D-016–026 demo policies. Production agreement only needed for future real integration.",
-    "evidence": "Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend.",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
     "testId": "T-ROLE-002",
     "baselineStatus": "Proposed expansion",
     "baselineImplementation": "none",
     "baselineMissing": "Full portal/navigation unspecified",
-    "verdict": "NOT APPLICABLE",
-    "frontEndAcceptance": "Full additional faculty product is unapproved; assigned-work demonstration extension is delivered under ROLE-006.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verdict": "PASS",
+    "frontEndAcceptance": "Specified five-role scope operates on shared records with assignment/company restrictions; see IU delta requirements.",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "NOT APPLICABLE"
   },
   {
     "id": "ROLE-003",
     "module": "Additional portals",
-    "description": "Provide full company supervisor portal beyond assigned evaluation",
-    "source": "PDF pp.7,19-20; user Phase 9 scope",
-    "implementation": "app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx",
-    "status": "Proposed expansion",
-    "missing": "Full additional supervisor product is unapproved; company/assigned-work demonstration extension is delivered under ROLE-007.",
+    "description": "Specified Company Supervisor administrative portal",
+    "source": "PDF pp.7,19-20; user Phase 9 scope; DSI Interface Content pp.1–7 (expanded explicit role scope)",
+    "implementation": "Partners/Opportunities/PostingControls/Placements/RoleDashboard; shared company guards",
+    "status": "Implemented and verified",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
     "acceptance": "Approve supervisor UX; company/assignment isolation and required evaluation work",
     "tests": "Cross-company role E2E after scope",
     "dependencies": "Typed domain/service/rules and documented D-016–026 demo policies. Production agreement only needed for future real integration.",
-    "evidence": "Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend.",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
     "testId": "T-ROLE-003",
     "baselineStatus": "Proposed expansion",
     "baselineImplementation": "none",
     "baselineMissing": "Full company portal/navigation unspecified",
-    "verdict": "NOT APPLICABLE",
-    "frontEndAcceptance": "Full additional supervisor product is unapproved; company/assigned-work demonstration extension is delivered under ROLE-007.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verdict": "PASS",
+    "frontEndAcceptance": "Specified five-role scope operates on shared records with assignment/company restrictions; see IU delta requirements.",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "NOT APPLICABLE"
   },
   {
     "id": "ROLE-004",
@@ -1537,7 +1613,8 @@
     "baselineMissing": "Unsupported third evaluation concept conflicts with two-evaluation scope",
     "verdict": "NOT APPLICABLE",
     "frontEndAcceptance": "Student self-evaluation is unapproved and conflicts with the two required assigned evaluation obligations; intentionally excluded.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "NOT APPLICABLE"
   },
   {
     "id": "FND-001",
@@ -1557,7 +1634,8 @@
     "baselineMissing": "Partial shared types, duplicated/no foreign keys across modules",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-002",
@@ -1577,7 +1655,8 @@
     "baselineMissing": "No persistent demo mode",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-003",
@@ -1597,7 +1676,8 @@
     "baselineMissing": "UI imports fixtures directly; no service/API mode",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-004",
@@ -1617,7 +1697,8 @@
     "baselineMissing": "No shared rules/transaction guards",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-005",
@@ -1637,7 +1718,8 @@
     "baselineMissing": "No async/error/loading model; false durable success risks",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-006",
@@ -1657,7 +1739,8 @@
     "baselineMissing": "Unassociated labels/unnamed switches, overlay keyboard gaps, mobile overflow",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-007",
@@ -1677,7 +1760,8 @@
     "baselineMissing": "Lint fails; no tests/CI or environment pin",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-008",
@@ -1697,7 +1781,8 @@
     "baselineMissing": "No file handling",
     "verdict": "PASS",
     "frontEndAcceptance": "Persisted synthetic behavior satisfies the described workflow under documented demo policies; roles/relations/errors remain consistent. ",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-009",
@@ -1717,7 +1802,8 @@
     "baselineMissing": "ERD/API/environment/credentials not supplied",
     "verdict": "NOT APPLICABLE",
     "frontEndAcceptance": "Actual backend/database/authentication integration is explicitly outside the current front-end-only authorization.",
-    "verificationScope": "Representative automated and production Chromium workflow assertions; not every possible input/browser or real API."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "NOT APPLICABLE"
   },
   {
     "id": "AUTH-005",
@@ -1734,7 +1820,8 @@
     "evidence": "tests/unit/session.test.ts; tests/integration/services.test.ts (malformed/unavailable/expired sessions)",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "REQ-009",
@@ -1751,7 +1838,8 @@
     "evidence": "tests/integration/services.test.ts; tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "PLC-009",
@@ -1768,7 +1856,8 @@
     "evidence": "tests/unit/rules.test.ts; tests/e2e/lifecycle.spec.ts",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "SET-004",
@@ -1785,7 +1874,8 @@
     "evidence": "tests/integration/services.test.ts; tests/e2e/smoke.spec.ts",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "ROLE-005",
@@ -1802,7 +1892,8 @@
     "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "ROLE-006",
@@ -1819,24 +1910,26 @@
     "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "ROLE-007",
     "module": "Additional portals",
-    "description": "Minimal company supervisor demonstration extension",
-    "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+    "description": "Preserved operational supervisor lifecycle, now Intern Supervisor",
+    "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension); DSI Interface Content pp.6–7 role separation",
     "implementation": "app/features/PortalPage.tsx; app/lib/commands.ts (scopedDatabase/role guards); app/components/Workspace.tsx",
     "status": "Implemented and verified",
     "verdict": "PASS",
     "missing": "None in tested synthetic workflow; see KNOWN_ISSUES for scope boundaries.",
     "acceptance": "Own company/assigned interns/progress remarks/own company evaluation; unrelated records and student files denied.",
-    "frontEndAcceptance": "Own company/assigned interns/progress remarks/own company evaluation; unrelated records and student files denied.",
+    "frontEndAcceptance": "Legacy operational supervisor accounts migrate to Intern Supervisor without privilege escalation; existing assigned progress/company evaluation workflow remains functional under the updated rules.",
     "tests": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts",
     "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
   },
   {
     "id": "FND-010",
@@ -1853,6 +1946,710 @@
     "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/restart.spec.ts; tests/integration/services.test.ts",
     "testId": "Executed suite mapping",
     "dependencies": "Shared domain/services, simulated role policy D-016–026",
-    "verificationScope": "Automated representative assertions and production Chromium, not production backend/security."
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded.",
+    "previousReleaseVerdict": "PASS"
+  },
+  {
+    "id": "IU-002",
+    "module": "Pre-registration",
+    "description": "Create Pending Activation; permitted faculty auto-assigned; edit scoped students",
+    "source": "DSI - Interface Content.pdf physical page(s) 1",
+    "implementation": "Students; Faculty; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No duplicate ID/email; pending distinct from deactivated",
+    "frontEndAcceptance": "No duplicate ID/email; pending distinct from deactivated",
+    "tests": "account integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "Students.tsx; student.save",
+    "baselineMissing": "Coordinator creates already active student",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-003",
+    "module": "Invitations",
+    "description": "Bound expiring invitation/code and copied local link; status/deactivation",
+    "source": "DSI - Interface Content.pdf physical page(s) 1",
+    "implementation": "Students; AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Only scoped pending student can activate once; inactive cannot bypass",
+    "frontEndAcceptance": "Only scoped pending student can activate once; inactive cannot bypass",
+    "tests": "account integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "student/account relationships",
+    "baselineMissing": "No invitations",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-004",
+    "module": "Activation",
+    "description": "Existing account activation with number/email/password/confirmation/invitation",
+    "source": "DSI - Interface Content.pdf physical page(s) 1",
+    "implementation": "AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Bound match; password policy; no duplicate profile; reject reused/expired",
+    "frontEndAcceptance": "Bound match; password policy; no duplicate profile; reject reused/expired",
+    "tests": "account integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Login.tsx",
+    "baselineMissing": "No activation page",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-005",
+    "module": "Recovery",
+    "description": "Local reset request/link and bound expiring single-use reset page",
+    "source": "DSI - Interface Content.pdf physical page(s) 1",
+    "implementation": "AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Reject inactive/pending/reused/mismatched/expired; no plaintext password persistence",
+    "frontEndAcceptance": "Reject inactive/pending/reused/mismatched/expired; no plaintext password persistence",
+    "tests": "account integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "service.ts verifier",
+    "baselineMissing": "No password reset",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-006",
+    "module": "Account settings",
+    "description": "Current-credential password/email changes; linked student email synchronization",
+    "source": "DSI - Interface Content.pdf physical page(s) 1",
+    "implementation": "Settings; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Old credentials fail; duplicate email rejected; sessions invalidated",
+    "frontEndAcceptance": "Old credentials fail; duplicate email rejected; sessions invalidated",
+    "tests": "account integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Settings.tsx",
+    "baselineMissing": "Info/logout/preferences exist",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-007",
+    "module": "Opportunities",
+    "description": "Location/modality/hours/qualifications/skills/responsibilities fields and filters",
+    "source": "DSI - Interface Content.pdf physical page(s) 1–2",
+    "implementation": "Opportunities; PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Only Active eligible postings available; filters reset/persist URL; MOA link",
+    "frontEndAcceptance": "Only Active eligible postings available; filters reset/persist URL; MOA link",
+    "tests": "posting tests/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Opportunities.tsx",
+    "baselineMissing": "Shared listings/company/apply exist",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-008",
+    "module": "Profile",
+    "description": "Derived profile completion; pre-placement assigned adviser; account settings",
+    "source": "DSI - Interface Content.pdf physical page(s) 2",
+    "implementation": "Students; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Actual required fields determine percent; adviser shared",
+    "frontEndAcceptance": "Actual required fields determine percent; adviser shared",
+    "tests": "assignment tests/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Students.tsx",
+    "baselineMissing": "Profile/related placement exist",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-009",
+    "module": "Requirement phases",
+    "description": "Before/During/After tabs and definition phase; approval remarks",
+    "source": "DSI - Interface Content.pdf physical page(s) 2",
+    "implementation": "Requirements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Only Before mandatory gates placement; frozen all-phase obligations gate completion; history retained",
+    "frontEndAcceptance": "Only Before mandatory gates placement; frozen all-phase obligations gate completion; history retained",
+    "tests": "phase/migration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "Requirements.tsx; rules.ts",
+    "baselineMissing": "Definitions/attempts/Blob/reviews work",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-011",
+    "module": "Placement",
+    "description": "Explicit rendered versus approved labels; assigned Intern Supervisor",
+    "source": "DSI - Interface Content.pdf physical page(s) 2",
+    "implementation": "Placements; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Same submitted/approved/remaining/percent across views",
+    "frontEndAcceptance": "Same submitted/approved/remaining/percent across views",
+    "tests": "progress integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Placements.tsx; rules.hours",
+    "baselineMissing": "Details/links/hours exist",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-012",
+    "module": "Attendance",
+    "description": "Placement/date/hours attendance creation/list/history",
+    "source": "DSI - Interface Content.pdf physical page(s) 2",
+    "implementation": "Attendance; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "One record/date; valid positive bounded hours; dates/ownership; no legacy overlap",
+    "frontEndAcceptance": "One record/date; valid positive bounded hours; dates/ownership; no legacy overlap",
+    "tests": "attendance integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Progress.tsx",
+    "baselineMissing": "Legacy daily report only",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-013",
+    "module": "Weekly reports",
+    "description": "Weekly period/tasks linked attendance; review state/history/resubmission",
+    "source": "DSI - Interface Content.pdf physical page(s) 2",
+    "implementation": "Attendance; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "1–7day period; derived hours; one active attempt; no double counting",
+    "frontEndAcceptance": "1–7day period; derived hours; one active attempt; no double counting",
+    "tests": "weekly integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Progress.tsx",
+    "baselineMissing": "Daily report only",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-015",
+    "module": "Dashboard",
+    "description": "Add Active Companies/Expired MOAs/Active Opportunities/ongoing applications aliases",
+    "source": "DSI - Interface Content.pdf physical page(s) 3",
+    "implementation": "Dashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Counts match current shared scoped/year data and filters",
+    "frontEndAcceptance": "Counts match current shared scoped/year data and filters",
+    "tests": "dashboard browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Dashboard.tsx",
+    "baselineMissing": "Derived summaries/links",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-016",
+    "module": "Students",
+    "description": "Total/pending activation counts/status filter/invitation/deactivate",
+    "source": "DSI - Interface Content.pdf physical page(s) 3",
+    "implementation": "Students; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Records/activation filters and links reflect shared mutations",
+    "frontEndAcceptance": "Records/activation filters and links reflect shared mutations",
+    "tests": "account browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Students.tsx",
+    "baselineMissing": "Directory/profile/history",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-017",
+    "module": "Posting decisions",
+    "description": "Separate company decision then coordinator approval/rejection with remarks/actor/time",
+    "source": "DSI - Interface Content.pdf physical page(s) 3",
+    "implementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Cannot skip company approval; histories persist",
+    "frontEndAcceptance": "Cannot skip company approval; histories persist",
+    "tests": "posting integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "opportunity.status",
+    "baselineMissing": "Single coordinator approval",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-018",
+    "module": "Companies",
+    "description": "Separate explicit company-admin account provisioning and Intern profiles",
+    "source": "DSI - Interface Content.pdf physical page(s) 3",
+    "implementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No legacy privilege escalation; profile links coherent",
+    "frontEndAcceptance": "No legacy privilege escalation; profile links coherent",
+    "tests": "roles/migration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Partners.tsx",
+    "baselineMissing": "Directory/MOA/supervisor profiles",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-019",
+    "module": "Faculty records",
+    "description": "Register/view/edit faculty account/profile and assignment counts",
+    "source": "DSI - Interface Content.pdf physical page(s) 3",
+    "implementation": "Faculty; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Coordinator-only; unique email; active registered adviser",
+    "frontEndAcceptance": "Coordinator-only; unique email; active registered adviser",
+    "tests": "faculty tests/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Faculty existing seed profiles",
+    "baselineMissing": "No faculty management route",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-020",
+    "module": "Faculty assignments",
+    "description": "Student adviser before placement; controlled reassignment preserving history",
+    "source": "DSI - Interface Content.pdf physical page(s) 3–4",
+    "implementation": "Faculty; Students; Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Faculty scoped to assigned students; ongoing placement adviser stays consistent",
+    "frontEndAcceptance": "Faculty scoped to assigned students; ongoing placement adviser stays consistent",
+    "tests": "assignment integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Placement.adviserId only",
+    "baselineMissing": "Only placement-level assignment",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-021",
+    "module": "Application authority",
+    "description": "Intern decides assigned opportunity; documented coordinator oversight uses same terminal transition",
+    "source": "DSI - Interface Content.pdf physical page(s) 3–4",
+    "implementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No contradictory final statuses; reasons/history; no automatic placement",
+    "frontEndAcceptance": "No contradictory final statuses; reasons/history; no automatic placement",
+    "tests": "authority integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "SPECIFICATION CONFLICT",
+    "baselineImplementation": "application.decide",
+    "baselineMissing": "Coordinator decides; company observes assigned placement only",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-023",
+    "module": "Dashboard",
+    "description": "Pre-placement assigned count, reviews, near/completed/evaluation metrics",
+    "source": "DSI - Interface Content.pdf physical page(s) 4",
+    "implementation": "RoleDashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Only current/historical authorized scope; correct links",
+    "frontEndAcceptance": "Only current/historical authorized scope; correct links",
+    "tests": "dashboard/assignment browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Dashboard.tsx scoped placements",
+    "baselineMissing": "Some assignment metrics",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-024",
+    "module": "Student management",
+    "description": "Pre-register scoped students; pre-placement scope; company grouping/filter; review remarks",
+    "source": "DSI - Interface Content.pdf physical page(s) 4",
+    "implementation": "Students; Requirements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Cannot edit/review unrelated students; historical placement scope retained",
+    "frontEndAcceptance": "Cannot edit/review unrelated students; historical placement scope retained",
+    "tests": "assignment/phase browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Students/Requirements",
+    "baselineMissing": "Placement-assigned students/doc review",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-025",
+    "module": "Monitoring remarks",
+    "description": "Independent timestamped monitoring history; no supervisor approval authority",
+    "source": "DSI - Interface Content.pdf physical page(s) 4–5",
+    "implementation": "Progress; ProgressReports; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Remarks never alter approved totals/status; company-filtered reports",
+    "frontEndAcceptance": "Remarks never alter approved totals/status; company-filtered reports",
+    "tests": "progress authority/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "report.review",
+    "baselineMissing": "Faculty review adds official hours",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-026",
+    "module": "Evaluations",
+    "description": "Explicit evaluation date input; retain two obligations/history",
+    "source": "DSI - Interface Content.pdf physical page(s) 5",
+    "implementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Valid date/grade/assignment/uniqueness",
+    "frontEndAcceptance": "Valid date/grade/assignment/uniqueness",
+    "tests": "evaluation integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "evaluation.submit",
+    "baselineMissing": "Assigned grade/comments/date auto",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-027",
+    "module": "Administrative role",
+    "description": "Distinct admin versus Intern role using shared profile infrastructure",
+    "source": "DSI - Interface Content.pdf physical page(s) 5",
+    "implementation": "Partners; Workspace; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No old account silently receives admin permissions",
+    "frontEndAcceptance": "No old account silently receives admin permissions",
+    "tests": "migration/role tests",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "Role; Supervisor; scopedDatabase",
+    "baselineMissing": "Old role was operational supervisor",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-028",
+    "module": "Dashboard",
+    "description": "Company postings/pending/approved/active/slots/intern-supervisors/interns/MOA summaries",
+    "source": "DSI - Interface Content.pdf physical page(s) 5",
+    "implementation": "RoleDashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Company only; metrics derive shared records",
+    "frontEndAcceptance": "Company only; metrics derive shared records",
+    "tests": "company browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Dashboard.tsx",
+    "baselineMissing": "Old supervisor placement summary",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-029",
+    "module": "Company editing",
+    "description": "Own company ordinary info edit; MOA authority stays coordinator",
+    "source": "DSI - Interface Content.pdf physical page(s) 5",
+    "implementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Reject unrelated company and MOA tampering at service boundary",
+    "frontEndAcceptance": "Reject unrelated company and MOA tampering at service boundary",
+    "tests": "company permissions/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "company.save; Partners",
+    "baselineMissing": "Coordinator edit only",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-030",
+    "module": "Posting management",
+    "description": "Own create/edit/details and full attributes; material edit reapproval",
+    "source": "DSI - Interface Content.pdf physical page(s) 5",
+    "implementation": "Opportunities; PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Shared records; validated fields/capacity; historical records kept",
+    "frontEndAcceptance": "Shared records; validated fields/capacity; historical records kept",
+    "tests": "posting/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Opportunities; opportunity.save",
+    "baselineMissing": "Coordinator-only attributes",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-031",
+    "module": "Posting transitions",
+    "description": "Company pending -> Coordinator pending -> Approved -> Active; Filled derived; Deactivated; rejection history",
+    "source": "DSI - Interface Content.pdf physical page(s) 5",
+    "implementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No activation before both approvals; no filled application; retain history",
+    "frontEndAcceptance": "No activation before both approvals; no filled application; retain history",
+    "tests": "posting/migration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "opportunity.status",
+    "baselineMissing": "Pending/Approved/Closed",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-032",
+    "module": "Intern accounts",
+    "description": "Own-company Intern account creation/activation/deactivation and workloads",
+    "source": "DSI - Interface Content.pdf physical page(s) 6",
+    "implementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No cross-company creation; active assignment policy; retain historical account IDs",
+    "frontEndAcceptance": "No cross-company creation; active assignment policy; retain historical account IDs",
+    "tests": "supervisor integration/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "supervisor.save; Partners",
+    "baselineMissing": "Coordinator creates old supervisor",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-033",
+    "module": "Opportunity assignment",
+    "description": "Registered active own-company Intern Supervisor IDs on opportunity",
+    "source": "DSI - Interface Content.pdf physical page(s) 6",
+    "implementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Unassigned intern cannot see/decide apps; preserve past decision history",
+    "frontEndAcceptance": "Unassigned intern cannot see/decide apps; preserve past decision history",
+    "tests": "assignment/role browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Opportunity missing assignment",
+    "baselineMissing": "No explicit assignment",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-034",
+    "module": "Intern assignment",
+    "description": "Own-company assignment/reassignment with unchanged two evaluation obligations",
+    "source": "DSI - Interface Content.pdf physical page(s) 6",
+    "implementation": "Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Same company; submitted eval assignment immutable; pending changes audited",
+    "frontEndAcceptance": "Same company; submitted eval assignment immutable; pending changes audited",
+    "tests": "assignment/evaluation tests",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Placement.supervisorId",
+    "baselineMissing": "Coordinator assignment at creation",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-035",
+    "module": "Dashboard/navigation",
+    "description": "Dedicated assigned opportunity/application/intern/report/evaluation summaries and profile",
+    "source": "DSI - Interface Content.pdf physical page(s) 6",
+    "implementation": "RoleDashboard; Workspace; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No company-wide data outside assigned scope",
+    "frontEndAcceptance": "No company-wide data outside assigned scope",
+    "tests": "role browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "MISSING",
+    "baselineImplementation": "Old Company Supervisor views",
+    "baselineMissing": "No fifth role",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-036",
+    "module": "Profile",
+    "description": "Own contact update, company/assigned postings, account settings",
+    "source": "DSI - Interface Content.pdf physical page(s) 6",
+    "implementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No role/company reassignment or unrelated account edits",
+    "frontEndAcceptance": "No role/company reassignment or unrelated account edits",
+    "tests": "profile browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Supervisor detail",
+    "baselineMissing": "Read-only contact",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-037",
+    "module": "Applications",
+    "description": "Assigned posting applications/applicants/academic info/relevant Before documents/decisions/history",
+    "source": "DSI - Interface Content.pdf physical page(s) 6",
+    "implementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "One terminal decision; eligibility/status/capacity; unrelated docs denied",
+    "frontEndAcceptance": "One terminal decision; eligibility/status/capacity; unrelated docs denied",
+    "tests": "application authority/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "Applications; application.decide",
+    "baselineMissing": "No operational applicant decisions",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-038",
+    "module": "My interns",
+    "description": "Reuse directory/profile/filters/adviser/dates/required-approved hours/status",
+    "source": "DSI - Interface Content.pdf physical page(s) 6–7",
+    "implementation": "Students; Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Operational access only assigned placement interns",
+    "frontEndAcceptance": "Operational access only assigned placement interns",
+    "tests": "role/progress browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "PARTIALLY IMPLEMENTED",
+    "baselineImplementation": "Placements/Students",
+    "baselineMissing": "Old assigned placements exist",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-039",
+    "module": "Progress decisions",
+    "description": "Explicit Pending/Approved/Rejected and immutable decisions; remarks; rejected resubmission",
+    "source": "DSI - Interface Content.pdf physical page(s) 7",
+    "implementation": "Progress; Attendance; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Only assigned Intern can approve/reject; repeated approval cannot double count",
+    "frontEndAcceptance": "Only assigned Intern can approve/reject; repeated approval cannot double count",
+    "tests": "weekly/approval tests/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "report.review",
+    "baselineMissing": "Reviewed by several roles; no rejection",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-040",
+    "module": "Company evaluation",
+    "description": "Move company obligation to Intern role; explicit date",
+    "source": "DSI - Interface Content.pdf physical page(s) 7",
+    "implementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "Assigned evaluator only; no third/duplicate evaluation; historic submissions retained",
+    "frontEndAcceptance": "Assigned evaluator only; no third/duplicate evaluation; historic submissions retained",
+    "tests": "migration/evaluation/browser",
+    "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "evaluation.submit",
+    "baselineMissing": "Old Company Supervisor evaluates",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
+  },
+  {
+    "id": "IU-041",
+    "module": "Saved-data upgrade",
+    "description": "Atomic v1->v2 upgrade; legacy role maps to Intern; reviewed totals grandfathered; unknown versions fail",
+    "source": "DSI - Interface Content.pdf physical page(s) 1–7",
+    "implementation": "upgrade.ts; storage.ts; integrity.ts; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "status": "Implemented and verified",
+    "verdict": "PASS",
+    "missing": "None in the bounded implemented synthetic workflow; institutional/backend limits remain in BUSINESS_RULES and KNOWN_ISSUES.",
+    "acceptance": "No reset; IDs/files/history/totals preserved; read-only after upgrade; stale revisions reject",
+    "frontEndAcceptance": "No reset; IDs/files/history/totals preserved; read-only after upgrade; stale revisions reject",
+    "tests": "native migration regression",
+    "evidence": "tests/integration/interface-upgrade.test.ts; tests/e2e/interface-update.spec.ts",
+    "dependencies": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.; demonstration policies D-043–052.",
+    "baselineStatus": "CHANGED REQUIREMENT",
+    "baselineImplementation": "storage/integrity/seed",
+    "baselineMissing": "Version1 snapshot and actual Blobs",
+    "verificationScope": "Internal bounded synthetic front-end evidence at7f2873a:120native/43production browser. Exact API/ERD compatibility, production security and postponed independent certification excluded."
   }
 ]

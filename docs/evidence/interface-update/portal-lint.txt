@@ -1,0 +1,26 @@
+
+> internlink-ui@0.1.0 lint
+> eslint
+
+
+D:\Orca\Workspace\pup-internlink-ui\app\features\Attendance.tsx
+  7:3  warning  'Details' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Orca\Workspace\pup-internlink-ui\app\features\Opportunities.tsx
+  5:3  warning  'ActionButton' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Orca\Workspace\pup-internlink-ui\app\features\Placements.tsx
+  354:16  error  'Table' is not defined  react/jsx-no-undef
+
+D:\Orca\Workspace\pup-internlink-ui\app\features\Progress.tsx
+  21:3  warning  'canSeePlacement' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Orca\Workspace\pup-internlink-ui\app\features\RoleDashboard.tsx
+  9:3  warning  'nameOf' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Orca\Workspace\pup-internlink-ui\app\lib\commands.ts
+   4:3  warning  'Command' is defined but never used     @typescript-eslint/no-unused-vars
+  19:3  warning  'companyFor' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 7 problems (1 error, 6 warnings)
+

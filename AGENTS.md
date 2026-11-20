@@ -23,3 +23,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Domain SaveForms must receive the loaded database revision and pass the captured revision into mutate; never authorize stale uncontrolled inputs using a newer background snapshot. Preserve conflict input and deliberate reload behavior.
 - Preserve readonly storage access and command-bound idempotency receipts. Run the independent audit regressions in addition to the existing suites. Verification reports must distinguish original d71e726 findings from repaired candidate evidence and disclose self-verification.
+
+## Interface-update maintenance
+
+- Read docs/INTERFACE_UPDATE_IMPLEMENTATION_REPORT.md and docs/INTERFACE_UPDATE_GAP_ANALYSIS.md for the latest incremental scope. The owner postponed final targeted independent review; internal test results do not certify it.
+- Preserve five distinct roles: Company Supervisor administers its company; Intern Supervisor operates assigned applications/progress/company evaluations. Existing legacy supervisors migrate to Intern without administrator privileges.
+- Keep version-one saved IDs, Blob attachments, hours and evaluator relationships compatible through upgrade.ts; never require reset for this update. Account access uses access commands; authenticated writes use Mutation/updates.ts and existing revision/content-bound receipt protections.
+- Use phased requirement eligibility and shared rendered/approved hour selectors; attendance and weekly reports must never double-count work. Faculty monitoring remarks are independent from Intern approval decisions. Keep two evaluation obligations.

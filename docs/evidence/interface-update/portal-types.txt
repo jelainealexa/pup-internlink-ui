@@ -1,0 +1,11 @@
+
+> internlink-ui@0.1.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+app/features/Dashboard.tsx(99,39): error TS2367: This comparison appears to be unintentional because the types '"Coordinator"' and '"Company Supervisor"' have no overlap.
+app/features/Dashboard.tsx(107,39): error TS2367: This comparison appears to be unintentional because the types '"Coordinator"' and '"Company Supervisor"' have no overlap.
+app/features/Dashboard.tsx(219,15): error TS2367: This comparison appears to be unintentional because the types '"Coordinator"' and '"Student"' have no overlap.
+app/features/Dashboard.tsx(241,8): error TS2367: This comparison appears to be unintentional because the types '"Coordinator"' and '"Student"' have no overlap.
+app/features/Placements.tsx(354,16): error TS2304: Cannot find name 'Table'.

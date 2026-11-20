@@ -1,0 +1,109 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:4508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24560) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:21168) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 42 tests using 1 worker
+
+(node:31360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\auth.spec.ts:3:1 › A: invalid/inactive credentials, direct URL guard, role restriction and logout (4.1s)
+  ok  2 [chromium] › tests\e2e\auth.spec.ts:35:1 › supervisor and adviser portals restrict unrelated records (3.2s)
+  ok  3 [chromium] › tests\e2e\guards.spec.ts:3:1 › F: placement date/hour/affiliation guards and capacity are enforced before persistence (4.0s)
+  ok  4 [chromium] › tests\e2e\guards.spec.ts:54:1 › E: acceptance blocks missing approvals; requirement rejection and application reason guards (4.2s)
+  ok  5 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale companies edit cannot overwrite another tab (3.4s)
+  ok  6 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale accounts edit cannot overwrite another tab (3.3s)
+  ok  7 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale requirements edit cannot overwrite another tab (3.2s)
+  ok  8 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale opportunities edit cannot overwrite another tab (3.4s)
+  ok  9 [chromium] › tests\e2e\independent-lifecycle.spec.ts:19:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip (41.6s)
+  ok 10 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: students every filter option, search, reset, sort and refresh (20.4s)
+  ok 11 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: partners every filter option, search, reset, sort and refresh (9.0s)
+  ok 12 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: internships every filter option, search, reset, sort and refresh (12.6s)
+  ok 13 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: applications every filter option, search, reset, sort and refresh (14.9s)
+  ok 14 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: placements every filter option, search, reset, sort and refresh (15.5s)
+  ok 15 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: progress every filter option, search, reset, sort and refresh (13.7s)
+  ok 16 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: evaluations every filter option, search, reset, sort and refresh (15.1s)
+  ok 17 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: requirements every filter option, search, reset, sort and refresh (3.9s)
+  ok 18 [chromium] › tests\e2e\independent-matrix.spec.ts:233:3 › independent directory matrix: submissions every filter option, search, reset, sort and refresh (5.8s)
+  ok 19 [chromium] › tests\e2e\independent-matrix.spec.ts:366:1 › independent settings: computed styles, all reminder effects, persisted year and landing preference (7.3s)
+  ok 20 [chromium] › tests\e2e\independent.spec.ts:4:1 › invalid edit and nested record identifiers remain explicit not-found states (3.9s)
+  ok 21 [chromium] › tests\e2e\independent.spec.ts:27:1 › accepted unplaced students have an accurate status and no forbidden placement action (1.9s)
+  ok 22 [chromium] › tests\e2e\independent.spec.ts:37:1 › IV-15: empty eligible data has actionable empty states rather than impossible forms (2.9s)
+  ok 23 [chromium] › tests\e2e\independent.spec.ts:74:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes (5.2s)
+  ok 24 [chromium] › tests\e2e\independent.spec.ts:128:1 › IV-14: failed confirmed mutation explains the failure inside its active dialog (2.2s)
+  ok 25 [chromium] › tests\e2e\independent.spec.ts:142:1 › IV-11: unauthenticated contextual placement URL survives sign in (1.6s)
+  ok 26 [chromium] › tests\e2e\independent.spec.ts:159:1 › IV-03: direct navigation does not reveal another draft posting to a student (1.9s)
+  ok 27 [chromium] › tests\e2e\interface-update.spec.ts:53:1 › updated A-B: pre-registration, faculty scope, invitation activation, recovery and account credentials (12.4s)
+  ok 28 [chromium] › tests\e2e\interface-update.spec.ts:262:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion (40.5s)
+  ok 29 [chromium] › tests\e2e\lifecycle.spec.ts:15:1 › B–J: entire persisted internship lifecycle through supported UI actions (30.4s)
+  x  30 [chromium] › tests\e2e\maintenance.spec.ts:4:1 › every dashboard summary opens the matching filtered records (1.9s)
+(node:30068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 31 [chromium] › tests\e2e\maintenance.spec.ts:24:1 › dashboard document alerts exclude superseded rejected attempts while retaining history (3.6s)
+  ok 32 [chromium] › tests\e2e\maintenance.spec.ts:56:1 › shared browser tabs refresh after a persisted mutation (3.6s)
+  ok 33 [chromium] › tests\e2e\maintenance.spec.ts:73:1 › academic year and default landing preferences have observable effects (3.6s)
+  ok 34 [chromium] › tests\e2e\maintenance.spec.ts:94:1 › company, supervisor, opportunity and requirement edits persist and propagate (5.9s)
+  ok 35 [chromium] › tests\e2e\maintenance.spec.ts:154:1 › directory controls, URL back/forward and filtered dashboard destinations (4.6s)
+  ok 36 [chromium] › tests\e2e\restart.spec.ts:3:1 › saved synthetic records and demonstration session survive a supported browser restart (8.2s)
+  ok 37 [chromium] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (22.6s)
+  ok 38 [chromium] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (3.0s)
+  ok 39 [chromium] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (4.2s)
+(node:13596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 40 [mobile] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (24.2s)
+  ok 41 [mobile] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (2.2s)
+  ok 42 [mobile] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (2.9s)
+
+
+  1) [chromium] › tests\e2e\maintenance.spec.ts:4:1 › every dashboard summary opens the matching filtered records 
+
+    Error: expect(received).toHaveLength(expected)
+
+    Expected length: 14
+    Received length: 16
+    Received array:  [{"count": 6, "href": "/dashboard/students"}, {"count": 4, "href": "/dashboard/partners"}, {"count": 2, "href": "/dashboard/internships?available=true"}, {"count": 1, "href": "/dashboard/applications?status=Pending"}, {"count": 4, "href": "/dashboard/applications?status=Accepted"}, {"count": 1, "href": "/dashboard/applications?status=Rejected"}, {"count": 1, "href": "/dashboard/placements?status=Ongoing"}, {"count": 1, "href": "/dashboard/placements?status=Completed"}, {"count": 1, "href": "/dashboard/placements?status=Terminated"}, {"count": 2, "href": "/dashboard/partners?status=Eligible"}, …]
+
+      12 |     })),
+      13 |   );
+    > 14 |   expect(cards).toHaveLength(14);
+         |                 ^
+      15 |   for (const card of cards) {
+      16 |     await page.goto(card.href);
+      17 |     await expect(page.locator("tbody tr")).toHaveCount(card.count);
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\maintenance.spec.ts:14:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\maintenance-every-dashboar-56f73-e-matching-filtered-records-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\maintenance-every-dashboar-56f73-e-matching-filtered-records-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\maintenance-every-dashboar-56f73-e-matching-filtered-records-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\maintenance-every-dashboar-56f73-e-matching-filtered-records-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\maintenance.spec.ts:4:1 › every dashboard summary opens the matching filtered records 
+  41 passed (7.3m)

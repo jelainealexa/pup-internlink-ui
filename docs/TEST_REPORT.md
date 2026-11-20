@@ -1,3 +1,65 @@
+# Interface-update test report
+
+2026-11-20, internal implementation verification. Source/test checkpoint **7f2873a60160060bae8140c0769e7545a3aa3154**, branch frontend/interface-update; original baseline5daa83a. Windows PowerShell, Node 24.15.0/npm 11.12.1, Next 16.4.6/React 19.3/TypeScript 5.9.3. Evidence directory: [interface-update](evidence/interface-update). Prior independent reports below remain historical; no postponed final independent review or production security certification was performed.
+
+| Gate / exact command | Actual current result | Evidence |
+| --- | --- | --- |
+| `npm run typecheck` | PASS, exit0, Next typegen + tsc --noEmit | final-types.txt |
+| `npm run lint` | PASS, exit0, no ESLint errors/warnings | final-lint.txt |
+| `npm test -- --reporter=default --reporter=json --outputFile=docs/evidence/interface-update/final-vitest.json` | PASS120/120,9 files,0 failed/skipped:55 unit/5 component/60 integration | final-vitest.txt/json |
+| `npm ls --depth=0` | PASS exit0;2 inherited optional build packages marked extraneous | dependencies.txt |
+| Targeted updated+legacy journeys (`npm run test:e2e -- tests/e2e/interface-update.spec.ts tests/e2e/lifecycle.spec.ts tests/e2e/independent-lifecycle.spec.ts --reporter=list --output=test-results/updated-journeys`) | PASS4/4, actual production app;2.8min | browser-journeys.txt |
+| Targeted metrics/maintenance (`npm run test:e2e -- tests/e2e/interface-dashboard.spec.ts tests/e2e/maintenance.spec.ts --reporter=list --output=test-results/interface-metrics`) | PASS7/7;48.6 sec | metrics-browser.txt |
+| First full `npm run test:e2e` |41 pass/1fail,7.3min; stale14-card assertion versus16 required cards, corrected without removing destination checks | regression-browser-first.txt |
+| Final full `npm run test:e2e` | PASS43/43 (40 desktop/3 mobile),0 failed/skipped/flaky;356.208 seconds | final-browser.txt; final-e2e.json |
+| `$env:INTERNLINK_DIST_DIR='.next-interface-release'; npm run build` | PASS exit0; compilation14.8s, TypeScript 20.5s,31static pages generated | final-build.txt |
+| Separate production startup | PASS; separate production 3127,5HTTP200 and5 browser checks,0page errors | production-smoke.txt/json; production-start.txt |
+| New dependency install | NOT APPLICABLE: package/lock unchanged, existing dependencies used and checked | dependencies.txt; git diff package files |
+
+Chromium override used in actual runs:
+
+```powershell
+$env:PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH='C:/Users/User 1/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe'
+npm run test:e2e
+```
+
+Separate built-app smoke command actually executed: `node docs/evidence/interface-update/production-smoke.cjs.txt`. Its reproducible script starts the isolated release build on3127, checks5 HTTP routes and5UI/auth/module behaviors, captures errors/results and stops only its owned process tree. `production-smoke.json` records10successful checks. The explicit build temporarily added custom-dist TypeScript includes; only those generated local includes were restored to the committed tsconfig afterward. Application/test source remains7f2873a.
+
+Playwright's existing launcher builds isolated .next-e2e and starts production 3105, preserving other servers. All original 40 browser cases are retained; new interface-update2 and interface-dashboard1 produce43 cases (40 desktop/3 mobile). Three large lifecycle cases cover many steps; raw test count is not a completeness percentage. Browser journeys use synthetic UI steps and role switching, with readonly persisted-state assertions; they do not edit storage to bypass approval/activation.
+
+## Native suite credibility and additions
+
+| Suite | Cases | Purpose |
+| --- | --- | --- |
+| unit/rules |47 | Original eligibility/relationships/hours/grade/report/CSV rules, unchanged case count; labels updated to rendered/approved. |
+| unit/session |8 | Original storage/session/expiry/error behavior. |
+| components/forms + independent-forms |3+2 | Original accessible async save/error/option preservation behavior. |
+| integration/services |21 | Original real IndexedDB service/persistence/Blobs/revision/idempotency/rollback/authorization cases. |
+| integration/independent-audit |21 | All 16 previous repair regressions plus edge/data-volume checks retained. |
+| integration/interface-update |8 | New activation/invitation/password reset/credential and content-bound public retries; assignments/role separation/staged posting/phases/weekly calculations. |
+| integration/interface-permissions |6 | Cross-company/role denies; account deactivation, evaluator-preserving reassignment, posting stage reasons, invalid attendance/authorization atomicity, stale adviser scope, unchanged material-save policy and bound daily replacement. |
+| integration/interface-upgrade |4 | Native version 1 upgrade preserves IDs/files/verifiers/placements/evaluations/hours; failed write rollback; request expiry and atomic credential failure. |
+
+Original 102 remain;18 new integration cases give120. Tests exercise actual implementation and native fake-indexeddb transactions, inspect stored objects/Blob bytes and compare snapshots after denied operations. Upgrade tests construct a valid legacy fixture, not an intended final lifecycle shortcut. No skipped tests or weakened assertions are claimed successful.
+
+## Superseded expectations and retained failure evidence
+
+- Legacy Company Supervisor is operational Intern Supervisor; relevant Before applicant documents are now permitted while unrelated phase/student files remain denied. New progress approval belongs to assigned Intern rather than coordinator/faculty. Schema-reset expectation is version 2. All 21 original service cases remain.
+- Newly registered students require real UI invitation/activation before login. New postings require actual company decision/assignment→coordinator decision→company activation. Original lifecycle tests keep their file/duplicate/placement/hour/CSV assertions and now exercise these prerequisites using update-helpers.
+- Directory matrix independently computes Active/Filled/staged/Eligible statuses, new location/modality/hours and activation/adviser filters from saved records. Former Reviewed/Pending Review expectations map to Approved/Pending. Report display totals use rendered/approved terminology. Coordinator metric count changes14→16, retaining checks for every destination count.
+- Early target failures were harness issues: invitation regeneration was read before the new saved link arrived; notice exact text included a Dismiss button; the dialog accessible name is Close dialog; a synthetic work date overlapped seeded daily work; initial seed revision was normalized to0 while real upgrades increment. Failed logs foundation-tests/browser-first/second/third/regression-first remain evidence, followed by passing reruns. No product failure is silently counted as passing.
+- Fingerprint/revision/reset/file-integrity/clock/precision/contextual navigation/empty-state tests are retained. New public requests use namespaced content-bound receipts: same key/intent is retry-safe without another write; changed intent conflicts; used token under a new key fails.
+
+## Verification limitations
+
+No fresh clean install repeated the prior complete audit because dependencies/lock are unchanged. Existing installed graph/build/runtime are actually exercised. Browser messages warn NO_COLOR is ignored when FORCE_COLOR is set; no product warning is hidden. Inherited ESLint deprecation/optional extraneous build dependencies remain documented maintenance limits, not waived errors. Exact final build/runtime outputs are retained.
+
+Firefox/WebKit, exhaustive manual screen reader/WCAG, physical printer/PDF native viewer, true OS quota exhaustion/eviction endurance, secure email delivery, real backend/database/API/security and multi-device synchronization are not tested/certified. The version-one upgrade fixture matches the former contracts; arbitrary unsupported manually altered snapshots are rejected rather than guessed. This is internal verification by the implementation agent, not an independent review.
+
+---
+
+## Historical previous-release evidence (unchanged results)
+
 # Executed release candidate test report
 
 Reviewed **7ca502cc6260232619570b2ee945da5f5c13145b**; application repair **dcad283780f3b7ab3ca2ee25c792924d695106a5**; original **d71e7265dbb2d136a0ea7f5f08c13e6b24278ba2**. Windows/Node24.15.0/npm11.12.1. Results below actually executed; repair verification is by its author. Historical implementation report follows separately.

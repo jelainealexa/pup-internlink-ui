@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "7f2873a60160060bae8140c0769e7545a3aa3154",
+  "native": {
+    "total": 120,
+    "unit": 55,
+    "component": 5,
+    "integration": 60,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "total": 43,
+    "desktop": 40,
+    "mobile": 3,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "durationMs": 356208.014
+  },
+  "lintExit": 0,
+  "typecheckExit": 0,
+  "buildExit": 0,
+  "dependencyCheckExit": 0,
+  "productionSmoke": "PASS",
+  "requirements": {
+    "PASS": 126,
+    "BLOCKED": 1,
+    "NOT APPLICABLE": 4
+  },
+  "independentCertification": "UNVERIFIED: postponed by owner",
+  "backendProductionSecurity": "NOT APPLICABLE"
+}

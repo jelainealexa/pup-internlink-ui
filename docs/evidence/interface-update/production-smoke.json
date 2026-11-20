@@ -1,0 +1,17 @@
+{
+  "command": "INTERNLINK_DIST_DIR=.next-interface-release next start --port 3127 --hostname 127.0.0.1",
+  "checks": [
+    "/ HTTP200",
+    "/activate HTTP200",
+    "/forgot-password HTTP200",
+    "/reset-password HTTP200",
+    "/dashboard/faculty HTTP200",
+    "Anonymous protected route redirected to login",
+    "Coordinator faculty management rendered",
+    "Production report directory rendered",
+    "Intern role restored from production seed",
+    "Intern denied faculty administration"
+  ],
+  "errors": [],
+  "verdict": "PASS"
+}

@@ -1,21 +1,26 @@
-# Known issues and operating limits
+# Current known issues and operating limits
 
-Reviewed candidate **7ca502cc6260232619570b2ee945da5f5c13145b**. All sixteen reproduced audit product findings are Fixed with regression evidence. No known open critical/high/medium/low product defect prevents mandatory demonstration scope. This bounded assessment does not establish exhaustive defect absence; original symptoms remain in DEFECT_REGISTER.
+Interface-update source checkpoint 7f2873a on frontend/interface-update. Current internal gates are in TEST_REPORT; final independent review is postponed. Previous 16 findings remain historically Fixed in DEFECT_REGISTER with their original evidence; this does not automatically certify the update. Final full regression/build passed (TEST_REPORT); internal readiness is limited to tested demonstration scope.
 
 | Item | Classification | Limit / receiving-team action |
 | --- | --- | --- |
-| Actual backend/database/security | Outside front-end scope / NOT APPLICABLE | No real shared server/security boundary. Implement server enforcement before real users/data. |
-| Approved ERD/API/rubric/permissions/provisioning | UNVERIFIED; AUTH-004 BLOCKED externally | Exact compatibility cannot be established; reconcile proposed contracts and assumptions. |
-| Origin/profile/device locality | Accepted limitation | Data/session are local; no cloud sync/backup. Clearing/eviction can lose data. |
-| Whole-snapshot conflicts | Accepted limitation | Stale writes reject; unrelated changes may require warned reload/re-entry. No automatic field merge. |
-| Legacy idempotency receipts | Accepted compatibility rule | Old snapshots remain readable; receipt without fingerprint cannot safely replay. Review saved records and use a new key. Bounded receipts/events are not permanent audit. |
-| Reset cross-store failure | Accepted limitation | Session clears before destructive replacement; a later failed database write may leave the user signed out with records intact. |
-| Numeric hours | Accepted demonstration precision | Shared compensated sums normalize twelve significant digits. Approved timekeeping precision/rubric still required. |
-| Storage/file-volume/performance | UNVERIFIED beyond bounded checks | Native failed-write/corruption/retry simulations and 1,000-extra-student functional fixture pass; no OS quota exhaustion or file-volume endurance benchmark. |
-| Files/viewers/scanning | Bounded PASS / unverified native viewer | TXT/PDF/PNG/JPEG bytes persist/download; image decoding checked. Native PDF plug-in varies; download available. MIME/size guards are not malware scanning/content authentication. |
-| Browsers/manual accessibility/physical print | UNVERIFIED | Desktop/mobile Chromium and selected axe/keyboard/print-media pass. Firefox/WebKit/manual screen reader/full WCAG/physical paper not certified. |
-| Parallel browser timing | UNVERIFIED | Exploratory two-worker39/40 failed background navigation. Foreground harness corrected, target3/3 and configured one-worker40/40 pass. Failure/trace retained. |
-| Dependency maintenance | LOW accepted maintenance limitation | ESLint9.39.5 deprecated warning retained. Optional @emnapi/runtime1.11.3 and @img/sharp-wasm32@0.35.5 appear extraneous after build; npm ls exits0. No dependency security certification. |
-| Full role/admin products, optional metadata/self-evaluation | NOT APPLICABLE | Minimal related role workflows are verified; no full unapproved invitation/password-reset/admin/self-evaluation/certificate document issuance claimed. Student report CSV exists; separate optional directory export not claimed. |
+| Approved ERD/API/rubric/assignment/provisioning policy | BLOCKED externally / exact compatibility UNVERIFIED | AUTH-004 requires institutional agreement; local invitation/activation is functional. Resolve D-043–052 before real integration. |
+| Actual backend/database/production security | NOT APPLICABLE to front-end delivery | No server/database/production auth/email/private file infrastructure; implement and validate externally. |
+| Local invitation/reset mechanism | Accepted demonstration limitation | Links/codes work only in the same origin/profile, not email. Inspectable local UUID requests/verifiers cannot prove ownership. No production token-security claim. |
+| Password verifier | Accepted demonstration limitation | No plaintext new password persisted; existing lightweight verifier is not a production adaptive password hash. Public seeded/new staff credentials are synthetic. |
+| Legacy supervisor migration | Accepted explicit compatibility policy | Old operational accounts become Intern; no privilege escalation. Upgraded data has no auto-inserted admin; coordinator creates one deliberately without resetting. Reviewed hours retain original attribution/provenance. |
+| Coordinator application authority | Specification conflict / reversible policy | Retained oversight uses same terminal decision; updated PDF does not clearly revoke it. Backend/institution must confirm authority. |
+| Current adviser/Intern reassignment | Accepted demo policy | One current adviser; ongoing adviser conflict blocked. Pending company evaluation transfers in-place; submitted company evaluation freezes ongoing supervisor transfer. Historical records retained. |
+| Attendance/report correction | Accepted bounded workflow | Reject/resubmit reports retains history; no silent attendance edits/deletion. Official attendance details, correction authority and frequency remain unapproved. |
+| Origin/profile/device locality | Accepted limitation | Browser-local persistence, no shared server/cloud backup. Clearing/eviction can lose data. Supported same-origin tab/restart persistence is tested, cross-device is not claimed. |
+| Whole-snapshot stale conflicts | Accepted limitation | Unrelated changes can require warned reload/re-entry. No automatic stale field merge. |
+| Legacy/bounded receipts and activities | Accepted compatibility/retention rule | Old receipts without fingerprints readable but cannot safely replay; latest 200 receipts/300 normal activity events are not permanent production audit. Embedded attempts/decisions preserved. |
+| Reset cross-store failure | Accepted limitation | Session clears first; failed later replacement may sign out with records intact. Never auto-reseed valid data. |
+| Hours/grades/calendar | Accepted reversible demo precision | Shared compensated12-significant-digit hours; approved hours for completion; grade 0–100 without pass/weight policy; UTC date boundaries. Agree institutional rules. |
+| Files/viewers/scanning | Bounded tested behavior | Real TXT/PDF/PNG/JPEG Blobs/bytes, metadata and download; MIME/content guards are not malware scanning. Native PDF viewer varies; download available. |
+| Volume/quota/endurance | UNVERIFIED beyond bounded regressions | Native failed-write/corrupt/upgrade rollback and1000-extra-student fixture exercised; no real OS quota exhaustion or endurance guarantee. |
+| Browsers/accessibility/printing | UNVERIFIED beyond configured checks | Chromium desktop/mobile, selected axe/keyboard/print-media only. No Firefox/WebKit/manual screen-reader/full WCAG/physical paper certification. |
+| Dependencies | LOW accepted maintenance limit | ESLint9.39.5 inherited deprecation; optional @emnapi/runtime1.11.3/@img/sharp-wasm32@0.35.5 marked extraneous by npm ls, which exits0. No new dependency/security certification. |
+| Optional excluded functions | NOT APPLICABLE | Student self-evaluation, separate directory export, optional deadline/program restrictions and actual server integration remain excluded; updated role portals and modality filters are now specified, not excluded. |
 
-Use localhost or HTTPS with IndexedDB/localStorage/Web Crypto. API mode fails explicitly until an approved adapter is supplied; never silently falls back to demo data. BUSINESS_RULES and DECISION_LOG D-016–042 record reversible policies. Same agent repaired and verified changes; recommend targeted fresh-context review.
+Use only synthetic data on localhost/HTTPS. API mode fails explicitly, with no fallback. Current source has no known unresolved reproduced mandatory front-end defect after targeted repairs; final full regression43/43 and build passed. This statement does not assert defect absence or independent certification.

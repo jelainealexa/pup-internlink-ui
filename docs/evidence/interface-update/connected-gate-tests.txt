@@ -1,0 +1,26 @@
+
+> internlink-ui@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=docs/evidence/interface-update/connected-gate-tests.json
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ✓ tests/integration/interface-upgrade.test.ts (4 tests) 133ms
+ ✓ tests/unit/rules.test.ts (47 tests) 197ms
+ ✓ tests/integration/interface-permissions.test.ts (4 tests) 513ms
+ ✓ tests/integration/independent-audit.test.ts (21 tests) 694ms
+ ✓ tests/integration/services.test.ts (21 tests) 820ms
+ ✓ tests/integration/interface-update.test.ts (7 tests) 825ms
+ ✓ tests/unit/session.test.ts (8 tests) 10ms
+ ✓ tests/components/independent-forms.test.tsx (2 tests) 87ms
+ ✓ tests/components/forms.test.tsx (3 tests) 364ms
+
+ Test Files  9 passed (9)
+      Tests  117 passed (117)
+   Start at  02:34:30
+   Duration  5.34s (environment 47%, tests 22%, import 17%, transform 7%, setup 7%, worker 1%)
+
+    Isolate  9 workers spawned · ~1.21s startup each (spawn + environment, per file)
+             at least ~347ms faster with isolate: false — reuses workers across files instead of one per file
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/interface-update/connected-gate-tests.json

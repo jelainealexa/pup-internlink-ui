@@ -1,0 +1,20 @@
+const {spawn,spawnSync}=require('node:child_process');
+const fs=require('node:fs');
+const {chromium,expect}=require('@playwright/test');
+const result={command:"INTERNLINK_DIST_DIR=.next-interface-release next start --port 3127 --hostname 127.0.0.1",checks:[],errors:[]};
+let browser,serverLog='';
+const server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--port','3127','--hostname','127.0.0.1'],{env:{...process.env,INTERNLINK_DIST_DIR:'.next-interface-release'},windowsHide:true});
+server.stdout.on('data',s=>serverLog+=s);server.stderr.on('data',s=>serverLog+=s);
+(async()=>{try{
+ const base='http://127.0.0.1:3127';let ready=false;
+ for(let i=0;i<100;i++){try{if((await fetch(base)).status===200){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,100));}
+ if(!ready)throw Error('Production server did not become ready');
+ for(const route of ['/','/activate','/forgot-password','/reset-password','/dashboard/faculty']){const response=await fetch(base+route);if(response.status!==200)throw Error(route+' HTTP '+response.status);result.checks.push(route+' HTTP200');}
+ browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH});const page=await browser.newPage();page.on('pageerror',e=>result.errors.push(e.message));
+ await page.goto(base+'/dashboard/faculty');await expect(page.getByRole('heading',{name:'Demonstration sign in'})).toBeVisible();result.checks.push('Anonymous protected route redirected to login');
+ const login=async(email)=>{await page.goto(base);await page.getByLabel('Email address').fill(email);await page.getByLabel('Password',{exact:false}).fill('InternLink!2026');await page.getByRole('button',{name:'Sign in',exact:true}).click();await expect(page.getByRole('button',{name:'Log out',exact:true})).toBeVisible();};
+ await login('coordinator@example.test');await page.goto(base+'/dashboard/faculty');await expect(page.getByRole('heading',{name:'Faculty Management',exact:true})).toBeVisible();result.checks.push('Coordinator faculty management rendered');
+ await page.goto(base+'/dashboard/progress?view=reports');await expect(page.getByRole('heading',{name:'Submitted Progress Reports',exact:true})).toBeVisible();result.checks.push('Production report directory rendered');
+ await page.getByRole('button',{name:'Log out',exact:true}).click();await expect(page.getByRole('heading',{name:'Demonstration sign in'})).toBeVisible();await login('supervisor@example.test');await expect(page.getByRole('heading',{name:'Intern Supervisor dashboard',exact:true})).toBeVisible();result.checks.push('Intern role restored from production seed');
+ await page.goto(base+'/dashboard/faculty');await expect(page.getByRole('heading',{name:'Access denied',exact:true})).toBeVisible();result.checks.push('Intern denied faculty administration');if(result.errors.length)throw Error(result.errors.join('; '));result.verdict='PASS';
+}catch(e){result.verdict='FAIL';result.failure=e.stack;process.exitCode=1;}finally{if(browser)await browser.close();if(server.pid)spawnSync('taskkill',['/PID',String(server.pid),'/T','/F'],{windowsHide:true});fs.writeFileSync('docs/evidence/interface-update/production-smoke.json',JSON.stringify(result,null,2));fs.writeFileSync('docs/evidence/interface-update/production-start.txt',serverLog);console.log(JSON.stringify(result,null,2));}})();

@@ -1,3 +1,9 @@
+# Current incremental project plan
+
+Current scope: complete only the seven-page DSI interface delta on `frontend/interface-update`, from5daa83a. Gap analysis checkpoint5558cce; existing framework/components/data adapter/previous repairs retained. Implement missing accounts/faculty/five-role posting/assignment/attendance/monitoring behavior, targeted tests, full regressions and documentation/local commits. Final targeted independent review is postponed; actual backend/database remains outside scope.
+
+The earlier completed-development roadmap below is historical context, not a request to restart phases.
+
 # Front-end project plan
 
 The autonomous complete-front-end instruction supersedes the earlier Phase 0 stop and any plan for actual backend implementation. The original Phase 0 documentation checkpoint is `d679d264a80c5ebf88829488d0580e7c0eed2880`. Work is on `frontend/complete-demo`; local main is preserved. Functionality and consistency take priority over visual changes.

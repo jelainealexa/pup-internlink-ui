@@ -4,14 +4,22 @@
     "page": "1",
     "role": "All",
     "module": "Authentication",
-    "classification": "ALREADY IMPLEMENTED",
+    "classification": "PARTIALLY IMPLEMENTED",
     "prior": "AUTH-001/002/003",
     "location": "Login.tsx; service.ts",
     "existing": "Credential checks/session/guards/logout",
     "change": "Preserve; add show/hide, activation/recovery links",
     "acceptance": "Valid/invalid/inactive/expired flows remain; password visibility toggles",
     "tests": "auth/e2e regression",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "AUTH-001/002/003",
+    "implementation": "Login.tsx; service.ts",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Login; AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "originalGapClassification": "ALREADY IMPLEMENTED",
+    "classificationNote": "Original working login core preserved; show/hide and access links were missing controls. Extends AUTH-001/002/003, no duplicate canonical ID."
   },
   {
     "id": "IU-002",
@@ -25,7 +33,13 @@
     "change": "Create Pending Activation; permitted faculty auto-assigned; edit scoped students",
     "acceptance": "No duplicate ID/email; pending distinct from deactivated",
     "tests": "account integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-002",
+    "implementation": "Students.tsx; student.save",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Students; Faculty; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-003",
@@ -39,7 +53,13 @@
     "change": "Bound expiring invitation/code and copied local link; status/deactivation",
     "acceptance": "Only scoped pending student can activate once; inactive cannot bypass",
     "tests": "account integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-003",
+    "implementation": "student/account relationships",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Students; AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-004",
@@ -53,7 +73,13 @@
     "change": "Existing account activation with number/email/password/confirmation/invitation",
     "acceptance": "Bound match; password policy; no duplicate profile; reject reused/expired",
     "tests": "account integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-004",
+    "implementation": "app/features/Login.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-005",
@@ -67,7 +93,13 @@
     "change": "Local reset request/link and bound expiring single-use reset page",
     "acceptance": "Reject inactive/pending/reused/mismatched/expired; no plaintext password persistence",
     "tests": "account integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-005",
+    "implementation": "service.ts verifier",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-006",
@@ -81,7 +113,13 @@
     "change": "Current-credential password/email changes; linked student email synchronization",
     "acceptance": "Old credentials fail; duplicate email rejected; sessions invalidated",
     "tests": "account integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-006",
+    "implementation": "app/features/Settings.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Settings; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-007",
@@ -95,7 +133,13 @@
     "change": "Location/modality/hours/qualifications/skills/responsibilities fields and filters",
     "acceptance": "Only Active eligible postings available; filters reset/persist URL; MOA link",
     "tests": "posting tests/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-007",
+    "implementation": "app/features/Opportunities.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Opportunities; PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-008",
@@ -109,7 +153,13 @@
     "change": "Derived profile completion; pre-placement assigned adviser; account settings",
     "acceptance": "Actual required fields determine percent; adviser shared",
     "tests": "assignment tests/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-008",
+    "implementation": "app/features/Students.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Students; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-009",
@@ -123,7 +173,13 @@
     "change": "Before/During/After tabs and definition phase; approval remarks",
     "acceptance": "Only Before mandatory gates placement; frozen all-phase obligations gate completion; history retained",
     "tests": "phase/migration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-009",
+    "implementation": "Requirements.tsx; rules.ts",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Requirements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-010",
@@ -137,7 +193,13 @@
     "change": "Expose true decision actor/remarks under revised authority",
     "acceptance": "Student/coordinator see same final decision and historical actor",
     "tests": "application browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "APP-001/002/003",
+    "implementation": "app/features/Applications.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-011",
@@ -151,7 +213,13 @@
     "change": "Explicit rendered versus approved labels; assigned Intern Supervisor",
     "acceptance": "Same submitted/approved/remaining/percent across views",
     "tests": "progress integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-011",
+    "implementation": "Placements.tsx; rules.hours",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Placements; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-012",
@@ -165,7 +233,13 @@
     "change": "Placement/date/hours attendance creation/list/history",
     "acceptance": "One record/date; valid positive bounded hours; dates/ownership; no legacy overlap",
     "tests": "attendance integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-012",
+    "implementation": "app/features/Progress.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Attendance; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-013",
@@ -179,7 +253,13 @@
     "change": "Weekly period/tasks linked attendance; review state/history/resubmission",
     "acceptance": "1–7day period; derived hours; one active attempt; no double counting",
     "tests": "weekly integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-013",
+    "implementation": "app/features/Progress.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Attendance; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-014",
@@ -193,7 +273,13 @@
     "change": "Preserve grade/date/comment/history; no student self-evaluation",
     "acceptance": "Own submitted and pending obligations only",
     "tests": "evaluation regression",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "EVA-001/002",
+    "implementation": "app/features/Evaluations.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-015",
@@ -207,7 +293,13 @@
     "change": "Add Active Companies/Expired MOAs/Active Opportunities/ongoing applications aliases",
     "acceptance": "Counts match current shared scoped/year data and filters",
     "tests": "dashboard browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-015",
+    "implementation": "app/features/Dashboard.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Dashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-016",
@@ -221,7 +313,13 @@
     "change": "Total/pending activation counts/status filter/invitation/deactivate",
     "acceptance": "Records/activation filters and links reflect shared mutations",
     "tests": "account browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-016",
+    "implementation": "app/features/Students.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Students; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-017",
@@ -235,7 +333,13 @@
     "change": "Separate company decision then coordinator approval/rejection with remarks/actor/time",
     "acceptance": "Cannot skip company approval; histories persist",
     "tests": "posting integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-017",
+    "implementation": "opportunity.status",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-018",
@@ -249,7 +353,13 @@
     "change": "Separate explicit company-admin account provisioning and Intern profiles",
     "acceptance": "No legacy privilege escalation; profile links coherent",
     "tests": "roles/migration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-018",
+    "implementation": "app/features/Partners.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-019",
@@ -263,7 +373,13 @@
     "change": "Register/view/edit faculty account/profile and assignment counts",
     "acceptance": "Coordinator-only; unique email; active registered adviser",
     "tests": "faculty tests/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-019",
+    "implementation": "Faculty existing seed profiles",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Faculty; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-020",
@@ -277,7 +393,13 @@
     "change": "Student adviser before placement; controlled reassignment preserving history",
     "acceptance": "Faculty scoped to assigned students; ongoing placement adviser stays consistent",
     "tests": "assignment integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-020",
+    "implementation": "Placement.adviserId only",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Faculty; Students; Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-021",
@@ -291,7 +413,13 @@
     "change": "Intern decides assigned opportunity; documented coordinator oversight uses same terminal transition",
     "acceptance": "No contradictory final statuses; reasons/history; no automatic placement",
     "tests": "authority integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-021",
+    "implementation": "application.decide",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-022",
@@ -305,7 +433,13 @@
     "change": "Relabel official hours/approval; preserve all existing modules",
     "acceptance": "Completion/report/certificate relationships stay coherent",
     "tests": "lifecycle regression",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "PLC-006/007; PRG-001",
+    "implementation": "Placements/Progress",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Placements; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-023",
@@ -319,7 +453,13 @@
     "change": "Pre-placement assigned count, reviews, near/completed/evaluation metrics",
     "acceptance": "Only current/historical authorized scope; correct links",
     "tests": "dashboard/assignment browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-023",
+    "implementation": "Dashboard.tsx scoped placements",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "RoleDashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-024",
@@ -333,7 +473,13 @@
     "change": "Pre-register scoped students; pre-placement scope; company grouping/filter; review remarks",
     "acceptance": "Cannot edit/review unrelated students; historical placement scope retained",
     "tests": "assignment/phase browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-024",
+    "implementation": "Students/Requirements",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Students; Requirements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-025",
@@ -347,7 +493,13 @@
     "change": "Independent timestamped monitoring history; no supervisor approval authority",
     "acceptance": "Remarks never alter approved totals/status; company-filtered reports",
     "tests": "progress authority/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-025",
+    "implementation": "report.review",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Progress; ProgressReports; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-026",
@@ -361,7 +513,13 @@
     "change": "Explicit evaluation date input; retain two obligations/history",
     "acceptance": "Valid date/grade/assignment/uniqueness",
     "tests": "evaluation integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-026",
+    "implementation": "evaluation.submit",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-027",
@@ -375,7 +533,13 @@
     "change": "Distinct admin versus Intern role using shared profile infrastructure",
     "acceptance": "No old account silently receives admin permissions",
     "tests": "migration/role tests",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-027",
+    "implementation": "Role; Supervisor; scopedDatabase",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Partners; Workspace; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-028",
@@ -389,7 +553,13 @@
     "change": "Company postings/pending/approved/active/slots/intern-supervisors/interns/MOA summaries",
     "acceptance": "Company only; metrics derive shared records",
     "tests": "company browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-028",
+    "implementation": "app/features/Dashboard.tsx",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "RoleDashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-029",
@@ -403,7 +573,13 @@
     "change": "Own company ordinary info edit; MOA authority stays coordinator",
     "acceptance": "Reject unrelated company and MOA tampering at service boundary",
     "tests": "company permissions/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-029",
+    "implementation": "company.save; Partners",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-030",
@@ -417,7 +593,13 @@
     "change": "Own create/edit/details and full attributes; material edit reapproval",
     "acceptance": "Shared records; validated fields/capacity; historical records kept",
     "tests": "posting/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-030",
+    "implementation": "Opportunities; opportunity.save",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Opportunities; PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-031",
@@ -431,7 +613,13 @@
     "change": "Company pending -> Coordinator pending -> Approved -> Active; Filled derived; Deactivated; rejection history",
     "acceptance": "No activation before both approvals; no filled application; retain history",
     "tests": "posting/migration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-031",
+    "implementation": "opportunity.status",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-032",
@@ -445,7 +633,13 @@
     "change": "Own-company Intern account creation/activation/deactivation and workloads",
     "acceptance": "No cross-company creation; active assignment policy; retain historical account IDs",
     "tests": "supervisor integration/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-032",
+    "implementation": "supervisor.save; Partners",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-033",
@@ -459,7 +653,13 @@
     "change": "Registered active own-company Intern Supervisor IDs on opportunity",
     "acceptance": "Unassigned intern cannot see/decide apps; preserve past decision history",
     "tests": "assignment/role browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-033",
+    "implementation": "Opportunity missing assignment",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-034",
@@ -473,7 +673,13 @@
     "change": "Own-company assignment/reassignment with unchanged two evaluation obligations",
     "acceptance": "Same company; submitted eval assignment immutable; pending changes audited",
     "tests": "assignment/evaluation tests",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-034",
+    "implementation": "Placement.supervisorId",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-035",
@@ -487,7 +693,13 @@
     "change": "Dedicated assigned opportunity/application/intern/report/evaluation summaries and profile",
     "acceptance": "No company-wide data outside assigned scope",
     "tests": "role browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-035",
+    "implementation": "Old Company Supervisor views",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "RoleDashboard; Workspace; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-036",
@@ -501,7 +713,13 @@
     "change": "Own contact update, company/assigned postings, account settings",
     "acceptance": "No role/company reassignment or unrelated account edits",
     "tests": "profile browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-036",
+    "implementation": "Supervisor detail",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-037",
@@ -515,7 +733,13 @@
     "change": "Assigned posting applications/applicants/academic info/relevant Before documents/decisions/history",
     "acceptance": "One terminal decision; eligibility/status/capacity; unrelated docs denied",
     "tests": "application authority/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-037",
+    "implementation": "Applications; application.decide",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-038",
@@ -529,7 +753,13 @@
     "change": "Reuse directory/profile/filters/adviser/dates/required-approved hours/status",
     "acceptance": "Operational access only assigned placement interns",
     "tests": "role/progress browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-038",
+    "implementation": "Placements/Students",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Students; Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-039",
@@ -543,7 +773,13 @@
     "change": "Explicit Pending/Approved/Rejected and immutable decisions; remarks; rejected resubmission",
     "acceptance": "Only assigned Intern can approve/reject; repeated approval cannot double count",
     "tests": "weekly/approval tests/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-039",
+    "implementation": "report.review",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Progress; Attendance; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-040",
@@ -557,7 +793,13 @@
     "change": "Move company obligation to Intern role; explicit date",
     "acceptance": "Assigned evaluator only; no third/duplicate evaluation; historic submissions retained",
     "tests": "migration/evaluation/browser",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-040",
+    "implementation": "evaluation.submit",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-041",
@@ -571,7 +813,13 @@
     "change": "Atomic v1->v2 upgrade; legacy role maps to Intern; reviewed totals grandfathered; unknown versions fail",
     "acceptance": "No reset; IDs/files/history/totals preserved; read-only after upgrade; stale revisions reject",
     "tests": "native migration regression",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "IU-041",
+    "implementation": "storage/integrity/seed",
+    "executedTests": "tests/integration/interface-upgrade.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "upgrade.ts; storage.ts; integrity.ts; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   },
   {
     "id": "IU-042",
@@ -585,6 +833,12 @@
     "change": "Extend same command/idempotency/revision boundary; retain historical certification as superseded",
     "acceptance": "Full suites run; changed expectations tied to new spec; no backend implementation",
     "tests": "full regression",
-    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities."
+    "backend": "All operations are browser-local demonstrations. Server permissions/constraints/tokens/email/files and approved policy mapping remain receiving-team responsibilities.",
+    "canonicalId": "FND-003/004/007/008",
+    "implementation": "services/tests/docs",
+    "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+    "result": "PASS (internal bounded demo verification)",
+    "finalImplementation": "AppProvider; ui.tsx; service.ts; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
   }
 ]

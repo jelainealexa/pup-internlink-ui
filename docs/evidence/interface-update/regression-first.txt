@@ -1,0 +1,182 @@
+
+> internlink-ui@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=docs/evidence/interface-update/regression-first.json
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ✓ tests/unit/rules.test.ts (47 tests) 329ms
+ ❯ tests/integration/services.test.ts (21 tests | 4 failed) 611ms
+   ❯ authentication and mode isolation (5)
+     ✓ preserves valid records when session storage fails during recovery reset 64ms
+     ✓ verifies credentials, inactive accounts, logout and session expiry 21ms
+     ✓ scopes records and strips credential verifiers 16ms
+     × restricts faculty and supervisors to assigned placements and attachments 29ms
+     ✓ never falls back to demo data in API mode 1ms
+   ❯ persisted commands and relational consistency (16)
+     ✓ serializes different applications racing for the last slot 108ms
+     ✓ creates and edits a student/account across independent service instances 19ms
+     ✓ preserves new records rather than reseeding on ordinary reads 14ms
+     ✓ rolls back invalid writes and rejects stale revisions 29ms
+     ✓ deduplicates retried commands with the same request key 33ms
+     ✓ stores actual attachment bytes, rejection history and resubmission 23ms
+     ✓ rejects unsupported and empty attachments 7ms
+     × saves company and supervisor account relationships and uniqueness 64ms
+     ✓ persists application decisions and disallows repeats 12ms
+     ✓ does not accept an ineligible pending application 20ms
+     ✓ atomically prevents duplicate placement and over-allocation under concurrent commands 56ms
+     ✓ maintains slot policy on termination, preserves history 17ms
+     × reviews hours exactly once and propagates the aggregate 25ms
+     ✓ rejects duplicate daily reports and out-of-range dates 14ms
+     × does not silently reset damaged data; explicit recovery is required 26ms
+     ✓ reset requires coordinator and intentional phrase 10ms
+ ❯ tests/integration/independent-audit.test.ts (21 tests | 1 failed) 728ms
+   ❯ independent adversarial verification (21)
+     ✓ IV-05 binds file retries to actual bytes and accepts genuine same-intent retries 150ms
+     ✓ IV-05 preserves legacy snapshots while rejecting ambiguous legacy receipt replay 72ms
+     ✓ IV-16 does not erase saved records when reset cannot clear the session 54ms
+     ✓ IV-01 retries after a transient storage initialization failure without a fake success 24ms
+     ✓ IV-06 keeps cross-placement report totals and almost-complete percentages accurate 19ms
+     ✓ reads, updates and reports a thousand additional coherent synthetic students 165ms
+     ✓ IV-02 derives the unsaved role year preference from its actual records 14ms
+     × IV-01 reads existing records without requiring a successful write 43ms
+     ✓ IV-02 uses the injected business clock for scoped availability 12ms
+     ✓ IV-03 hides unrelated unapproved postings from students, retaining own history 20ms
+     ✓ IV-04 rejects unknown commands without success receipts or mutations 21ms
+     ✓ IV-05 rejects an idempotency key reused for a different intent 26ms
+     ✓ IV-06 accepts mathematically complete fractional hours consistently 15ms
+     ✓ IV-07 rejects malformed academic year in student maintenance 14ms
+     ✓ IV-07 rejects malformed academic year in company maintenance 22ms
+     ✓ IV-07 rejects malformed academic year in opportunity maintenance 19ms
+     ✓ IV-08 rejects punctuation-only contact numbers 11ms
+     ✓ IV-09 surfaces corrupt NaN grade data as a storage error 4ms
+     ✓ IV-09 surfaces corrupt invalid receipts data as a storage error 6ms
+     ✓ IV-09 surfaces corrupt duplicate profile data as a storage error 5ms
+     ✓ independently reconciles seven report categories and filtered raw totals 8ms
+ ✓ tests/integration/interface-update.test.ts (7 tests) 747ms
+ ✓ tests/unit/session.test.ts (8 tests) 14ms
+ ✓ tests/components/independent-forms.test.tsx (2 tests) 74ms
+ ✓ tests/components/forms.test.tsx (3 tests) 263ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/independent-audit.test.ts > independent adversarial verification > IV-01 reads existing records without requiring a successful write
+AssertionError: expected { Object (schemaVersion, revision, ...) } to match object { revision: +0, students: Any<Array> }
+(20 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -1,7 +1,7 @@
+  {
+-   "revision": 0,
++   "revision": 1,
+    "students": [
+      {
+        "academicYear": "2032-2033",
+        "accountId": "student-1",
+        "adviserId": "fac-1",
+
+ ❯ tests/integration/independent-audit.test.ts:207:31
+    205|       throw new DOMException("Write quota exhausted", "QuotaExceededEr…
+    206|     });
+    207|     await expect(store.read()).resolves.toMatchObject({
+       |                               ^
+    208|       revision: 0,
+    209|       students: expect.any(Array),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/integration/services.test.ts > authentication and mode isolation > restricts faculty and supervisors to assigned placements and attachments
+AssertionError: promise resolved "{ id: 'file-sub-2024-0001-req-1', …(4) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "blob": Blob {
++     Symbol(kHandle): Blob {},
++     Symbol(kLength): 64,
++     Symbol(kType): "text/plain",
++   },
++   "id": "file-sub-2024-0001-req-1",
++   "mime": "text/plain",
++   "name": "resume-demo.txt",
++   "size": 64,
+  }
+
+ ❯ tests/integration/services.test.ts:92:6
+     90|     await expect(
+     91|       service.attachment("file-sub-2024-0001-req-1"),
+     92|     ).rejects.toThrow(/not exist/);
+       |      ^
+     93|     await expect(
+     94|       service.execute(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/integration/services.test.ts > persisted commands and relational consistency > saves company and supervisor account relationships and uniqueness
+AssertionError: expected 'Intern Supervisor' to be 'Company Supervisor' // Object.is equality
+
+Expected: "Company Supervisor"
+Received: "Intern Supervisor"
+
+ ❯ tests/integration/services.test.ts:363:7
+    361|       (await service.signIn("sup-integration@example.test", DEMO_PASSW…
+    362|         .role,
+    363|     ).toBe("Company Supervisor");
+       |       ^
+    364|   });
+    365|   it("persists application decisions and disallows repeats", async () …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/integration/services.test.ts > persisted commands and relational consistency > reviews hours exactly once and propagates the aggregate
+AppError: This demonstration account cannot perform this action.
+ ❯ requireRole app/lib/rules.ts:303:11
+    301|     );
+    302|   if (!roles.includes(actor.role))
+    303|     throw new AppError(
+       |           ^
+    304|       "FORBIDDEN",
+    305|       "This demonstration account cannot perform this action.",
+ ❯ applyUpdate app/lib/updates.ts:617:7
+ ❯ applyCommand app/lib/commands.ts:822:14
+ ❯ app/lib/service.ts:205:21
+ ❯ FDBRequest.read.onsuccess app/lib/storage.ts:153:20
+ ❯ invoke node_modules/fake-indexeddb/build/esm/lib/FakeEventTarget.js:14:16
+ ❯ invokeEventListeners node_modules/fake-indexeddb/build/esm/lib/FakeEventTarget.js:51:7
+ ❯ FDBRequest.dispatchEvent node_modules/fake-indexeddb/build/esm/lib/FakeEventTarget.js:100:7
+ ❯ FDBTransaction._start node_modules/fake-indexeddb/build/esm/FDBTransaction.js:223:19
+ ❯ Immediate.<anonymous> node_modules/fake-indexeddb/build/esm/lib/Database.js:39:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/integration/services.test.ts > persisted commands and relational consistency > does not silently reset damaged data; explicit recovery is required
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/integration/services.test.ts:508:48
+    506|     await expect(service.reset("wrong")).rejects.toThrow(/RESET DEMO/);
+    507|     await service.reset("RESET DEMO");
+    508|     expect((await store.read()).schemaVersion).toBe(1);
+       |                                                ^
+    509|     expect(await service.currentAccount()).toBeNull();
+    510|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed | 5 passed (7)
+      Tests  5 failed | 104 passed (109)
+   Start at  02:18:26
+   Duration  6.42s (environment 50%, import 18%, tests 14%, transform 8%, setup 8%, worker 1%)
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/interface-update/regression-first.json
