@@ -66,7 +66,9 @@ test("FR-03 Active posting state and application availability have distinct accu
   });
   await expect(card.locator("strong")).toHaveText(String(active.length));
   await card.click();
-  await expect(page.getByLabel("Status", {exact:true})).toHaveValue("Active");
+  await expect(page.getByLabel("Status", { exact: true })).toHaveValue(
+    "Active",
+  );
   await expect(page.locator("tbody tr")).toHaveCount(active.length);
   await page.goto("/dashboard");
   const available = page.getByRole("link", {
@@ -244,11 +246,9 @@ test("final H: supported same-account tabs revoke together after a password chan
   await expect(other.locator("h1")).toHaveText("PL-001");
   await page.bringToFront();
   await page.goto("/dashboard/settings");
-  const form = page
-    .locator("form")
-    .filter({
-      has: page.getByRole("button", { name: "Change Password", exact: true }),
-    });
+  const form = page.locator("form").filter({
+    has: page.getByRole("button", { name: "Change Password", exact: true }),
+  });
   await form.locator("[name=currentPassword]").fill(auditPassword);
   await form.locator("[name=newPassword]").fill("Revoked!2026");
   await form.locator("[name=confirmPassword]").fill("Revoked!2026");
@@ -301,7 +301,11 @@ test("FR-05 the original student directory retains rendered hours and rendered-h
   await expect(
     page.getByRole("columnheader", { name: "Rendered Hours", exact: true }),
   ).toBeVisible();
-  const target = page.locator("tbody tr").filter({ hasText: db.students.find(s=>s.id==="2024-0001")!.studentNumber });
+  const target = page
+    .locator("tbody tr")
+    .filter({
+      hasText: db.students.find((s) => s.id === "2024-0001")!.studentNumber,
+    });
   await expect(target.locator("td").nth(6)).toHaveText(
     String(total("2024-0001")),
   );
@@ -315,9 +319,60 @@ test("FR-05 the original student directory retains rendered hours and rendered-h
   ).toHaveText("Approved Hours");
 });
 
-test("FR-06 posting reports expose staged approvals, Filled and Deactivated with matching CSV",async({page})=>{
- await auditLogin(page);await page.goto("/dashboard/placements/create?application=app-002");await page.locator("[name=startDate]").fill(auditDay());await page.locator("[name=endDate]").fill(auditDay(30));await page.locator("[name=requiredHours]").fill("8");await page.locator("[name=adviserId]").selectOption("fac-1");await page.locator("[name=supervisorId]").selectOption("supervisor-1");await page.getByLabel("I reviewed the displayed",{exact:false}).check();await page.getByRole("button",{name:"Review and Save Placement",exact:true}).click();await expect(page).toHaveURL(/placements\/[^/?]+$/);
- const generate=async(status:string,expected:string[])=>{await page.goto("/dashboard/reports");await page.locator("[name=category]").selectOption("Opportunities");await expect(page.locator(`[name=status] option[value="${status}"]`)).toHaveCount(1);await page.locator("[name=status]").selectOption(status);await page.getByRole("button",{name:"Generate Report",exact:true}).click();await expect(page.locator(".generated-report tbody tr td:first-child")).toHaveText(expected);};
- await generate("Filled",["Software Development Intern"]);const pending=page.waitForEvent("download");await page.getByRole("button",{name:"Export CSV",exact:true}).click();const stream=await (await pending).createReadStream();const chunks:Buffer[]=[];for await(const c of stream!)chunks.push(Buffer.from(c));const csv=Buffer.concat(chunks).toString("utf8");expect(csv).toContain('"Filled"');expect(csv).toContain('"Software Development Intern"');expect(csv).not.toContain('"Active"');await generate("Active",["Design Intern"]);await generate("Pending Approval - Company",["Data Support Intern"]);await generate("Deactivated",["Archived Support Intern"]);
- await auditLogout(page);await auditLogin(page,"company@example.test");await page.goto("/dashboard/internships/opp-3");await page.locator("[name=remarks]").fill("Synthetic report-stage approval");await page.getByRole("button",{name:"Save Company Posting Decision",exact:true}).click();await expect(page.locator(".feature-header")).toContainText("Pending Approval - Coordinator");await auditLogout(page);await auditLogin(page);await generate("Pending Approval - Coordinator",["Data Support Intern"]);await generate("Pending Approval",["Data Support Intern"]);
+test("FR-06 posting reports expose staged approvals, Filled and Deactivated with matching CSV", async ({
+  page,
+}) => {
+  await auditLogin(page);
+  await page.goto("/dashboard/placements/create?application=app-002");
+  await page.locator("[name=startDate]").fill(auditDay());
+  await page.locator("[name=endDate]").fill(auditDay(30));
+  await page.locator("[name=requiredHours]").fill("8");
+  await page.locator("[name=adviserId]").selectOption("fac-1");
+  await page.locator("[name=supervisorId]").selectOption("supervisor-1");
+  await page.getByLabel("I reviewed the displayed", { exact: false }).check();
+  await page
+    .getByRole("button", { name: "Review and Save Placement", exact: true })
+    .click();
+  await expect(page).toHaveURL(/placements\/[^/?]+$/);
+  const generate = async (status: string, expected: string[]) => {
+    await page.goto("/dashboard/reports");
+    await page.locator("[name=category]").selectOption("Opportunities");
+    await expect(
+      page.locator(`[name=status] option[value="${status}"]`),
+    ).toHaveCount(1);
+    await page.locator("[name=status]").selectOption(status);
+    await page
+      .getByRole("button", { name: "Generate Report", exact: true })
+      .click();
+    await expect(
+      page.locator(".generated-report tbody tr td:first-child"),
+    ).toHaveText(expected);
+  };
+  await generate("Filled", ["Software Development Intern"]);
+  const pending = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export CSV", exact: true }).click();
+  const stream = await (await pending).createReadStream();
+  const chunks: Buffer[] = [];
+  for await (const c of stream!) chunks.push(Buffer.from(c));
+  const csv = Buffer.concat(chunks).toString("utf8");
+  expect(csv).toContain('"Filled"');
+  expect(csv).toContain('"Software Development Intern"');
+  expect(csv).not.toContain('"Active"');
+  await generate("Active", ["Design Intern"]);
+  await generate("Pending Approval - Company", ["Data Support Intern"]);
+  await generate("Deactivated", ["Archived Support Intern"]);
+  await auditLogout(page);
+  await auditLogin(page, "company@example.test");
+  await page.goto("/dashboard/internships/opp-3");
+  await page.locator("[name=remarks]").fill("Synthetic report-stage approval");
+  await page
+    .getByRole("button", { name: "Save Company Posting Decision", exact: true })
+    .click();
+  await expect(page.locator(".feature-header")).toContainText(
+    "Pending Approval - Coordinator",
+  );
+  await auditLogout(page);
+  await auditLogin(page);
+  await generate("Pending Approval - Coordinator", ["Data Support Intern"]);
+  await generate("Pending Approval", ["Data Support Intern"]);
 });

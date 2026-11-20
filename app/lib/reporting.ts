@@ -9,6 +9,7 @@ import {
   studentFor,
   studentStatus,
   sumHours,
+  postingStatus,
 } from "./rules";
 
 export const reportCategories = [
@@ -128,14 +129,18 @@ export function generateReport(
         (o) =>
           sameYear(o.academicYear) &&
           companyMatches(o.companyId) &&
-          statusMatches(o.status),
+          (statusMatches(postingStatus(db, o.id)) ||
+            (filters.status.toLowerCase() === "pending approval" &&
+              o.status.startsWith("Pending Approval")) ||
+            (filters.status.toLowerCase() === "closed" &&
+              postingStatus(db, o.id) === "Deactivated")),
       );
       rows = selected.map((o) => [
         o.title,
         get(db.companies, o.companyId).name,
         o.capacity,
         remainingSlots(db, o.id),
-        o.status,
+        postingStatus(db, o.id),
         o.academicYear,
       ]);
       totals = {

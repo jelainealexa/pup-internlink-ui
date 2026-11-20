@@ -5,7 +5,7 @@ import { createSeed, DEMO_PASSWORD } from "../../app/lib/seed";
 import { MemorySession, now } from "../helpers";
 import { createSeed as createLegacySeed } from "../fixtures/legacy-v1/seed";
 import { Database } from "../../app/lib/domain";
-import {generateReport} from "../../app/lib/reporting";
+import { generateReport, reportCsv } from "../../app/lib/reporting";
 const key = () => crypto.randomUUID();
 async function setup() {
   const store = new IndexedDbStore(`final-${key()}`);
@@ -394,10 +394,83 @@ describe("final review: new command concurrency and retry intent", () => {
   });
 });
 
-describe("final report-state reconciliation",()=>{
- it("FR-06 filters and exports derived Filled and both pending posting stages from actual mutations",async()=>{
-  const {store,service}=await setup();await service.execute({type:"placement.create",input:{applicationId:"app-002",adviserId:"fac-1",supervisorId:"supervisor-1",startDate:"2026-11-19",endDate:"2026-12-19",requiredHours:8}},key());
-  const filters={category:"Opportunities" as const,academicYear:"2026-2027",companyId:"",status:"Filled"};let db=await store.read();const filled=generateReport(db,filters,now.toISOString());expect(filled.rows).toHaveLength(1);expect(filled.rows[0]).toContain("Software Development Intern");expect(filled.rows[0][4]).toBe("Filled");expect(filled.totals["Remaining slots"]).toBe(0);expect(generateReport(db,{...filters,status:"Active"},now.toISOString()).rows.map(r=>r[0])).toEqual(["Design Intern"]);
-  expect(generateReport(db,{...filters,status:"Pending Approval"},now.toISOString()).rows.map(r=>r[0])).toEqual(["Data Support Intern"]);await service.signIn("company@example.test",DEMO_PASSWORD);await service.execute({type:"opportunity.decide",id:"opp-3",stage:"Company",decision:"Approved",remarks:"Synthetic company approval"},key());db=await store.read();expect(generateReport(db,{...filters,status:"Pending Approval - Coordinator"},now.toISOString()).rows.map(r=>r[0])).toEqual(["Data Support Intern"]);expect(generateReport(db,{...filters,status:"Pending Approval"},now.toISOString()).rows).toHaveLength(1);expect(generateReport(db,{...filters,status:"Deactivated"},now.toISOString()).rows.map(r=>r[0])).toEqual(["Archived Support Intern"]);
- });
+describe("final report-state reconciliation", () => {
+  it("FR-06 filters and exports derived Filled and both pending posting stages from actual mutations", async () => {
+    const { store, service } = await setup();
+    await service.execute(
+      {
+        type: "placement.create",
+        input: {
+          applicationId: "app-002",
+          adviserId: "fac-1",
+          supervisorId: "supervisor-1",
+          startDate: "2026-11-19",
+          endDate: "2026-12-19",
+          requiredHours: 8,
+        },
+      },
+      key(),
+    );
+    const filters = {
+      category: "Opportunities" as const,
+      academicYear: "2026-2027",
+      companyId: "",
+      status: "Filled",
+    };
+    let db = await store.read();
+    const filled = generateReport(db, filters, now.toISOString());
+    expect(filled.rows).toHaveLength(1);
+    expect(filled.rows[0]).toContain("Software Development Intern");
+    expect(filled.rows[0][4]).toBe("Filled");
+    expect(reportCsv(filled)).toContain('"Filled"');
+    expect(reportCsv(filled)).not.toContain('"Active"');
+    expect(filled.totals["Remaining slots"]).toBe(0);
+    expect(
+      generateReport(
+        db,
+        { ...filters, status: "Active" },
+        now.toISOString(),
+      ).rows.map((r) => r[0]),
+    ).toEqual(["Design Intern"]);
+    expect(
+      generateReport(
+        db,
+        { ...filters, status: "Pending Approval" },
+        now.toISOString(),
+      ).rows.map((r) => r[0]),
+    ).toEqual(["Data Support Intern"]);
+    await service.signIn("company@example.test", DEMO_PASSWORD);
+    await service.execute(
+      {
+        type: "opportunity.decide",
+        id: "opp-3",
+        stage: "Company",
+        decision: "Approved",
+        remarks: "Synthetic company approval",
+      },
+      key(),
+    );
+    db = await store.read();
+    expect(
+      generateReport(
+        db,
+        { ...filters, status: "Pending Approval - Coordinator" },
+        now.toISOString(),
+      ).rows.map((r) => r[0]),
+    ).toEqual(["Data Support Intern"]);
+    expect(
+      generateReport(
+        db,
+        { ...filters, status: "Pending Approval" },
+        now.toISOString(),
+      ).rows,
+    ).toHaveLength(1);
+    expect(
+      generateReport(
+        db,
+        { ...filters, status: "Deactivated" },
+        now.toISOString(),
+      ).rows.map((r) => r[0]),
+    ).toEqual(["Archived Support Intern"]);
+  });
 });
