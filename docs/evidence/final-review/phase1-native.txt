@@ -1,0 +1,27 @@
+
+> internlink-ui@0.1.0 test
+> vitest run --reporter=default --reporter=json --outputFile=D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/candidate-native.json
+
+
+ RUN  v5.1.1 C:/Users/User 1/AppData/Local/Temp/internlink-final-candidate-txwsv46t
+
+ ✓ tests/unit/rules.test.ts (47 tests) 117ms
+ ✓ tests/integration/final-review.test.ts (9 tests) 363ms
+ ✓ tests/integration/interface-permissions.test.ts (6 tests) 349ms
+ ✓ tests/integration/services.test.ts (21 tests) 423ms
+ ✓ tests/integration/independent-audit.test.ts (21 tests) 451ms
+ ✓ tests/integration/interface-update.test.ts (8 tests) 461ms
+ ✓ tests/integration/interface-upgrade.test.ts (4 tests) 99ms
+ ✓ tests/unit/session.test.ts (8 tests) 8ms
+ ✓ tests/components/independent-forms.test.tsx (2 tests) 57ms
+ ✓ tests/components/forms.test.tsx (3 tests) 279ms
+
+ Test Files  10 passed (10)
+      Tests  129 passed (129)
+   Start at  16:33:43
+   Duration  4.14s (environment 51%, tests 21%, import 15%, setup 9%, transform 3%, worker 1%)
+
+    Isolate  10 workers spawned · ~978ms startup each (spawn + environment, per file)
+             at least ~419ms faster with isolate: false — reuses workers across files instead of one per file
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/candidate-native.json

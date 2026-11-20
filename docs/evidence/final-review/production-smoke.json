@@ -1,0 +1,30 @@
+{
+  "sourceCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+  "command": "next start --port 3127 --hostname 127.0.0.1 (clean npm run build output)",
+  "checks": [
+    "/ HTTP200",
+    "/activate HTTP200",
+    "/forgot-password HTTP200",
+    "/reset-password HTTP200",
+    "/dashboard/faculty HTTP200",
+    "Anonymous protected route redirected to login",
+    "Coordinator faculty management rendered",
+    "Production report directory rendered",
+    "Operational supervisor has Intern role",
+    "Intern denied faculty administration"
+  ],
+  "errors": [],
+  "assignmentJourney": {
+    "steps": [
+      "Company administrator registered own Intern Supervisor through UI",
+      "Assigned own opportunity to registered Intern",
+      "Placement reassignment retained reports/history and transferred the pending evaluator in-place",
+      "Former placement supervisor lost placement/progress access",
+      "New assigned Intern approved existing report and refreshed accumulated hours",
+      "New evaluator submitted the same company obligation",
+      "Submitted evaluation blocked reassignment with visible error and unchanged relationships"
+    ],
+    "verdict": "PASS"
+  },
+  "verdict": "PASS"
+}

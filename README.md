@@ -9,7 +9,7 @@ Prerequisites: Node.js 24.x, npm 11.x, a modern browser with IndexedDB/localStor
 Use localhost or HTTPS: the demonstration verifier and generated IDs use browser Web Crypto APIs, which require a secure browser context. Remote plain HTTP is unsupported.
 
 ```sh
-npm ci --ignore-scripts
+npm ci --ignore-scripts --no-audit --no-fund
 npm run dev
 ```
 
@@ -70,9 +70,11 @@ See [actual test results](docs/TEST_REPORT.md), [handover](docs/HANDOVER.md), [a
 
 The 23-page system-flow PDF and seven-page DSI - Interface Content.pdf are available specifications; the latter controls explicit interface changes. An approved ERD, SQL schema, API, institutional permission matrix and grading rubric were not supplied. Reversible demo policies are documented, not presented as institutional approval. API mode (`NEXT_PUBLIC_DATA_MODE=api`) explicitly reports unavailable operations and never falls back to demonstration success. Backend implementation/integration is outside this delivery. Certificate entries are metadata, not official issued documents; alerts are local dashboard reminders, not emails/SMS. Data is not shared across devices/profiles. Firefox/WebKit, manual screen-reader certification and production security are not verified.
 
-## Updated development candidate
+## Final verified front-end candidate
 
-Branch `frontend/interface-update` started from `5daa83a96bd3b4c2afdf1821b8a7fcbd2764ca6a`. The previous certification is historical and superseded for these updates. See [incremental implementation report](docs/INTERFACE_UPDATE_IMPLEMENTATION_REPORT.md), [delta matrix](docs/INTERFACE_UPDATE_GAP_ANALYSIS.md) and [current results](docs/TEST_REPORT.md). Internal verification passes120 native tests and43 production browser cases; lint/typecheck/build and separate production smoke pass. Internal development verification is not the postponed final independent review.
+**PASS for the verified browser-local front-end handover scope.** Branch `frontend/interface-update`; originally reviewed `3698d8d`; final tested application/test commit `59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e`. The final repository HEAD is a later documentation/evidence commit (`git log`). Actual final clean results: **130 native tests** (55 unit, 5 component, 70 integration), **49 production Chromium browser tests** (46 desktop, 3 mobile), lint, TypeScript, production build and separate production smoke all pass. Six medium findings were repaired; the previous 16 findings remain verified fixed. No known unresolved reproduced defect prevents a mandatory demonstration workflow.
+
+See the [final release review](docs/FINAL_RELEASE_REVIEW.md), [test evidence](docs/TEST_REPORT.md), [release readiness](docs/RELEASE_READINESS.md) and [handover](docs/HANDOVER.md). The earlier incremental candidate and previous release certification are historical. This same session contains implementation history and authored repairs: **fresh-context/personnel independence is UNVERIFIED**, and own repair verification is disclosed. Exact approved ERD/API compatibility is also UNVERIFIED. No production security or actual database integration is certified.
 
 Version-one saved records upgrade atomically to version two without reset. Legacy Company Supervisor accounts become **Intern Supervisors**, preserving IDs, placements, evaluations and file bytes; they do not acquire company administration. No administrator is inserted during upgrade. A coordinator can explicitly create a Company Supervisor account in its company profile (Add Supervisor Account). Fresh seeds include the two administrator accounts above. Previously Reviewed hours remain approved with visible historical provenance.
 

@@ -1,0 +1,15 @@
+
+> internlink-ui@0.1.0 test
+> vitest run tests/integration/final-review.test.ts --reporter=default --reporter=json --outputFile=docs/evidence/final-review/repair-native.json
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ✓ tests/integration/final-review.test.ts (9 tests) 146ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  16:19:55
+   Duration  586ms (tests 37%, transform 36%, setup 17%, import 8%, worker 2%)
+
+JSON report written to D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/repair-native.json

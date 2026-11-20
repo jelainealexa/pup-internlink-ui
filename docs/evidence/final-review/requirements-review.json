@@ -1,0 +1,1488 @@
+{
+  "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+  "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+  "count": 131,
+  "verdicts": {
+    "PASS": 126,
+    "BLOCKED": 1,
+    "NOT APPLICABLE": 4
+  },
+  "scopeNotes": "94original IDs retained,37 appended;5delta rows reuse existing IDs. AUTH-004 institutional approval external; four exclusions individually explained in FINAL_RELEASE_REVIEW. No mandatory front-end row removed.",
+  "rows": [
+    {
+      "id": "AUTH-001",
+      "source": "PDF p.1",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "AUTH-002",
+      "source": "PDF pp.1,20",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "AUTH-003",
+      "source": "PDF p.1 login boundary; user Task 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "AUTH-004",
+      "source": "PDF pp.1,7; user Task 7",
+      "previousReportedVerdict": "BLOCKED",
+      "initialCandidateAssessment": "External dependency",
+      "findings": [],
+      "finalVerdict": "BLOCKED",
+      "evidence": "tests/e2e/auth.spec.ts; tests/integration/services.test.ts (credentials, scope, expiry, mode isolation); tests/integration/interface-update.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "NAV-001",
+      "source": "PDF p.1",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/smoke.spec.ts; tests/e2e/maintenance.spec.ts (valid/invalid routes, URL filters, back/forward)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "NAV-002",
+      "source": "PDF pp.2,5,12,21-22",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/smoke.spec.ts; tests/e2e/maintenance.spec.ts (valid/invalid routes, URL filters, back/forward)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "NAV-003",
+      "source": "User Tasks 3,6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/smoke.spec.ts; tests/e2e/maintenance.spec.ts (valid/invalid routes, URL filters, back/forward)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "DSH-001",
+      "source": "PDF pp.1-2 (unfinished/recommended)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-03"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "DSH-002",
+      "source": "PDF p.2 (recommended)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "DSH-003",
+      "source": "PDF pp.2,21-22",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-02",
+        "FR-03"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "DSH-004",
+      "source": "PDF p.2 (recommended)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/unit/rules.test.ts (derived totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-001",
+      "source": "PDF pp.3-5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-05"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-002",
+      "source": "PDF p.3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-003",
+      "source": "PDF p.3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-004",
+      "source": "PDF p.3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-05"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-005",
+      "source": "PDF pp.3-4",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-006",
+      "source": "PDF pp.3-4",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-007",
+      "source": "PDF p.3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-008",
+      "source": "PDF pp.4-5,21-22",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (account sync/uniqueness/persistence)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "STU-009",
+      "source": "PDF p.3 (explicitly optional)",
+      "previousReportedVerdict": "NOT APPLICABLE",
+      "initialCandidateAssessment": "Excluded by declared scope/source",
+      "findings": [],
+      "finalVerdict": "NOT APPLICABLE",
+      "evidence": "Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend.",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PAR-001",
+      "source": "PDF pp.5-6 (recommended columns)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PAR-002",
+      "source": "PDF pp.5-6,21",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PAR-003",
+      "source": "PDF p.6,23 scenario B",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PAR-004",
+      "source": "PDF p.6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PAR-005",
+      "source": "PDF pp.7-8,22",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PAR-006",
+      "source": "PDF pp.7-8",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PAR-007",
+      "source": "PDF p.7",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (MOA boundaries)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-001",
+      "source": "PDF p.8",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-002",
+      "source": "PDF pp.8-9",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-003",
+      "source": "PDF p.9",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-004",
+      "source": "PDF p.9",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-005",
+      "source": "PDF pp.9-10",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-006",
+      "source": "PDF p.10",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-007",
+      "source": "User Task 7; PDF pp.9-10 does not specify",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-008",
+      "source": "PDF p.23 diagram; pp.9-10",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/e2e/maintenance.spec.ts; tests/integration/services.test.ts (Blob bytes/reviews/attempts)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "OPP-001",
+      "source": "PDF pp.10-11",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "OPP-002",
+      "source": "PDF p.11",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "OPP-003",
+      "source": "PDF p.11 (approval conditional)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-04"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "OPP-004",
+      "source": "PDF pp.11-12,22",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "OPP-005",
+      "source": "PDF pp.10-11,14",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/maintenance.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "OPP-006",
+      "source": "Existing opportunity UI; user scope constraint",
+      "previousReportedVerdict": "NOT APPLICABLE",
+      "initialCandidateAssessment": "Excluded by declared scope/source",
+      "findings": [],
+      "finalVerdict": "NOT APPLICABLE",
+      "evidence": "Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend.",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "APP-001",
+      "source": "PDF pp.12-13",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "APP-002",
+      "source": "PDF pp.12-13,22",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "APP-003",
+      "source": "PDF pp.13-14,23",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "APP-004",
+      "source": "PDF p.14,23",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "APP-005",
+      "source": "PDF p.14",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "APP-006",
+      "source": "PDF p.23 flow diagram",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (decision/history/eligibility)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-001",
+      "source": "PDF pp.14-15",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-002",
+      "source": "PDF pp.15-16",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-003",
+      "source": "PDF p.16",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-004",
+      "source": "PDF pp.10,14,16",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-005",
+      "source": "PDF p.16",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-006",
+      "source": "PDF p.17,22-23",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-007",
+      "source": "PDF p.17,23",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-008",
+      "source": "PDF pp.14-15 status; user Task 7",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/guards.spec.ts; tests/integration/services.test.ts (duplicate/last-slot race/termination); tests/unit/rules.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PRG-001",
+      "source": "PDF pp.17-19",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PRG-002",
+      "source": "PDF pp.18-19",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PRG-003",
+      "source": "PDF p.18",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PRG-004",
+      "source": "PDF p.19",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PRG-005",
+      "source": "PDF p.19",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PRG-006",
+      "source": "PDF p.23 diagram; pp.18-19",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/smoke.spec.ts; tests/integration/services.test.ts; tests/unit/rules.test.ts (hours/reporting gaps)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "EVA-001",
+      "source": "PDF pp.19-20",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "EVA-002",
+      "source": "PDF pp.19-20,22",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "EVA-003",
+      "source": "PDF p.20",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "EVA-004",
+      "source": "PDF p.20",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "EVA-005",
+      "source": "PDF pp.19-20,23 diagram",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/unit/rules.test.ts (assigned/duplicate/invalid grade)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "RPT-001",
+      "source": "PDF pp.20-21",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "RPT-002",
+      "source": "PDF p.21",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-06"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "RPT-003",
+      "source": "PDF p.21; user reliability objective",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-06"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "RPT-004",
+      "source": "PDF p.21",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-06"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/smoke.spec.ts; tests/e2e/lifecycle.spec.ts (filtered CSV bytes); tests/unit/rules.test.ts (CSV/formula/rows/totals)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "SET-001",
+      "source": "PDF p.1 lists Settings; detailed UI provisional",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/smoke.spec.ts (persisted effects/reset/axe)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "SET-002",
+      "source": "Existing prototype; user Task 3/6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/smoke.spec.ts (persisted effects/reset/axe)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "SET-003",
+      "source": "PDF p.1 role rules; existing Settings UI",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/smoke.spec.ts (persisted effects/reset/axe)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "ROLE-001",
+      "source": "PDF p.23 limited flows; user Phase 9 scope; DSI Interface Content pp.1–7 (expanded explicit role scope)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "ROLE-002",
+      "source": "PDF pp.19-20; user Phase 9 scope; DSI Interface Content pp.1–7 (expanded explicit role scope)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "ROLE-003",
+      "source": "PDF pp.7,19-20; user Phase 9 scope; DSI Interface Content pp.1–7 (expanded explicit role scope)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "ROLE-004",
+      "source": "Existing evaluation checklist only; absent from primary PDF",
+      "previousReportedVerdict": "NOT APPLICABLE",
+      "initialCandidateAssessment": "Excluded by declared scope/source",
+      "findings": [],
+      "finalVerdict": "NOT APPLICABLE",
+      "evidence": "Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend.",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-001",
+      "source": "User Tasks 5-6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-002",
+      "source": "User Task 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-003",
+      "source": "User Task 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-004",
+      "source": "User Task 6; PDF pp.4,6,11,16,20",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-005",
+      "source": "User Task 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-006",
+      "source": "User Tasks 3,6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-007",
+      "source": "User Task 4/6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-008",
+      "source": "PDF p.9; user Task 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/components/forms.test.tsx; tests/integration/services.test.ts; tests/e2e/smoke.spec.ts; tests/e2e/restart.spec.ts; test/build/type/lint logs",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-009",
+      "source": "User objective and Phase 10",
+      "previousReportedVerdict": "NOT APPLICABLE",
+      "initialCandidateAssessment": "Excluded by declared scope/source",
+      "findings": [],
+      "finalVerdict": "NOT APPLICABLE",
+      "evidence": "Scope reconciliation; see BUSINESS_RULES and HANDOVER. Not claimed as implemented full expansion/backend.",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "AUTH-005",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-01"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/session.test.ts; tests/integration/services.test.ts (malformed/unavailable/expired sessions)",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "REQ-009",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/services.test.ts; tests/e2e/maintenance.spec.ts; tests/e2e/lifecycle.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "PLC-009",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/unit/rules.test.ts; tests/e2e/lifecycle.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "SET-004",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/services.test.ts; tests/e2e/smoke.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "ROLE-005",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "ROLE-006",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "ROLE-007",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension); DSI Interface Content pp.6–7 role separation",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/lifecycle.spec.ts; tests/e2e/auth.spec.ts; tests/integration/services.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "FND-010",
+      "source": "User complete-front-end instruction §§7–15; related PDF workflow (minimal role UI explicitly demo extension)",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/e2e/maintenance.spec.ts; tests/e2e/restart.spec.ts; tests/integration/services.test.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-002",
+      "source": "DSI - Interface Content.pdf physical page(s) 1",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-003",
+      "source": "DSI - Interface Content.pdf physical page(s) 1",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-004",
+      "source": "DSI - Interface Content.pdf physical page(s) 1",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-005",
+      "source": "DSI - Interface Content.pdf physical page(s) 1",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-006",
+      "source": "DSI - Interface Content.pdf physical page(s) 1",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-01"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-007",
+      "source": "DSI - Interface Content.pdf physical page(s) 1–2",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-008",
+      "source": "DSI - Interface Content.pdf physical page(s) 2",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-009",
+      "source": "DSI - Interface Content.pdf physical page(s) 2",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-011",
+      "source": "DSI - Interface Content.pdf physical page(s) 2",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-012",
+      "source": "DSI - Interface Content.pdf physical page(s) 2",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-013",
+      "source": "DSI - Interface Content.pdf physical page(s) 2",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-015",
+      "source": "DSI - Interface Content.pdf physical page(s) 3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-03"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-016",
+      "source": "DSI - Interface Content.pdf physical page(s) 3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-017",
+      "source": "DSI - Interface Content.pdf physical page(s) 3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-018",
+      "source": "DSI - Interface Content.pdf physical page(s) 3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-019",
+      "source": "DSI - Interface Content.pdf physical page(s) 3",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-01"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-020",
+      "source": "DSI - Interface Content.pdf physical page(s) 3–4",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-021",
+      "source": "DSI - Interface Content.pdf physical page(s) 3–4",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-023",
+      "source": "DSI - Interface Content.pdf physical page(s) 4",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-024",
+      "source": "DSI - Interface Content.pdf physical page(s) 4",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-025",
+      "source": "DSI - Interface Content.pdf physical page(s) 4–5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-026",
+      "source": "DSI - Interface Content.pdf physical page(s) 5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-027",
+      "source": "DSI - Interface Content.pdf physical page(s) 5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-028",
+      "source": "DSI - Interface Content.pdf physical page(s) 5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-029",
+      "source": "DSI - Interface Content.pdf physical page(s) 5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-030",
+      "source": "DSI - Interface Content.pdf physical page(s) 5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-031",
+      "source": "DSI - Interface Content.pdf physical page(s) 5",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-04",
+        "FR-06"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-032",
+      "source": "DSI - Interface Content.pdf physical page(s) 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-01"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-033",
+      "source": "DSI - Interface Content.pdf physical page(s) 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-034",
+      "source": "DSI - Interface Content.pdf physical page(s) 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-035",
+      "source": "DSI - Interface Content.pdf physical page(s) 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-02"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-036",
+      "source": "DSI - Interface Content.pdf physical page(s) 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-037",
+      "source": "DSI - Interface Content.pdf physical page(s) 6",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-038",
+      "source": "DSI - Interface Content.pdf physical page(s) 6–7",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "FAIL: reproduced required behavior gap",
+      "findings": [
+        "FR-02"
+      ],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-039",
+      "source": "DSI - Interface Content.pdf physical page(s) 7",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-040",
+      "source": "DSI - Interface Content.pdf physical page(s) 7",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    },
+    {
+      "id": "IU-041",
+      "source": "DSI - Interface Content.pdf physical page(s) 1–7",
+      "previousReportedVerdict": "PASS",
+      "initialCandidateAssessment": "No reproduced failure found; source and executed regression evidence reviewed",
+      "findings": [],
+      "finalVerdict": "PASS",
+      "evidence": "tests/integration/interface-upgrade.test.ts; tests/e2e/interface-update.spec.ts",
+      "finalEvidence": "candidate-native.json; candidate-browser.json; production-smoke.json; source at59a5a5f",
+      "scope": "Bounded synthetic front-end functionality; not every input/browser, institutional approval or real integration"
+    }
+  ]
+}

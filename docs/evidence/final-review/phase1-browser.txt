@@ -1,0 +1,79 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:32188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27100) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:10816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 48 tests using 1 worker
+
+(node:10016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [chromium] › tests\e2e\auth.spec.ts:3:1 › A: invalid/inactive credentials, direct URL guard, role restriction and logout (1.8s)
+  ok  2 [chromium] › tests\e2e\auth.spec.ts:35:1 › supervisor and adviser portals restrict unrelated records (1.4s)
+  ok  3 [chromium] › tests\e2e\final-review.spec.ts:12:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort (1.4s)
+  ok  4 [chromium] › tests\e2e\final-review.spec.ts:32:1 › FR-03 Active posting state and application availability have distinct accurate summaries (1.4s)
+  ok  5 [chromium] › tests\e2e\final-review.spec.ts:80:1 › final I: genuine original snapshot upgrades with retrievable attachments and deliberate administrator provisioning (2.5s)
+  ok  6 [chromium] › tests\e2e\final-review.spec.ts:237:1 › final H: supported same-account tabs revoke together after a password change (1.7s)
+  ok  7 [chromium] › tests\e2e\final-review.spec.ts:280:1 › FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval (999ms)
+  ok  8 [chromium] › tests\e2e\guards.spec.ts:3:1 › F: placement date/hour/affiliation guards and capacity are enforced before persistence (1.7s)
+  ok  9 [chromium] › tests\e2e\guards.spec.ts:54:1 › E: acceptance blocks missing approvals; requirement rejection and application reason guards (1.7s)
+  ok 10 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale companies edit cannot overwrite another tab (1.3s)
+  ok 11 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale accounts edit cannot overwrite another tab (1.3s)
+  ok 12 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale requirements edit cannot overwrite another tab (1.3s)
+  ok 13 [chromium] › tests\e2e\independent-concurrency.spec.ts:46:3 › independent stale opportunities edit cannot overwrite another tab (1.4s)
+  ok 14 [chromium] › tests\e2e\independent-lifecycle.spec.ts:19:1 › independent A-I: fractional lifecycle, real PDF/images, propagation and CSV round trip (20.2s)
+  ok 15 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: students every filter option, search, reset, sort and refresh (9.2s)
+  ok 16 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: partners every filter option, search, reset, sort and refresh (3.9s)
+  ok 17 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: internships every filter option, search, reset, sort and refresh (5.9s)
+  ok 18 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: applications every filter option, search, reset, sort and refresh (6.8s)
+  ok 19 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: placements every filter option, search, reset, sort and refresh (6.6s)
+  ok 20 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: progress every filter option, search, reset, sort and refresh (6.2s)
+  ok 21 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: evaluations every filter option, search, reset, sort and refresh (6.1s)
+  ok 22 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: requirements every filter option, search, reset, sort and refresh (1.7s)
+  ok 23 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: submissions every filter option, search, reset, sort and refresh (2.6s)
+  ok 24 [chromium] › tests\e2e\independent-matrix.spec.ts:377:1 › independent settings: computed styles, all reminder effects, persisted year and landing preference (3.6s)
+  ok 25 [chromium] › tests\e2e\independent.spec.ts:4:1 › invalid edit and nested record identifiers remain explicit not-found states (2.0s)
+  ok 26 [chromium] › tests\e2e\independent.spec.ts:27:1 › accepted unplaced students have an accurate status and no forbidden placement action (828ms)
+  ok 27 [chromium] › tests\e2e\independent.spec.ts:37:1 › IV-15: empty eligible data has actionable empty states rather than impossible forms (1.3s)
+  ok 28 [chromium] › tests\e2e\independent.spec.ts:74:1 › IV-10: a stale edit must not overwrite another tab's persisted student changes (2.3s)
+  ok 29 [chromium] › tests\e2e\independent.spec.ts:128:1 › IV-14: failed confirmed mutation explains the failure inside its active dialog (909ms)
+  ok 30 [chromium] › tests\e2e\independent.spec.ts:142:1 › IV-11: unauthenticated contextual placement URL survives sign in (672ms)
+  ok 31 [chromium] › tests\e2e\independent.spec.ts:159:1 › IV-03: direct navigation does not reveal another draft posting to a student (918ms)
+  ok 32 [chromium] › tests\e2e\interface-dashboard.spec.ts:9:1 › updated portal metrics derive from company and assignment records, and phase tabs support keyboard (3.5s)
+  ok 33 [chromium] › tests\e2e\interface-update.spec.ts:53:1 › updated A-B: pre-registration, faculty scope, invitation activation, recovery and account credentials (7.0s)
+  ok 34 [chromium] › tests\e2e\interface-update.spec.ts:262:1 › updated C-H: five-role posting, phased documents, application, attendance, weekly decisions and completion (21.5s)
+  ok 35 [chromium] › tests\e2e\lifecycle.spec.ts:15:1 › B–J: entire persisted internship lifecycle through supported UI actions (16.3s)
+  ok 36 [chromium] › tests\e2e\maintenance.spec.ts:4:1 › every dashboard summary opens the matching filtered records (2.9s)
+  ok 37 [chromium] › tests\e2e\maintenance.spec.ts:24:1 › dashboard document alerts exclude superseded rejected attempts while retaining history (1.5s)
+  ok 38 [chromium] › tests\e2e\maintenance.spec.ts:56:1 › shared browser tabs refresh after a persisted mutation (1.5s)
+  ok 39 [chromium] › tests\e2e\maintenance.spec.ts:73:1 › academic year and default landing preferences have observable effects (1.6s)
+  ok 40 [chromium] › tests\e2e\maintenance.spec.ts:94:1 › company, supervisor, opportunity and requirement edits persist and propagate (2.4s)
+  ok 41 [chromium] › tests\e2e\maintenance.spec.ts:154:1 › directory controls, URL back/forward and filtered dashboard destinations (1.9s)
+  ok 42 [chromium] › tests\e2e\restart.spec.ts:3:1 › saved synthetic records and demonstration session survive a supported browser restart (3.7s)
+  ok 43 [chromium] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (13.4s)
+  ok 44 [chromium] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (1.9s)
+  ok 45 [chromium] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (2.0s)
+(node:26980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 46 [mobile] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (10.8s)
+  ok 47 [mobile] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (1.5s)
+  ok 48 [mobile] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (1.9s)
+
+  48 passed (3.5m)

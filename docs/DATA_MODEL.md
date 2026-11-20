@@ -71,3 +71,7 @@ Migration retains every existing entity ID, student number, verifier, attachment
 Legacy Reviewed reports become Approved with `legacyStatus=Reviewed` and retained original reviewer/timestamp; no claim is made that the reviewer had the newly introduced role at the historical time. Pending Review becomes Pending. Existing approved hour totals do not change. Submitted evaluations get their recorded date from submittedAt. Unknown snapshot versions fail visibly. No migration reseeds or deletes saved data; an interrupted/failed write leaves the original version-one snapshot intact. Version-one enums remain in the TypeScript union solely for validation/upgrade compatibility; new writes use the new states.
 
 Daily/weekly overlap, attendance uniqueness, linked placement/date/hours integrity, role affiliations and two-obligation integrity are checked before persistence. Exact field-to-approved-ERD mapping remains UNVERIFIED. Backend developers must implement durable keys, constraints and transactional history independently of this browser snapshot representation.
+
+## Final review compatibility
+
+The final review introduced no schema version or seed reset. Existing version-two relationships and the genuine version-one upgrade remain unchanged. Administrative email/activation edits advance the existing credential version and invalidate existing access requests. Active/Filled/report display remains derived from existing opportunity state/capacity; rendered and approved hour fields are projections, not duplicated mutable totals.

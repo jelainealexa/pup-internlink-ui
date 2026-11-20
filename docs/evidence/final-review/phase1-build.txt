@@ -1,0 +1,72 @@
+
+> internlink-ui@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 40ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 892ms
+  Running TypeScript ...
+  Finished TypeScript in 5.2s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/31) ...
+  Generating static pages using 7 workers (7/31) 
+  Generating static pages using 7 workers (15/31) 
+  Generating static pages using 7 workers (23/31) 
+✓ Generating static pages using 7 workers (31/31) in 614ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /activate
+├ ○ /dashboard
+├ ○ /dashboard/applications
+├ ƒ /dashboard/applications/[id]
+├ ○ /dashboard/applications/create
+├ ○ /dashboard/attendance
+├ ○ /dashboard/attendance/create
+├ ○ /dashboard/evaluations
+├ ƒ /dashboard/evaluations/[id]
+├ ○ /dashboard/faculty
+├ ƒ /dashboard/faculty/[id]
+├ ƒ /dashboard/faculty/[id]/edit
+├ ○ /dashboard/faculty/create
+├ ○ /dashboard/internships
+├ ƒ /dashboard/internships/[id]
+├ ƒ /dashboard/internships/[id]/edit
+├ ○ /dashboard/internships/create
+├ ○ /dashboard/partners
+├ ƒ /dashboard/partners/[id]
+├ ƒ /dashboard/partners/[id]/edit
+├ ƒ /dashboard/partners/[id]/supervisors/[supervisorId]
+├ ƒ /dashboard/partners/[id]/supervisors/[supervisorId]/edit
+├ ƒ /dashboard/partners/[id]/supervisors/create
+├ ○ /dashboard/partners/create
+├ ○ /dashboard/placements
+├ ƒ /dashboard/placements/[id]
+├ ○ /dashboard/placements/create
+├ ○ /dashboard/progress
+├ ƒ /dashboard/progress/[id]
+├ ○ /dashboard/progress/create
+├ ƒ /dashboard/progress/reports/[id]
+├ ○ /dashboard/progress/weekly/create
+├ ○ /dashboard/reports
+├ ○ /dashboard/requirements
+├ ƒ /dashboard/requirements/[id]/edit
+├ ○ /dashboard/requirements/create
+├ ƒ /dashboard/requirements/submissions/[id]
+├ ○ /dashboard/requirements/submissions/create
+├ ○ /dashboard/settings
+├ ○ /dashboard/students
+├ ƒ /dashboard/students/[id]
+├ ƒ /dashboard/students/[id]/edit
+├ ○ /dashboard/students/create
+├ ○ /forgot-password
+└ ○ /reset-password
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

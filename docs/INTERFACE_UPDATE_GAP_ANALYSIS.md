@@ -110,3 +110,7 @@ All 42 delta rows reconciled against final source/test checkpoint 7f2873a. Inter
 | IU-040 | Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts | PASS (internal bounded demo verification); tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts |
 | IU-041 | upgrade.ts; storage.ts; integrity.ts; app/lib/domain.ts,commands.ts,updates.ts,rules.ts | PASS (internal bounded demo verification); tests/integration/interface-upgrade.test.ts; tests/e2e/interface-update.spec.ts |
 | IU-042 | AppProvider; ui.tsx; service.ts; app/lib/domain.ts,commands.ts,updates.ts,rules.ts | PASS (internal bounded demo verification); tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts |
+
+## Final release review reconciliation
+
+The42-row matrix and37 appended/five reused mappings remain valid as requirements decomposition; they were not sufficient evidence of correctness by themselves. Final review FR-01–06 repairs affect account lifecycle/faculty management, cross-cohort intern navigation, metrics, MOA activation, original rendered-hour sorting and posting-state reporting. All map to existing IDs; no renumbering or backend expansion. Original analysis/implementation evidence above remains historical; FINAL_RELEASE_REVIEW and current requirements traceability provide the new verification disposition.

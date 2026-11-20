@@ -1,0 +1,10 @@
+{
+  "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+  "path": "C:\\Users\\USER1~1\\AppData\\Local\\Temp\\internlink-final-candidate-txwsv46t",
+  "method": "Isolated original archive refreshed from exact git archive for application/tests/config; fresh npm ci rerun; no user files used",
+  "originalArchiveCommit": "54e9a11cbeba774e6e9fc6e0384d474a49854eca",
+  "applicationRepairCommit": "54e9a11cbeba774e6e9fc6e0384d474a49854eca",
+  "testOnlyDelta": "fef06b8 adds rendered ordering assertion and preserves approved ordering; no dependency or application changes",
+  "verifiedFileCount": 128,
+  "phaseOneCandidate": "fef06b8741d3d2325e62b84d04ba67385ddfdf7c"
+}

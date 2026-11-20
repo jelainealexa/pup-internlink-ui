@@ -1,0 +1,27 @@
+{
+  "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+  "branch": "frontend/interface-update",
+  "mainUnchanged": "2d846774c6dfbc61d675331145bd7b82b301e5a4",
+  "sourceTestsConfigPackageUnchanged": true,
+  "canonicalRequirements": 131,
+  "verdicts": {
+    "PASS": 126,
+    "BLOCKED": 1,
+    "NOT APPLICABLE": 4
+  },
+  "deltaRows": 42,
+  "reusedMappings": 5,
+  "appendedIds": 37,
+  "traceabilityRows": 131,
+  "allFinalGatesExitZero": true,
+  "nativePassed": 130,
+  "browserPassed": 49,
+  "pdfSha256": {
+    "PUP INTERNLINK_System Flow.pdf": "A8852A86F90EF6931D20B568F1E7EF3C86C000906520CB4F8BD5ABB0B7438458",
+    "DSI - Interface Content.pdf": "D471342919000A49DFEE9BF411336C1DCC58D63046F099E7141919D79EA3CADF"
+  },
+  "noTrackedBuildDependenciesPrivateEnv": true,
+  "currentMarkdownFileLinksResolve": true,
+  "ownerPdfs": "unchanged, intentionally untracked",
+  "publication": "prepared only; not pushed"
+}

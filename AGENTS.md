@@ -30,3 +30,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Preserve five distinct roles: Company Supervisor administers its company; Intern Supervisor operates assigned applications/progress/company evaluations. Existing legacy supervisors migrate to Intern without administrator privileges.
 - Keep version-one saved IDs, Blob attachments, hours and evaluator relationships compatible through upgrade.ts; never require reset for this update. Account access uses access commands; authenticated writes use Mutation/updates.ts and existing revision/content-bound receipt protections.
 - Use phased requirement eligibility and shared rendered/approved hour selectors; attendance and weekly reports must never double-count work. Faculty monitoring remarks are independent from Intern approval decisions. Keep two evaluation obligations.
+
+## Final release maintenance
+
+- The latest owner instruction authorized final release review, superseding the earlier postponement. Read docs/FINAL_RELEASE_REVIEW.md, docs/TEST_REPORT.md and docs/HANDOVER.md for the current tested commit, repaired findings and bounded handover verdict. Preserve historical reports rather than rewriting their counts.
+- This root session retained implementation history and authored repairs. Do not describe the final evidence as fresh-context/personnel-independent certification; own repair verification is disclosed.
+- Preserve administrative credential/session/request revocation, separate Active/Available metrics, placement-year My Interns scope, both rendered/approved directory sorts and shared derived posting status in reports/CSV. Run final-review regressions with the full suite for relevant changes.

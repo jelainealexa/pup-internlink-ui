@@ -1,3 +1,52 @@
+# Final updated-release test report
+
+2026-11-20. Originally reviewed 3698d8d; final tested application/test candidate **59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e** on frontend/interface-update. Functional handover PASS within synthetic browser-local scope. This root session has implementation history and authored repairs; fresh-context/personnel independence is UNVERIFIED. Historical reports below are retained as results of their own versions, not current evidence.
+
+## Final actual gates
+
+Windows PowerShell, Node 24.15.0/npm 11.12.1, Next 16.4.6/React 19.3/TypeScript 5.9.3. A unique isolated workspace was initialized from git archive; final application/tests/config were refreshed byte-for-byte from 59a5a5f and a fresh lockfile installation rerun. Source manifest and paths: evidence/final-review/candidate-source-check.json/final-clean-workspace.json. Root node_modules, existing servers and user demonstration data were preserved. No install lifecycle scripts executed under the requested ignore flag.
+
+| Exact command | Actual result | Evidence in evidence/final-review |
+| --- | --- | --- |
+| npm ci --ignore-scripts --no-audit --no-fund | PASS exit 0; 427 packages | candidate-install.txt; candidate-gates.json |
+| npm run lint | PASS exit 0, no lint diagnostics | candidate-lint.txt |
+| npm run typecheck | PASS exit 0, Next typegen + tsc --noEmit | candidate-types.txt |
+| npm test -- --reporter=default --reporter=json --outputFile=.../candidate-native.json | PASS 130/130, 10 files; 55 unit/5 component/70 integration; 0 failed/skipped | candidate-native.txt/json |
+| npm run build | PASS exit 0 | candidate-build.txt |
+| npm run test:e2e | PASS 49/49, 46 desktop/3 mobile Chromium; 0 failed/skipped/flaky; 226.213s | candidate-browser.txt/json |
+| node .../production-review.cjs.txt | PASS 10 startup/HTTP/auth checks; 0 page errors, plus 7-step assignment journey | production-smoke.txt/json; production-start.txt |
+
+Full unabridged command paths/exit codes/times are in candidate-gates.json. Playwright automatically builds .next-e2e and starts real production on 3105; production smoke starts the separate .next build on3127 and stops only its owned process. The Windows evidence utility uses the clean workspace's installed Playwright. Browser executable override actually used:
+
+```powershell
+$env:PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH='C:/Users/User 1/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe'
+npm run test:e2e
+```
+
+Standard receiving-team setup may install Chromium with npx playwright install chromium; that download is not claimed as executed in this review. The separate smoke command sets INTERNLINK_REVIEW_EVIDENCE to the root evidence directory and INTERNLINK_REVIEW_COMMIT to59a5a5f before running production-review.cjs.txt in the clean workspace.
+
+## Test credibility, additions and failures
+
+Original 120 native/43 browser cases retained. Added 10 native cases in tests/integration/final-review.test.ts and 6 browser cases in tests/e2e/final-review.spec.ts. No assertion/test was removed to obtain a pass. New coverage includes administrative revocation (four session cases plus recovery link), current-MOA activation, genuine original-seed migration/rollback, transaction concurrency/retry/stale assignment, new posting reports/CSV, cross-cohort My Interns, distinct Active/Available counters, rendered/approved directory hours, actual-browser genuine upgrade/admin provisioning and multi-tab password revocation.
+
+Fresh suite split: 47 rules+8 session=55 unit; 3 forms+2 independent forms=5 component; 21 services+21 prior audit+8 interface update+6permissions+4 interface upgrade+10 final review=70 integration. Real fake-indexeddb transactions/Blobs and actual production browser UI/persisted-state assertions are used. Frozen seed/domain copied from 5daa83a establish genuine version-one initial data; acceptance workflows do not edit storage to bypass steps. The standalone assignment journey exercises company-admin provisioning/opportunity assignment/placement reassignment, retained report and 2 evaluation IDs, former supervisor denial, new supervisor approval/evaluation and submitted-evaluation freeze. These7 recorded steps are not extra suite test cases.
+
+Failures preserved before repairs:
+
+- Original clean candidate120/120 passes; new adversarial8-case run 6 fails/2 passes, demonstrating gaps in former coverage. Initial findings and exact logs remain in initial-findings.json/initial-adversarial-confirmed.*; earlier7-case run 5 fails/2 passes also retained.
+- First browser repro had an incorrect1-vs2 expected total for a supervisor with an ongoing and completed intern; corrected expected2 then reproduced actual2-vs1 directory omission. FR-03 metric and FR-05 missing rendered column are genuine failures. Initial browser/hours logs retained.
+- First repair target 6/7 passes; the remaining test selector confused internal ID with displayed public student number after the real rendered column was restored. Correcting the selector gives1/1 targeted pass.
+- First clean full browser run 47/48 retains an old expectation of approved ordering for sort=hours. Preserve that assertion under explicit approvedHours and additionally assert rendered order. Phase-one full48/48 then passes. No sort assertion weakened.
+- Further FR-06 investigation finds old report enums/raw Active status. report-state-before has 1 failed/9 deliberately filtered skipped; report-browser-before fails missing Filled option. Both pass after shared status/filter/CSV repair. Final unfiltered 130/49 has 0skips.
+
+Historical/failed phase evidence retained as phase1-*, candidate-*-first.*, report-*-before.*, repair-*. Scope-specific failures/skips are not counted as successful final tests. Six medium findings are Fixed; original 16 regression assertions execute again. Reports/DEFECT_REGISTER record original vs repaired commits and self-verification.
+
+Warnings: inherited ESLint 9.39.5 deprecation during install; NO_COLOR ignored when FORCE_COLOR is set in browser workers. No dependency security certification. Clean lockfile installation/build/runtime succeeded with scripts ignored. Firefox/WebKit, exhaustive manual screen reader/WCAG, physical printer/native PDF plug-in, real OS quota/eviction endurance and parallel scheduling outside configured1 worker remain unverified. Actual backend/database/email/security are outside this front-end delivery.
+
+---
+
+## Historical incremental and original verification evidence
+
 # Interface-update test report
 
 2026-11-20, internal implementation verification. Source/test checkpoint **7f2873a60160060bae8140c0769e7545a3aa3154**, branch frontend/interface-update; original baseline5daa83a. Windows PowerShell, Node 24.15.0/npm 11.12.1, Next 16.4.6/React 19.3/TypeScript 5.9.3. Evidence directory: [interface-update](evidence/interface-update). Prior independent reports below remain historical; no postponed final independent review or production security certification was performed.

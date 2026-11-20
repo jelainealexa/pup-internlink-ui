@@ -227,3 +227,98 @@ No finding is marked fixed solely from source presence. No open critical/high fi
 - Accepted limitation: browser-local numeric precision, whole-snapshot optimistic conflicts, bounded receipts/activities and single-origin data.
 - Unverified externally: approved ERD/API and institutional policy compatibility; Firefox/WebKit/manual assistive technology.
 - Outside front-end scope: actual backend/database/migrations/authentication/authorization/private file storage/security certification.
+
+## Final updated-release review (2026-11-20)
+
+Originally reviewed3698d8d. Initial findings checkpointa3e370f preserves5medium findings and failed assertions before repairs. Additional FR-06 was first reproduced at fef06b8, inherited unchanged from the reviewed report implementation; checkpoint656b7b0 preserves that failure. New total:0critical/0high/6medium/0low. These are separate from the original 16 findings above. Repair commit54e9a11 addressesFR-01–05;59a5a5f addressesFR-06. All six are Fixed with targeted and complete final clean regression evidence (130 native/49 browser plus production smoke).
+
+Independence limit: the current root session has implementation history and authored repairs. New adversarial evidence challenges prior claims, but fresh-context/personnel-independent certification is not claimed. Original evidence remains unchanged in evidence/final-review/initial-findings.json and additional-findings.json; findings-disposition.json contains current repairs.
+
+### FR-01 — MEDIUM — Account lifecycle
+
+- Requirements: AUTH-005, IU-006, IU-019, IU-032. Original location: app/lib/updates.ts:249; app/lib/commands.ts:120,283.
+- Reproduction: Use a separate signed-in faculty session. Coordinator deactivates/reactivates the unassigned faculty before that session refreshes. Also edit a student/faculty/supervisor email administratively after generating recovery.
+- Expected: Activation/email changes advance credential version and revoke outstanding requests; old supported sessions and requests cannot revive.
+- Observed before repair: Faculty activation leaves version unchanged; all three administrative email edit paths retain the old version and request. Prior session still returns account; old reset request succeeds with the changed email.
+- Impact: Inconsistent documented session/request revocation; inactive accounts are denied while inactive, so no system-wide role escalation.
+- Focused repair: Apply shared revocation on changed administrative email or activation state, preserving harmless profile-only edits.
+- Status: **Fixed**, supported by targeted persisted-state/browser assertions; complete final regression passes.
+- Repair commit: 54e9a11cbeba774e6e9fc6e0384d474a49854eca. Evidence: repair-native.json; final-review.test.ts account cases.
+
+### FR-02 — MEDIUM — Intern Supervisor directory
+
+- Requirements: IU-035, IU-038, DSH-003. Original location: app/features/Students.tsx:360-379.
+- Reproduction: Coordinator changes Mira academic year to prior year; Intern dashboard in current placement year shows2 assigned interns. Follow Total assigned interns.
+- Expected: My Interns lists the2 authorized placements in selected placement year regardless of registration cohort.
+- Observed before repair: Directory filters Student.academicYear and shows 1, omitting Mira despite current assigned placement.
+- Impact: Assigned intern and dashboard directory disagree across legitimate cohorts.
+- Focused repair: Use placement year for interns=true while retaining ordinary student-directory cohort filtering.
+- Status: **Fixed**, supported by targeted persisted-state/browser assertions; complete final regression passes.
+- Repair commit: 54e9a11cbeba774e6e9fc6e0384d474a49854eca. Evidence: repair-browser.txt FR-02; final-review.spec.ts.
+
+### FR-03 — MEDIUM — Coordinator dashboard
+
+- Requirements: DSH-001, DSH-003, IU-015. Original location: app/features/Dashboard.tsx:34-36.
+- Reproduction: Expire company1 MOA through partner form; both posting records remain Active with slots, only1 remains eligible.
+- Expected: Active status summary2; distinct Available summary1, each links to corresponding filter.
+- Observed before repair: Card labeled Active internship opportunities displays1 using availability and available=true. Original available summary was relabelled, not retained separately.
+- Impact: Incorrect required metric and conflation of posting state with eligibility.
+- Focused repair: Count derived Active posting state with status filter; retain original Available opportunities card separately.
+- Status: **Fixed**, supported by targeted persisted-state/browser assertions; complete final regression passes.
+- Repair commit: 54e9a11cbeba774e6e9fc6e0384d474a49854eca. Evidence: repair-browser.txt FR-03; maintenance17cards and destinations.
+
+### FR-04 — MEDIUM — Posting activation
+
+- Requirements: IU-031, OPP-003. Original location: app/lib/updates.ts:407-448; docs/BUSINESS_RULES.md updated policy.
+- Reproduction: Deactivate previously approved opp1, expire its company MOA, request activation.
+- Expected: Published demo activation policy rejects expired/unapproved MOA without mutation.
+- Observed before repair: Activation succeeds and writes Active despite documented current-MOA prerequisite. Student availability independently still blocks applications.
+- Impact: Posting lifecycle violates published demonstration rule; no student availability bypass.
+- Focused repair: Enforce existing documented eligibility on activation using the service clock; retain deactivation and historical records.
+- Status: **Fixed**, supported by targeted persisted-state/browser assertions; complete final regression passes.
+- Repair commit: 54e9a11cbeba774e6e9fc6e0384d474a49854eca. Evidence: repair-native.json FR-04; new activation guard uses service clock.
+
+### FR-05 — MEDIUM — Student directory hours
+
+- Requirements: STU-004, STU-001. Original location: app/features/Students.tsx:354-357,387,481-514.
+- Reproduction: Open student directory containing pending reports, inspect hour columns and sort modes.
+- Expected: Original specified rendered-hour display/sort remains alongside updated approved-hour accounting.
+- Observed before repair: Only Approved Hours column/sort is exposed; hours sort computes approved, not rendered, despite STU-004 marked PASS.
+- Impact: Previously required rendered-hour functionality omitted rather than explicitly superseded.
+- Focused repair: Restore rendered column and hours sort; retain approved display/sort as separate choices with independent oracle.
+- Status: **Fixed**, supported by targeted persisted-state/browser assertions; complete final regression passes.
+- Repair commit: 54e9a11cbeba774e6e9fc6e0384d474a49854eca. Evidence: repair-browser-hours.txt; independent-matrix student rendered/approved sorts.
+
+### FR-06 — MEDIUM — Opportunity reports
+
+- Requirements: RPT-002, RPT-003, RPT-004, IU-031. Original location: app/lib/reporting.ts:128-145; app/features/Reports.tsx:112-126.
+- Reproduction: Create placement from accepted app-002 to consume the last opp1 slot; generate opportunity report filtered Filled. Inspect stage/deactivated status options and CSV.
+- Expected: Reports share derived Filled status with directory/details, expose both approval stages and Deactivated, export the filtered displayed status.
+- Observed before repair: Filled report returns 0 rows because filter/export use persisted Active; UI has old PendingApproval/Closed but no new stage/Filled/Deactivated choices.
+- Impact: Required reports are inconsistent with updated posting lifecycle and cannot filter important current states.
+- Focused repair: Use shared postingStatus for filtering/export; add current state options and retain grouped pending/legacy closed compatibility.
+- Status: **Fixed**, supported by targeted persisted-state/browser assertions; complete final regression passes.
+- Repair commit: 59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e. Evidence: report-state-after.txt; report-browser-after.txt actual filtered CSV.
+
+### Original 16 regression dispositions for the updated release
+
+Every original finding remains VERIFIED FIXED at the tested boundaries, based on the original regression assertions executed again plus source inspection. Complete final 130 native/49 browser suite passes; fresh evidence is linked in TEST_REPORT. IV-12 is a documentation-count reconciliation, not a product behavior test. No claim of exhaustive defect absence.
+
+| Original finding | Final assessment | Fresh evidence / unchanged protection |
+| --- | --- | --- |
+| IV-01 | VERIFIED FIXED | independent-audit readonly/quota/retry; real version1 failed-upgrade rollback |
+| IV-02 | VERIFIED FIXED | independent-audit injected clock/year; availability service clock; activation explicitly passes context date |
+| IV-03 | VERIFIED FIXED | independent.spec student draft direct URL and native scoped projection |
+| IV-04 | VERIFIED FIXED | independent-audit unknown command leaves exact state unchanged |
+| IV-05 | VERIFIED FIXED | byte/content-bound key reuse, legacy receipt tests; new concurrent command/retry tests |
+| IV-06 | VERIFIED FIXED | fractional rules/native reports and full fractional lifecycle; shared compensated hour selector retained |
+| IV-07 | VERIFIED FIXED | malformed consecutive academic-year checks unchanged |
+| IV-08 | VERIFIED FIXED | native phone format and actual lifecycle invalid contact rejection |
+| IV-09 | VERIFIED FIXED | malformed stored grade/receipt/profile validation; genuine snapshot validation |
+| IV-10 | VERIFIED FIXED | student plus 4 entity cross-tab stale forms/reload/input preservation; new stale assignment command |
+| IV-11 | VERIFIED FIXED | contextual anonymous placement login query preserved |
+| IV-12 | VERIFIED FIXED | baseline120 and current fresh counts reconciled separately; historical79 remains historical |
+| IV-13 | VERIFIED FIXED | both custom program/year-level preservation component regressions |
+| IV-14 | VERIFIED FIXED | failed completion error remains inside active dialog |
+| IV-15 | VERIFIED FIXED | empty prerequisite records show actionable states in independent.spec |
+| IV-16 | VERIFIED FIXED | failed session clear preserves database; reset ordering unchanged |

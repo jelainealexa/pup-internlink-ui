@@ -1,0 +1,38 @@
+[
+  {
+    "exitCode": 0,
+    "command": "npm ci --ignore-scripts --no-audit --no-fund",
+    "gate": "install",
+    "completedUtc": "2026-11-20T08:26:03.3117051Z"
+  },
+  {
+    "gate": "lint",
+    "command": "npm run lint",
+    "exitCode": 0,
+    "completedUtc": "2026-11-20T08:33:36.3075490Z"
+  },
+  {
+    "gate": "types",
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "completedUtc": "2026-11-20T08:33:42.5108231Z"
+  },
+  {
+    "gate": "native",
+    "command": "npm test -- --reporter=default --reporter=json --outputFile=D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/candidate-native.json",
+    "exitCode": 0,
+    "completedUtc": "2026-11-20T08:33:47.6441519Z"
+  },
+  {
+    "gate": "build",
+    "command": "npm run build",
+    "exitCode": 0,
+    "completedUtc": "2026-11-20T08:33:58.2542576Z"
+  },
+  {
+    "gate": "browser",
+    "command": "npm run test:e2e",
+    "exitCode": 0,
+    "completedUtc": "2026-11-20T08:37:29.5027416Z"
+  }
+]

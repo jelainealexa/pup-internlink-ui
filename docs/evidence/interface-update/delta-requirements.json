@@ -19,7 +19,14 @@
     "finalImplementation": "Login; AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
     "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
     "originalGapClassification": "ALREADY IMPLEMENTED",
-    "classificationNote": "Original working login core preserved; show/hide and access links were missing controls. Extends AUTH-001/002/003, no duplicate canonical ID."
+    "classificationNote": "Original working login core preserved; show/hide and access links were missing controls. Extends AUTH-001/002/003, no duplicate canonical ID.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-002",
@@ -39,7 +46,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Students; Faculty; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-003",
@@ -59,7 +73,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Students; AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-004",
@@ -79,7 +100,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-005",
@@ -99,7 +127,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "AccountAccess; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-006",
@@ -119,7 +154,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Settings; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-007",
@@ -139,7 +181,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Opportunities; PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-008",
@@ -159,7 +208,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Students; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-009",
@@ -179,7 +235,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Requirements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-010",
@@ -199,7 +262,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-011",
@@ -219,7 +289,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Placements; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-012",
@@ -239,7 +316,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Attendance; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-013",
@@ -259,7 +343,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Attendance; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-014",
@@ -279,7 +370,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-015",
@@ -299,7 +397,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Dashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-016",
@@ -319,7 +424,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Students; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-017",
@@ -339,7 +451,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-018",
@@ -359,7 +478,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-019",
@@ -379,7 +505,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Faculty; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-020",
@@ -399,7 +532,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Faculty; Students; Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-021",
@@ -419,7 +559,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-022",
@@ -439,7 +586,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Placements; Progress; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-023",
@@ -459,7 +613,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "RoleDashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-024",
@@ -479,7 +640,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Students; Requirements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-025",
@@ -499,7 +667,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Progress; ProgressReports; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-026",
@@ -519,7 +694,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-027",
@@ -539,7 +721,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Partners; Workspace; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-028",
@@ -559,7 +748,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "RoleDashboard; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-029",
@@ -579,7 +775,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-030",
@@ -599,7 +802,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Opportunities; PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-031",
@@ -619,7 +829,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-032",
@@ -639,7 +856,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-033",
@@ -659,7 +883,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "PostingControls; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-034",
@@ -679,7 +910,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-035",
@@ -699,7 +937,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts; tests/e2e/interface-dashboard.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "RoleDashboard; Workspace; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-036",
@@ -719,7 +964,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Partners; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-037",
@@ -739,7 +991,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Applications; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-038",
@@ -759,7 +1018,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Students; Placements; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-039",
@@ -779,7 +1045,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Progress; Attendance; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-040",
@@ -799,7 +1072,14 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "Evaluations; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-041",
@@ -819,7 +1099,14 @@
     "executedTests": "tests/integration/interface-upgrade.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "upgrade.ts; storage.ts; integrity.ts; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   },
   {
     "id": "IU-042",
@@ -839,6 +1126,13 @@
     "executedTests": "tests/integration/interface-update.test.ts; tests/integration/interface-permissions.test.ts; tests/e2e/interface-update.spec.ts",
     "result": "PASS (internal bounded demo verification)",
     "finalImplementation": "AppProvider; ui.tsx; service.ts; app/lib/domain.ts,commands.ts,updates.ts,rules.ts",
-    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification."
+    "verificationScope": "Final120 native and43 production Chromium cases; self-verification, not independent certification.",
+    "finalReview": {
+      "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+      "result": "PASS within browser-local scope",
+      "report": "docs/FINAL_RELEASE_REVIEW.md",
+      "evidence": "docs/evidence/final-review/requirements-review.json",
+      "note": "Historical original gap classification and incremental evidence preserved; final 130 native / 49 browser regression executed."
+    }
   }
 ]

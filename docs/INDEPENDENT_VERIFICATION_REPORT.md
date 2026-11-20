@@ -1,3 +1,5 @@
+> Historical report preserved below. Current final review: [FINAL_RELEASE_REVIEW.md](FINAL_RELEASE_REVIEW.md). The latest instruction authorizes that review; its independence limitation and actual candidate evidence are stated there.
+
 > Historical verification of the previous release. Superseded by the DSI interface-update development candidate; final independent review is postponed. See INTERFACE_UPDATE_IMPLEMENTATION_REPORT.md for current internal verification.
 
 # Front-end verification and release assessment

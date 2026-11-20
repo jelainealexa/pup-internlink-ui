@@ -1,0 +1,78 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test tests/e2e/final-review.spec.ts tests/e2e/maintenance.spec.ts tests/e2e/independent-matrix.spec.ts --grep FR-|final I:|final H:|every dashboard|directory matrix: students --reporter=list --output=test-results/final-repairs
+
+[WebServer] (node:1932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:2024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:8940) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:23020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:10272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\final-review.spec.ts:12:1 › FR-02 My Interns follows placement year rather than hiding an earlier student cohort (1.8s)
+  ok 2 [chromium] › tests\e2e\final-review.spec.ts:32:1 › FR-03 Active posting state and application availability have distinct accurate summaries (1.4s)
+  ok 3 [chromium] › tests\e2e\final-review.spec.ts:80:1 › final I: genuine original snapshot upgrades with retrievable attachments and deliberate administrator provisioning (3.0s)
+  ok 4 [chromium] › tests\e2e\final-review.spec.ts:237:1 › final H: supported same-account tabs revoke together after a password change (2.1s)
+  x  5 [chromium] › tests\e2e\final-review.spec.ts:280:1 › FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval (11.0s)
+(node:17128) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 6 [chromium] › tests\e2e\independent-matrix.spec.ts:242:3 › independent directory matrix: students every filter option, search, reset, sort and refresh (10.1s)
+  ok 7 [chromium] › tests\e2e\maintenance.spec.ts:4:1 › every dashboard summary opens the matching filtered records (3.0s)
+
+
+  1) [chromium] › tests\e2e\final-review.spec.ts:280:1 › FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('tbody tr').filter({ hasText: '2024-0001' }).locator('td').nth(6)
+    Expected: "16"
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" locator('tbody tr').filter({ hasText: '2024-0001' }).locator('td').nth(6) with timeout 10000ms
+      - waiting for locator('tbody tr').filter({ hasText: '2024-0001' }).locator('td').nth(6)
+
+
+      303 |   ).toBeVisible();
+      304 |   const target = page.locator("tbody tr").filter({ hasText: "2024-0001" });
+    > 305 |   await expect(target.locator("td").nth(6)).toHaveText(
+          |                                             ^
+      306 |     String(total("2024-0001")),
+      307 |   );
+      308 |   await page.getByLabel("Sort by", { exact: true }).selectOption("hours");
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\final-review.spec.ts:305:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\final-repairs\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\final-repairs\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\final-repairs\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\final-repairs\final-review-FR-05-the-ori-a0405--sorting-alongside-approval-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\final-review.spec.ts:280:1 › FR-05 the original student directory retains rendered hours and rendered-hour sorting alongside approval 
+  6 passed (47.5s)

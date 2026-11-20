@@ -1,0 +1,92 @@
+{
+  "reviewedCommit": "3698d8ddfd96cef39c80e1a18d127a45583a8cf3",
+  "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+  "native": {
+    "unit": 55,
+    "component": 5,
+    "integration": 70,
+    "passed": 130,
+    "failed": 0,
+    "skipped": 0,
+    "files": 10
+  },
+  "browser": {
+    "passed": 49,
+    "desktop": 46,
+    "mobile": 3,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "durationMs": 226213.039
+  },
+  "productionSmoke": {
+    "verdict": "PASS",
+    "checks": 10,
+    "additionalAssignmentJourney": {
+      "steps": [
+        "Company administrator registered own Intern Supervisor through UI",
+        "Assigned own opportunity to registered Intern",
+        "Placement reassignment retained reports/history and transferred the pending evaluator in-place",
+        "Former placement supervisor lost placement/progress access",
+        "New assigned Intern approved existing report and refreshed accumulated hours",
+        "New evaluator submitted the same company obligation",
+        "Submitted evaluation blocked reassignment with visible error and unchanged relationships"
+      ],
+      "verdict": "PASS"
+    }
+  },
+  "gates": [
+    {
+      "exitCode": 0,
+      "completedUtc": "2026-11-20T08:44:16.2658721Z",
+      "command": "npm ci --ignore-scripts --no-audit --no-fund",
+      "gate": "install"
+    },
+    {
+      "exitCode": 0,
+      "completedUtc": "2026-11-20T08:44:26.6408838Z",
+      "command": "npm run lint",
+      "gate": "lint"
+    },
+    {
+      "exitCode": 0,
+      "completedUtc": "2026-11-20T08:44:31.1426048Z",
+      "command": "npm run typecheck",
+      "gate": "types"
+    },
+    {
+      "exitCode": 0,
+      "completedUtc": "2026-11-20T08:44:37.4130300Z",
+      "command": "npm test -- --reporter=default --reporter=json --outputFile=D:/Orca/Workspace/pup-internlink-ui/docs/evidence/final-review/candidate-native.json",
+      "gate": "native"
+    },
+    {
+      "exitCode": 0,
+      "completedUtc": "2026-11-20T08:44:47.2891591Z",
+      "command": "npm run build",
+      "gate": "build"
+    },
+    {
+      "exitCode": 0,
+      "completedUtc": "2026-11-20T08:48:34.7784513Z",
+      "command": "npm run test:e2e",
+      "gate": "browser"
+    }
+  ],
+  "newFindings": {
+    "critical": 0,
+    "high": 0,
+    "medium": 6,
+    "low": 0,
+    "fixed": 6,
+    "open": 0
+  },
+  "priorDefects": {
+    "verifiedFixed": 16,
+    "regressed": 0
+  },
+  "functionalHandover": "PASS: browser-local demonstration only",
+  "freshContextIndependence": "UNVERIFIED: same root session/implementation history; repairs self-verified",
+  "exactBackendCompatibility": "UNVERIFIED: no approved ERD/API",
+  "actualBackendDatabaseProductionSecurity": "NOT APPLICABLE"
+}

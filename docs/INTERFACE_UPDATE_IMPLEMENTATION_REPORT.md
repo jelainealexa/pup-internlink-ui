@@ -1,3 +1,5 @@
+> Historical report preserved below. Current final review: [FINAL_RELEASE_REVIEW.md](FINAL_RELEASE_REVIEW.md). The latest instruction authorizes that review; its independence limitation and actual candidate evidence are stated there.
+
 # Interface-update implementation report
 
 2026-11-20. **Internal development candidate, not independent release certification.** Starting branch audit/independent-front-end, commit5daa83a96bd3b4c2afdf1821b8a7fcbd2764ca6a. Dedicated branch frontend/interface-update. Delta documentation checkpoint 5558cce569f7fdd125684ef05c810baf2ff0cef3; implementation/test checkpoint **7f2873a60160060bae8140c0769e7545a3aa3154**. Final documentation/evidence commit is its descendant (`git log -3`). No push/merge/main change. Owner PDFs remain untracked and intact. Git lacked configured author identity; local commits use explicit synthetic Codex <codex@local.invalid> identity without changing global Git configuration.

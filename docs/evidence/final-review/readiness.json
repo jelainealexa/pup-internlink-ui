@@ -1,0 +1,138 @@
+{
+  "scope": "Verified browser-local synthetic front-end only",
+  "testedCommit": "59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e",
+  "rows": [
+    {
+      "deliverable": "OJT Coordinator portal",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Student portal",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Faculty Adviser portal",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Company Supervisor portal",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Intern Supervisor portal",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Account lifecycle",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Demonstration authentication",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Role restrictions",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Posting approval",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Application decisions",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Faculty and supervisor assignments",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Phased requirements",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Placement management",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Attendance",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Progress approval",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Hour calculations",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Evaluations",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Completion and certificate metadata",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Reports and settings",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Existing-data upgrade",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Data consistency",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Data persistence",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Previous16 defect regressions",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Automated native tests",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Browser verification",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Production build",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Documentation",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Backend integration readiness (typed seam/proposed contracts)",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Exact approved backend compatibility",
+      "verdict": "UNVERIFIED"
+    },
+    {
+      "deliverable": "Front-end handover readiness",
+      "verdict": "PASS"
+    },
+    {
+      "deliverable": "Fresh-context/personnel independence",
+      "verdict": "UNVERIFIED"
+    },
+    {
+      "deliverable": "Institutional provisioning-policy approval (AUTH-004)",
+      "verdict": "BLOCKED"
+    },
+    {
+      "deliverable": "Actual backend/database/production security certification",
+      "verdict": "NOT APPLICABLE"
+    }
+  ]
+}

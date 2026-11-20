@@ -57,3 +57,7 @@ Existing feature modules were extended; `AccountAccess`, `Faculty`, `Attendance`
 Attendance is the rendered-work source for the weekly workflow. Weekly reports reference attendance IDs; report hours derive from those entries. Approval contributes those hours once; rejected attempts and faculty remarks remain history. The legacy daily report path remains supported with an overlap guard. A shared hours selector exposes rendered/submitted and approved/reviewed aliases while displays use the new terminology. No portal maintains separate mutable totals.
 
 Public routes `/activate`, `/forgot-password`, `/reset-password` are intentionally outside the protected Workspace. All dashboard routes remain protected; async Next params follow the installed framework guide. Root Suspense and existing navigation/filter helpers are retained. API mode implements the expanded interface only as explicit BACKEND_UNAVAILABLE errors, never a fake successful call.
+
+## Final review repair boundaries
+
+No framework, schema or persistence replacement was introduced. Shared rules now expose account request invalidation/revocation for administrative changes. Student/role directories and reporting remain consumers of the same normalized records/hour/posting selectors. Reports use the same derived Filled state as opportunity views; they retain generated snapshot/export behavior. See FR-01–06 and D-053–056. New regression fixtures freeze the actual seed/domain from5daa83a byte-for-byte for migration verification rather than synthesizing version-one data from the updated seed.
