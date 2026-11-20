@@ -58,3 +58,7 @@ Initial findings:0critical/0high/5medium/0low. All Open at this checkpoint. Full
 - Repair: Restore rendered column and hours sort; retain approved display/sort as separate choices with independent oracle.
 - Evidence: initial-browser-hours.txt. Status: Open.
 
+
+## Additional FR-06 — MEDIUM — Report posting states
+
+After the first five repairs, fef06b8 passes the complete48-case browser suite. A further cross-module source check and new native/browser reproducers show reports still use old opportunity status fields/options. Filled filtering returns0 after a real last-slot placement; stage/Filled/Deactivated selectors are absent. This is a newly discovered partial report defect, not hidden by the earlier passing suite. RPT-002/003/004 and IU-031 apply. Source app/lib/reporting.ts:128–145 and Reports.tsx:112–126. Repair must use shared derived status, new stage options and matching CSV. Original failure record: evidence/final-review/additional-findings.json. Status Open before repair.

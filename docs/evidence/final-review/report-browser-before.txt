@@ -1,0 +1,72 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test tests/e2e/final-review.spec.ts --grep FR-06 --reporter=list --output=test-results/final-report-before
+
+[WebServer] (node:5400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:28560) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:31992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [chromium] › tests\e2e\final-review.spec.ts:318:1 › FR-06 posting reports expose staged approvals, Filled and Deactivated with matching CSV (11.7s)
+
+
+  1) [chromium] › tests\e2e\final-review.spec.ts:318:1 › FR-06 posting reports expose staged approvals, Filled and Deactivated with matching CSV 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('[name=status] option[value="Filled"]')
+    Expected: 1
+    Received: 0
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('[name=status] option[value="Filled"]') with timeout 10000ms
+      - waiting for locator('[name=status] option[value="Filled"]')
+        23 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      318 | test("FR-06 posting reports expose staged approvals, Filled and Deactivated with matching CSV",async({page})=>{
+      319 |  await auditLogin(page);await page.goto("/dashboard/placements/create?application=app-002");await page.locator("[name=startDate]").fill(auditDay());await page.locator("[name=endDate]").fill(auditDay(30));await page.locator("[name=requiredHours]").fill("8");await page.locator("[name=adviserId]").selectOption("fac-1");await page.locator("[name=supervisorId]").selectOption("supervisor-1");await page.getByLabel("I reviewed the displayed",{exact:false}).check();await page.getByRole("button",{name:"Review and Save Placement",exact:true}).click();await expect(page).toHaveURL(/placements\/[^/?]+$/);
+    > 320 |  const generate=async(status:string,expected:string[])=>{await page.goto("/dashboard/reports");await page.locator("[name=category]").selectOption("Opportunities");await expect(page.locator(`[name=status] option[value="${status}"]`)).toHaveCount(1);await page.locator("[name=status]").selectOption(status);await page.getByRole("button",{name:"Generate Report",exact:true}).click();await expect(page.locator(".generated-report tbody tr td:first-child")).toHaveText(expected);};
+          |                                                                                                                                                                                                                                          ^
+      321 |  await generate("Filled",["Software Development Intern"]);const pending=page.waitForEvent("download");await page.getByRole("button",{name:"Export CSV",exact:true}).click();const stream=await (await pending).createReadStream();const chunks:Buffer[]=[];for await(const c of stream!)chunks.push(Buffer.from(c));const csv=Buffer.concat(chunks).toString("utf8");expect(csv).toContain('"Filled"');expect(csv).toContain('"Software Development Intern"');expect(csv).not.toContain('"Active"');await generate("Active",["Design Intern"]);await generate("Pending Approval - Company",["Data Support Intern"]);await generate("Deactivated",["Archived Support Intern"]);
+      322 |  await auditLogout(page);await auditLogin(page,"company@example.test");await page.goto("/dashboard/internships/opp-3");await page.locator("[name=remarks]").fill("Synthetic report-stage approval");await page.getByRole("button",{name:"Save Company Posting Decision",exact:true}).click();await expect(page.locator(".feature-header")).toContainText("Pending Approval - Coordinator");await auditLogout(page);await auditLogin(page);await generate("Pending Approval - Coordinator",["Data Support Intern"]);await generate("Pending Approval",["Data Support Intern"]);
+      323 | });
+        at generate (D:\Orca\Workspace\pup-internlink-ui\tests\e2e\final-review.spec.ts:320:234)
+        at D:\Orca\Workspace\pup-internlink-ui\tests\e2e\final-review.spec.ts:321:2
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\final-report-before\final-review-FR-06-posting-32ab2-activated-with-matching-CSV-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\final-report-before\final-review-FR-06-posting-32ab2-activated-with-matching-CSV-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\final-report-before\final-review-FR-06-posting-32ab2-activated-with-matching-CSV-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\final-report-before\final-review-FR-06-posting-32ab2-activated-with-matching-CSV-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests\e2e\final-review.spec.ts:318:1 › FR-06 posting reports expose staged approvals, Filled and Deactivated with matching CSV 

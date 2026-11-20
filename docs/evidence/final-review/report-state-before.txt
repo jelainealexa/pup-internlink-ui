@@ -1,0 +1,45 @@
+
+> internlink-ui@0.1.0 test
+> vitest run tests/integration/final-review.test.ts -t FR-06 --reporter=default
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+ ❯ tests/integration/final-review.test.ts (10 tests | 1 failed | 9 skipped) 33ms
+   ↓ final review: account revocation and posting policy (6)
+     ↓ FR-01 revokes a faculty session even if deactivated and reactivated before it next refreshes
+     ↓ FR-01 administrative student email changes revoke sessions and outstanding reset links
+     ↓ FR-01 administrative faculty email changes revoke sessions and outstanding reset links
+     ↓ FR-01 administrative supervisor email changes revoke sessions and outstanding reset links
+     ↓ FR-01 invalidates an outstanding recovery request when an administrator changes the registered email
+     ↓ FR-04 activation enforces the documented current-MOA prerequisite and preserves rejected state
+   ↓ final review: genuine original-version data (2)
+     ↓ preserves the exact old seed records, credentials, files, certificates and official totals; never invents an administrator
+     ↓ keeps the original version-one snapshot intact when its atomic upgrade write fails
+   ↓ final review: new command concurrency and retry intent (1)
+     ↓ serializes activation, attendance, progress and posting decisions and rejects stale assignments
+   ❯ final report-state reconciliation (1)
+     × FR-06 filters and exports derived Filled and both pending posting stages from actual mutations 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/final-review.test.ts > final report-state reconciliation > FR-06 filters and exports derived Filled and both pending posting stages from actual mutations
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/integration/final-review.test.ts:400:211
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 skipped (10)
+   Start at  16:38:52
+   Duration  447ms (transform 37%, setup 31%, import 15%, tests 14%, worker 3%)
+
