@@ -178,6 +178,8 @@ test("directory controls, URL back/forward and filtered dashboard destinations",
   await expect(page.locator("tbody tr")).toHaveCount(1);
   await page.getByRole("button", { name: "Reset filters" }).click();
   await page.getByLabel("Sort by", { exact: true }).selectOption("hours");
+  await expect(page.locator("tbody tr").first()).toContainText("Mira Demo");
+  await page.getByLabel("Sort by", { exact: true }).selectOption("approvedHours");
   await expect(page.locator("tbody tr").first()).toContainText("Theo Sample");
   await page.goto("/dashboard/partners?status=Expiring%20Soon");
   await expect(page.locator("tbody tr")).toHaveCount(1);
