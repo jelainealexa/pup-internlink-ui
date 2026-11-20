@@ -351,14 +351,19 @@ export function Students({ id, action }: FeatureProps) {
       </>
     );
   }
-  const totalHours = (studentId: string) =>
+  const totalHours = (
+    studentId: string,
+    kind: "submitted" | "reviewed" = "reviewed",
+  ) =>
     sumHours(
-      placementsForStudent(db, studentId).map((p) => hours(db, p.id).reviewed),
+      placementsForStudent(db, studentId).map((p) => hours(db, p.id)[kind]),
     );
   const rows = db.students
     .filter(
       (s) =>
-        s.academicYear === year &&
+        (filters.value("interns")
+          ? placementsForStudent(db, s.id).some((p) => p.academicYear === year)
+          : s.academicYear === year) &&
         (account.role !== "Faculty Adviser" ||
           canReviewStudent(db, account, s.id)) &&
         searchMatches(filters.value("q"), nameOf(s), s.studentNumber) &&
@@ -380,10 +385,12 @@ export function Students({ id, action }: FeatureProps) {
     )
     .sort((a, b) =>
       filters.value("sort") === "hours"
-        ? totalHours(b.id) - totalHours(a.id)
-        : filters.value("sort") === "id"
-          ? a.studentNumber.localeCompare(b.studentNumber)
-          : nameOf(a).localeCompare(nameOf(b)),
+        ? totalHours(b.id, "submitted") - totalHours(a.id, "submitted")
+        : filters.value("sort") === "approvedHours"
+          ? totalHours(b.id) - totalHours(a.id)
+          : filters.value("sort") === "id"
+            ? a.studentNumber.localeCompare(b.studentNumber)
+            : nameOf(a).localeCompare(nameOf(b)),
     );
   return (
     <>
@@ -479,7 +486,8 @@ export function Students({ id, action }: FeatureProps) {
           choices={[
             { value: "name", label: "Student Name" },
             { value: "id", label: "Student ID" },
-            { value: "hours", label: "Approved Hours" },
+            { value: "hours", label: "Rendered Hours" },
+            { value: "approvedHours", label: "Approved Hours" },
           ]}
         />
       </Filters>
@@ -491,6 +499,7 @@ export function Students({ id, action }: FeatureProps) {
           "Year / Section",
           "Placement",
           "Status",
+          "Rendered Hours",
           "Approved Hours",
           "Activation",
           "Actions",
@@ -504,6 +513,7 @@ export function Students({ id, action }: FeatureProps) {
             `${s.yearLevel} / ${s.section}`,
             p ? companyFor(db, p).name : "Not Yet Placed",
             studentStatus(db, s.id),
+            totalHours(s.id, "submitted"),
             totalHours(s.id),
             get(db.accounts, s.accountId).activationState,
             <Link href={`/dashboard/students/${s.id}`} key={6406}>

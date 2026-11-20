@@ -11,6 +11,7 @@ type Row = {
   label: string;
   fields: Record<string, string>;
   hours?: number;
+  rendered?: number;
   start?: string;
   end?: string;
 };
@@ -63,6 +64,14 @@ function oracle(db: Database, section: string): Row[] {
     return db.students.map((s) => ({
       label: s.studentNumber,
       hours: placements(s.id).reduce((n, p) => n + reviewed(p), 0),
+      rendered: placements(s.id).reduce(
+        (n, p) =>
+          n +
+          db.reports
+            .filter((r) => r.placementId === p.id)
+            .reduce((m, r) => m + r.hours, 0),
+        0,
+      ),
       fields: {
         q: name(s.id) + " " + s.studentNumber,
         program: s.program,
@@ -297,10 +306,12 @@ for (const section of [
           const ordered = [...expected].sort((a, b) => {
             if (section === "students")
               return value === "hours"
-                ? b.hours! - a.hours!
-                : value === "id"
-                  ? a.label.localeCompare(b.label)
-                  : a.fields.name.localeCompare(b.fields.name);
+                ? b.rendered! - a.rendered!
+                : value === "approvedHours"
+                  ? b.hours! - a.hours!
+                  : value === "id"
+                    ? a.label.localeCompare(b.label)
+                    : a.fields.name.localeCompare(b.fields.name);
             if (section === "partners")
               return value === "expiration"
                 ? a.end!.localeCompare(b.end!)

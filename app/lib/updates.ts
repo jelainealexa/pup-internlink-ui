@@ -14,6 +14,9 @@ import {
   companyFor,
   sumHours,
   validDate,
+  invalidateRequests,
+  revokeAccountAccess,
+  eligibleCompany,
 } from "./rules";
 
 const companyAdmin = (db: Database, a: Account, companyId: string) =>
@@ -37,13 +40,6 @@ export function passwordPolicy(password: string, confirmation?: string) {
       "VALIDATION",
       "Password confirmation does not match.",
     );
-}
-function invalidateRequests(db: Database, accountId: string, now: string) {
-  db.accountRequests
-    ?.filter((r) => r.accountId === accountId && !r.usedAt)
-    .forEach((r) => {
-      r.usedAt = now;
-    });
 }
 export function applyAccess(
   db: Database,
@@ -262,6 +258,8 @@ export function applyUpdate(
             "CONFLICT",
             "Reassign current students and resolve ongoing placements before deactivating this adviser.",
           );
+        if (a.active !== command.active || a.email.toLowerCase() !== value)
+          revokeAccountAccess(db, a, ctx.now);
         Object.assign(a, {
           name,
           email: value,
@@ -432,7 +430,12 @@ export function applyUpdate(
         "CONFLICT",
         "This posting cannot make the requested activation transition.",
       );
-      if (command.active)
+      if (command.active) {
+        assert(
+          eligibleCompany(db, o.companyId, today),
+          "CONFLICT",
+          "A current approved MOA is required before activating this posting.",
+        );
         assert(
           o.supervisorIds?.some((id) =>
             db.supervisors.some(
@@ -442,6 +445,7 @@ export function applyUpdate(
           "CONFLICT",
           "Assign an active Intern Supervisor before activating the posting.",
         );
+      }
       o.status = command.active ? "Active" : "Deactivated";
       o.decisions ??= [];
       o.decisions.push({

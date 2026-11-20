@@ -31,6 +31,7 @@ import {
   validDate,
   validAcademicYear,
   validatePhone,
+  revokeAccountAccess,
 } from "./rules";
 
 export interface CommandContext {
@@ -119,6 +120,9 @@ export function applyCommand(
         academicYear: validAcademicYear(input.academicYear),
       };
       if (existing) {
+        const account = get(db.accounts, existing.accountId);
+        if (account.email.toLowerCase() !== contact)
+          revokeAccountAccess(db, account, context.now);
         Object.assign(existing, data);
         Object.assign(get(db.accounts, existing.accountId), {
           name: nameOf(existing),
@@ -282,8 +286,11 @@ export function applyCommand(
       const accountId = existing?.accountId ?? id();
       if (existing) {
         const prior = get(db.accounts, accountId);
-        if (prior.active !== input.active)
-          prior.credentialVersion = (prior.credentialVersion ?? 1) + 1;
+        if (
+          prior.active !== input.active ||
+          prior.email.toLowerCase() !== contact
+        )
+          revokeAccountAccess(db, prior, context.now);
         Object.assign(get(db.accounts, accountId), {
           name,
           email: contact,

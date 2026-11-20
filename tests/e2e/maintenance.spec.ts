@@ -11,7 +11,7 @@ test("every dashboard summary opens the matching filtered records", async ({
       count: Number(link.querySelector("strong")!.textContent),
     })),
   );
-  expect(cards).toHaveLength(16);
+  expect(cards).toHaveLength(17);
   for (const card of cards) {
     await page.goto(card.href);
     await expect(page.locator("tbody tr")).toHaveCount(card.count);

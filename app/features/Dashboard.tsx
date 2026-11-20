@@ -10,6 +10,7 @@ import {
   partnership,
   reportingGap,
   sumHours,
+  postingStatus,
 } from "../lib/rules";
 import { useData } from "./shared";
 
@@ -31,6 +32,11 @@ export function Dashboard() {
     ["Industry partners", companies.length, "/dashboard/partners"],
     [
       "Active internship opportunities",
+      opps.filter((o) => postingStatus(db, o.id) === "Active").length,
+      "/dashboard/internships?status=Active",
+    ],
+    [
+      "Available opportunities",
       opps.filter((o) => available(db, o.id)).length,
       "/dashboard/internships?available=true",
     ],

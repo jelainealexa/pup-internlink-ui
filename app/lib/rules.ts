@@ -374,6 +374,25 @@ export function completionProblems(
 }
 export const roleLabel = (role: Role) =>
   role === "Coordinator" ? "OJT Coordinator" : role;
+export function invalidateRequests(
+  db: Database,
+  accountId: string,
+  now: string,
+) {
+  db.accountRequests
+    ?.filter((r) => r.accountId === accountId && !r.usedAt)
+    .forEach((r) => {
+      r.usedAt = now;
+    });
+}
+export function revokeAccountAccess(
+  db: Database,
+  account: Account,
+  now: string,
+) {
+  account.credentialVersion = (account.credentialVersion ?? 1) + 1;
+  invalidateRequests(db, account.id, now);
+}
 export const postingStatus = (db: Database, id: string) => {
   const o = get(db.opportunities, id);
   return o.status === "Active" && remainingSlots(db, id) === 0
