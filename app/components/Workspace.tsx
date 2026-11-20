@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { Fragment, ReactNode, useEffect, useState } from "react";
 import { useApp } from "./AppProvider";
 import { preferencesOf, roleLabel } from "../lib/rules";
 import { SavedNotice } from "./ui";
@@ -116,6 +116,16 @@ export function Workspace({ children }: { children: ReactNode }) {
           ["Evaluations", "/dashboard/evaluations"],
           ["Settings", "/dashboard/settings"],
         ];
+  const navigationGroup = (href: string) =>
+    /\/(reports|settings)([?#]|$)/.test(href)
+      ? "System"
+      : /\/(applications|placements|progress|attendance|evaluations)([?#]|$)/.test(
+            href,
+          ) ||
+          (account.role === "Intern Supervisor" &&
+            href.startsWith("/dashboard/students"))
+        ? "Internship operations"
+        : "Management";
   return (
     <div
       className={`workspace ${open ? "navigation-expanded" : "navigation-collapsed"}`}
@@ -166,7 +176,14 @@ export function Workspace({ children }: { children: ReactNode }) {
           className={`sidebar-shell ${open ? "sidebar-open" : "sidebar-collapsed"}`}
         >
           <div className="sidebar-top">
-            <strong>{open ? roleLabel(account.role) : "Menu"}</strong>
+            <div>
+              {open && (
+                <span className="sidebar-context">
+                  {roleLabel(account.role)}
+                </span>
+              )}
+              <strong>{open ? "Workspace" : "Menu"}</strong>
+            </div>
             <button
               type="button"
               className="sidebar-toggle"
@@ -184,25 +201,46 @@ export function Workspace({ children }: { children: ReactNode }) {
             aria-label="Workspace modules"
           >
             {modules.map(([label, href], index) => (
-              <Link
-                className={`sidebar-link ${pathname === href.split("?")[0] || (href !== "/dashboard" && pathname.startsWith(href.split("?")[0] + "/")) ? "sidebar-link-active" : ""}`}
-                aria-current={
-                  pathname === href.split("?")[0] ? "page" : undefined
-                }
-                aria-label={
-                  open
-                    ? undefined
-                    : `${String(index + 1).padStart(2, "0")} ${label}`
-                }
-                href={href}
-                key={label}
-                title={label}
-              >
-                <span className="sidebar-short">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="sidebar-link-text">{label}</span>
-              </Link>
+              <Fragment key={label}>
+                {open &&
+                  index > 0 &&
+                  (index === 1 ||
+                    navigationGroup(href) !==
+                      navigationGroup(modules[index - 1][1])) && (
+                    <span className="sidebar-group-label">
+                      {navigationGroup(href)}
+                    </span>
+                  )}
+                <Link
+                  className={`sidebar-link ${pathname === href.split("?")[0] || (href !== "/dashboard" && pathname.startsWith(href.split("?")[0] + "/")) ? "sidebar-link-active" : ""}`}
+                  aria-current={
+                    pathname === href.split("?")[0] ? "page" : undefined
+                  }
+                  aria-label={
+                    open
+                      ? undefined
+                      : `${String(index + 1).padStart(2, "0")} ${label}`
+                  }
+                  href={href}
+                  title={label}
+                >
+                  <span className="sidebar-short" aria-hidden="true">
+                    {index === 0
+                      ? "OV"
+                      : label
+                          .replace(/^(My |Assigned |Available )/, "")
+                          .split(" ")
+                          .filter((word) => /^[a-z]/i.test(word))
+                          .map((word, _, words) =>
+                            words.length === 1 ? word.slice(0, 2) : word[0],
+                          )
+                          .join("")
+                          .slice(0, 2)
+                          .toUpperCase()}
+                  </span>
+                  <span className="sidebar-link-text">{label}</span>
+                </Link>
+              </Fragment>
             ))}
           </nav>
         </aside>

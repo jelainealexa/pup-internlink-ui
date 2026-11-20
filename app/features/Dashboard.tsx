@@ -80,7 +80,7 @@ export function Dashboard() {
         }
         description={`${account.name} · Academic year ${year} · Shared browser-local records`}
       />
-      <section>
+      <section className="program-summary">
         <h2>Program summary</h2>
         <div className="metric-links">
           {metrics
@@ -97,7 +97,7 @@ export function Dashboard() {
             ))}
         </div>
       </section>
-      <section>
+      <section className="attention-summary">
         <h2>Needs attention</h2>
         <div className="metric-links">
           {prefs.requirementAlerts && account.role !== "Company Supervisor" && (

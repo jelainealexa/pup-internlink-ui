@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./refinements.css";
 import { Suspense } from "react";
 import { AppProvider } from "./components/AppProvider";
 

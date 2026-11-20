@@ -19,23 +19,51 @@ export function PasswordField({
   return (
     <div className="field">
       <label htmlFor={id}>{label} *</label>
-      <input
-        id={id}
-        name={name}
-        type={visible ? "text" : "password"}
-        required
-        minLength={newCredential ? 8 : undefined}
-        maxLength={128}
-        autoComplete={newCredential ? "new-password" : "current-password"}
-      />
-      <button
-        className="secondary-action"
-        type="button"
-        aria-pressed={visible}
-        onClick={() => setVisible(!visible)}
-      >
-        {visible ? "Hide" : "Show"} {label.toLowerCase()}
-      </button>
+      <div className="password-input">
+        <input
+          id={id}
+          name={name}
+          type={visible ? "text" : "password"}
+          required
+          minLength={newCredential ? 8 : undefined}
+          maxLength={128}
+          autoComplete={newCredential ? "new-password" : "current-password"}
+        />
+        <button
+          className="password-toggle"
+          type="button"
+          aria-pressed={visible}
+          aria-controls={id}
+          onClick={() => setVisible(!visible)}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            {visible ? (
+              <>
+                <path d="m3 3 18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.2A11 11 0 0 1 12 5c6 0 10 7 10 7a17 17 0 0 1-3 3.7M6.5 6.5A18 18 0 0 0 2 12s4 7 10 7a11 11 0 0 0 5.5-1.5" />
+              </>
+            ) : (
+              <>
+                <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </>
+            )}
+          </svg>
+          <span className="visually-hidden">
+            {visible ? "Hide" : "Show"} {label.toLowerCase()}
+          </span>
+        </button>
+      </div>
     </div>
   );
 }
