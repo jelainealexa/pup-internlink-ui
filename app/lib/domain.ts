@@ -1,10 +1,27 @@
 export type Role =
-  "Coordinator" | "Student" | "Faculty Adviser" | "Company Supervisor";
+  | "Coordinator"
+  | "Student"
+  | "Faculty Adviser"
+  | "Company Supervisor"
+  | "Intern Supervisor";
+export type ActivationState = "Pending Activation" | "Active" | "Deactivated";
+export type RequirementPhase =
+  "Before Internship" | "During Internship" | "After Internship";
 export type ApplicationStatus = "Pending" | "Accepted" | "Rejected";
 export type PlacementStatus = "Ongoing" | "Completed" | "Terminated";
 export type SubmissionStatus = "Pending" | "Approved" | "Rejected";
-export type OpportunityStatus = "Pending Approval" | "Approved" | "Closed";
-export type ReviewStatus = "Pending Review" | "Reviewed";
+export type OpportunityStatus =
+  | "Pending Approval"
+  | "Approved"
+  | "Closed"
+  | "Pending Approval - Company"
+  | "Pending Approval - Coordinator"
+  | "Active"
+  | "Filled"
+  | "Deactivated"
+  | "Rejected";
+export type ReviewStatus =
+  "Pending Review" | "Reviewed" | "Pending" | "Approved" | "Rejected";
 export type PartnershipStatus =
   "Pending" | "Active" | "Expiring Soon" | "Expired";
 
@@ -15,6 +32,8 @@ export interface Account {
   role: Role;
   active: boolean;
   verifier: string;
+  activationState?: ActivationState;
+  credentialVersion?: number;
 }
 export interface Student {
   id: string;
@@ -27,6 +46,8 @@ export interface Student {
   yearLevel: string;
   section: string;
   academicYear: string;
+  adviserId?: string;
+  registeredBy?: string;
 }
 export interface Faculty {
   id: string;
@@ -56,6 +77,7 @@ export interface Requirement {
   name: string;
   description: string;
   classification: "Mandatory" | "Optional";
+  phase?: RequirementPhase;
 }
 export interface Attachment {
   id: string;
@@ -84,6 +106,27 @@ export interface Opportunity {
   capacity: number;
   status: OpportunityStatus;
   academicYear: string;
+  location?: string;
+  modality?: "On-site" | "Remote" | "Hybrid" | "Not specified";
+  requiredHours?: number;
+  qualifications?: string;
+  skills?: string;
+  responsibilities?: string;
+  supervisorIds?: string[];
+  decisions?: {
+    stage: "Company" | "Coordinator" | "Legacy";
+    outcome: "Approved" | "Rejected" | "Activated" | "Deactivated" | "Edited";
+    actorId: string;
+    at: string;
+    remarks: string;
+  }[];
+  legacyApproval?: boolean;
+  assignmentHistory?: {
+    from: string[];
+    to: string[];
+    actorId: string;
+    at: string;
+  }[];
 }
 export interface Decision {
   status: ApplicationStatus;
@@ -115,6 +158,12 @@ export interface Placement {
   terminationReason?: string;
   completedAt?: string;
   academicYear: string;
+  assignmentHistory?: {
+    from: string;
+    to: string;
+    actorId: string;
+    at: string;
+  }[];
 }
 export interface ProgressReport {
   id: string;
@@ -127,6 +176,19 @@ export interface ProgressReport {
   reviewerId?: string;
   reviewedAt?: string;
   remarks: string;
+  kind?: "Daily" | "Weekly";
+  periodEnd?: string;
+  attendanceIds?: string[];
+  attempt?: number;
+  history?: {
+    status: ReviewStatus;
+    actorId: string;
+    at: string;
+    remarks: string;
+  }[];
+  facultyRemarks?: { id: string; actorId: string; at: string; text: string }[];
+  legacyStatus?: ReviewStatus;
+  replacesId?: string;
 }
 export interface Evaluation {
   id: string;
@@ -136,6 +198,25 @@ export interface Evaluation {
   grade?: number;
   comments?: string;
   submittedAt?: string;
+  evaluationDate?: string;
+}
+export interface Attendance {
+  id: string;
+  placementId: string;
+  date: string;
+  hours: number;
+  activity: string;
+  createdAt: string;
+  reportId?: string;
+}
+export interface AccountRequest {
+  id: string;
+  accountId: string;
+  purpose: "Activation" | "Password Reset";
+  expiresAt: string;
+  createdAt: string;
+  createdBy?: string;
+  usedAt?: string;
 }
 export interface Certificate {
   id: string;
@@ -175,7 +256,7 @@ export const defaultPreferences: Preferences = {
 };
 
 export interface Database {
-  schemaVersion: 1;
+  schemaVersion: 1 | 2;
   revision: number;
   accounts: Account[];
   students: Student[];
@@ -199,12 +280,18 @@ export interface Database {
     result: string;
     commandFingerprint?: string;
   }[];
+  attendance?: Attendance[];
+  accountRequests?: AccountRequest[];
   /** Read projection only: authoritative availability without exposing other students' placements. */
-  availability?: Record<string, { remaining: number; eligible: boolean }>;
+  availability?: Record<
+    string,
+    { remaining: number; eligible: boolean; applications?: number }
+  >;
 }
 export interface Session {
   accountId: string;
   expiresAt: number;
+  credentialVersion?: number;
 }
 export type StudentInput = Omit<Student, "id" | "accountId">;
 export type CompanyInput = Omit<Company, "id">;
@@ -214,9 +301,23 @@ export interface SupervisorInput {
   email: string;
   phone: string;
   active: boolean;
+  role?: "Company Supervisor" | "Intern Supervisor";
 }
 export type RequirementInput = Omit<Requirement, "id">;
-export type OpportunityInput = Omit<Opportunity, "id" | "status">;
+export type OpportunityInput = Pick<
+  Opportunity,
+  | "companyId"
+  | "title"
+  | "description"
+  | "capacity"
+  | "academicYear"
+  | "location"
+  | "modality"
+  | "requiredHours"
+  | "qualifications"
+  | "skills"
+  | "responsibilities"
+>;
 export type PlacementInput = Pick<
   Placement,
   | "applicationId"
@@ -261,9 +362,16 @@ export type Command =
       workDate: string;
       hours: number;
       tasks: string;
+      replacesId?: string;
     }
   | { type: "report.review"; id: string; remarks: string }
-  | { type: "evaluation.submit"; id: string; grade: number; comments: string }
+  | {
+      type: "evaluation.submit";
+      id: string;
+      grade: number;
+      comments: string;
+      evaluationDate?: string;
+    }
   | {
       type: "certificate.record";
       placementId: string;
@@ -271,6 +379,73 @@ export type Command =
       issueDate: string;
     }
   | { type: "preferences.save"; input: Preferences };
+export type UpdateCommand =
+  | { type: "account.invite"; studentId: string }
+  | { type: "account.deactivate"; accountId: string }
+  | {
+      type: "account.credentials";
+      currentPassword: string;
+      newPassword?: string;
+      email?: string;
+    }
+  | {
+      type: "faculty.save";
+      id?: string;
+      name: string;
+      email: string;
+      active: boolean;
+    }
+  | { type: "faculty.assign"; studentId: string; adviserId: string }
+  | { type: "opportunity.assign"; id: string; supervisorIds: string[] }
+  | {
+      type: "opportunity.decide";
+      id: string;
+      stage: "Company" | "Coordinator";
+      decision: "Approved" | "Rejected";
+      remarks: string;
+    }
+  | { type: "opportunity.activate"; id: string; active: boolean }
+  | { type: "placement.supervisor.assign"; id: string; supervisorId: string }
+  | {
+      type: "attendance.create";
+      placementId: string;
+      date: string;
+      hours: number;
+      activity: string;
+    }
+  | {
+      type: "report.weekly";
+      placementId: string;
+      fromDate: string;
+      toDate: string;
+      attendanceIds: string[];
+      tasks: string;
+    }
+  | {
+      type: "report.decide";
+      id: string;
+      decision: "Approved" | "Rejected";
+      remarks: string;
+    }
+  | { type: "report.monitor"; id: string; remarks: string };
+export type AccessCommand =
+  | { type: "password.request"; email: string }
+  | {
+      type: "account.activate";
+      token: string;
+      studentNumber: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    }
+  | {
+      type: "password.reset";
+      token: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    };
+export type Mutation = Command | UpdateCommand;
 
 export type ErrorCode =
   | "VALIDATION"
@@ -300,10 +475,11 @@ export interface InternLinkService {
   currentAccount(): Promise<Account | null>;
   read(): Promise<Database>;
   execute(
-    command: Command,
+    command: Mutation,
     requestId: string,
     expectedRevision?: number,
   ): Promise<string>;
+  access(command: AccessCommand, requestId: string): Promise<string>;
   attachment(id: string): Promise<Attachment>;
   reset(confirmation: string): Promise<void>;
   subscribe(listener: () => void): () => void;

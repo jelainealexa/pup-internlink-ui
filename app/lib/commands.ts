@@ -1,18 +1,21 @@
 import {
   Account,
   AppError,
-  Command,
   Database,
   Placement,
   Role,
+  Mutation,
 } from "./domain";
+import { applyUpdate } from "./updates";
 import {
   allocated,
   applicationFor,
   available,
   canReviewStudent,
+  assert,
+  uniqueEmail,
+  canDecideApplication,
   canSeePlacement,
-  companyFor,
   completionProblems,
   dateRange,
   email,
@@ -34,22 +37,8 @@ export interface CommandContext {
   now: string;
   id: () => string;
   verifier: string;
-}
-function assert(
-  condition: unknown,
-  code: "VALIDATION" | "FORBIDDEN" | "CONFLICT",
-  message: string,
-): asserts condition {
-  if (!condition) throw new AppError(code, message);
-}
-function uniqueEmail(db: Database, value: string, except?: string) {
-  assert(
-    !db.accounts.some(
-      (a) => a.id !== except && a.email.toLowerCase() === value,
-    ),
-    "CONFLICT",
-    "This email address already belongs to another demonstration account.",
-  );
+  currentVerifier?: string;
+  newVerifier?: string;
 }
 function activeProfile(db: Database, accountId: string, role: Role) {
   const a = get(db.accounts, accountId);
@@ -80,7 +69,7 @@ function ongoing(p: Placement) {
 export function applyCommand(
   db: Database,
   actorId: string,
-  command: Command,
+  command: Mutation,
   context: CommandContext,
 ): string {
   const actor = get(db.accounts, actorId);
@@ -93,9 +82,14 @@ export function applyCommand(
   let href = "/dashboard";
   switch (command.type) {
     case "student.save": {
-      coordinator();
+      requireRole(actor, "Coordinator", "Faculty Adviser");
       const input = command.input;
       const existing = command.id ? get(db.students, command.id) : undefined;
+      assert(
+        !existing || canReviewStudent(db, actor, existing.id),
+        "FORBIDDEN",
+        "Only assigned students can be maintained by this adviser.",
+      );
       const studentNumber = required(
         input.studentNumber,
         "Student identifier",
@@ -139,19 +133,52 @@ export function applyCommand(
           name: `${firstName} ${lastName}`,
           email: contact,
           role: "Student",
-          active: true,
-          verifier: context.verifier,
+          active: false,
+          activationState: "Pending Activation",
+          credentialVersion: 1,
+          verifier: "",
         });
-        db.students.push({ id: result, accountId, ...data });
+        db.students.push({
+          id: result,
+          accountId,
+          ...data,
+          registeredBy: actor.id,
+          ...(actor.role === "Faculty Adviser"
+            ? {
+                adviserId: get(
+                  db.faculty,
+                  db.faculty.find((f) => f.accountId === actor.id)!.id,
+                ).id,
+              }
+            : {}),
+        });
       }
       message = "Student record saved";
       href = `/dashboard/students/${result}`;
       break;
     }
     case "company.save": {
-      coordinator();
+      requireRole(actor, "Coordinator", "Company Supervisor");
       const input = command.input;
       const existing = command.id ? get(db.companies, command.id) : undefined;
+      if (actor.role === "Company Supervisor") {
+        assert(
+          existing &&
+            db.supervisors.some(
+              (s) => s.accountId === actor.id && s.companyId === existing.id,
+            ),
+          "FORBIDDEN",
+          "Only your associated company can be edited.",
+        );
+        assert(
+          input.moaStart === existing.moaStart &&
+            input.moaEnd === existing.moaEnd &&
+            input.approved === existing.approved &&
+            input.academicYear === existing.academicYear,
+          "FORBIDDEN",
+          "Only the OJT Coordinator can change MOA validity, partnership approval or academic year.",
+        );
+      }
       const name = required(input.name, "Company name", 120),
         contact = email(input.email);
       assert(
@@ -191,10 +218,58 @@ export function applyCommand(
       break;
     }
     case "supervisor.save": {
-      coordinator();
+      requireRole(
+        actor,
+        "Coordinator",
+        "Company Supervisor",
+        "Intern Supervisor",
+      );
       const input = command.input;
       get(db.companies, input.companyId);
       const existing = command.id ? get(db.supervisors, command.id) : undefined;
+      const role =
+        command.input.role ??
+        (existing
+          ? get(db.accounts, existing.accountId).role
+          : "Intern Supervisor");
+      assert(
+        ["Company Supervisor", "Intern Supervisor"].includes(role),
+        "VALIDATION",
+        "Select a supervisor role.",
+      );
+      if (actor.role === "Company Supervisor")
+        assert(
+          role === "Intern Supervisor" &&
+            db.supervisors.some(
+              (s) =>
+                s.accountId === actor.id && s.companyId === input.companyId,
+            ),
+          "FORBIDDEN",
+          "Company administrators can maintain only their own company's Intern Supervisors.",
+        );
+      if (actor.role === "Intern Supervisor")
+        assert(
+          existing?.accountId === actor.id &&
+            role === "Intern Supervisor" &&
+            input.active === actor.active,
+          "FORBIDDEN",
+          "You may update only your own contact information.",
+        );
+      if (existing) {
+        assert(
+          get(db.accounts, existing.accountId).role === role,
+          "FORBIDDEN",
+          "This form cannot change an existing account role.",
+        );
+        if (!input.active)
+          assert(
+            !db.placements.some(
+              (p) => p.supervisorId === existing.id && p.status === "Ongoing",
+            ),
+            "CONFLICT",
+            "Reassign or resolve ongoing placements before deactivating this Intern Supervisor.",
+          );
+      }
       assert(
         !existing || existing.companyId === input.companyId,
         "VALIDATION",
@@ -206,10 +281,14 @@ export function applyCommand(
       const phone = validatePhone(input.phone);
       const accountId = existing?.accountId ?? id();
       if (existing) {
+        const prior = get(db.accounts, accountId);
+        if (prior.active !== input.active)
+          prior.credentialVersion = (prior.credentialVersion ?? 1) + 1;
         Object.assign(get(db.accounts, accountId), {
           name,
           email: contact,
           active: input.active,
+          activationState: input.active ? "Active" : "Deactivated",
         });
         existing.phone = phone;
       } else {
@@ -218,7 +297,9 @@ export function applyCommand(
           name,
           email: contact,
           active: input.active,
-          role: "Company Supervisor",
+          role: role as Role,
+          activationState: input.active ? "Active" : "Deactivated",
+          credentialVersion: 1,
           verifier: context.verifier,
         });
       }
@@ -258,7 +339,15 @@ export function applyCommand(
         ...command.input,
         name,
         description: required(command.input.description, "Description", 2000),
+        phase: command.input.phase ?? "Before Internship",
       };
+      assert(
+        ["Before Internship", "During Internship", "After Internship"].includes(
+          data.phase,
+        ),
+        "VALIDATION",
+        "Select a requirement phase.",
+      );
       result = existing?.id ?? id();
       if (existing) Object.assign(existing, data);
       else db.requirements.push({ id: result, ...data });
@@ -351,12 +440,21 @@ export function applyCommand(
       break;
     }
     case "opportunity.save": {
-      coordinator();
+      requireRole(actor, "Coordinator", "Company Supervisor");
       const existing = command.id
         ? get(db.opportunities, command.id)
         : undefined;
       const input = command.input;
       get(db.companies, input.companyId);
+      if (actor.role === "Company Supervisor")
+        assert(
+          db.supervisors.some(
+            (s) => s.accountId === actor.id && s.companyId === input.companyId,
+          ) &&
+            (!existing || existing.companyId === input.companyId),
+          "FORBIDDEN",
+          "You may maintain postings only for your company.",
+        );
       assert(
         !existing ||
           existing.companyId === input.companyId ||
@@ -371,42 +469,106 @@ export function applyCommand(
         "Capacity cannot be less than existing non-terminated placements.",
       );
       const data = {
-        ...input,
+        companyId: input.companyId,
         capacity,
         title: required(input.title, "Position title", 150),
         description: required(input.description, "Description", 4000),
         academicYear: validAcademicYear(input.academicYear),
+        location: required(
+          input.location ?? existing?.location ?? "Not specified",
+          "Location",
+          200,
+        ),
+        modality: input.modality ?? existing?.modality ?? "Not specified",
+        requiredHours:
+          input.requiredHours === undefined
+            ? existing?.requiredHours
+            : positive(input.requiredHours, "Opportunity required hours"),
+        qualifications: required(
+          input.qualifications ?? existing?.qualifications ?? "Not specified",
+          "Qualifications",
+          2000,
+        ),
+        skills: required(
+          input.skills ?? existing?.skills ?? "Not specified",
+          "Skills",
+          2000,
+        ),
+        responsibilities: required(
+          input.responsibilities ??
+            existing?.responsibilities ??
+            input.description,
+          "Responsibilities",
+          4000,
+        ),
       };
+      assert(
+        ["On-site", "Remote", "Hybrid", "Not specified"].includes(
+          data.modality,
+        ),
+        "VALIDATION",
+        "Choose a valid modality.",
+      );
       result = existing?.id ?? id();
-      if (existing) Object.assign(existing, data);
-      else
+      if (existing) {
+        const materialEdit = Object.entries(data).some(
+          ([key, value]) => existing[key as keyof typeof data] !== value,
+        );
+        const assignment =
+          existing.companyId === input.companyId
+            ? (existing.supervisorIds ?? [])
+            : [];
+        Object.assign(existing, data, {
+          supervisorIds: assignment,
+          status: materialEdit ? "Pending Approval - Company" : existing.status,
+          legacyApproval: materialEdit ? false : existing.legacyApproval,
+        });
+        existing.decisions ??= [];
+        if (materialEdit)
+          existing.decisions.push({
+            stage: actor.role === "Coordinator" ? "Coordinator" : "Company",
+            outcome: "Edited",
+            actorId: actor.id,
+            at: context.now,
+            remarks: "Material edit requires both approval stages again.",
+          });
+      } else
         db.opportunities.push({
           id: result,
           ...data,
-          status: "Pending Approval",
+          status: "Pending Approval - Company",
+          supervisorIds: [],
+          decisions: [],
         });
       message = "Opportunity saved";
       href = `/dashboard/internships/${result}`;
       break;
     }
     case "opportunity.status": {
-      coordinator();
-      const o = get(db.opportunities, command.id);
-      assert(
-        ["Approved", "Closed"].includes(command.status),
+      if (command.status === "Approved")
+        return applyUpdate(
+          db,
+          actor,
+          {
+            type: "opportunity.decide",
+            id: command.id,
+            stage: "Coordinator",
+            decision: "Approved",
+            remarks: "",
+          },
+          context,
+        );
+      if (command.status === "Closed")
+        return applyUpdate(
+          db,
+          actor,
+          { type: "opportunity.activate", id: command.id, active: false },
+          context,
+        );
+      throw new AppError(
         "VALIDATION",
-        "Choose Approve/reopen or Close.",
+        "Use the staged posting decision and activation operations.",
       );
-      assert(
-        o.status !== command.status,
-        "CONFLICT",
-        "This opportunity already has the selected status.",
-      );
-      Object.assign(o, { status: command.status });
-      result = o.id;
-      message = `Opportunity ${command.status.toLowerCase()}`;
-      href = `/dashboard/internships/${o.id}`;
-      break;
     }
     case "application.create": {
       requireRole(actor, "Coordinator", "Student");
@@ -439,8 +601,12 @@ export function applyCommand(
       break;
     }
     case "application.decide": {
-      coordinator();
       const a = get(db.applications, command.id);
+      assert(
+        canDecideApplication(db, actor, a.opportunityId),
+        "FORBIDDEN",
+        "Only assigned Intern Supervisors or coordinator oversight may decide this application.",
+      );
       assert(
         a.status === "Pending",
         "CONFLICT",
@@ -454,7 +620,7 @@ export function applyCommand(
       const reason =
         command.decision === "Rejected"
           ? required(command.reason, "Rejection reason", 2000)
-          : "";
+          : command.reason.trim();
       if (command.decision === "Accepted") {
         activeProfile(db, get(db.students, a.studentId).accountId, "Student");
         assert(
@@ -520,12 +686,20 @@ export function applyCommand(
       const adviser = get(db.faculty, input.adviserId),
         supervisor = get(db.supervisors, input.supervisorId);
       activeProfile(db, adviser.accountId, "Faculty Adviser");
-      activeProfile(db, supervisor.accountId, "Company Supervisor");
+      activeProfile(db, supervisor.accountId, "Intern Supervisor");
       assert(
-        supervisor.companyId === o.companyId,
+        supervisor.companyId === o.companyId &&
+          !!o.supervisorIds?.includes(supervisor.id),
         "VALIDATION",
         "Select a supervisor who belongs to this opportunity's company.",
       );
+      const student = get(db.students, a.studentId);
+      assert(
+        !student.adviserId || student.adviserId === adviser.id,
+        "CONFLICT",
+        "The placement adviser must match the student's registered faculty assignment.",
+      );
+      student.adviserId = adviser.id;
       result = id();
       const p: Placement = {
         id: result,
@@ -592,12 +766,34 @@ export function applyCommand(
         "Work date must be within the placement dates and cannot be in the future.",
       );
       positive(command.hours, "Report hours", 12);
+      const previous = db.reports
+        .filter(
+          (r) =>
+            r.kind !== "Weekly" &&
+            r.placementId === p.id &&
+            r.workDate === command.workDate,
+        )
+        .at(-1);
       assert(
-        !db.reports.some(
-          (r) => r.placementId === p.id && r.workDate === command.workDate,
-        ),
+        !command.replacesId ||
+          (previous?.id === command.replacesId &&
+            previous.status === "Rejected"),
+        "CONFLICT",
+        "A replacement must reference the latest rejected daily report for this placement and date.",
+      );
+      assert(
+        !previous ||
+          (previous.status === "Rejected" &&
+            previous.id === command.replacesId),
         "CONFLICT",
         "One daily report already exists for this placement and work date.",
+      );
+      assert(
+        !db.attendance?.some(
+          (a) => a.placementId === p.id && a.date === command.workDate,
+        ),
+        "CONFLICT",
+        "Attendance already records this work date; include it in a weekly report.",
       );
       result = id();
       db.reports.push({
@@ -607,7 +803,19 @@ export function applyCommand(
         hours: command.hours,
         tasks: required(command.tasks, "Tasks", 4000),
         submittedAt: context.now,
-        status: "Pending Review",
+        status: "Pending",
+        kind: "Daily",
+        history: [
+          {
+            status: "Pending",
+            actorId: actor.id,
+            at: context.now,
+            remarks: "Daily report submitted",
+          },
+        ],
+        facultyRemarks: [],
+        replacesId: command.replacesId,
+        attempt: (previous?.attempt ?? 0) + 1,
         remarks: "",
       });
       message = "Progress report submitted for review";
@@ -615,38 +823,20 @@ export function applyCommand(
       break;
     }
     case "report.review": {
-      requireRole(
+      return applyUpdate(
+        db,
         actor,
-        "Coordinator",
-        "Faculty Adviser",
-        "Company Supervisor",
+        {
+          type: "report.decide",
+          id: command.id,
+          decision: "Approved",
+          remarks: command.remarks,
+        },
+        context,
       );
-      const r = get(db.reports, command.id),
-        p = get(db.placements, r.placementId);
-      ongoing(p);
-      assert(
-        canSeePlacement(db, actor, p),
-        "FORBIDDEN",
-        "You are not assigned to this placement.",
-      );
-      assert(
-        r.status === "Pending Review",
-        "CONFLICT",
-        "This report has already been reviewed.",
-      );
-      Object.assign(r, {
-        status: "Reviewed",
-        remarks: required(command.remarks, "Reviewer remarks", 2000),
-        reviewerId: actor.id,
-        reviewedAt: context.now,
-      });
-      result = r.id;
-      message = "Progress review saved; official reviewed hours updated";
-      href = `/dashboard/progress/reports/${result}`;
-      break;
     }
     case "evaluation.submit": {
-      requireRole(actor, "Faculty Adviser", "Company Supervisor");
+      requireRole(actor, "Faculty Adviser", "Intern Supervisor");
       const e = get(db.evaluations, command.id),
         p = get(db.placements, e.placementId);
       ongoing(p);
@@ -677,7 +867,14 @@ export function applyCommand(
         grade: command.grade,
         comments: required(command.comments, "Evaluation comments", 4000),
         submittedAt: context.now,
+        evaluationDate: command.evaluationDate ?? today,
       });
+      validDate(e.evaluationDate!);
+      assert(
+        e.evaluationDate! >= p.startDate && e.evaluationDate! <= today,
+        "VALIDATION",
+        "Evaluation date must be between placement start and today.",
+      );
       result = e.id;
       message = "Assigned evaluation submitted";
       href = `/dashboard/evaluations/${result}`;
@@ -763,10 +960,7 @@ export function applyCommand(
       break;
     }
     default:
-      throw new AppError(
-        "VALIDATION",
-        "Unsupported demonstration operation. No records were changed.",
-      );
+      return applyUpdate(db, actor, command, context);
   }
   db.activities.unshift({
     id: id(),
@@ -786,58 +980,91 @@ export function scopedDatabase(
 ): Database {
   const out = structuredClone(db);
   if (actor.role !== "Coordinator") {
-    out.placements = db.placements.filter((p) => canSeePlacement(db, actor, p));
-    const applications = new Set(out.placements.map((p) => p.applicationId));
-    out.applications = db.applications.filter(
-      (a) =>
-        applications.has(a.id) ||
-        (actor.role === "Student" &&
-          get(db.students, a.studentId).accountId === actor.id),
-    );
-    const students = new Set(out.applications.map((a) => a.studentId));
-    out.students = db.students.filter(
-      (s) => students.has(s.id) || s.accountId === actor.id,
-    );
-    const companyIds = new Set([
-      ...out.placements.map((p) => companyFor(db, p).id),
-      ...out.applications.map(
-        (a) => get(db.opportunities, a.opportunityId).companyId,
-      ),
-      ...db.supervisors
+    const profile = db.supervisors.find((s) => s.accountId === actor.id);
+    const ownCompanies = new Set(
+      db.supervisors
         .filter((s) => s.accountId === actor.id)
         .map((s) => s.companyId),
-    ]);
+    );
+    const assignedOpps = new Set(
+      db.opportunities
+        .filter((o) => o.supervisorIds?.includes(profile?.id ?? ""))
+        .map((o) => o.id),
+    );
+    out.placements = db.placements.filter((p) => canSeePlacement(db, actor, p));
+    const placementApplications = new Set(
+      out.placements.map((p) => p.applicationId),
+    );
+    out.applications = db.applications.filter(
+      (a) =>
+        placementApplications.has(a.id) ||
+        (actor.role === "Student" &&
+          get(db.students, a.studentId).accountId === actor.id) ||
+        (actor.role === "Faculty Adviser" &&
+          canReviewStudent(db, actor, a.studentId)) ||
+        (actor.role === "Intern Supervisor" &&
+          assignedOpps.has(a.opportunityId)),
+    );
+    out.students = db.students.filter(
+      (s) =>
+        s.accountId === actor.id ||
+        out.applications.some((a) => a.studentId === s.id) ||
+        (actor.role === "Faculty Adviser" && canReviewStudent(db, actor, s.id)),
+    );
+    const historicalOpps = new Set(
+      out.applications.map((a) => a.opportunityId),
+    );
     out.opportunities = db.opportunities.filter((o) =>
       actor.role === "Student"
-        ? out.applications.some((a) => a.opportunityId === o.id) ||
-          available(db, o.id, today)
-        : companyIds.has(o.companyId),
+        ? historicalOpps.has(o.id) || available(db, o.id, today)
+        : actor.role === "Company Supervisor"
+          ? ownCompanies.has(o.companyId)
+          : actor.role === "Intern Supervisor"
+            ? assignedOpps.has(o.id) || historicalOpps.has(o.id)
+            : historicalOpps.has(o.id),
     );
-    out.companies = db.companies.filter(
-      (c) =>
-        companyIds.has(c.id) ||
-        out.opportunities.some((o) => o.companyId === c.id),
-    );
+    const companyIds = new Set([
+      ...ownCompanies,
+      ...out.opportunities.map((o) => o.companyId),
+    ]);
+    out.companies = db.companies.filter((c) => companyIds.has(c.id));
     out.supervisors = db.supervisors.filter(
       (s) =>
+        s.accountId === actor.id ||
         out.placements.some((p) => p.supervisorId === s.id) ||
-        s.accountId === actor.id,
+        (actor.role === "Company Supervisor" && ownCompanies.has(s.companyId)),
     );
     out.faculty = db.faculty.filter(
       (f) =>
+        f.accountId === actor.id ||
         out.placements.some((p) => p.adviserId === f.id) ||
-        f.accountId === actor.id,
+        out.students.some((s) => s.adviserId === f.id),
     );
+    if (actor.role === "Intern Supervisor")
+      out.requirements = db.requirements.filter(
+        (r) => (r.phase ?? "Before Internship") === "Before Internship",
+      );
     out.submissions = db.submissions.filter(
       (s) =>
         out.students.some((x) => x.id === s.studentId) &&
-        actor.role !== "Company Supervisor",
+        actor.role !== "Company Supervisor" &&
+        (actor.role !== "Faculty Adviser" ||
+          canReviewStudent(db, actor, s.studentId)) &&
+        (actor.role !== "Intern Supervisor" ||
+          db.applications.some(
+            (a) =>
+              a.studentId === s.studentId && assignedOpps.has(a.opportunityId),
+          )) &&
+        out.requirements.some((r) => r.id === s.requirementId),
     );
     out.files = db.files.filter((f) =>
       out.submissions.some((s) => s.fileId === f.id),
     );
     out.reports = db.reports.filter((r) =>
       out.placements.some((p) => p.id === r.placementId),
+    );
+    out.attendance = (db.attendance ?? []).filter((a) =>
+      out.placements.some((p) => p.id === a.placementId),
     );
     out.evaluations = db.evaluations.filter((e) =>
       out.placements.some((p) => p.id === e.placementId),
@@ -851,11 +1078,18 @@ export function scopedDatabase(
       ...out.supervisors.map((s) => s.accountId),
       ...out.faculty.map((f) => f.accountId),
       ...out.submissions.map((s) => s.reviewerId),
-      ...out.reports.map((r) => r.reviewerId),
+      ...out.reports.flatMap((r) => [
+        r.reviewerId,
+        ...(r.history ?? []).map((h) => h.actorId),
+        ...(r.facultyRemarks ?? []).map((m) => m.actorId),
+      ]),
       ...out.evaluations.map((e) => e.evaluatorId),
       ...out.applications.flatMap((a) => a.history.map((h) => h.actorId)),
       ...out.placements.map((p) => p.approvedBy),
       ...out.certificates.map((c) => c.recordedBy),
+      ...out.opportunities.flatMap((o) =>
+        (o.decisions ?? []).map((d) => d.actorId),
+      ),
     ]);
     out.accounts = db.accounts.filter((a) => accountIds.has(a.id));
     out.activities = db.activities.filter((a) => a.actorId === actor.id);
@@ -863,12 +1097,21 @@ export function scopedDatabase(
   out.accounts.forEach((a) => {
     a.verifier = "";
   });
+  out.accountRequests = (db.accountRequests ?? []).filter(
+    (r) =>
+      r.purpose === "Activation" &&
+      db.students.some(
+        (s) => s.accountId === r.accountId && canReviewStudent(db, actor, s.id),
+      ),
+  );
   out.availability = Object.fromEntries(
     out.opportunities.map((o) => [
       o.id,
       {
         remaining: remainingSlots(db, o.id),
         eligible: available(db, o.id, today),
+        applications: db.applications.filter((a) => a.opportunityId === o.id)
+          .length,
       },
     ]),
   );

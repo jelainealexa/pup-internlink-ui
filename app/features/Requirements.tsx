@@ -35,29 +35,52 @@ import {
   useYear,
 } from "./shared";
 
-export function RequirementChecklist({ studentId }: { studentId: string }) {
+export function RequirementChecklist({
+  studentId,
+  phase,
+}: {
+  studentId: string;
+  phase?: string;
+}) {
   const { db, account } = useData();
+  const definitions = db.requirements.filter(
+    (r) => !phase || (r.phase ?? "Before Internship") === phase,
+  );
+  const mandatory = definitions.filter((r) => r.classification === "Mandatory");
   return (
     <>
       <p>
         {missingRequirements(db, studentId).length
           ? `${missingRequirements(db, studentId).length} mandatory requirement(s) still need approval.`
-          : "All current mandatory requirements are approved under the demonstration policy."}
+          : "All Before Internship mandatory requirements are approved under the demonstration policy."}
+      </p>
+      <p>
+        Mandatory requirement completion
+        {phase ? ` / ${phase}` : " across phases"}:{" "}
+        {
+          mandatory.filter(
+            (r) => latestSubmission(db, studentId, r.id)?.status === "Approved",
+          ).length
+        }{" "}
+        / {mandatory.length}. During and After requirements do not gate initial
+        placement.
       </p>
       <Table
         headers={[
           "Requirement",
           "Classification",
+          "Internship phase",
           "Latest status",
           "Submission date",
           "Reviewer / Remarks",
           "Actions",
         ]}
-        rows={db.requirements.map((r) => {
+        rows={definitions.map((r) => {
           const s = latestSubmission(db, studentId, r.id);
           return [
             r.name,
             r.classification,
+            r.phase ?? "Before Internship",
             s?.status ?? "Not Submitted",
             s?.submittedAt.slice(0, 10) ?? "—",
             s ? (
@@ -158,6 +181,16 @@ export function Requirements({ id, action }: FeatureProps) {
     filters = useFilters(),
     year = useYear();
   const coordinator = account.role === "Coordinator";
+  const [approvalRemarks, setApprovalRemarks] = useState("");
+  const phase =
+    filters.value("phase") ||
+    (account.role === "Student" ? "Before Internship" : "");
+  const phases = [
+    ...(account.role === "Student" ? [] : [""]),
+    "Before Internship",
+    "During Internship",
+    "After Internship",
+  ];
   const studentId =
     account.role === "Student"
       ? (db.students.find((s) => s.accountId === account.id)?.id ?? "")
@@ -286,6 +319,8 @@ export function Requirements({ id, action }: FeatureProps) {
               </Link>,
             ],
             ["Submission ID", s.id],
+            ["Submission status", s.status],
+            ["Internship phase", requirement.phase ?? "Before Internship"],
             ["Submitted", new Date(s.submittedAt).toLocaleString()],
             ["Reviewer", accountName(db, s.reviewerId)],
             [
@@ -305,6 +340,14 @@ export function Requirements({ id, action }: FeatureProps) {
           canReviewStudent(db, account, student.id) && (
             <section>
               <h2>Review submission</h2>
+              <label className="field">
+                Faculty approval remarks (optional)
+                <textarea
+                  value={approvalRemarks}
+                  onChange={(e) => setApprovalRemarks(e.target.value)}
+                  maxLength={2000}
+                />
+              </label>
               <div className="action-bar">
                 <ActionButton
                   confirm="Approve this stored document? Your identity and review time will be recorded."
@@ -313,7 +356,7 @@ export function Requirements({ id, action }: FeatureProps) {
                       type: "submission.review",
                       id: s.id,
                       decision: "Approved",
-                      reason: "",
+                      reason: approvalRemarks,
                     });
                     setNotice("Submission approved.");
                   }}
@@ -402,6 +445,10 @@ export function Requirements({ id, action }: FeatureProps) {
                   description: text(data, "description"),
                   classification: text(data, "classification") as
                     "Mandatory" | "Optional",
+                  phase: text(data, "phase") as
+                    | "Before Internship"
+                    | "During Internship"
+                    | "After Internship",
                 },
               },
               undefined,
@@ -412,6 +459,16 @@ export function Requirements({ id, action }: FeatureProps) {
           }}
         >
           <div className="form-grid">
+            <Field
+              label="Internship phase"
+              name="phase"
+              value={definition?.phase ?? "Before Internship"}
+              options={options([
+                "Before Internship",
+                "During Internship",
+                "After Internship",
+              ])}
+            />
             <Field
               label="Requirement name"
               name="name"
@@ -443,6 +500,7 @@ export function Requirements({ id, action }: FeatureProps) {
   const submissions = db.submissions
     .filter(
       (s) =>
+        (!phase || get(db.requirements, s.requirementId).phase === phase) &&
         get(db.students, s.studentId).academicYear === year &&
         (filters.value("attempt") !== "latest" ||
           latestSubmission(db, s.studentId, s.requirementId)?.id === s.id) &&
@@ -501,10 +559,46 @@ export function Requirements({ id, action }: FeatureProps) {
           Rejected submissions
         </Link>
       </div>
+      <div
+        className="record-links"
+        role="tablist"
+        aria-label="Internship requirement phase"
+      >
+        {phases.map((value, index) => (
+          <button
+            className="secondary-action"
+            role="tab"
+            tabIndex={phase === value ? 0 : -1}
+            aria-selected={phase === value}
+            key={value || "all"}
+            onClick={() => filters.set("phase", value)}
+            onKeyDown={(e) => {
+              if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key))
+                return;
+              e.preventDefault();
+              const next =
+                e.key === "Home"
+                  ? 0
+                  : e.key === "End"
+                    ? phases.length - 1
+                    : (index +
+                        (e.key === "ArrowRight" ? 1 : -1) +
+                        phases.length) %
+                      phases.length;
+              filters.set("phase", phases[next]);
+              e.currentTarget.parentElement
+                ?.querySelectorAll<HTMLButtonElement>("button")
+                [next]?.focus();
+            }}
+          >
+            {value || "All phases"}
+          </button>
+        ))}
+      </div>
       {studentId && db.students.some((s) => s.id === studentId) && (
         <section>
           <h2>{nameOf(get(db.students, studentId))}: checklist</h2>
-          <RequirementChecklist studentId={studentId} />
+          <RequirementChecklist studentId={studentId} phase={phase} />
         </section>
       )}
       <Filters>
@@ -571,6 +665,7 @@ export function Requirements({ id, action }: FeatureProps) {
             .filter(
               (r) =>
                 searchMatches(query, r.name, r.description) &&
+                (!phase || r.phase === phase) &&
                 matches(filters.value("classification"), r.classification),
             )
             .map((r) => [

@@ -39,6 +39,7 @@ export function Partners({ id, action, parentId }: FeatureProps) {
     filters = useFilters(),
     year = useYear();
   const coordinator = account.role === "Coordinator";
+  const administrator = coordinator || account.role === "Company Supervisor";
   const company = db.companies.find((c) => c.id === (parentId ?? id));
   if (action?.startsWith("supervisor")) {
     if (!company) return <RecordState />;
@@ -53,8 +54,10 @@ export function Partners({ id, action, parentId }: FeatureProps) {
       return (
         <>
           <Back href={`/dashboard/partners/${company.id}`}>{company.name}</Back>
-          <PageHeader title={person.name} description="Company supervisor">
-            {coordinator && (
+          <PageHeader title={person.name} description={person.role}>
+            {(coordinator ||
+              (person.role === "Intern Supervisor" &&
+                (administrator || supervisor.accountId === account.id))) && (
               <Link
                 className="secondary-action"
                 href={`/dashboard/partners/${company.id}/supervisors/${supervisor.id}/edit`}
@@ -77,16 +80,41 @@ export function Partners({ id, action, parentId }: FeatureProps) {
               (p) => p.supervisorId === supervisor.id,
             )}
           />
+          <h2>Assigned opportunities</h2>
+          <Table
+            headers={["Opportunity", "Status", "Actions"]}
+            rows={db.opportunities
+              .filter((o) => o.supervisorIds?.includes(supervisor.id))
+              .map((o) => [
+                o.title,
+                o.status,
+                <Link key={o.id} href={`/dashboard/internships/${o.id}`}>
+                  Open opportunity
+                </Link>,
+              ])}
+          />
         </>
       );
     }
-    if (!coordinator) return <RecordState title="Access denied" />;
+    if (
+      !administrator &&
+      !(action === "supervisor-edit" && supervisor?.accountId === account.id)
+    )
+      return <RecordState title="Access denied" />;
+    if (!coordinator && person?.role === "Company Supervisor")
+      return <RecordState title="Access denied" />;
     if (action === "supervisor-edit" && !supervisor) return <RecordState />;
     return (
       <>
         <Back href={`/dashboard/partners/${company.id}`}>{company.name}</Back>
         <PageHeader
-          title={supervisor ? "Edit supervisor" : "Add company supervisor"}
+          title={
+            supervisor
+              ? "Edit supervisor"
+              : coordinator
+                ? "Add supervisor account"
+                : "Add Intern Supervisor"
+          }
           description="The supervisor belongs to this company and receives a linked synthetic account."
         />
         <SaveForm
@@ -104,6 +132,10 @@ export function Partners({ id, action, parentId }: FeatureProps) {
                   email: text(data, "email"),
                   phone: text(data, "phone"),
                   active: text(data, "active") === "true",
+                  role: (person?.role ??
+                    text(data, "role") ??
+                    "Intern Supervisor") as
+                    "Company Supervisor" | "Intern Supervisor",
                 },
               },
               undefined,
@@ -116,6 +148,26 @@ export function Partners({ id, action, parentId }: FeatureProps) {
           }}
         >
           <div className="form-grid">
+            <Field
+              label="Supervisor role"
+              name="role"
+              value={person?.role ?? "Intern Supervisor"}
+              options={
+                !person && coordinator
+                  ? [
+                      {
+                        value: "Company Supervisor",
+                        label: "Company Supervisor (administrator)",
+                      },
+                      {
+                        value: "Intern Supervisor",
+                        label: "Intern Supervisor",
+                      },
+                    ]
+                  : undefined
+              }
+              readOnly={!!person || !coordinator}
+            />
             <Field label="Supervisor name" name="name" value={person?.name} />
             <Field
               label="Email"
@@ -132,10 +184,15 @@ export function Partners({ id, action, parentId }: FeatureProps) {
               label="Account status"
               name="active"
               value={person?.active === false ? "false" : "true"}
-              options={[
-                { value: "true", label: "Active" },
-                { value: "false", label: "Inactive" },
-              ]}
+              options={
+                administrator
+                  ? [
+                      { value: "true", label: "Active" },
+                      { value: "false", label: "Inactive" },
+                    ]
+                  : undefined
+              }
+              readOnly={!administrator}
             />
           </div>
         </SaveForm>
@@ -143,7 +200,7 @@ export function Partners({ id, action, parentId }: FeatureProps) {
     );
   }
   if (action === "create" || action === "edit") {
-    if (!coordinator) return <RecordState title="Access denied" />;
+    if (!administrator) return <RecordState title="Access denied" />;
     if (action === "edit" && !company) return <RecordState />;
     return (
       <>
@@ -213,26 +270,34 @@ export function Partners({ id, action, parentId }: FeatureProps) {
               name="moaStart"
               type="date"
               value={company?.moaStart}
+              readOnly={!coordinator}
             />
             <Field
               label="MOA end date"
               name="moaEnd"
               type="date"
               value={company?.moaEnd}
+              readOnly={!coordinator}
             />
             <Field
               label="Partnership approval"
               name="approved"
               value={String(company?.approved ?? false)}
-              options={[
-                { value: "false", label: "Pending" },
-                { value: "true", label: "Approved" },
-              ]}
+              options={
+                coordinator
+                  ? [
+                      { value: "false", label: "Pending" },
+                      { value: "true", label: "Approved" },
+                    ]
+                  : undefined
+              }
+              readOnly={!coordinator}
             />
             <Field
               label="Academic year"
               name="academicYear"
               value={company?.academicYear ?? prefs.academicYear}
+              readOnly={!coordinator}
             />
           </div>
         </SaveForm>
@@ -253,7 +318,7 @@ export function Partners({ id, action, parentId }: FeatureProps) {
           title={company.name}
           description={`${company.industry} · ${partnership(db, company.id)}`}
         >
-          {coordinator && (
+          {administrator && (
             <Link
               className="secondary-action"
               href={`/dashboard/partners/${company.id}/edit`}
@@ -283,24 +348,38 @@ export function Partners({ id, action, parentId }: FeatureProps) {
           Demo policy: approved MOAs ending within 30 days are Expiring Soon.
           Expired/pending partnerships cannot receive new placements.
         </p>
-        <section>
+        <section id="supervisors">
           <h2>Company supervisors</h2>
-          {coordinator && (
+          {administrator && (
             <Link
               className="simple-action"
               href={`/dashboard/partners/${company.id}/supervisors/create`}
             >
-              Add Company Supervisor
+              {coordinator ? "Add Supervisor Account" : "Add Intern Supervisor"}
             </Link>
           )}
           <Table
-            headers={["Name", "Email", "Account", "Actions"]}
+            headers={[
+              "Name",
+              "Email",
+              "Role",
+              "Account",
+              "Assigned opportunities",
+              "Ongoing interns",
+              "Actions",
+            ]}
             rows={db.supervisors
               .filter((s) => s.companyId === company.id)
               .map((s) => [
                 accountName(db, s.accountId),
                 get(db.accounts, s.accountId).email,
+                get(db.accounts, s.accountId).role,
                 get(db.accounts, s.accountId).active ? "Active" : "Inactive",
+                db.opportunities.filter((o) => o.supervisorIds?.includes(s.id))
+                  .length,
+                db.placements.filter(
+                  (p) => p.supervisorId === s.id && p.status === "Ongoing",
+                ).length,
                 <Link
                   href={`/dashboard/partners/${company.id}/supervisors/${s.id}`}
                   key={6443}
@@ -312,7 +391,7 @@ export function Partners({ id, action, parentId }: FeatureProps) {
         </section>
         <section>
           <h2>Opportunities</h2>
-          {coordinator && (
+          {administrator && (
             <Link
               className="simple-action"
               href={`/dashboard/internships/create?company=${company.id}`}
@@ -351,11 +430,15 @@ export function Partners({ id, action, parentId }: FeatureProps) {
         searchMatches(filters.value("q"), c.name) &&
         matches(filters.value("industry"), c.industry) &&
         matches(
-          filters.value("status") === "expiring"
-            ? "Expiring Soon"
-            : filters.value("status"),
+          filters.value("status").toLowerCase() === "eligible"
+            ? ""
+            : filters.value("status") === "expiring"
+              ? "Expiring Soon"
+              : filters.value("status"),
           partnership(db, c.id),
-        ),
+        ) &&
+        (filters.value("status").toLowerCase() !== "eligible" ||
+          ["Active", "Expiring Soon"].includes(partnership(db, c.id))),
     )
     .sort((a, b) =>
       filters.value("sort") === "expiration"
@@ -382,7 +465,13 @@ export function Partners({ id, action, parentId }: FeatureProps) {
         <Filter
           name="status"
           label="Partnership status"
-          choices={options(["Active", "Pending", "Expiring Soon", "Expired"])}
+          choices={options([
+            "Active",
+            "Pending",
+            "Expiring Soon",
+            "Expired",
+            "Eligible",
+          ])}
         />
         <Filter
           name="sort"

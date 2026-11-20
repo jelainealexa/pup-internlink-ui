@@ -70,6 +70,12 @@ export function Evaluations({ id }: FeatureProps) {
             ["Evaluator", evaluator.name],
             ["Evaluator role", evaluator.role],
             [
+              "Evaluation date",
+              e.evaluationDate ??
+                e.submittedAt?.slice(0, 10) ??
+                "Not submitted",
+            ],
+            [
               "Submission date",
               e.submittedAt ? new Date(e.submittedAt).toLocaleString() : "—",
             ],
@@ -96,6 +102,7 @@ export function Evaluations({ id }: FeatureProps) {
                   id: e.id,
                   grade: number(data, "grade"),
                   comments: text(data, "comments"),
+                  evaluationDate: text(data, "evaluationDate"),
                 },
                 undefined,
                 revision,
@@ -104,6 +111,14 @@ export function Evaluations({ id }: FeatureProps) {
             }}
           >
             <div className="form-grid">
+              <Field
+                label="Evaluation date"
+                name="evaluationDate"
+                type="date"
+                value={new Date().toISOString().slice(0, 10)}
+                min={p.startDate}
+                max={new Date().toISOString().slice(0, 10)}
+              />
               <Field
                 label="Demonstration score (0–100)"
                 name="grade"
@@ -182,14 +197,14 @@ export function Evaluations({ id }: FeatureProps) {
         <Filter
           name="role"
           label="Evaluator role"
-          choices={options(["Faculty Adviser", "Company Supervisor"])}
+          choices={options(["Faculty Adviser", "Intern Supervisor"])}
         />
         <Filter
           name="evaluator"
           label="Assigned evaluator"
           choices={db.accounts
             .filter((a) =>
-              ["Faculty Adviser", "Company Supervisor"].includes(a.role),
+              ["Faculty Adviser", "Intern Supervisor"].includes(a.role),
             )
             .map((a) => ({ value: a.id, label: a.name }))}
         />

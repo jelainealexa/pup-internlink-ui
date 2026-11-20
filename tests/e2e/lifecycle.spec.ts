@@ -1,3 +1,8 @@
+import {
+  activateRegisteredStudent,
+  postingFields,
+  stagedPostingApproval,
+} from "./update-helpers";
 import { expect, test } from "@playwright/test";
 import {
   confirmDialog,
@@ -41,6 +46,12 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
   await expect(page.locator(".error-message[role=alert]")).toContainText(
     "identifier already exists",
   );
+  await activateRegisteredStudent(
+    page,
+    studentId,
+    "flowstudent@example.test",
+    "SYN-E2E-001",
+  );
   await page.goto("/dashboard/partners/create");
   await page.getByLabel("Company name").fill("E2E Synthetic Company");
   await page.getByLabel("Industry *", { exact: true }).fill("Technology");
@@ -57,7 +68,7 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
   ).toBeVisible();
   const companyId = page.url().split("/").at(-1)!;
   await page
-    .getByRole("link", { name: "Add Company Supervisor", exact: true })
+    .getByRole("link", { name: "Add Supervisor Account", exact: true })
     .click();
   await page.getByLabel("Supervisor name").fill("Flow Supervisor");
   await page
@@ -75,15 +86,13 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
     .getByLabel("Description *", { exact: true })
     .fill("Synthetic lifecycle work, no real personal data.");
   await page.getByLabel("Total capacity").fill("1");
+  await postingFields(page);
   await page.getByRole("button", { name: "Save Opportunity" }).click();
   await expect(
     page.getByRole("heading", { name: "Lifecycle Developer Intern" }),
   ).toBeVisible();
   const opportunityId = page.url().split("/").at(-1)!;
-  await page
-    .getByRole("button", { name: "Approve / Reopen Opportunity" })
-    .click();
-  await confirmDialog(page);
+  await stagedPostingApproval(page, companyId, opportunityId, supervisorId);
   await page.goto("/dashboard/requirements/create");
   await page.getByLabel("Requirement name").fill("Lifecycle clearance");
   await page
@@ -183,9 +192,12 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
   }
   await page.goto(`/dashboard/students/${studentId}`);
   await expect(
-    page.getByText("All current mandatory requirements are approved", {
-      exact: false,
-    }),
+    page.getByText(
+      "All Before Internship mandatory requirements are approved",
+      {
+        exact: false,
+      },
+    ),
   ).toBeVisible();
   await logout(page);
   await login(page, "flowstudent@example.test");
@@ -215,7 +227,7 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
   );
   await expect(
     page
-      .getByLabel("Company supervisor", { exact: false })
+      .getByLabel("Intern Supervisor", { exact: false })
       .locator("option")
       .filter({ hasText: "Morgan Demo" }),
   ).toHaveCount(0);
@@ -228,7 +240,7 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
     .getByLabel("Faculty adviser", { exact: false })
     .selectOption("fac-1");
   await page
-    .getByLabel("Company supervisor", { exact: false })
+    .getByLabel("Intern Supervisor", { exact: false })
     .selectOption(supervisorId);
   await page
     .getByLabel("I reviewed the displayed application", { exact: false })
@@ -259,15 +271,17 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
     page.getByText("Completed synthetic lifecycle work.", { exact: true }),
   ).toBeVisible();
   await logout(page);
-  await login(page, "faculty@example.test");
+  await login(page, "flowsupervisor@example.test");
   await page.goto(reportHref);
   await page
     .getByLabel("Reviewer remarks")
     .fill("Reviewed synthetic evidence and eight hours.");
-  await page.getByRole("button", { name: "Mark as Reviewed" }).click();
+  await page.getByRole("button", { name: "Approve Report" }).click();
   await expect(
-    page.getByRole("button", { name: "Mark as Reviewed" }),
+    page.getByRole("button", { name: "Approve Report" }),
   ).toHaveCount(0);
+  await logout(page);
+  await login(page, "faculty@example.test");
   await page.goto(`/dashboard/evaluations?placement=${placementId}`);
   const facultyEvalHref = await page
     .locator("tbody tr")
@@ -310,7 +324,7 @@ test("B–J: entire persisted internship lifecycle through supported UI actions"
   await page.goto(`/dashboard/progress/${placementId}`);
   await expect(page.locator("dl")).toContainText("100%");
   await expect(
-    page.locator("dl > div").filter({ hasText: "Reviewed hours" }),
+    page.locator("dl > div").filter({ hasText: "Approved hours" }),
   ).toContainText("8");
   await page.goto(`/dashboard/placements/${placementId}`);
   await page

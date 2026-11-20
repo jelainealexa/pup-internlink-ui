@@ -13,7 +13,7 @@ import {
 import {
   Account,
   AppError,
-  Command,
+  Mutation,
   Database,
   InternLinkService,
   defaultPreferences,
@@ -29,7 +29,7 @@ interface AppContextValue {
   service: InternLinkService;
   refresh: () => Promise<void>;
   mutate: (
-    command: Command,
+    command: Mutation,
     key?: string,
     expectedRevision?: number,
   ) => Promise<string>;
@@ -95,7 +95,7 @@ export function AppProvider({
   }, [refresh, service]);
   const mutate = useCallback(
     async (
-      command: Command,
+      command: Mutation,
       key = crypto.randomUUID(),
       expectedRevision = db?.revision,
     ) => {

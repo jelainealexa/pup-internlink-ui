@@ -11,7 +11,7 @@ test("F: placement date/hour/affiliation guards and capacity are enforced before
     .getByRole("spinbutton", { name: "Required hours *", exact: true })
     .fill("8");
   await page.getByLabel("Faculty adviser").selectOption("fac-1");
-  await page.getByLabel("Company supervisor").selectOption("supervisor-1");
+  await page.getByLabel("Intern Supervisor").selectOption("supervisor-1");
   await page.getByLabel("I reviewed the displayed", { exact: false }).check();
   await page.getByRole("button", { name: "Review and Save Placement" }).click();
   await expect(page.locator(".error-message")).toContainText("End date");
@@ -29,15 +29,15 @@ test("F: placement date/hour/affiliation guards and capacity are enforced before
   await page
     .getByRole("spinbutton", { name: "Required hours *", exact: true })
     .fill("8");
-  await page.getByLabel("Company supervisor").evaluate((el) => {
+  await page.getByLabel("Intern Supervisor").evaluate((el) => {
     (el as HTMLSelectElement).add(
       new Option("Unrelated synthetic supervisor", "supervisor-2"),
     );
   });
-  await page.getByLabel("Company supervisor").selectOption("supervisor-2");
+  await page.getByLabel("Intern Supervisor").selectOption("supervisor-2");
   await page.getByRole("button", { name: "Review and Save Placement" }).click();
   await expect(page.locator(".error-message")).toContainText("belongs");
-  await page.getByLabel("Company supervisor").selectOption("supervisor-1");
+  await page.getByLabel("Intern Supervisor").selectOption("supervisor-1");
   await page.getByRole("button", { name: "Review and Save Placement" }).click();
   await expect(
     page.getByRole("heading", { name: "Required evaluations", exact: true }),

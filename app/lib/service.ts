@@ -2,7 +2,8 @@ import {
   Account,
   AppError,
   Attachment,
-  Command,
+  Mutation,
+  AccessCommand,
   Database,
   DataStore,
   InternLinkService,
@@ -13,6 +14,7 @@ import { createSeed, DEMO_PASSWORD, passwordVerifier } from "./seed";
 import { get } from "./rules";
 import { IndexedDbStore } from "./storage";
 import { commandFingerprint } from "./fingerprint";
+import { applyAccess, passwordPolicy } from "./updates";
 
 export const SESSION_KEY = "pup-internlink-demo-session-v1";
 export interface SessionStorage {
@@ -105,6 +107,11 @@ export class DemoService implements InternLinkService {
     const account = db.accounts.find(
       (a) => a.email.toLowerCase() === email.trim().toLowerCase(),
     );
+    if (account?.activationState === "Pending Activation")
+      throw new AppError(
+        "FORBIDDEN",
+        "This pre-registered account is pending activation. Use its demonstration invitation.",
+      );
     if (!account || account.verifier !== (await passwordVerifier(password)))
       throw new AppError(
         "UNAUTHENTICATED",
@@ -118,6 +125,7 @@ export class DemoService implements InternLinkService {
     this.sessions.set({
       accountId: account.id,
       expiresAt: this.clock().getTime() + 8 * 3600000,
+      credentialVersion: account.credentialVersion ?? 1,
     });
     this.notify();
     return { ...account, verifier: "" };
@@ -130,7 +138,11 @@ export class DemoService implements InternLinkService {
     const session = this.sessions.get();
     if (!session) return null;
     const account = db.accounts.find((a) => a.id === session.accountId);
-    if (session.expiresAt <= this.clock().getTime() || !account?.active) {
+    if (
+      session.expiresAt <= this.clock().getTime() ||
+      !account?.active ||
+      (session.credentialVersion ?? 1) !== (account.credentialVersion ?? 1)
+    ) {
       this.sessions.set(null);
       return null;
     }
@@ -152,12 +164,21 @@ export class DemoService implements InternLinkService {
     return scopedDatabase(db, actor, this.clock().toISOString().slice(0, 10));
   }
   async execute(
-    command: Command,
+    command: Mutation,
     requestId: string,
     expectedRevision?: number,
   ) {
     const verifier = await passwordVerifier(DEMO_PASSWORD);
     const fingerprint = await commandFingerprint(command);
+    const currentVerifier =
+      command.type === "account.credentials"
+        ? await passwordVerifier(command.currentPassword)
+        : undefined;
+    const newVerifier =
+      command.type === "account.credentials" &&
+      command.newPassword !== undefined
+        ? await passwordVerifier(command.newPassword)
+        : undefined;
     const result = await this.store.update((db) => {
       const actor = this.actor(db);
       if (!actor)
@@ -179,12 +200,14 @@ export class DemoService implements InternLinkService {
       if (expectedRevision !== undefined && expectedRevision !== db.revision)
         throw new AppError(
           "CONFLICT",
-          "Records changed in another view or tab. Refresh the data and review your inputs before retrying.",
+          "Records changed after this form loaded. Reload the latest data and review your inputs before retrying.",
         );
       const value = applyCommand(db, actor.id, command, {
         verifier,
         now: this.clock().toISOString(),
         id: this.makeId,
+        currentVerifier,
+        newVerifier,
       });
       db.revision++;
       db.receipts.push({
@@ -195,6 +218,56 @@ export class DemoService implements InternLinkService {
       });
       db.receipts = db.receipts.slice(-200);
       return value;
+    });
+    this.notify();
+    return result;
+  }
+  async access(command: AccessCommand, requestId: string) {
+    if (
+      !["password.request", "account.activate", "password.reset"].includes(
+        command.type,
+      )
+    )
+      throw new AppError("VALIDATION", "Unsupported public account operation.");
+    if (!requestId.trim())
+      throw new AppError("VALIDATION", "A request identifier is required.");
+    if (command.type !== "password.request")
+      passwordPolicy(command.password, command.confirmPassword);
+    const newVerifier =
+      command.type !== "password.request"
+        ? await passwordVerifier(command.password)
+        : undefined;
+    const fingerprint = await commandFingerprint(command);
+    const receiptKey = `public:${requestId}`;
+    const result = await this.store.update((db) => {
+      const receipt = db.receipts.find((r) => r.key === receiptKey);
+      if (receipt) {
+        if (receipt.commandFingerprint !== fingerprint)
+          throw new AppError(
+            "CONFLICT",
+            "This public request key belongs to a different operation.",
+          );
+        return receipt.result;
+      }
+      const result = applyAccess(db, command, {
+        now: this.clock().toISOString(),
+        id: this.makeId,
+        verifier: "",
+        newVerifier,
+      });
+      db.revision++;
+      const accountId =
+        command.type === "password.request"
+          ? get(db.accountRequests ?? [], result).accountId
+          : result;
+      db.receipts.push({
+        key: receiptKey,
+        actorId: accountId,
+        result,
+        commandFingerprint: fingerprint,
+      });
+      db.receipts = db.receipts.slice(-200);
+      return result;
     });
     this.notify();
     return result;
@@ -249,6 +322,9 @@ export class UnconnectedApiService implements InternLinkService {
     );
   }
   async signIn(): Promise<Account> {
+    return this.unavailable();
+  }
+  async access(): Promise<string> {
     return this.unavailable();
   }
   async signOut(): Promise<void> {

@@ -153,7 +153,7 @@ describe("report calculations and escaping", () => {
       status: "Ongoing",
     });
     expect(r.rows).toHaveLength(1);
-    expect(r.totals["Reviewed hours"]).toBe(8);
+    expect(r.totals["Approved hours"]).toBe(8);
     expect(reportCsv(r)).toContain('"PL-001"');
     expect(reportCsv(r)).not.toContain('"PL-002"');
   });

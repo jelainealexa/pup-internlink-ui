@@ -195,8 +195,8 @@ export function generateReport(
         "Start",
         "End",
         "Required hours",
-        "Submitted hours",
-        "Reviewed hours",
+        "Rendered hours",
+        "Approved hours",
         "Remaining hours",
         "Completion percent",
         "Academic year",
@@ -221,10 +221,10 @@ export function generateReport(
       });
       totals = {
         "Required hours": sumHours(selected.map((p) => p.requiredHours)),
-        "Submitted hours": sumHours(
+        "Rendered hours": sumHours(
           selected.map((p) => hours(db, p.id).submitted),
         ),
-        "Reviewed hours": sumHours(
+        "Approved hours": sumHours(
           selected.map((p) => hours(db, p.id).reviewed),
         ),
       };

@@ -30,7 +30,7 @@ export function Dashboard() {
     ["Registered students", students.length, "/dashboard/students"],
     ["Industry partners", companies.length, "/dashboard/partners"],
     [
-      "Available opportunities",
+      "Active internship opportunities",
       opps.filter((o) => available(db, o.id)).length,
       "/dashboard/internships?available=true",
     ],
@@ -52,6 +52,20 @@ export function Dashboard() {
     ),
   ];
   const coordinator = account.role === "Coordinator";
+  metrics.push(
+    [
+      "Active companies",
+      companies.filter((c) =>
+        ["Active", "Expiring Soon"].includes(partnership(db, c.id)),
+      ).length,
+      "/dashboard/partners?status=Eligible",
+    ],
+    [
+      "Expired MOAs",
+      companies.filter((c) => partnership(db, c.id) === "Expired").length,
+      "/dashboard/partners?status=Expired",
+    ],
+  );
   return (
     <>
       <PageHeader
@@ -97,12 +111,12 @@ export function Dashboard() {
             </Link>
           )}
           {prefs.progressAlerts && (
-            <Link href="/dashboard/progress?review=pending&status=Ongoing">
+            <Link href="/dashboard/progress?view=reports&reportStatus=Pending&status=Ongoing">
               <strong>
                 {
                   db.reports.filter(
                     (r) =>
-                      r.status === "Pending Review" &&
+                      ["Pending", "Pending Review"].includes(r.status) &&
                       ps.some(
                         (p) => p.id === r.placementId && p.status === "Ongoing",
                       ),
@@ -148,7 +162,7 @@ export function Dashboard() {
           headers={[
             "Ongoing",
             "Students reporting",
-            "Reviewed hours (all placements)",
+            "Approved hours (all placements)",
             "Near completion (75%+)",
             "Missing / delayed reports",
           ]}
@@ -198,6 +212,7 @@ export function Dashboard() {
                 Review Applications
               </Link>
               <Link href="/dashboard/reports">Generate reports</Link>
+              <Link href="/dashboard/faculty">Faculty Management</Link>
             </>
           ) : account.role === "Student" ? (
             <>

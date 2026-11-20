@@ -46,6 +46,7 @@ export function Field({
   step,
   hint,
   children,
+  onChange,
 }: {
   label: string;
   name: string;
@@ -59,6 +60,7 @@ export function Field({
   step?: number | string;
   hint?: string;
   children?: ReactNode;
+  onChange?: (value: string) => void;
 }) {
   const id = useId();
   const hintId = `${id}-hint`;
@@ -75,6 +77,7 @@ export function Field({
             name={name}
             defaultValue={value ?? ""}
             required={required}
+            onChange={(e) => onChange?.(e.target.value)}
             aria-describedby={hint ? hintId : undefined}
           >
             <option value="">Select {label.toLowerCase()}</option>
@@ -90,6 +93,7 @@ export function Field({
             name={name}
             defaultValue={value}
             required={required}
+            onChange={(e) => onChange?.(e.target.value)}
             maxLength={4000}
             aria-describedby={hint ? hintId : undefined}
           />
@@ -101,6 +105,7 @@ export function Field({
             type={type}
             required={required}
             readOnly={readOnly}
+            onChange={(e) => onChange?.(e.target.value)}
             min={min}
             max={max}
             step={step}

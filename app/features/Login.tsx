@@ -6,6 +6,8 @@ import { useApp } from "../components/AppProvider";
 import { Field, SaveForm, text } from "../components/ui";
 import { preferencesOf } from "../lib/rules";
 import { DEMO_PASSWORD } from "../lib/seed";
+import Link from "next/link";
+import { PasswordField } from "./AccountAccess";
 
 export function Login() {
   const { account, db, login, loading, error, service, refresh } = useApp();
@@ -47,19 +49,26 @@ export function Login() {
             }}
           >
             <Field label="Email address" name="email" type="email" />
-            <Field label="Password" name="password" type="password" />
+            <PasswordField />
           </SaveForm>
         )}
       </section>
+      <nav className="record-links">
+        <Link href="/">Login</Link>
+        <Link href="/activate">Activate Account</Link>
+        <Link href="/forgot-password">Forgot Password</Link>
+      </nav>
       <section className="demo-accounts">
         <h2>Demonstration accounts</h2>
         <p>
-          Shared public demo password: <code>{DEMO_PASSWORD}</code>. New student
-          and supervisor accounts use this same synthetic password. It is not a
-          secret or a production password.
+          Seeded accounts use public demo password: <code>{DEMO_PASSWORD}</code>
+          . New students activate an invitation with a chosen demonstration
+          password. Faculty and supervisor accounts start with this public
+          password. It is not a secret or a production password.
         </p>
         <ul>
-          <li>Coordinator: coordinator@example.test</li>
+          <li>OJT Coordinator: coordinator@example.test</li>
+          <li>Company Supervisor (administrator): company@example.test</li>
           <li>Student: student@example.test</li>
           <li>
             Other students: student2@example.test through student5@example.test
@@ -69,7 +78,7 @@ export function Login() {
             faculty2@example.test)
           </li>
           <li>
-            Company supervisor: supervisor@example.test (second company:
+            Intern Supervisor: supervisor@example.test (second company:
             supervisor2@example.test)
           </li>
           <li>Inactive account: student6@example.test</li>

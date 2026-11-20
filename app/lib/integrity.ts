@@ -43,6 +43,7 @@ export function assertIntegrity(db: Database) {
             "Student",
             "Faculty Adviser",
             "Company Supervisor",
+            "Intern Supervisor",
           ].includes(a.role) ||
           typeof a.active !== "boolean" ||
           typeof a.verifier !== "string" ||
@@ -125,8 +126,11 @@ export function assertIntegrity(db: Database) {
     if (
       db.supervisors.some(
         (s) =>
-          !account(s.accountId, "Company Supervisor") ||
-          !db.companies.some((c) => c.id === s.companyId),
+          !db.accounts.some(
+            (a) =>
+              a.id === s.accountId &&
+              ["Company Supervisor", "Intern Supervisor"].includes(a.role),
+          ) || !db.companies.some((c) => c.id === s.companyId),
       )
     )
       fail();
@@ -161,7 +165,17 @@ export function assertIntegrity(db: Database) {
           !db.companies.some((c) => c.id === o.companyId) ||
           !Number.isInteger(o.capacity) ||
           o.capacity <= 0 ||
-          !["Approved", "Pending Approval", "Closed"].includes(o.status),
+          ![
+            "Approved",
+            "Pending Approval",
+            "Closed",
+            "Pending Approval - Company",
+            "Pending Approval - Coordinator",
+            "Active",
+            "Filled",
+            "Deactivated",
+            "Rejected",
+          ].includes(o.status),
       )
     )
       fail();
@@ -266,16 +280,158 @@ export function assertIntegrity(db: Database) {
           ) ||
           !Number.isFinite(r.hours) ||
           r.hours <= 0 ||
-          r.hours > 12 ||
-          !["Pending Review", "Reviewed"].includes(r.status),
+          ![
+            "Pending Review",
+            "Reviewed",
+            "Pending",
+            "Approved",
+            "Rejected",
+          ].includes(r.status) ||
+          (r.kind !== "Weekly" && r.hours > 12),
       )
     )
       fail();
     if (
-      new Set(db.reports.map((r) => `${r.placementId}:${r.workDate}`)).size !==
-      db.reports.length
+      new Set(
+        db.reports
+          .filter((r) => r.kind !== "Weekly" && r.status !== "Rejected")
+          .map((r) => `${r.placementId}:${r.workDate}`),
+      ).size !==
+      db.reports.filter((r) => r.kind !== "Weekly" && r.status !== "Rejected")
+        .length
     )
       fail();
+    if (db.schemaVersion === 2) {
+      if (!Array.isArray(db.attendance) || !Array.isArray(db.accountRequests))
+        fail();
+      if (
+        db.accounts.some(
+          (a) =>
+            !["Active", "Pending Activation", "Deactivated"].includes(
+              a.activationState ?? "",
+            ) ||
+            (a.activationState === "Active") !== a.active ||
+            !Number.isInteger(a.credentialVersion) ||
+            a.credentialVersion! < 1,
+        )
+      )
+        fail();
+      if (
+        db.students.some(
+          (s) => s.adviserId && !db.faculty.some((f) => f.id === s.adviserId),
+        )
+      )
+        fail();
+      if (
+        db.requirements.some(
+          (r) =>
+            ![
+              "Before Internship",
+              "During Internship",
+              "After Internship",
+            ].includes(r.phase ?? ""),
+        )
+      )
+        fail();
+      for (const o of db.opportunities) {
+        if (
+          !Array.isArray(o.supervisorIds) ||
+          new Set(o.supervisorIds).size !== o.supervisorIds.length ||
+          o.supervisorIds.some(
+            (id) =>
+              !db.supervisors.some(
+                (s) =>
+                  s.id === id &&
+                  s.companyId === o.companyId &&
+                  account(s.accountId, "Intern Supervisor"),
+              ),
+          )
+        )
+          fail();
+        if (
+          o.requiredHours !== undefined &&
+          (!Number.isFinite(o.requiredHours) ||
+            o.requiredHours <= 0 ||
+            o.requiredHours > 10000)
+        )
+          fail();
+      }
+      const attendance = db.attendance!;
+      if (
+        new Set(attendance.map((a) => a.id)).size !== attendance.length ||
+        new Set(attendance.map((a) => `${a.placementId}:${a.date}`)).size !==
+          attendance.length
+      )
+        fail();
+      if (
+        attendance.some(
+          (a) =>
+            !a.id ||
+            !Number.isFinite(a.hours) ||
+            a.hours <= 0 ||
+            a.hours > 12 ||
+            !db.placements.some(
+              (p) =>
+                p.id === a.placementId &&
+                a.date >= p.startDate &&
+                a.date <= p.endDate,
+            ) ||
+            db.reports.some(
+              (r) =>
+                r.kind !== "Weekly" &&
+                r.placementId === a.placementId &&
+                r.workDate === a.date,
+            ) ||
+            (a.reportId &&
+              !db.reports.some(
+                (r) => r.id === a.reportId && r.attendanceIds?.includes(a.id),
+              )),
+        )
+      )
+        fail();
+      for (const r of db.reports.filter((r) => r.kind === "Weekly")) {
+        if (
+          !r.periodEnd ||
+          r.periodEnd < r.workDate ||
+          !r.attendanceIds?.length ||
+          new Set(r.attendanceIds).size !== r.attendanceIds.length ||
+          r.attendanceIds.some(
+            (id) =>
+              !attendance.some(
+                (a) =>
+                  a.id === id &&
+                  a.placementId === r.placementId &&
+                  a.date >= r.workDate &&
+                  a.date <= r.periodEnd!,
+              ),
+          ) ||
+          Math.abs(
+            r.hours -
+              r.attendanceIds.reduce(
+                (sum, id) => sum + attendance.find((a) => a.id === id)!.hours,
+                0,
+              ),
+          ) > 0.0000001
+        )
+          fail();
+      }
+      const approvedAttendance = db.reports
+        .filter((r) => r.kind === "Weekly" && r.status === "Approved")
+        .flatMap((r) => r.attendanceIds ?? []);
+      if (new Set(approvedAttendance).size !== approvedAttendance.length)
+        fail();
+      if (
+        db.accountRequests!.some(
+          (r) =>
+            !r ||
+            !r.id ||
+            !account(r.accountId) ||
+            !["Activation", "Password Reset"].includes(r.purpose) ||
+            !Number.isFinite(Date.parse(r.expiresAt)),
+        )
+      )
+        fail();
+    }
     if (
       db.evaluations.some(
         (e) =>

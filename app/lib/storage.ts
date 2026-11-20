@@ -1,6 +1,7 @@
 import { AppError, Database, DataStore } from "./domain";
 import { createSeed } from "./seed";
 import { assertIntegrity } from "./integrity";
+import { upgradeSnapshot } from "./upgrade";
 
 export const DATABASE_NAME = "pup-internlink-demo-v1";
 function check(value: unknown): asserts value is Database {
@@ -25,7 +26,7 @@ function check(value: unknown): asserts value is Database {
   ] as const;
   if (
     !s ||
-    s.schemaVersion !== 1 ||
+    ![1, 2].includes(s.schemaVersion ?? 0) ||
     !Number.isInteger(s.revision) ||
     !s.preferences ||
     arrays.some((key) => !Array.isArray(s[key]))
@@ -130,7 +131,8 @@ export class IndexedDbStore implements DataStore {
           );
       },
     );
-    return existing ?? this.update((db) => structuredClone(db));
+    if (existing?.schemaVersion === 2) return existing;
+    return this.update((db) => structuredClone(db));
   }
   async update<T>(change: (database: Database) => T): Promise<T> {
     const seed = await createSeed();
@@ -143,9 +145,11 @@ export class IndexedDbStore implements DataStore {
       let failure: unknown;
       read.onsuccess = () => {
         try {
-          const state: unknown = read.result === undefined ? seed : read.result;
+          let state: unknown = read.result === undefined ? seed : read.result;
           check(state);
           assertIntegrity(state);
+          state = upgradeSnapshot(state);
+          check(state);
           result = change(state);
           assertIntegrity(state);
           store.put(state, "snapshot");

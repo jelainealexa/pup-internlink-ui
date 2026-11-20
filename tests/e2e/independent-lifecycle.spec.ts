@@ -1,3 +1,8 @@
+import {
+  activateRegisteredStudent,
+  postingFields,
+  stagedPostingApproval,
+} from "./update-helpers";
 import { expect, test } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -53,6 +58,12 @@ test("independent A-I: fractional lifecycle, real PDF/images, propagation and CS
   await expect(page.locator("h1")).toContainText('Audit, "CSV" Revised');
   await page.reload();
   await expect(page.locator("h1")).toContainText('Audit, "CSV" Revised');
+  await activateRegisteredStudent(
+    page,
+    studentId,
+    "audit-student@example.test",
+    "AUDIT-001",
+  );
   await page.goto("/dashboard/partners/create");
   for (const [name, value] of Object.entries({
     name: 'Audit, "Labs"',
@@ -72,7 +83,7 @@ test("independent A-I: fractional lifecycle, real PDF/images, propagation and CS
   await page.getByRole("button", { name: "Save Partner", exact: true }).click();
   await expect(page).toHaveURL(/partners\/(?!create$)[^/?]+$/);
   const companyId = page.url().split("/").at(-1)!;
-  await page.getByRole("link", { name: /Add Company Supervisor/i }).click();
+  await page.getByRole("link", { name: /Add Supervisor Account/i }).click();
   for (const [name, value] of Object.entries({
     name: "Audit Supervisor",
     email: "audit-supervisor@example.test",
@@ -118,17 +129,13 @@ test("independent A-I: fractional lifecycle, real PDF/images, propagation and CS
       .evaluate((el) => (el as HTMLInputElement).validity.valid),
   ).toBe(false);
   await page.locator("[name=capacity]").fill("1");
+  await postingFields(page);
   await page
     .getByRole("button", { name: "Save Opportunity", exact: true })
     .click();
   await expect(page.locator("h1")).toHaveText("Independent QA Internship");
   const opportunityId = page.url().split("/").at(-1)!;
-  await page
-    .getByRole("button", { name: "Approve / Reopen Opportunity" })
-    .click();
-  await auditConfirm(page);
-  await page.reload();
-  await expect(page.locator("#main-content")).toContainText("Approved");
+  await stagedPostingApproval(page, companyId, opportunityId, supervisorId);
   await auditLogout(page);
   await auditLogin(page, "audit-student@example.test");
   const submissions: string[] = [];
@@ -230,7 +237,7 @@ test("independent A-I: fractional lifecycle, real PDF/images, propagation and CS
   await page.goto(`/dashboard/students/${studentId}`);
   await expect(
     page.getByText(
-      "All current mandatory requirements are approved under the demonstration policy.",
+      "All Before Internship mandatory requirements are approved under the demonstration policy.",
     ),
   ).toBeVisible();
   await auditLogout(page);
@@ -318,17 +325,21 @@ test("independent A-I: fractional lifecycle, real PDF/images, propagation and CS
     );
   }
   await auditLogout(page);
-  await auditLogin(page, "faculty2@example.test");
+  await auditLogin(page, "audit-supervisor@example.test");
   for (const href of reports) {
     await page.goto(href);
-    await page.locator("[name=remarks]").fill("Independent faculty review");
     await page
-      .getByRole("button", { name: "Mark as Reviewed", exact: true })
+      .locator("[name=remarks]")
+      .fill("Independent supervisor approval");
+    await page
+      .getByRole("button", { name: "Approve Report", exact: true })
       .click();
     await expect(
-      page.getByRole("button", { name: "Mark as Reviewed", exact: true }),
+      page.getByRole("button", { name: "Approve Report", exact: true }),
     ).toHaveCount(0);
   }
+  await auditLogout(page);
+  await auditLogin(page, "faculty2@example.test");
   for (const href of submissions.slice(3)) {
     await page.goto(href);
     await page

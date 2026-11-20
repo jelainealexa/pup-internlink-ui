@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { useApp } from "./AppProvider";
-import { preferencesOf } from "../lib/rules";
+import { preferencesOf, roleLabel } from "../lib/rules";
 import { SavedNotice } from "./ui";
 
 export function Workspace({ children }: { children: ReactNode }) {
@@ -48,6 +48,7 @@ export function Workspace({ children }: { children: ReactNode }) {
           ["Overview", "/dashboard"],
           ["Students", "/dashboard/students"],
           ["Industry Partners", "/dashboard/partners"],
+          ["Faculty Management", "/dashboard/faculty"],
           ["Requirements", "/dashboard/requirements"],
           ["Opportunities", "/dashboard/internships"],
           ["Applications", "/dashboard/applications"],
@@ -68,6 +69,7 @@ export function Workspace({ children }: { children: ReactNode }) {
                 ["My requirements", "/dashboard/requirements?view=submissions"],
                 ["Available opportunities", "/dashboard/internships"],
                 ["My applications", "/dashboard/applications"],
+                ["Daily Attendance", "/dashboard/attendance"],
               ]
             : []),
           ...(account.role === "Faculty Adviser"
@@ -85,10 +87,32 @@ export function Workspace({ children }: { children: ReactNode }) {
                   "My company",
                   `/dashboard/partners/${db.supervisors.find((s) => s.accountId === account.id)?.companyId}`,
                 ],
+                ["Internship Postings", "/dashboard/internships"],
+                [
+                  "Intern Supervisor Management",
+                  `/dashboard/partners/${db.supervisors.find((s) => s.accountId === account.id)?.companyId}#supervisors`,
+                ],
+              ]
+            : []),
+          ...(account.role === "Intern Supervisor"
+            ? [
+                [
+                  "Supervisor Profile",
+                  `/dashboard/partners/${db.supervisors.find((s) => s.accountId === account.id)?.companyId}/supervisors/${db.supervisors.find((s) => s.accountId === account.id)?.id}`,
+                ],
+                [
+                  "Assigned Opportunities",
+                  "/dashboard/internships?assigned=true",
+                ],
+                [
+                  "Application Management",
+                  "/dashboard/applications?assigned=true",
+                ],
+                ["My Interns", "/dashboard/students?interns=true"],
               ]
             : []),
           ["Assigned placements", "/dashboard/placements"],
-          ["Progress reports", "/dashboard/progress"],
+          ["Progress reports", "/dashboard/progress?view=reports"],
           ["Evaluations", "/dashboard/evaluations"],
           ["Settings", "/dashboard/settings"],
         ];
@@ -110,7 +134,7 @@ export function Workspace({ children }: { children: ReactNode }) {
           <div className="session-info">
             <strong>{account.name}</strong>
             <span>
-              {account.role} · {prefs.academicYear}
+              {roleLabel(account.role)} · {prefs.academicYear}
             </span>
             <button
               className="secondary-action"
@@ -142,7 +166,7 @@ export function Workspace({ children }: { children: ReactNode }) {
           className={`sidebar-shell ${open ? "sidebar-open" : "sidebar-collapsed"}`}
         >
           <div className="sidebar-top">
-            <strong>{open ? account.role : "Menu"}</strong>
+            <strong>{open ? roleLabel(account.role) : "Menu"}</strong>
             <button
               type="button"
               className="sidebar-toggle"
@@ -186,8 +210,8 @@ export function Workspace({ children }: { children: ReactNode }) {
           <SavedNotice />
           {account.role !== "Coordinator" && (
             <p className="scope-note">
-              Complementary demonstration portal · Your own or assigned records
-              only
+              Browser-local role portal · Only permitted own, assigned or
+              associated company records
             </p>
           )}
           {children}

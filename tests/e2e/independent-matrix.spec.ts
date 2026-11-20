@@ -27,7 +27,10 @@ function oracle(db: Database, section: string): Row[] {
       .companyId;
   const reviewed = (p: Placement) =>
     db.reports
-      .filter((r) => r.placementId === p.id && r.status === "Reviewed")
+      .filter(
+        (r) =>
+          r.placementId === p.id && ["Reviewed", "Approved"].includes(r.status),
+      )
       .reduce((n, r) => n + r.hours, 0);
   const placements = (id: string) =>
     db.placements.filter((p) => application(p).studentId === id);
@@ -66,6 +69,13 @@ function oracle(db: Database, section: string): Row[] {
         yearLevel: s.yearLevel,
         section: s.section,
         status: status(s.id),
+        activation:
+          db.accounts.find((a) => a.id === s.accountId)!.activationState ??
+          (db.accounts.find((a) => a.id === s.accountId)!.active
+            ? "Active"
+            : "Deactivated"),
+        adviser: s.adviserId ?? "",
+        company: placements(s.id).map(company).join("|"),
         name: name(s.id),
       },
     }));
@@ -82,9 +92,14 @@ function oracle(db: Database, section: string): Row[] {
           p.status !== "Terminated" && application(p).opportunityId === o.id,
       ).length;
       const eligible =
-        o.status === "Approved" &&
+        o.status === "Active" &&
         ["Active", "Expiring Soon"].includes(partnership(o.companyId)) &&
-        o.capacity > allocated;
+        o.capacity > allocated &&
+        (o.supervisorIds ?? []).some((id) => {
+          const s = db.supervisors.find((s) => s.id === id)!;
+          const a = db.accounts.find((a) => a.id === s.accountId)!;
+          return a.active && a.role === "Intern Supervisor";
+        });
       return {
         label: o.title,
         fields: {
@@ -93,7 +108,13 @@ function oracle(db: Database, section: string): Row[] {
             " " +
             db.companies.find((c) => c.id === o.companyId)!.name,
           company: o.companyId,
-          status: o.status,
+          status:
+            o.status === "Active" && allocated >= o.capacity
+              ? "Filled"
+              : o.status,
+          location: o.location ?? "Not specified",
+          modality: o.modality ?? "Not specified",
+          hours: String(o.requiredHours ?? ""),
           available: eligible ? "true" : "false",
         },
       };
@@ -132,7 +153,9 @@ function oracle(db: Database, section: string): Row[] {
             ? "true"
             : "false",
         review: db.reports.some(
-          (r) => r.placementId === p.id && r.status === "Pending Review",
+          (r) =>
+            r.placementId === p.id &&
+            ["Pending Review", "Pending"].includes(r.status),
         )
           ? "pending"
           : "none",
@@ -160,6 +183,7 @@ function oracle(db: Database, section: string): Row[] {
       fields: {
         q: r.name + " " + r.description,
         classification: r.classification,
+        phase: r.phase ?? "Before Internship",
       },
     }));
   return db.submissions.map((s) => ({
@@ -173,6 +197,9 @@ function oracle(db: Database, section: string): Row[] {
         " " +
         db.requirements.find((r) => r.id === s.requirementId)!.name,
       status: s.status,
+      phase:
+        db.requirements.find((r) => r.id === s.requirementId)!.phase ??
+        "Before Internship",
       attempt: db.submissions
         .filter(
           (r) =>
@@ -217,6 +244,12 @@ for (const section of [
     await assertSet(page, expected);
     const keys: Record<string, string> = {
       Program: "program",
+      "Activation status": "activation",
+      "Assigned adviser": "adviser",
+      Location: "location",
+      Modality: "modality",
+      "Required hours": "hours",
+      "Internship phase": "phase",
       "Year level": "yearLevel",
       Section: "section",
       Status: "status",
@@ -290,7 +323,15 @@ for (const section of [
         } else
           await assertSet(
             page,
-            expected.filter((r) => r.fields[select.name] === value),
+            expected.filter((r) =>
+              select.name === "status" && value === "Eligible"
+                ? ["Active", "Expiring Soon"].includes(r.fields.status)
+                : select.name === "status" && value === "Pending (all stages)"
+                  ? r.fields.status.startsWith("Pending Approval")
+                  : select.name === "company" && section === "students"
+                    ? r.fields.company.split("|").includes(value)
+                    : r.fields[select.name] === value,
+            ),
           );
         await page.reload();
         await expect(

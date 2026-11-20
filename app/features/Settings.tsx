@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { PasswordField } from "./AccountAccess";
 import {
   Details,
   Field,
@@ -70,6 +71,75 @@ export function Settings() {
           ["Session", "Simulated, expires eight hours after sign in"],
         ]}
       />
+      <section>
+        <h2>Change Password</h2>
+        <SaveForm
+          revision={db.revision}
+          submit="Change Password"
+          save={async (data, revision) => {
+            if (data.get("newPassword") !== data.get("confirmPassword"))
+              throw new Error("Password confirmation does not match.");
+            await mutate(
+              {
+                type: "account.credentials",
+                currentPassword: String(data.get("currentPassword") ?? ""),
+                newPassword: String(data.get("newPassword") ?? ""),
+              },
+              undefined,
+              revision,
+            );
+          }}
+        >
+          <PasswordField label="Current password" name="currentPassword" />
+          <PasswordField
+            label="New password"
+            name="newPassword"
+            newCredential
+          />
+          <PasswordField
+            label="Confirm new password"
+            name="confirmPassword"
+            newCredential
+          />
+          <p>
+            Successful changes revoke existing demonstration sessions. Sign in
+            with the new password.
+          </p>
+        </SaveForm>
+      </section>
+      <section>
+        <h2>Update Email Address</h2>
+        <SaveForm
+          revision={db.revision}
+          submit="Update Email Address"
+          save={async (data, revision) => {
+            await mutate(
+              {
+                type: "account.credentials",
+                currentPassword: String(data.get("currentPassword") ?? ""),
+                email: text(data, "email"),
+              },
+              undefined,
+              revision,
+            );
+          }}
+        >
+          <Field
+            label="New email address"
+            name="email"
+            type="email"
+            value={account.email}
+          />
+          <PasswordField
+            label="Current password for email change"
+            name="currentPassword"
+          />
+          <p>
+            The linked student email changes consistently. Existing
+            demonstration sessions are revoked.
+          </p>
+        </SaveForm>
+      </section>
       <h2>Workspace preferences</h2>
       <SaveForm
         revision={db.revision}
@@ -132,8 +202,11 @@ export function Settings() {
         {toggles
           .filter(
             ([key]) =>
-              (account.role === "Coordinator" || key !== "partnershipAlerts") &&
-              (account.role !== "Company Supervisor" ||
+              (["Coordinator", "Company Supervisor"].includes(account.role) ||
+                key !== "partnershipAlerts") &&
+              (!["Company Supervisor", "Intern Supervisor"].includes(
+                account.role,
+              ) ||
                 key !== "requirementAlerts"),
           )
           .map(([key, label, description]) => (

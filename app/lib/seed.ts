@@ -1,4 +1,5 @@
 import { Account, Database, Role, defaultPreferences } from "./domain";
+import { upgradeSnapshot } from "./upgrade";
 
 export const DEMO_PASSWORD = "InternLink!2026";
 // This verifier is only for the publicly documented synthetic password, never a production credential.
@@ -456,5 +457,36 @@ export async function createSeed(now = new Date()): Promise<Database> {
           : {}),
       });
     }
-  return db;
+  const updated = upgradeSnapshot(db);
+  updated.revision = 0;
+  for (const [i, companyId] of ["company-1", "company-2"].entries()) {
+    const id = `company-admin-${i + 1}`;
+    updated.accounts.push({
+      ...account(
+        id,
+        `Company Administrator ${i + 1}`,
+        i ? "company2@example.test" : "company@example.test",
+        "Company Supervisor",
+      ),
+      activationState: "Active",
+      credentialVersion: 1,
+    });
+    updated.supervisors.push({
+      id: `company-admin-profile-${i + 1}`,
+      accountId: id,
+      companyId,
+      phone: `000-000-010${i + 1}`,
+    });
+  }
+  updated.students.find((s) => s.id === "2024-0005")!.adviserId = "fac-1";
+  for (const o of updated.opportunities)
+    Object.assign(o, {
+      location: "Demo City",
+      modality: "Hybrid",
+      requiredHours: 486,
+      qualifications: "Synthetic academic internship eligibility",
+      skills: "Communication and academic project skills",
+      responsibilities: o.description,
+    });
+  return updated;
 }

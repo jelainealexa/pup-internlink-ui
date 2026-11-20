@@ -140,7 +140,7 @@ describe("independent adversarial verification", () => {
         academicYear: "2032-2033",
         companyId: "",
         status: "",
-      }).totals["Reviewed hours"],
+      }).totals["Approved hours"],
     ).toBe(0.9);
     const p = db.placements[0];
     p.requiredHours = 0.7001;
@@ -409,8 +409,8 @@ describe("independent adversarial verification", () => {
     expect(progress.rows).toHaveLength(1);
     expect(progress.totals).toMatchObject({
       "Required hours": 80,
-      "Submitted hours": 16,
-      "Reviewed hours": 8,
+      "Rendered hours": 16,
+      "Approved hours": 8,
     });
   });
 });

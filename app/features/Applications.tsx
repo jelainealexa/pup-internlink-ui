@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   ActionButton,
@@ -23,6 +24,7 @@ import {
   missingRequirements,
   nameOf,
   remainingSlots,
+  canDecideApplication,
 } from "../lib/rules";
 import {
   FeatureProps,
@@ -40,6 +42,7 @@ export function Applications({ id, action }: FeatureProps) {
     filters = useFilters(),
     year = useYear();
   const coordinator = account.role === "Coordinator";
+  const [acceptRemarks, setAcceptRemarks] = useState("");
   if (action === "create") {
     const ownStudent =
       account.role === "Student"
@@ -169,69 +172,85 @@ export function Applications({ id, action }: FeatureProps) {
             ["Submitted", new Date(application.submittedAt).toLocaleString()],
           ]}
         />
-        <section>
-          <h2>Mandatory requirement checklist</h2>
-          <RequirementChecklist studentId={student.id} />
-          <p>
-            {missingRequirements(db, student.id).length
-              ? "Acceptance is blocked until all mandatory requirements are approved (demonstration policy)."
-              : "Mandatory requirement eligibility satisfied."}
-          </p>
-        </section>
-        {coordinator && application.status === "Pending" && (
-          <section>
-            <h2>Application decision</h2>
-            <ActionButton
-              confirm="Accept this application after reviewing its requirements and availability? Capacity will be consumed only when a placement is saved."
-              action={async () => {
-                await mutate({
-                  type: "application.decide",
-                  id: application.id,
-                  decision: "Accepted",
-                  reason: "",
-                });
-                setNotice("Application accepted; related views updated.");
-              }}
-            >
-              Accept Application
-            </ActionButton>
-            <SaveForm
-              revision={db.revision}
-              submit="Confirm Rejection"
-              save={async (data, revision) => {
-                if (text(data, "confirm") !== "reject")
-                  throw new Error(
-                    "Select the rejection confirmation before saving.",
-                  );
-                await mutate(
-                  {
+        {account.role !== "Company Supervisor" &&
+          (account.role !== "Intern Supervisor" ||
+            canDecideApplication(db, account, opportunity.id)) && (
+            <section>
+              <h2>Mandatory requirement checklist</h2>
+              <RequirementChecklist
+                studentId={student.id}
+                phase="Before Internship"
+              />
+              <p>
+                {missingRequirements(db, student.id).length
+                  ? "Acceptance is blocked until all mandatory requirements are approved (demonstration policy)."
+                  : "Mandatory requirement eligibility satisfied."}
+              </p>
+            </section>
+          )}
+        {canDecideApplication(db, account, application.opportunityId) &&
+          application.status === "Pending" && (
+            <section>
+              <h2>Application decision</h2>
+              <label className="field">
+                Acceptance remarks (optional)
+                <textarea
+                  value={acceptRemarks}
+                  onChange={(e) => setAcceptRemarks(e.target.value)}
+                  maxLength={2000}
+                />
+              </label>
+              <ActionButton
+                confirm="Accept this application after reviewing its requirements and availability? Capacity will be consumed only when a placement is saved."
+                action={async () => {
+                  await mutate({
                     type: "application.decide",
                     id: application.id,
-                    decision: "Rejected",
-                    reason: text(data, "reason"),
-                  },
-                  undefined,
-                  revision,
-                );
-                setNotice("Application rejected; reason and history saved.");
-              }}
-            >
-              <Field label="Rejection reason" name="reason" type="textarea" />
-              <div className="checkbox-field">
-                <input
-                  id="reject-confirm"
-                  type="checkbox"
-                  name="confirm"
-                  value="reject"
-                  required
-                />
-                <label htmlFor="reject-confirm">
-                  I confirm rejection of this application.
-                </label>
-              </div>
-            </SaveForm>
-          </section>
-        )}
+                    decision: "Accepted",
+                    reason: acceptRemarks,
+                  });
+                  setNotice("Application accepted; related views updated.");
+                }}
+              >
+                Accept Application
+              </ActionButton>
+              <SaveForm
+                revision={db.revision}
+                submit="Confirm Rejection"
+                save={async (data, revision) => {
+                  if (text(data, "confirm") !== "reject")
+                    throw new Error(
+                      "Select the rejection confirmation before saving.",
+                    );
+                  await mutate(
+                    {
+                      type: "application.decide",
+                      id: application.id,
+                      decision: "Rejected",
+                      reason: text(data, "reason"),
+                    },
+                    undefined,
+                    revision,
+                  );
+                  setNotice("Application rejected; reason and history saved.");
+                }}
+              >
+                <Field label="Rejection reason" name="reason" type="textarea" />
+                <div className="checkbox-field">
+                  <input
+                    id="reject-confirm"
+                    type="checkbox"
+                    name="confirm"
+                    value="reject"
+                    required
+                  />
+                  <label htmlFor="reject-confirm">
+                    I confirm rejection of this application.
+                  </label>
+                </div>
+              </SaveForm>
+            </section>
+          )}
         {application.status === "Accepted" && (
           <div className="action-bar">
             {placement ? (
@@ -255,11 +274,11 @@ export function Applications({ id, action }: FeatureProps) {
         )}
         <h2>Decision history</h2>
         <Table
-          headers={["Status", "Date", "Actor", "Reason"]}
+          headers={["Status", "Date", "Actor / Role", "Reason"]}
           rows={application.history.map((h) => [
             h.status,
             new Date(h.at).toLocaleString(),
-            accountName(db, h.actorId),
+            `${accountName(db, h.actorId)} / ${db.accounts.find((a) => a.id === h.actorId)?.role ?? "Historical actor"}`,
             h.reason ?? "—",
           ])}
         />
@@ -281,7 +300,11 @@ export function Applications({ id, action }: FeatureProps) {
           filters.value("company"),
           get(db.opportunities, a.opportunityId).companyId,
         ) &&
-        matches(filters.value("opportunity"), a.opportunityId),
+        matches(filters.value("opportunity"), a.opportunityId) &&
+        (!filters.value("assigned") ||
+          get(db.opportunities, a.opportunityId).supervisorIds?.includes(
+            db.supervisors.find((s) => s.accountId === account.id)?.id ?? "",
+          )),
     )
     .sort((a, b) =>
       filters.value("sort") === "oldest"

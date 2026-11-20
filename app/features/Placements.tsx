@@ -12,6 +12,7 @@ import {
   RecordState,
   SaveForm,
   Search,
+  Table,
   options,
   number,
   text,
@@ -197,13 +198,16 @@ export function Placements({ id, action }: FeatureProps) {
                   }))}
               />
               <Field
-                label="Company supervisor"
+                label="Intern Supervisor"
                 name="supervisorId"
                 options={db.supervisors
                   .filter(
                     (s) =>
                       s.companyId === c.id &&
-                      get(db.accounts, s.accountId).active,
+                      get(db.accounts, s.accountId).active &&
+                      get(db.accounts, s.accountId).role ===
+                        "Intern Supervisor" &&
+                      !!o.supervisorIds?.includes(s.id),
                   )
                   .map((s) => ({
                     value: s.id,
@@ -282,12 +286,12 @@ export function Placements({ id, action }: FeatureProps) {
               accountName(db, get(db.faculty, p.adviserId).accountId),
             ],
             [
-              "Company supervisor",
+              "Intern Supervisor",
               accountName(db, get(db.supervisors, p.supervisorId).accountId),
             ],
             ["Start / End", `${p.startDate} – ${p.endDate}`],
-            ["Submitted hours", h.submitted],
-            ["Reviewed / Required hours", `${h.reviewed} / ${p.requiredHours}`],
+            ["Rendered hours", h.submitted],
+            ["Approved / Required hours", `${h.reviewed} / ${p.requiredHours}`],
             ["Remaining / Completion", `${h.remaining} hours / ${h.percent}%`],
             ["Status", p.status],
             ["Termination reason", p.terminationReason],
@@ -302,6 +306,74 @@ export function Placements({ id, action }: FeatureProps) {
             Related evaluations
           </Link>
         </div>
+        {(coordinator || account.role === "Company Supervisor") &&
+          p.status === "Ongoing" && (
+            <section>
+              <h2>Intern Supervisor assignment</h2>
+              <SaveForm
+                revision={db.revision}
+                submit="Assign Intern Supervisor"
+                save={async (data, revision) => {
+                  await mutate(
+                    {
+                      type: "placement.supervisor.assign",
+                      id: p.id,
+                      supervisorId: text(data, "supervisorId"),
+                    },
+                    undefined,
+                    revision,
+                  );
+                  setNotice(
+                    "Intern Supervisor assignment saved; historical decisions retained.",
+                  );
+                }}
+              >
+                <Field
+                  label="Assigned Intern Supervisor"
+                  name="supervisorId"
+                  value={p.supervisorId}
+                  options={db.supervisors
+                    .filter(
+                      (s) =>
+                        s.companyId === company.id &&
+                        get(db.accounts, s.accountId).role ===
+                          "Intern Supervisor" &&
+                        get(db.accounts, s.accountId).active &&
+                        opportunityFor(db, p).supervisorIds?.includes(s.id),
+                    )
+                    .map((s) => ({
+                      value: s.id,
+                      label: accountName(db, s.accountId),
+                    }))}
+                />
+                <p>
+                  A submitted company evaluation freezes the assignment until
+                  the placement closes. Pending obligations can transfer without
+                  adding a third evaluation.
+                </p>
+              </SaveForm>
+              <Table
+                headers={[
+                  "Previous supervisor",
+                  "New supervisor",
+                  "Actor",
+                  "Date",
+                ]}
+                rows={(p.assignmentHistory ?? []).map((h) => [
+                  accountName(
+                    db,
+                    db.supervisors.find((s) => s.id === h.from)?.accountId,
+                  ),
+                  accountName(
+                    db,
+                    db.supervisors.find((s) => s.id === h.to)?.accountId,
+                  ),
+                  accountName(db, h.actorId),
+                  h.at,
+                ])}
+              />
+            </section>
+          )}
         <section>
           <h2>Required evaluations</h2>
           <EvaluationRows placementId={p.id} />

@@ -87,9 +87,40 @@ describe("authentication and mode isolation", () => {
       "PL-001",
       "PL-002",
     ]);
+    expect(
+      (await service.attachment("file-sub-2024-0001-req-1")).blob.size,
+    ).toBeGreaterThan(0);
     await expect(
-      service.attachment("file-sub-2024-0001-req-1"),
+      service.attachment("file-sub-2024-0003-req-1"),
     ).rejects.toThrow(/not exist/);
+    await service.signIn("coordinator@example.test", DEMO_PASSWORD);
+    const during = await service.execute(
+      {
+        type: "requirement.save",
+        input: {
+          name: "Private during proof",
+          description: "Synthetic",
+          classification: "Optional",
+          phase: "During Internship",
+        },
+      },
+      key(),
+    );
+    const blob = new Blob(["Synthetic during work"], { type: "text/plain" });
+    const submissionId = await service.execute(
+      {
+        type: "submission.create",
+        studentId: "2024-0001",
+        requirementId: during,
+        file: { name: "during.txt", mime: blob.type, size: blob.size, blob },
+      },
+      key(),
+    );
+    const fileId = (await service.read()).submissions.find(
+      (s) => s.id === submissionId,
+    )!.fileId;
+    await service.signIn("supervisor@example.test", DEMO_PASSWORD);
+    await expect(service.attachment(fileId)).rejects.toThrow(/not exist/);
     await expect(
       service.execute(
         {
@@ -360,7 +391,7 @@ describe("persisted commands and relational consistency", () => {
     expect(
       (await service.signIn("sup-integration@example.test", DEMO_PASSWORD))
         .role,
-    ).toBe("Company Supervisor");
+    ).toBe("Intern Supervisor");
   });
   it("persists application decisions and disallows repeats", async () => {
     const { service, store } = await persisted();
@@ -449,6 +480,17 @@ describe("persisted commands and relational consistency", () => {
   });
   it("reviews hours exactly once and propagates the aggregate", async () => {
     const { service, store } = await persisted();
+    await expect(
+      service.execute(
+        {
+          type: "report.review",
+          id: "PR-002",
+          remarks: "Coordinator cannot approve new progress",
+        },
+        key(),
+      ),
+    ).rejects.toThrow(/cannot/);
+    await service.signIn("supervisor@example.test", DEMO_PASSWORD);
     await service.execute(
       {
         type: "report.review",
@@ -505,7 +547,7 @@ describe("persisted commands and relational consistency", () => {
     await expect(store.read()).rejects.toThrow(/not been overwritten/);
     await expect(service.reset("wrong")).rejects.toThrow(/RESET DEMO/);
     await service.reset("RESET DEMO");
-    expect((await store.read()).schemaVersion).toBe(1);
+    expect((await store.read()).schemaVersion).toBe(2);
     expect(await service.currentAccount()).toBeNull();
   });
   it("reset requires coordinator and intentional phrase", async () => {

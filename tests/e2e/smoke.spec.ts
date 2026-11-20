@@ -125,9 +125,9 @@ test("production navigation, query filters, persistence and accessible responsiv
   await page.goto("/dashboard/settings");
   const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations).toEqual([]);
-  await page.goto("/dashboard/internships/opp-3");
+  await page.goto("/dashboard/internships/opp-1");
   const trigger = page.getByRole("button", {
-    name: "Approve / Reopen Opportunity",
+    name: "Deactivate Posting",
   });
   await trigger.click();
   await expect(page.getByRole("dialog")).toBeVisible();

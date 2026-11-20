@@ -18,13 +18,13 @@ import {
   useFilters,
 } from "../components/ui";
 import {
-  canSeePlacement,
   companyFor,
   get,
   hours,
   nameOf,
   reportingGap,
   studentFor,
+  reviewState,
 } from "../lib/rules";
 import {
   FeatureProps,
@@ -34,6 +34,8 @@ import {
   useData,
   useYear,
 } from "./shared";
+import { WeeklyReport } from "./Attendance";
+import { ProgressReports } from "./ProgressReports";
 
 export function Progress({ id, action }: FeatureProps) {
   const { db, account, mutate, setNotice } = useData();
@@ -41,7 +43,10 @@ export function Progress({ id, action }: FeatureProps) {
     filters = useFilters(),
     year = useYear();
   const canSubmit = ["Coordinator", "Student"].includes(account.role);
+  if (action === "weekly-create") return <WeeklyReport />;
   if (action === "create") {
+    const replaced = db.reports.find((r) => r.id === filters.value("replace"));
+    if (filters.value("replace") && !replaced) return <RecordState />;
     if (!canSubmit) return <RecordState title="Access denied" />;
     if (!db.placements.some((p) => p.status === "Ongoing"))
       return (
@@ -56,7 +61,7 @@ export function Progress({ id, action }: FeatureProps) {
         <Back href="/dashboard/progress">Progress monitoring</Back>
         <PageHeader
           title="Submit progress report"
-          description="One daily report per placement/date, up to 12 hours. Only reviewed hours count toward official demonstration completion."
+          description="Alternative daily report, up to 12 hours per date. Use attendance and a weekly report for the updated workflow. Only supervisor-approved hours count toward completion."
         />
         <SaveForm
           revision={db.revision}
@@ -70,6 +75,7 @@ export function Progress({ id, action }: FeatureProps) {
                 workDate: text(data, "workDate"),
                 hours: number(data, "hours"),
                 tasks: text(data, "tasks"),
+                replacesId: replaced?.id,
               },
               undefined,
               revision,
@@ -95,6 +101,8 @@ export function Progress({ id, action }: FeatureProps) {
               name="workDate"
               type="date"
               max={new Date().toISOString().slice(0, 10)}
+              value={replaced?.workDate}
+              readOnly={!!replaced}
             />
             <Field
               label="Hours rendered"
@@ -103,8 +111,14 @@ export function Progress({ id, action }: FeatureProps) {
               min={0}
               max={12}
               step="any"
+              value={replaced?.hours}
             />
-            <Field label="Tasks performed" name="tasks" type="textarea" />
+            <Field
+              label="Tasks performed"
+              name="tasks"
+              type="textarea"
+              value={replaced?.tasks}
+            />
           </div>
         </SaveForm>
       </>
@@ -119,7 +133,7 @@ export function Progress({ id, action }: FeatureProps) {
         <Back href={`/dashboard/progress/${p.id}`}>Placement progress</Back>
         <PageHeader
           title={report.id}
-          description={`${nameOf(studentFor(db, p))} · ${report.status}`}
+          description={`${nameOf(studentFor(db, p))} · ${reviewState(report.status)}`}
         />
         <Details
           items={[
@@ -130,6 +144,15 @@ export function Progress({ id, action }: FeatureProps) {
               </Link>,
             ],
             ["Work date", report.workDate],
+            ["Report kind", report.kind ?? "Legacy daily"],
+            ["Period end", report.periodEnd],
+            ["Attempt", report.attempt ?? 1],
+            [
+              "Legacy source status",
+              report.legacyStatus
+                ? `${report.legacyStatus} (${report.legacyStatus === "Reviewed" ? "historical approved hours grandfathered; original reviewer retained" : "historical pending review preserved"})`
+                : undefined,
+            ],
             ["Submission time", new Date(report.submittedAt).toLocaleString()],
             ["Hours rendered", report.hours],
             ["Tasks", report.tasks],
@@ -141,22 +164,23 @@ export function Progress({ id, action }: FeatureProps) {
                 ? new Date(report.reviewedAt).toLocaleString()
                 : "—",
             ],
-            ["Review status", report.status],
+            ["Report approval status", reviewState(report.status)],
           ]}
         />
-        {account.role !== "Student" &&
-          canSeePlacement(db, account, p) &&
-          report.status === "Pending Review" &&
+        {account.role === "Intern Supervisor" &&
+          get(db.supervisors, p.supervisorId).accountId === account.id &&
+          reviewState(report.status) === "Pending" &&
           p.status === "Ongoing" && (
             <section>
               <h2>Review report</h2>
               <SaveForm
                 revision={db.revision}
-                submit="Mark as Reviewed"
+                submit="Approve Report"
                 save={async (data, revision) => {
                   await mutate(
                     {
-                      type: "report.review",
+                      type: "report.decide",
+                      decision: "Approved",
                       id: report.id,
                       remarks: text(data, "remarks"),
                     },
@@ -173,8 +197,92 @@ export function Progress({ id, action }: FeatureProps) {
                   value={report.remarks}
                 />
               </SaveForm>
+              <SaveForm
+                revision={db.revision}
+                submit="Reject Report"
+                save={async (data, revision) => {
+                  await mutate(
+                    {
+                      type: "report.decide",
+                      id: report.id,
+                      decision: "Rejected",
+                      remarks: text(data, "rejectionRemarks"),
+                    },
+                    undefined,
+                    revision,
+                  );
+                  setNotice(
+                    "Report rejected; history and rendered work retained.",
+                  );
+                }}
+              >
+                <Field
+                  label="Report rejection remarks"
+                  name="rejectionRemarks"
+                  type="textarea"
+                />
+              </SaveForm>
             </section>
           )}
+        {account.role === "Faculty Adviser" &&
+          get(db.faculty, p.adviserId).accountId === account.id && (
+            <SaveForm
+              revision={db.revision}
+              submit="Save Faculty Monitoring Remark"
+              save={async (data, revision) => {
+                await mutate(
+                  {
+                    type: "report.monitor",
+                    id: report.id,
+                    remarks: text(data, "facultyRemarks"),
+                  },
+                  undefined,
+                  revision,
+                );
+                setNotice(
+                  "Faculty monitoring saved. Approved hours are unchanged.",
+                );
+              }}
+            >
+              <Field
+                label="Faculty monitoring remarks"
+                name="facultyRemarks"
+                type="textarea"
+              />
+            </SaveForm>
+          )}
+        {canSubmit &&
+          report.status === "Rejected" &&
+          p.status === "Ongoing" && (
+            <Link
+              href={
+                report.kind === "Weekly"
+                  ? `/dashboard/progress/weekly/create?placement=${p.id}&from=${report.workDate}&to=${report.periodEnd}`
+                  : `/dashboard/progress/create?placement=${p.id}&replace=${report.id}`
+              }
+            >
+              Resubmit Rejected Report
+            </Link>
+          )}
+        <h2>Supervisor decision history</h2>
+        <Table
+          headers={["Status", "Actor", "Date", "Remarks"]}
+          rows={(report.history ?? []).map((h) => [
+            reviewState(h.status),
+            accountName(db, h.actorId),
+            h.at,
+            h.remarks,
+          ])}
+        />
+        <h2>Faculty monitoring history</h2>
+        <Table
+          headers={["Adviser", "Date", "Monitoring remarks"]}
+          rows={(report.facultyRemarks ?? []).map((m) => [
+            accountName(db, m.actorId),
+            m.at,
+            m.text,
+          ])}
+        />
       </>
     );
   }
@@ -203,6 +311,16 @@ export function Progress({ id, action }: FeatureProps) {
             </Link>
           )}
         </PageHeader>
+        <div className="record-links">
+          <Link href={`/dashboard/attendance?placement=${p.id}`}>
+            Daily Attendance Record
+          </Link>
+          {canSubmit && p.status === "Ongoing" && (
+            <Link href={`/dashboard/progress/weekly/create?placement=${p.id}`}>
+              Submit Weekly Report
+            </Link>
+          )}
+        </div>
         <Details
           items={[
             [
@@ -218,8 +336,8 @@ export function Progress({ id, action }: FeatureProps) {
               </Link>,
             ],
             ["Required hours", p.requiredHours],
-            ["Submitted hours", h.submitted],
-            ["Reviewed hours", h.reviewed],
+            ["Rendered hours", h.submitted],
+            ["Approved hours", h.reviewed],
             ["Remaining hours", h.remaining],
             ["Completion", `${h.percent}%`],
             [
@@ -227,7 +345,7 @@ export function Progress({ id, action }: FeatureProps) {
               accountName(db, get(db.faculty, p.adviserId).accountId),
             ],
             [
-              "Company supervisor",
+              "Intern Supervisor",
               accountName(db, get(db.supervisors, p.supervisorId).accountId),
             ],
           ]}
@@ -254,7 +372,7 @@ export function Progress({ id, action }: FeatureProps) {
               r.hours,
               r.tasks,
               r.remarks,
-              r.status,
+              reviewState(r.status),
               <Link href={`/dashboard/progress/reports/${r.id}`} key={4763}>
                 View / Review report
               </Link>,
@@ -263,6 +381,7 @@ export function Progress({ id, action }: FeatureProps) {
       </>
     );
   }
+  if (filters.value("view") === "reports") return <ProgressReports />;
   const today = new Date().toISOString().slice(0, 10);
   const yearPlacements = db.placements.filter((p) => p.academicYear === year);
   const ps = db.placements.filter(
@@ -281,28 +400,38 @@ export function Progress({ id, action }: FeatureProps) {
         (p.status === "Ongoing" && hours(db, p.id).percent >= 75)) &&
       (!filters.value("review") ||
         db.reports.some(
-          (r) => r.placementId === p.id && r.status === "Pending Review",
+          (r) => r.placementId === p.id && reviewState(r.status) === "Pending",
         )),
   );
   return (
     <>
       <PageHeader
         title="Progress monitoring"
-        description="Submitted and reviewed totals remain separate. Demo reporting policy: a daily report is late after seven calendar days without a work-date report during an ongoing placement."
+        description="Rendered and supervisor-approved totals remain separate. Demonstration reporting policy: monitoring flags seven calendar days without a report during an ongoing placement."
       >
         {canSubmit && (
-          <Link className="primary-action" href="/dashboard/progress/create">
-            Submit progress report
-          </Link>
+          <>
+            <Link
+              className="primary-action"
+              href="/dashboard/progress/weekly/create"
+            >
+              Submit weekly report
+            </Link>
+            <Link href="/dashboard/attendance">Daily attendance</Link>
+            <Link href="/dashboard/progress/create">Submit daily report</Link>
+          </>
         )}
       </PageHeader>
+      <Link href="/dashboard/progress?view=reports">
+        View submitted progress reports
+      </Link>
       <div className="metric-links">
-        <Link href="/dashboard/progress?review=pending&status=Ongoing">
+        <Link href="/dashboard/progress?view=reports&reportStatus=Pending&status=Ongoing">
           <strong>
             {
               db.reports.filter(
                 (r) =>
-                  r.status === "Pending Review" &&
+                  reviewState(r.status) === "Pending" &&
                   yearPlacements.some(
                     (p) => p.id === r.placementId && p.status === "Ongoing",
                   ),
@@ -319,7 +448,7 @@ export function Progress({ id, action }: FeatureProps) {
               ).length
             }
           </strong>
-          Near completion (75%+ reviewed)
+          Near completion (75%+ approved)
         </Link>
       </div>
       <Filters>
@@ -328,7 +457,7 @@ export function Progress({ id, action }: FeatureProps) {
           name="near"
           label="Completion focus"
           choices={[
-            { value: "true", label: "Near completion (75%+ reviewed)" },
+            { value: "true", label: "Near completion (75%+ approved)" },
           ]}
         />
         <Filter
@@ -365,8 +494,8 @@ export function Progress({ id, action }: FeatureProps) {
           "Student",
           "Company / Adviser",
           "Required",
-          "Submitted",
-          "Reviewed",
+          "Rendered",
+          "Approved",
           "Remaining",
           "Completion",
           "Reporting",

@@ -7,9 +7,26 @@ import {
   Role,
   Student,
   defaultPreferences,
+  ErrorCode,
 } from "./domain";
 
 export const nameOf = (s: Student) => `${s.firstName} ${s.lastName}`;
+export function assert(
+  condition: unknown,
+  code: ErrorCode,
+  message: string,
+): asserts condition {
+  if (!condition) throw new AppError(code, message);
+}
+export function uniqueEmail(db: Database, value: string, except?: string) {
+  assert(
+    !db.accounts.some(
+      (a) => a.id !== except && a.email.toLowerCase() === value,
+    ),
+    "CONFLICT",
+    "This email address already belongs to another demonstration account.",
+  );
+}
 export function get<T extends { id: string }>(items: T[], id: string): T {
   const item = items.find((x) => x.id === id);
   if (!item)
@@ -35,12 +52,18 @@ export function preferencesOf(db: Database, accountId: string): Preferences {
   const supervisor = db.supervisors.find((s) => s.accountId === accountId);
   const company = db.companies.find((c) => c.id === supervisor?.companyId);
   const year = new Date().getUTCFullYear();
+  const assignedStudent = db.students.find(
+    (s) =>
+      s.adviserId &&
+      db.faculty.some((f) => f.id === s.adviserId && f.accountId === accountId),
+  );
   return {
     ...defaultPreferences,
     academicYear:
       student?.academicYear ??
       placement?.academicYear ??
       company?.academicYear ??
+      assignedStudent?.academicYear ??
       `${year}-${year + 1}`,
   };
 }
@@ -166,6 +189,7 @@ export const missingRequirements = (db: Database, studentId: string) =>
   db.requirements.filter(
     (r) =>
       r.classification === "Mandatory" &&
+      (r.phase ?? "Before Internship") === "Before Internship" &&
       latestSubmission(db, studentId, r.id)?.status !== "Approved",
   );
 export const allocated = (db: Database, opportunityId: string) =>
@@ -189,17 +213,45 @@ export const available = (
   const o = get(db.opportunities, opportunityId);
   return (
     db.availability?.[opportunityId]?.eligible ??
-    (o.status === "Approved" &&
+    ((o.status === "Active" ||
+      (db.schemaVersion === 1 && o.status === "Approved")) &&
       eligibleCompany(db, o.companyId, today) &&
+      (db.schemaVersion === 1 ||
+        !!o.supervisorIds?.some((id) =>
+          db.supervisors.some(
+            (s) =>
+              s.id === id &&
+              s.companyId === o.companyId &&
+              db.accounts.some(
+                (a) =>
+                  a.id === s.accountId &&
+                  a.role === "Intern Supervisor" &&
+                  a.active,
+              ),
+          ),
+        )) &&
       remainingSlots(db, o.id) > 0)
   );
 };
 export function hours(db: Database, placementId: string) {
   const p = get(db.placements, placementId);
   const reports = db.reports.filter((r) => r.placementId === placementId);
-  const submitted = sumHours(reports.map((r) => r.hours));
+  const daily = new Map(
+    reports.filter((r) => r.kind !== "Weekly").map((r) => [r.workDate, r]),
+  );
+  const submitted = sumHours(
+    [...daily.values()]
+      .map((r) => r.hours)
+      .concat(
+        (db.attendance ?? [])
+          .filter((a) => a.placementId === placementId)
+          .map((a) => a.hours),
+      ),
+  );
   const reviewed = sumHours(
-    reports.filter((r) => r.status === "Reviewed").map((r) => r.hours),
+    reports
+      .filter((r) => r.status === "Reviewed" || r.status === "Approved")
+      .map((r) => r.hours),
   );
   return {
     submitted,
@@ -241,9 +293,21 @@ export function canSeePlacement(db: Database, actor: Account, p: Placement) {
     actor.role === "Coordinator" ||
     (actor.role === "Student" && studentFor(db, p).accountId === actor.id) ||
     (actor.role === "Faculty Adviser" &&
-      get(db.faculty, p.adviserId).accountId === actor.id) ||
+      (get(db.faculty, p.adviserId).accountId === actor.id ||
+        !!db.students.find(
+          (s) =>
+            s.id === studentFor(db, p).id &&
+            s.adviserId &&
+            db.faculty.some(
+              (f) => f.id === s.adviserId && f.accountId === actor.id,
+            ),
+        ))) ||
+    (actor.role === "Intern Supervisor" &&
+      get(db.supervisors, p.supervisorId).accountId === actor.id) ||
     (actor.role === "Company Supervisor" &&
-      get(db.supervisors, p.supervisorId).accountId === actor.id)
+      db.supervisors.some(
+        (s) => s.accountId === actor.id && s.companyId === companyFor(db, p).id,
+      ))
   );
 }
 export function requireRole(actor: Account, ...roles: Role[]) {
@@ -263,13 +327,16 @@ export function canReviewStudent(
   actor: Account,
   studentId: string,
 ) {
-  return (
-    actor.role === "Coordinator" ||
-    (actor.role === "Faculty Adviser" &&
-      placementsForStudent(db, studentId).some(
-        (p) => get(db.faculty, p.adviserId).accountId === actor.id,
-      ))
-  );
+  if (actor.role === "Coordinator") return true;
+  if (actor.role !== "Faculty Adviser") return false;
+  const faculty = db.faculty.find((f) => f.accountId === actor.id),
+    student = db.students.find((s) => s.id === studentId);
+  if (!faculty || !student) return false;
+  return student.adviserId
+    ? student.adviserId === faculty.id
+    : placementsForStudent(db, studentId).some(
+        (p) => p.status === "Ongoing" && p.adviserId === faculty.id,
+      );
 }
 export function completionProblems(
   db: Database,
@@ -280,8 +347,16 @@ export function completionProblems(
   if (p.status === "Terminated") errors.push("Placement is terminated.");
   if (hours(db, p.id).reviewed < p.requiredHours)
     errors.push("Required reviewed hours are incomplete.");
-  if (db.reports.some((r) => r.placementId === p.id && r.status !== "Reviewed"))
+  if (
+    db.reports.some(
+      (r) =>
+        r.placementId === p.id &&
+        ["Pending", "Pending Review"].includes(r.status),
+    )
+  )
     errors.push("Progress reports still need review.");
+  if ((db.attendance ?? []).some((a) => a.placementId === p.id && !a.reportId))
+    errors.push("Unsubmitted attendance needs a weekly report decision.");
   if (
     p.requiredRequirementIds.some(
       (id) =>
@@ -297,12 +372,39 @@ export function completionProblems(
     errors.push("Both assigned evaluations must be submitted.");
   return errors;
 }
+export const roleLabel = (role: Role) =>
+  role === "Coordinator" ? "OJT Coordinator" : role;
+export const postingStatus = (db: Database, id: string) => {
+  const o = get(db.opportunities, id);
+  return o.status === "Active" && remainingSlots(db, id) === 0
+    ? "Filled"
+    : o.status;
+};
+export const reviewState = (status: string) =>
+  status === "Reviewed"
+    ? "Approved"
+    : status === "Pending Review"
+      ? "Pending"
+      : status;
+export function canDecideApplication(
+  db: Database,
+  actor: Account,
+  opportunityId: string,
+) {
+  return (
+    actor.role === "Coordinator" ||
+    (actor.role === "Intern Supervisor" &&
+      get(db.opportunities, opportunityId).supervisorIds?.some((id) =>
+        db.supervisors.some((s) => s.id === id && s.accountId === actor.id),
+      ))
+  );
+}
 export function reportingGap(db: Database, p: Placement, today: string) {
   if (p.status !== "Ongoing" || today < p.startDate) return false;
   const last =
     db.reports
       .filter((r) => r.placementId === p.id)
-      .map((r) => r.workDate)
+      .map((r) => r.periodEnd ?? r.workDate)
       .sort()
       .at(-1) ?? p.startDate;
   const through = today < p.endDate ? today : p.endDate;

@@ -51,7 +51,7 @@ export function PlacementRows({ placements }: { placements: Placement[] }) {
         "Company / Opportunity",
         "Supervision",
         "Dates",
-        "Reviewed / Required",
+        "Approved / Required",
         "Status",
         "Actions",
       ]}
