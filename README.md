@@ -1,6 +1,6 @@
 # PUP InternLink
 
-Publication candidate: local `frontend/final-release` in the separate release worktree. GitHub publication is blocked by repository write permission and Vercel deployment by missing authentication. No new public URL exists yet. See [deployment status and procedure](docs/DEPLOYMENT.md). The original running applications and historical refinement evidence below remain unchanged.
+Published release: [`frontend/final-release`](https://github.com/jelainealexa/pup-internlink-ui/tree/frontend/final-release). Public application: **https://pup-internlink-frontend.vercel.app/**. See [deployment status and update procedure](docs/DEPLOYMENT.md). This separate project is deployed explicitly through Vercel CLI; automatic Git deployments are not configured. The original applications and historical refinement evidence below remain unchanged.
 
 Targeted UI refinement: this workspace now uses `frontend/reference-refinement`, based on preserved `frontend/interface-update` commit `e9028f9`. See [reference refinement report](docs/UI_REFERENCE_REFINEMENT.md) for visual changes, password eye controls, current verification evidence and before/after screenshots. It runs on localhost:3000. The separate `frontend/ui-ux-optimized` worktree on localhost:3001 remains unchanged. Historical release reports below describe their original commits.
 

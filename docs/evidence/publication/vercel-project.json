@@ -1,0 +1,12 @@
+{
+  "id": "prj_s26eQ5i0gcq9HmtB1hoN2RA9V60a",
+  "name": "pup-internlink-frontend",
+  "framework": "nextjs",
+  "nodeVersion": "24.x",
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci --ignore-scripts --no-audit --no-fund",
+  "rootDirectory": null,
+  "ssoProtection": null,
+  "publicSource": null,
+  "link": null
+}

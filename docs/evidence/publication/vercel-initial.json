@@ -1,0 +1,14 @@
+{
+  "deploymentId": "dpl_5Hec8opezz7teDZMmYpPAvbXdy8p",
+  "projectId": "prj_s26eQ5i0gcq9HmtB1hoN2RA9V60a",
+  "name": "pup-internlink-frontend",
+  "url": "pup-internlink-frontend-99r83tajz-rjcfajardo12.vercel.app",
+  "readyState": "READY",
+  "target": "production",
+  "aliases": [
+    "pup-internlink-frontend.vercel.app",
+    "pup-internlink-frontend-rjcfajardo12.vercel.app"
+  ],
+  "gitSha": "63d0e9fb8c3d0b8bca53238293c0d7d60b4d549c",
+  "gitBranch": "frontend/final-release"
+}

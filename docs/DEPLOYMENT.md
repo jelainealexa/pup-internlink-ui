@@ -1,6 +1,56 @@
 # Front-end publication and Vercel deployment
 
-## Current release status — 2026-11-20
+## Current publication and live deployment — 2026-11-21
+
+**GitHub publication: PASS. Public Vercel deployment: PASS.** The GitHub permission was updated, the separate branch was pushed successfully, and Vercel CLI authorization completed as `rjcfajardo`. The initial access failures recorded later in this document are historical and superseded by this section.
+
+| Item | Verified current value |
+| --- | --- |
+| Repository | https://github.com/jelainealexa/pup-internlink-ui |
+| Published branch | https://github.com/jelainealexa/pup-internlink-ui/tree/frontend/final-release |
+| Stable public production URL | **https://pup-internlink-frontend.vercel.app/** |
+| Separate project / scope | `pup-internlink-frontend` / `rjcfajardo12` (existing Hobby allocation; no purchase) |
+| Separate project ID | `prj_s26eQ5i0gcq9HmtB1hoN2RA9V60a` |
+| Initial verified deployment | `dpl_5Hec8opezz7teDZMmYpPAvbXdy8p` |
+| Initial deployed Git commit | `63d0e9fb8c3d0b8bca53238293c0d7d60b4d549c` |
+| Initial immutable deployment URL | https://pup-internlink-frontend-99r83tajz-rjcfajardo12.vercel.app/ |
+| Final packaging deployment | Pending final packaging deployment and verification |
+| Runtime source | Identical to refined port3000 release `9bfa4dc`; no application/business/authentication/persistence changes during publication |
+| Framework / Node / root | Next.js /24.x /repository root |
+| Install / build | `npm ci --ignore-scripts --no-audit --no-fund` / `npm run build` |
+| App environment variables | None required. CLI-generated local OIDC environment file was removed; no token was committed or exposed. |
+| Vercel login required for visitors | No; production and immutable URLs returned HTTP200 without redirects or credentials |
+| Git integration / automatic deployments | **BLOCKED / NOT CONFIGURED**; CLI Git connection failed for this Vercel account. Current deployments are explicit CLI deployments. |
+
+The first deployment of a new project was automatically assigned to production by Vercel, even without `--prod`; this occurred only in the newly created project. Deployment protection was set to `ssoProtection: null` only on this new public synthetic-demo project. The existing project serving `pup-internlink-ui.vercel.app` was not changed or promoted. GitHub's existing integration also built a login-protected branch preview under the old project; it is not the new public URL above.
+
+### Live verification and deployment packaging
+
+- Fresh unauthenticated HTTP requests to both returned URLs received HTTP200 and the PUP InternLink title without Vercel login redirects.
+- `node scripts/deployment-smoke.mjs https://pup-internlink-frontend.vercel.app docs/evidence/publication/live-smoke.json`: **5/5 role journeys PASS, zero page errors**. Verified the actual inline Eye/Eye Off control, each published demo account, dashboards, direct navigation, saved preferences after refresh and390px layout in isolated browser contexts.
+- Full production suite against this actual HTTPS origin: **52/52 PASS** (49 desktop Chromium/3 mobile,367.11 seconds,0 failed/skipped/flaky), executed against initial deployed commit `63d0e9f`. The final packaging revision changes no runtime source and receives a fresh cloud build, upload-input inspection and all-five-role smoke verification. The earlier local clean gates remain132 native/52 browser tests, lint, typecheck and production build PASS, with427 local packages installed.
+- Vercel cloud build completed successfully with Next16.4.6 and the configured install/build commands. Linux installed426 packages; local Windows installed427. Existing non-failing warnings included ESLint9 deprecation and Vercel's npm `cache-dir` environment setting.
+- Source-file inspection of the initial CLI deployment revealed generated `.next-e2e`, `test-results` and `playwright-report` inputs. These were synthetic test/build artifacts from the isolated release worktree, not owner browser data. Added explicit `.vercelignore` exclusions for generated build/test directories, environment/authentication files, logs and owner PDFs; the final deployment must verify that these are absent. No existing deployment was deleted.
+
+### Updating this separate project
+
+Work only in `D:/Orca/Workspace/pup-internlink-ui-release` on `frontend/final-release`; preserve the two application worktrees. Run the documented clean install/lint/typecheck/native/build/browser gates for relevant changes, commit and push normally. Inspect `.vercel/project.json` before deployment: its project ID must match the new project ID above. The directory is ignored and must never be committed.
+
+```powershell
+Set-Location D:/Orca/Workspace/pup-internlink-ui-release
+git push origin frontend/final-release
+npm exec --yes --package=vercel@66.5.0 -- vercel whoami
+npm exec --yes --package=vercel@66.5.0 -- vercel deploy --prod --scope rjcfajardo12
+node scripts/deployment-smoke.mjs https://pup-internlink-frontend.vercel.app test-results/live-smoke.json
+```
+
+Record the returned deployment ID/URL and its `meta.gitCommitSha`; do not substitute a guessed host. For full live regression set `PLAYWRIGHT_BASE_URL=https://pup-internlink-frontend.vercel.app` before `npm run test:e2e` and remove that variable afterward. Do not deploy uncommitted runtime changes or use a dirty package/lockfile.
+
+Automatic deployment is not implied by a GitHub push. The Vercel-connected Git account/app must first receive repository access; after that, connect **only this new project**, set its Production Branch Tracking to `frontend/final-release`, and verify a real push-to-deployment transition. The failed CLI Git connection was not bypassed with credentials, an alternate repository or changes to the original project.
+
+The five public synthetic accounts below use **InternLink!2026** and have now been verified on the new live origin: coordinator@example.test, student@example.test, faculty@example.test, company@example.test and supervisor@example.test. IndexedDB/files/session state remain browser-profile/origin-local; production, immutable deployment URLs and localhost do not synchronize. No real email delivery, centralized database, backend integration or production security is claimed.
+
+## Historical preparation status — 2026-11-20
 
 **Publication: BLOCKED by GitHub write permission. Deployment: BLOCKED by missing Vercel authentication. No new project, production URL or preview URL has been created. No deployed commit exists for this release.**
 
