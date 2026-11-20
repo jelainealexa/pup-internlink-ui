@@ -1,0 +1,19 @@
+{
+  "dateUtc": "2026-11-20T14:30:22.1013991Z",
+  "publication": "BLOCKED",
+  "deployment": "BLOCKED",
+  "githubRepository": "jelainealexa/pup-internlink-ui",
+  "releaseBranch": "frontend/final-release",
+  "releaseSource": "9bfa4dc8c8f6bfe7f556dc86169e80d985e2c7f9",
+  "githubPushPermission": false,
+  "gitTransportUser": "lumilumiere",
+  "gitDryRunStatus": "403 Permission denied",
+  "remoteReleaseBranchExists": false,
+  "vercelCliVersion": "66.5.0",
+  "vercelWhoami": "Logged out",
+  "vercelBrowser": "Login page",
+  "newProjectCreated": false,
+  "newProductionUrl": null,
+  "previewUrl": null,
+  "originalPublicAssetManifestUnchanged": true
+}

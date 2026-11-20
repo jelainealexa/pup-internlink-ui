@@ -1,0 +1,59 @@
+{
+  "origin": "http://localhost:3000",
+  "startedAt": "2026-11-20T14:26:48.303Z",
+  "roles": [
+    {
+      "account": "coordinator@example.test",
+      "heading": "Coordinator overview",
+      "eyeToggle": true,
+      "login": true,
+      "dashboard": true,
+      "savedPreferenceAfterRefresh": true,
+      "directNavigation": true,
+      "mobile": true
+    },
+    {
+      "account": "student@example.test",
+      "heading": "Student dashboard",
+      "eyeToggle": true,
+      "login": true,
+      "dashboard": true,
+      "savedPreferenceAfterRefresh": true,
+      "directNavigation": true,
+      "mobile": true
+    },
+    {
+      "account": "faculty@example.test",
+      "heading": "Faculty Adviser dashboard",
+      "eyeToggle": true,
+      "login": true,
+      "dashboard": true,
+      "savedPreferenceAfterRefresh": true,
+      "directNavigation": true,
+      "mobile": true
+    },
+    {
+      "account": "company@example.test",
+      "heading": "Company Supervisor dashboard",
+      "eyeToggle": true,
+      "login": true,
+      "dashboard": true,
+      "savedPreferenceAfterRefresh": true,
+      "directNavigation": true,
+      "mobile": true
+    },
+    {
+      "account": "supervisor@example.test",
+      "heading": "Intern Supervisor dashboard",
+      "eyeToggle": true,
+      "login": true,
+      "dashboard": true,
+      "savedPreferenceAfterRefresh": true,
+      "directNavigation": true,
+      "mobile": true
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS",
+  "finishedAt": "2026-11-20T14:26:58.674Z"
+}
