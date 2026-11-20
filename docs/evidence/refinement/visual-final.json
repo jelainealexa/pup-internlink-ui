@@ -1,0 +1,358 @@
+[
+  {
+    "name": "login",
+    "route": "/",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "PUP InternLink",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif"
+  },
+  {
+    "name": "login",
+    "axeViolations": []
+  },
+  {
+    "name": "activation",
+    "route": "/activate",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Activate Account",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif"
+  },
+  {
+    "name": "activation",
+    "axeViolations": []
+  },
+  {
+    "name": "forgot-password",
+    "route": "/forgot-password",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Forgot Password",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif"
+  },
+  {
+    "name": "forgot-password",
+    "axeViolations": []
+  },
+  {
+    "name": "dashboard",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Coordinator overview",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "dashboard",
+    "axeViolations": []
+  },
+  {
+    "name": "students",
+    "route": "/dashboard/students",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Students",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "partners",
+    "route": "/dashboard/partners",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Industry Partners",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "opportunities",
+    "route": "/dashboard/internships",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Opportunities",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "applications",
+    "route": "/dashboard/applications",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Applications",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "placements",
+    "route": "/dashboard/placements",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Placements",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "requirements",
+    "route": "/dashboard/requirements",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Requirements",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "progress",
+    "route": "/dashboard/progress",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Progress monitoring",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "evaluations",
+    "route": "/dashboard/evaluations",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Evaluations",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "reports",
+    "route": "/dashboard/reports",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Reports & Analytics",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "settings",
+    "route": "/dashboard/settings",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Settings",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "settings",
+    "axeViolations": []
+  },
+  {
+    "name": "student-form",
+    "route": "/dashboard/students/create",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Add student",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "placement-detail",
+    "route": "/dashboard/placements/PL-001",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "PL-001",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "progress-review",
+    "route": "/dashboard/progress/reports/PR-002",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "PR-002",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "dialog",
+    "dismissedWithEscape": true
+  },
+  {
+    "name": "mobile-360",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 360,
+    "document": 360,
+    "title": "Coordinator overview",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 360
+  },
+  {
+    "name": "mobile-390",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 390,
+    "document": 390,
+    "title": "Coordinator overview",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 390
+  },
+  {
+    "name": "mobile-768",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 768,
+    "document": 768,
+    "title": "Coordinator overview",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 220
+  },
+  {
+    "name": "mobile-1024",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1024,
+    "document": 1024,
+    "title": "Coordinator overview",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 220
+  },
+  {
+    "name": "student-dashboard",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Student dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "role": "student",
+    "axeViolations": []
+  },
+  {
+    "name": "student-mobile",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 390,
+    "document": 390,
+    "title": "Student dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 390
+  },
+  {
+    "name": "faculty-dashboard",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Faculty Adviser dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "role": "faculty",
+    "axeViolations": []
+  },
+  {
+    "name": "faculty-mobile",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 390,
+    "document": 390,
+    "title": "Faculty Adviser dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 390
+  },
+  {
+    "name": "company-dashboard",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Company Supervisor dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "role": "company",
+    "axeViolations": []
+  },
+  {
+    "name": "company-mobile",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 390,
+    "document": 390,
+    "title": "Company Supervisor dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 390
+  },
+  {
+    "name": "supervisor-dashboard",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Intern Supervisor dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "role": "supervisor",
+    "axeViolations": []
+  },
+  {
+    "name": "supervisor-mobile",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 390,
+    "document": 390,
+    "title": "Intern Supervisor dashboard",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 390
+  }
+]

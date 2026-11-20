@@ -1,5 +1,9 @@
 # Final updated-release test report
 
+## Targeted reference refinement — 2026-11-20
+
+Application/test commit `ceb64b7fc8647155993ada3ec67b42548dadf6b7`, branch `frontend/reference-refinement`. Final executed gates: lint PASS, TypeScript PASS, production build PASS, native **132/132** (55 unit, 7 component, 70 integration; 11 files), production browser **52/52** (49 desktop Chromium, 3 mobile Chromium; 269.05 seconds, 0 failed/skipped/flaky). All original 130 native and 49 browser cases remain unchanged; added 2 component and 3 browser cases cover password visibility and shared responsive/accessibility behavior. Nine representative accessibility scans found zero violations; recorded views had zero page overflow. Both production ports returned HTTP200. These are implementation/regression results, not a new independent release certification. The optimized worktree/server on3001 was not changed. See [refinement report](UI_REFERENCE_REFINEMENT.md) and [raw logs/manifests](evidence/refinement/), including initial failures and their repairs. The historical results below remain attributed to their original commits.
+
 2026-11-20. Originally reviewed 3698d8d; final tested application/test candidate **59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e** on frontend/interface-update. Functional handover PASS within synthetic browser-local scope. This root session has implementation history and authored repairs; fresh-context/personnel independence is UNVERIFIED. Historical reports below are retained as results of their own versions, not current evidence.
 
 ## Final actual gates

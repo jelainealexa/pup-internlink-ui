@@ -1,5 +1,7 @@
 # PUP InternLink
 
+Targeted UI refinement: this workspace now uses `frontend/reference-refinement`, based on preserved `frontend/interface-update` commit `e9028f9`. See [reference refinement report](docs/UI_REFERENCE_REFINEMENT.md) for visual changes, password eye controls, current verification evidence and before/after screenshots. It runs on localhost:3000. The separate `frontend/ui-ux-optimized` worktree on localhost:3001 remains unchanged. Historical release reports below describe their original commits.
+
 A functional internship-management **front-end demonstration** for PUP's Database Systems Implementation subject. Next.js 16.4.6, React 19.3, TypeScript and the existing CSS design. All saved records and attachments belong to the current browser profile and origin. There is no connected backend, production authentication or shared database.
 
 ## Run locally

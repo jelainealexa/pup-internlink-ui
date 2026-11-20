@@ -1,0 +1,16 @@
+
+> internlink-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.1 D:/Orca/Workspace/pup-internlink-ui
+
+
+ Test Files  11 passed (11)
+      Tests  132 passed (132)
+   Start at  21:42:27
+   Duration  18.11s (environment 50%, import 30%, tests 11%, setup 7%, transform 1%)
+
+    Isolate  11 workers spawned · ~3.56s startup each (spawn + environment, per file)
+             at least ~2.03s faster with isolate: false — reuses workers across files instead of one per file
+

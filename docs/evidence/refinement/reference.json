@@ -1,0 +1,165 @@
+[
+  {
+    "name": "dashboard",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Good afternoon, Coordinator.",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "students",
+    "route": "/dashboard/students",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Students",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "partners",
+    "route": "/dashboard/partners",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Partners",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "opportunities",
+    "route": "/dashboard/internships",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Open opportunities",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "applications",
+    "route": "/dashboard/applications",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Applications",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "placements",
+    "route": "/dashboard/placements",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Placements",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "requirements",
+    "route": "/dashboard/requirements",
+    "status": 404,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "404",
+    "background": "rgb(255, 255, 255)",
+    "font": "Arial, Helvetica, sans-serif"
+  },
+  {
+    "name": "progress",
+    "route": "/dashboard/progress",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Progress monitoring",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "evaluations",
+    "route": "/dashboard/evaluations",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Evaluations",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "reports",
+    "route": "/dashboard/reports",
+    "status": 404,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "404",
+    "background": "rgb(255, 255, 255)",
+    "font": "Arial, Helvetica, sans-serif"
+  },
+  {
+    "name": "settings",
+    "route": "/dashboard/settings",
+    "status": 200,
+    "viewport": 1440,
+    "document": 1440,
+    "title": "Settings",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  },
+  {
+    "name": "mobile-360",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 360,
+    "document": 449,
+    "title": "Good afternoon, Coordinator.",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 200
+  },
+  {
+    "name": "mobile-390",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 390,
+    "document": 449,
+    "title": "Good afternoon, Coordinator.",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 200
+  },
+  {
+    "name": "mobile-768",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 768,
+    "document": 768,
+    "title": "Good afternoon, Coordinator.",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 220
+  },
+  {
+    "name": "mobile-1024",
+    "route": "/dashboard",
+    "status": 200,
+    "viewport": 1024,
+    "document": 1024,
+    "title": "Good afternoon, Coordinator.",
+    "background": "rgb(244, 244, 242)",
+    "font": "Arial, Helvetica, sans-serif",
+    "sidebar": 250
+  }
+]

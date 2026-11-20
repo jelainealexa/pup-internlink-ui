@@ -1,5 +1,7 @@
 # Final front-end handover
 
+Presentation addendum: `frontend/reference-refinement` refines the localhost:3000 interface from preserved baseline `e9028f9`; [UI_REFERENCE_REFINEMENT.md](UI_REFERENCE_REFINEMENT.md) records its scope and new tests. The separate optimized worktree on3001 is unchanged. The historical functional release evidence below remains attached to its original candidate; it is not newly generated certification of the refinement.
+
 **PASS for the verified browser-local synthetic front-end.** Originally reviewed 3698d8ddfd96cef39c80e1a18d127a45583a8cf3; final tested application/test candidate 59a5a5f5210c5803f14bda7fca9a0499cbd4ff0e, branch frontend/interface-update. Final repository HEAD is its documentation/evidence descendant (`git log`). Fresh installation, lint/typecheck,130 native/49 production browser, production build and separate smoke/reassignment workflow pass. FINAL_RELEASE_REVIEW/TEST_REPORT record exact evidence, six repairs and remaining limits.
 
 The latest instruction authorizes and completes final review, superseding earlier postponement. This root session has implementation history and authored repairs; no fresh-context/personnel-independent certification is claimed. Actual backend/database/production security is excluded; exact approved ERD/API compatibility unverified. No push/merge/main change or owner-PDF modification.
