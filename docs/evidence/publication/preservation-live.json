@@ -1,0 +1,32 @@
+{
+  "reviewedCommit": "5aef1d3ca44c2dd40e34198843747bca9ce0424f",
+  "branch": "frontend/final-release",
+  "trackedFiles": 486,
+  "forbiddenFiles": [],
+  "secretFindings": [],
+  "trackedPdfs": [
+    "tests/fixtures/audit-document.pdf"
+  ],
+  "ownerPdfsTracked": [],
+  "localMain": "2d846774c6dfbc61d675331145bd7b82b301e5a4",
+  "originalApplicationUnchanged": true,
+  "originalHead": "9bfa4dc8c8f6bfe7f556dc86169e80d985e2c7f9",
+  "optimizedStatus": "",
+  "optimizedHead": "8963402b81c6b297b25b3102e6408125a574efeb",
+  "originalDeployment": {
+    "status": 200,
+    "assets": [
+      "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "/_next/static/immutable/chunks/1vkbvs5cv4r1l.js",
+      "/_next/static/immutable/chunks/25kvgcvbp6c14.js",
+      "/_next/static/immutable/chunks/25kvgcvbp6c14.js",
+      "/_next/static/immutable/chunks/2lbzrfj1vxs2z.js",
+      "/_next/static/immutable/chunks/2tr86szx8frkj.js",
+      "/_next/static/immutable/chunks/3-81x9q23wwk5.js",
+      "/_next/static/immutable/chunks/3sav3yefleyvp.js",
+      "/_next/static/immutable/chunks/44bewqetax538.css",
+      "/_next/static/immutable/chunks/turbopack-3xd-7z66s-4wg.js"
+    ],
+    "assetManifestHash": "e3f48e09d8c4ee053e0030e0711953e616abaccb959e7b76898de996249f78c6"
+  }
+}

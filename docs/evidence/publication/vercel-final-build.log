@@ -1,0 +1,97 @@
+2026-11-20T19:27:04.131Z  Running build in Washington, D.C., USA (East) – iad1
+2026-11-20T19:27:04.132Z  Build machine configuration: 2 cores, 8 GB
+2026-11-20T19:27:04.148Z  Retrieving list of deployment files...
+2026-11-20T19:27:04.575Z  Downloading 472 deployment files...
+2026-11-20T19:27:05.832Z  Restored build cache from previous deployment (5Hec8opezz7teDZMmYpPAvbXdy8p)
+2026-11-20T19:27:08.618Z  Running "vercel build"
+2026-11-20T19:27:08.633Z  Vercel CLI 66.2.0
+2026-11-20T19:27:09.149Z  Running "install" command: `npm ci --ignore-scripts --no-audit --no-fund`...
+2026-11-20T19:27:09.854Z  npm warn Unknown env config "cache-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+2026-11-20T19:27:19.249Z  npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2026-11-20T19:27:24.853Z  
+2026-11-20T19:27:24.853Z  added 426 packages in 15s
+2026-11-20T19:27:24.941Z  Detected Next.js version: 16.4.6
+2026-11-20T19:27:24.964Z  Running "npm run build"
+2026-11-20T19:27:25.081Z  npm warn Unknown env config "cache-dir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+2026-11-20T19:27:25.111Z  
+2026-11-20T19:27:25.111Z  > internlink-ui@0.1.0 build
+2026-11-20T19:27:25.111Z  > next build
+2026-11-20T19:27:25.111Z  
+2026-11-20T19:27:25.680Z  ▲ Next.js 16.4.6 (Turbopack)
+2026-11-20T19:27:25.820Z  Applying modifyConfig from Vercel
+2026-11-20T19:27:25.826Z  ✓ Running next.config.ts took 145ms
+2026-11-20T19:27:25.855Z  
+2026-11-20T19:27:25.913Z  Creating an optimized production build ...
+2026-11-20T19:27:26.655Z  ✓ Compiled successfully in 731ms
+2026-11-20T19:27:26.655Z  Running TypeScript ...
+2026-11-20T19:27:35.152Z  Finished TypeScript in 8.5s ...
+2026-11-20T19:27:35.157Z  Collecting page data using 1 worker ...
+2026-11-20T19:27:35.987Z  Generating static pages using 1 worker (0/31) ...
+2026-11-20T19:27:36.316Z  Generating static pages using 1 worker (7/31)
+2026-11-20T19:27:36.455Z  Generating static pages using 1 worker (15/31)
+2026-11-20T19:27:36.575Z  Generating static pages using 1 worker (23/31)
+2026-11-20T19:27:36.680Z  ✓ Generating static pages using 1 worker (31/31) in 692ms
+2026-11-20T19:27:36.692Z  Finalizing page optimization ...
+2026-11-20T19:27:36.853Z  Running onBuildComplete from Vercel
+2026-11-20T19:27:37.030Z  
+2026-11-20T19:27:37.033Z  Route (app)
+2026-11-20T19:27:37.033Z  ┌ ○ /
+2026-11-20T19:27:37.033Z  ├ ○ /_not-found
+2026-11-20T19:27:37.034Z  ├ ○ /activate
+2026-11-20T19:27:37.034Z  ├ ○ /dashboard
+2026-11-20T19:27:37.034Z  ├ ○ /dashboard/applications
+2026-11-20T19:27:37.034Z  ├ ƒ /dashboard/applications/[id]
+2026-11-20T19:27:37.034Z  ├ ○ /dashboard/applications/create
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/attendance
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/attendance/create
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/evaluations
+2026-11-20T19:27:37.038Z  ├ ƒ /dashboard/evaluations/[id]
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/faculty
+2026-11-20T19:27:37.038Z  ├ ƒ /dashboard/faculty/[id]
+2026-11-20T19:27:37.038Z  ├ ƒ /dashboard/faculty/[id]/edit
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/faculty/create
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/internships
+2026-11-20T19:27:37.038Z  ├ ƒ /dashboard/internships/[id]
+2026-11-20T19:27:37.038Z  ├ ƒ /dashboard/internships/[id]/edit
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/internships/create
+2026-11-20T19:27:37.038Z  ├ ○ /dashboard/partners
+2026-11-20T19:27:37.038Z  ├ ƒ /dashboard/partners/[id]
+2026-11-20T19:27:37.038Z  ├ ƒ /dashboard/partners/[id]/edit
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/partners/[id]/supervisors/[supervisorId]
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/partners/[id]/supervisors/[supervisorId]/edit
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/partners/[id]/supervisors/create
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/partners/create
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/placements
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/placements/[id]
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/placements/create
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/progress
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/progress/[id]
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/progress/create
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/progress/reports/[id]
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/progress/weekly/create
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/reports
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/requirements
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/requirements/[id]/edit
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/requirements/create
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/requirements/submissions/[id]
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/requirements/submissions/create
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/settings
+2026-11-20T19:27:37.039Z  ├ ○ /dashboard/students
+2026-11-20T19:27:37.039Z  ├ ƒ /dashboard/students/[id]
+2026-11-20T19:27:37.040Z  ├ ƒ /dashboard/students/[id]/edit
+2026-11-20T19:27:37.040Z  ├ ○ /dashboard/students/create
+2026-11-20T19:27:37.040Z  ├ ○ /forgot-password
+2026-11-20T19:27:37.040Z  └ ○ /reset-password
+2026-11-20T19:27:37.040Z  
+2026-11-20T19:27:37.040Z  
+2026-11-20T19:27:37.040Z  ○  (Static)   prerendered as static content
+2026-11-20T19:27:37.040Z  ƒ  (Dynamic)  server-rendered on demand
+2026-11-20T19:27:37.040Z  
+2026-11-20T19:27:37.524Z  Build Completed in /vercel/output [28s]
+2026-11-20T19:27:37.567Z  Deploying outputs...
+2026-11-20T19:27:40.588Z  Deployment completed
+2026-11-20T19:27:40.592Z  Creating build cache...
+2026-11-20T19:27:54.163Z  Created build cache: 14s
+2026-11-20T19:27:54.164Z  Uploading build cache [157.85 MB]
+2026-11-20T19:27:57.198Z  Build cache uploaded: 3.034s
+status	● Ready

@@ -1,0 +1,22 @@
+
+> internlink-ui@0.1.0 test:e2e
+> playwright test tests/e2e/smoke.spec.ts tests/e2e/refinement.spec.ts
+
+
+Running 9 tests using 1 worker
+
+(node:33396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] › tests\e2e\refinement.spec.ts:5:1 › eye toggle preserves login input, supports keyboard and stays inside the field (1.3s)
+  ok 2 [chromium] › tests\e2e\refinement.spec.ts:39:1 › all five portals retain accessible responsive navigation and contained tables (14.1s)
+  ok 3 [chromium] › tests\e2e\refinement.spec.ts:99:1 › activation, recovery and account settings use independent password controls (2.8s)
+  ok 4 [chromium] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (26.4s)
+  ok 5 [chromium] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (1.8s)
+  ok 6 [chromium] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (3.0s)
+(node:32188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 7 [mobile] › tests\e2e\smoke.spec.ts:4:1 › production navigation, query filters, persistence and accessible responsive states (18.2s)
+  ok 8 [mobile] › tests\e2e\smoke.spec.ts:144:1 › I: all seven generated reports, CSV, empty result and print presentation (1.9s)
+  ok 9 [mobile] › tests\e2e\smoke.spec.ts:189:1 › intentional reset and keyboard accessible login (2.4s)
+
+  9 passed (1.2m)

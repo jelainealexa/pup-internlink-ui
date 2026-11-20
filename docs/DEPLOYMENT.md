@@ -14,7 +14,10 @@
 | Initial verified deployment | `dpl_5Hec8opezz7teDZMmYpPAvbXdy8p` |
 | Initial deployed Git commit | `63d0e9fb8c3d0b8bca53238293c0d7d60b4d549c` |
 | Initial immutable deployment URL | https://pup-internlink-frontend-99r83tajz-rjcfajardo12.vercel.app/ |
-| Final packaging deployment | Pending final packaging deployment and verification |
+| Final deployed Git commit | `5aef1d3ca44c2dd40e34198843747bca9ce0424f` (verified from Vercel metadata; published on the release branch) |
+| Final production deployment | `dpl_52yTRErceG6AVJVrjBBu7z3ywitq`, READY, production |
+| Final immutable deployment URL | https://pup-internlink-frontend-d4lg41yh0-rjcfajardo12.vercel.app/ |
+| Final repository HEAD | A later documentation/evidence-only descendant; no runtime/config/package changes after the deployed commit. Use `git log -1` for its identity. |
 | Runtime source | Identical to refined port3000 release `9bfa4dc`; no application/business/authentication/persistence changes during publication |
 | Framework / Node / root | Next.js /24.x /repository root |
 | Install / build | `npm ci --ignore-scripts --no-audit --no-fund` / `npm run build` |
@@ -30,7 +33,10 @@ The first deployment of a new project was automatically assigned to production b
 - `node scripts/deployment-smoke.mjs https://pup-internlink-frontend.vercel.app docs/evidence/publication/live-smoke.json`: **5/5 role journeys PASS, zero page errors**. Verified the actual inline Eye/Eye Off control, each published demo account, dashboards, direct navigation, saved preferences after refresh and390px layout in isolated browser contexts.
 - Full production suite against this actual HTTPS origin: **52/52 PASS** (49 desktop Chromium/3 mobile,367.11 seconds,0 failed/skipped/flaky), executed against initial deployed commit `63d0e9f`. The final packaging revision changes no runtime source and receives a fresh cloud build, upload-input inspection and all-five-role smoke verification. The earlier local clean gates remain132 native/52 browser tests, lint, typecheck and production build PASS, with427 local packages installed.
 - Vercel cloud build completed successfully with Next16.4.6 and the configured install/build commands. Linux installed426 packages; local Windows installed427. Existing non-failing warnings included ESLint9 deprecation and Vercel's npm `cache-dir` environment setting.
-- Source-file inspection of the initial CLI deployment revealed generated `.next-e2e`, `test-results` and `playwright-report` inputs. These were synthetic test/build artifacts from the isolated release worktree, not owner browser data. Added explicit `.vercelignore` exclusions for generated build/test directories, environment/authentication files, logs and owner PDFs; the final deployment must verify that these are absent. No existing deployment was deleted.
+- Source-file inspection of the initial CLI deployment revealed generated `.next-e2e`, `test-results` and `playwright-report` inputs. These were synthetic test/build artifacts from the isolated release worktree, not owner browser data. Added explicit `.vercelignore` exclusions for generated build/test directories, environment/authentication files, logs and owner PDFs. The final source tree has **zero actual files under the excluded paths**, verified from the Vercel file API. Empty directory metadata remains for three paths; it contains no uploaded artifacts. Cloud download count changed from1933 to472 input files. No existing deployment was deleted.
+- The final packaging deployment completed its own cloud production build. Fresh all-five-role smoke verification again passed with zero page errors. **All9 final route/password/desktop/mobile browser checks passed** (0 failed/skipped/flaky), recorded in `final-live-checks.log` and its summary. Full52-case live results remain attributed to the initial deployment, whose application/package/configuration source is identical to the final deployment except for the upload ignore rules and documentation/evidence.
+
+Final evidence: `vercel-final.json` pins the exact deployed Git SHA/project/aliases, `final-upload-check.json` records file exclusions, `final-live-smoke.json` records actual account/persistence checks, and `preservation-live.json` records unchanged original/optimized worktrees and the original site's unchanged asset fingerprint. The final handover/evidence commit is intentionally not redeployed: it changes documentation and JSON/log evidence only. This distinction avoids claiming that evidence generated after deployment was present in that earlier build.
 
 ### Updating this separate project
 

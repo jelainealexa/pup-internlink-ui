@@ -1,0 +1,58 @@
+{
+  "deploymentId": "dpl_52yTRErceG6AVJVrjBBu7z3ywitq",
+  "checks": [
+    {
+      "name": ".next-e2e",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": true
+    },
+    {
+      "name": ".next",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": false
+    },
+    {
+      "name": "test-results",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": true
+    },
+    {
+      "name": "playwright-report",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": true
+    },
+    {
+      "name": "node_modules",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": false
+    },
+    {
+      "name": ".vercel",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": false
+    },
+    {
+      "name": ".env.local",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": false
+    },
+    {
+      "name": "PUP INTERNLINK_System Flow.pdf",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": false
+    },
+    {
+      "name": "DSI - Interface Content.pdf",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": false
+    },
+    {
+      "name": "tsconfig.tsbuildinfo",
+      "uploadedFiles": 0,
+      "metadataPlaceholder": false
+    }
+  ],
+  "unexpectedUploadedFiles": 0.0,
+  "pass": true,
+  "note": "Empty directory metadata may remain; assertions count actual uploaded files. Initial deployment had populated artifact folders; final upload has none."
+}
