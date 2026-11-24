@@ -7,6 +7,9 @@ import {
   Field,
   Filter,
   Filters,
+  RowLink,
+  Stack,
+  Status,
   PageHeader,
   RecordState,
   SaveForm,
@@ -363,16 +366,18 @@ export function Opportunities({ id, action }: FeatureProps) {
           "Status",
           "Actions",
         ]}
+        hrefs={rows.map((o) => `/dashboard/internships/${o.id}`)}
+        numeric={[3]}
         rows={rows.map((o) => [
-          o.title,
+          <Stack key="t" primary={o.title} />,
           get(db.companies, o.companyId).name,
           `${remainingSlots(db, o.id)} / ${o.capacity}`,
           db.availability?.[o.id]?.applications ??
             db.applications.filter((a) => a.opportunityId === o.id).length,
-          postingStatus(db, o.id),
-          <Link href={`/dashboard/internships/${o.id}`} key={5872}>
+          <Status key="st">{postingStatus(db, o.id)}</Status>,
+          <RowLink href={`/dashboard/internships/${o.id}`} key={5872}>
             Open opportunity
-          </Link>,
+          </RowLink>,
         ])}
       />
     </>

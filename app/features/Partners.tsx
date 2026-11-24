@@ -7,6 +7,10 @@ import {
   Field,
   Filter,
   Filters,
+  Identity,
+  RowLink,
+  Stack,
+  Status,
   PageHeader,
   RecordState,
   SaveForm,
@@ -492,24 +496,31 @@ export function Partners({ id, action, parentId }: FeatureProps) {
           "Status",
           "Actions",
         ]}
+        hrefs={rows.map((c) => `/dashboard/partners/${c.id}`)}
+        numeric={[3]}
+        tones={rows.map((c) =>
+          ["Expiring Soon", "Expired"].includes(partnership(db, c.id))
+            ? partnership(db, c.id) === "Expired"
+              ? "danger"
+              : "warning"
+            : undefined,
+        )}
         rows={rows.map((c) => [
-          c.name,
+          <Identity key="co" name={c.name} company />,
           c.industry,
-          <span key={8302}>
-            {c.contactPerson}
-            <br />
-            {c.email}
-            <br />
-            {c.phone}
-          </span>,
+          <Stack
+            key={8302}
+            primary={c.contactPerson}
+            secondary={`${c.email} · ${c.phone}`}
+          />,
           db.opportunities
             .filter((o) => o.companyId === c.id && available(db, o.id))
             .reduce((n, o) => n + remainingSlots(db, o.id), 0),
           c.moaEnd,
-          partnership(db, c.id),
-          <Link href={`/dashboard/partners/${c.id}`} key={8514}>
+          <Status key="st">{partnership(db, c.id)}</Status>,
+          <RowLink href={`/dashboard/partners/${c.id}`} key={8514}>
             Open company
-          </Link>,
+          </RowLink>,
         ])}
       />
     </>

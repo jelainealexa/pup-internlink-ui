@@ -1,5 +1,9 @@
-import "./globals.css";
-import "./refinements.css";
+import "@fontsource-variable/public-sans";
+import "@fontsource-variable/bricolage-grotesque";
+import "./styles/tokens.css";
+import "./styles/shell.css";
+import "./styles/components.css";
+import "./styles/pages.css";
 import { Suspense } from "react";
 import { AppProvider } from "./components/AppProvider";
 

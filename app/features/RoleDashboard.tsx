@@ -1,6 +1,30 @@
 "use client";
 import Link from "next/link";
-import { Details, PageHeader, RecordState, Table } from "../components/ui";
+import {
+  Activity,
+  ArrowRight,
+  Building2,
+  CalendarCheck,
+  CheckCircle2,
+  ClipboardList,
+  FilePenLine,
+  FileCheck2,
+  FileText,
+  GraduationCap,
+  Settings,
+  UserPlus,
+  UserRound,
+  Users,
+  Briefcase,
+  MapPinned,
+} from "lucide-react";
+import {
+  MetricLink,
+  PageHeader,
+  RecordState,
+  RowLink,
+  Status,
+} from "../components/ui";
 import {
   available,
   get,
@@ -227,160 +251,345 @@ export function RoleDashboard() {
       ),
     );
   }
+  const student = db.students.find((s) => s.accountId === account.id);
+  /* ---- "Needs attention": reminders governed by the user's alert preferences ---- */
+  const reminders: {
+    key: string;
+    href: string;
+    count: number;
+    label: string;
+  }[] = [];
+  if (prefs.progressAlerts)
+    reminders.push({
+      key: "progress",
+      href: "/dashboard/progress?view=reports&reportStatus=Pending&status=Ongoing",
+      count: pendingReports.length,
+      label: "Local progress reminders",
+    });
+  if (prefs.evaluationAlerts)
+    reminders.push({
+      key: "evaluation",
+      href: `/dashboard/evaluations?status=Pending&placementStatus=Ongoing${["Faculty Adviser", "Intern Supervisor"].includes(account.role) ? `&evaluator=${account.id}` : ""}`,
+      count: pendingEvals.length,
+      label: "Local evaluation reminders",
+    });
+  if (prefs.requirementAlerts && account.role === "Faculty Adviser")
+    reminders.push({
+      key: "requirements",
+      href: "/dashboard/requirements?view=submissions&status=Pending&attempt=latest",
+      count: currentSubs.filter((s) => s.status === "Pending").length,
+      label: "Local requirement reminders",
+    });
+  if (prefs.requirementAlerts && account.role === "Student")
+    for (const phase of [
+      "Before Internship",
+      "During Internship",
+      "After Internship",
+    ])
+      reminders.push({
+        key: phase,
+        href: `/dashboard/requirements?phase=${encodeURIComponent(phase)}`,
+        count: db.requirements
+          .filter((r) => r.phase === phase)
+          .map((r) =>
+            student ? latestSubmission(db, student.id, r.id) : undefined,
+          )
+          .filter((s) => s && s.status !== "Approved").length,
+        label: `${phase} document reminders`,
+      });
+  if (
+    prefs.partnershipAlerts &&
+    account.role === "Company Supervisor" &&
+    company
+  )
+    reminders.push({
+      key: "partnership",
+      href: `/dashboard/partners/${company.id}`,
+      count: partnership(db, company.id) === "Expiring Soon" ? 1 : 0,
+      label: "Local partnership expiration reminder",
+    });
+  /* ---- KPI grouping: pipelines render as connected strips, the rest as tiles ---- */
+  const byLabel = (label: string) => metrics.find(([name]) => name === label);
+  const tiles = (labels: string[]) =>
+    labels
+      .map(byLabel)
+      .filter((m): m is [string, number, string] => !!m)
+      .map(([label, count, href]) => (
+        <MetricLink key={label} href={href} count={count} label={label} />
+      ));
+  type Group = { title: string; labels: string[]; strip?: boolean };
+  const groups: Group[] =
+    account.role === "Faculty Adviser"
+      ? [
+          {
+            title: "Students",
+            labels: [
+              "Total assigned students",
+              "Pending requirement reviews",
+              "Students nearing completion",
+            ],
+          },
+          {
+            title: "Placements",
+            labels: [
+              "Active internship placements",
+              "Completed internship placements",
+            ],
+            strip: true,
+          },
+          {
+            title: "Reviews",
+            labels: ["Pending progress reports", "Pending evaluations"],
+            strip: true,
+          },
+        ]
+      : account.role === "Company Supervisor"
+        ? [
+            {
+              title: "Internship postings",
+              labels: [
+                "Total internship opportunities",
+                "Pending internship posting approvals",
+                "Approved internship postings",
+                "Active internship postings",
+                "Total available internship slots",
+              ],
+            },
+            {
+              title: "People",
+              labels: ["Total Intern Supervisors", "Total current interns"],
+              strip: true,
+            },
+          ]
+        : account.role === "Intern Supervisor"
+          ? [
+              {
+                title: "Applications",
+                labels: [
+                  "Pending applications",
+                  "Accepted applications",
+                  "Rejected applications",
+                ],
+                strip: true,
+              },
+              {
+                title: "Assignments",
+                labels: [
+                  "Total assigned internship opportunities",
+                  "Total applications received",
+                  "Total assigned interns",
+                ],
+              },
+              {
+                title: "Progress reports",
+                labels: [
+                  "Pending progress reports",
+                  "Approved progress reports",
+                ],
+                strip: true,
+              },
+              {
+                title: "Student evaluations",
+                labels: [
+                  "Pending student evaluations",
+                  "Completed student evaluations",
+                ],
+                strip: true,
+              },
+            ]
+          : [
+              {
+                title: "Opportunities",
+                labels: ["Available opportunities"],
+              },
+              {
+                title: "My applications",
+                labels: [
+                  "Pending applications",
+                  "Accepted applications",
+                  "Rejected applications",
+                ],
+                strip: true,
+              },
+              {
+                title: "My placements",
+                labels: [
+                  "Ongoing placements",
+                  "Completed placements",
+                  "Terminated placements",
+                ],
+                strip: true,
+              },
+            ];
+  type Action = [string, string, typeof Users];
+  const actions: Action[] = [
+    ...(account.role === "Student"
+      ? ([
+          ["My Profile", `/dashboard/students/${student?.id}`, GraduationCap],
+          ["Internship Requirements", "/dashboard/requirements", FileCheck2],
+          ["Daily Attendance Record", "/dashboard/attendance", CalendarCheck],
+          ["Weekly Report", "/dashboard/progress/weekly/create", FilePenLine],
+        ] as Action[])
+      : []),
+    ...(account.role === "Faculty Adviser"
+      ? ([
+          ["Pre-Register Student", "/dashboard/students/create", UserPlus],
+          ["Assigned students", "/dashboard/students", Users],
+          [
+            "Company-based progress monitoring",
+            "/dashboard/progress?view=reports",
+            Activity,
+          ],
+        ] as Action[])
+      : []),
+    ...(account.role === "Company Supervisor" && company
+      ? ([
+          [
+            "Company Profile and Intern Supervisor Management",
+            `/dashboard/partners/${company.id}`,
+            Building2,
+          ],
+          [
+            "Create Internship Posting",
+            "/dashboard/internships/create",
+            Briefcase,
+          ],
+        ] as Action[])
+      : []),
+    ...(account.role === "Intern Supervisor" && profile
+      ? ([
+          [
+            "Supervisor Profile",
+            `/dashboard/partners/${profile.companyId}/supervisors/${profile.id}`,
+            UserRound,
+          ],
+          [
+            "Application Management",
+            "/dashboard/applications?assigned=true",
+            FileText,
+          ],
+          ["My Interns", "/dashboard/students?interns=true", Users],
+        ] as Action[])
+      : []),
+    ["Internship Placements", "/dashboard/placements", MapPinned],
+    ["Internship Evaluation", "/dashboard/evaluations", ClipboardList],
+    ["Account Settings", "/dashboard/settings", Settings],
+  ];
   return (
     <>
       <PageHeader
         title={`${roleLabel(account.role)} dashboard`}
         description={`${account.name} / Academic year ${year} / Authorized shared browser-local records`}
       />
-      <div className="metric-links">
-        {metrics.map(([label, count, href]) => (
-          <Link key={label} href={href}>
-            <strong>{count}</strong>
-            {label}
-          </Link>
-        ))}
-      </div>
-      {account.role === "Company Supervisor" && company && (
-        <Details
-          items={[
-            ["Active MOA status", partnership(db, company.id)],
-            ["MOA expiration date", company.moaEnd],
-          ]}
-        />
-      )}
-      <section>
+      <section className="attention-summary">
         <h2>Needs attention</h2>
-        <div className="metric-links">
-          {prefs.progressAlerts && (
-            <Link href="/dashboard/progress?view=reports&reportStatus=Pending&status=Ongoing">
-              <strong>{pendingReports.length}</strong>Local progress reminders
-            </Link>
-          )}
-          {prefs.evaluationAlerts && (
-            <Link
-              href={`/dashboard/evaluations?status=Pending&placementStatus=Ongoing${["Faculty Adviser", "Intern Supervisor"].includes(account.role) ? `&evaluator=${account.id}` : ""}`}
-            >
-              <strong>{pendingEvals.length}</strong>Local evaluation reminders
-            </Link>
-          )}
-          {prefs.requirementAlerts && account.role === "Faculty Adviser" && (
-            <Link href="/dashboard/requirements?view=submissions&status=Pending&attempt=latest">
-              <strong>
-                {currentSubs.filter((s) => s.status === "Pending").length}
-              </strong>
-              Local requirement reminders
-            </Link>
-          )}
-          {prefs.requirementAlerts &&
-            account.role === "Student" &&
-            ["Before Internship", "During Internship", "After Internship"].map(
-              (phase) => {
-                const student = db.students.find(
-                  (s) => s.accountId === account.id,
-                );
-                const pending = db.requirements
-                  .filter((r) => r.phase === phase)
-                  .map((r) =>
-                    student
-                      ? latestSubmission(db, student.id, r.id)
-                      : undefined,
-                  )
-                  .filter((s) => s && s.status !== "Approved");
-                return (
-                  <Link
-                    key={phase}
-                    href={`/dashboard/requirements?phase=${encodeURIComponent(phase)}`}
+        {reminders.length ? (
+          <div className="metric-links metric-links--urgent">
+            {reminders.map((item, index) => (
+              <MetricLink
+                key={item.key}
+                href={item.href}
+                count={item.count}
+                label={item.label}
+                tone={index === 0 ? "urgent" : undefined}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="all-clear">
+            <CheckCircle2 size={16} aria-hidden="true" />
+            Reminders are switched off in Settings.
+          </p>
+        )}
+      </section>
+      <div className="dashboard-grid">
+        <div className="dashboard-main">
+          <section>
+            <h2>Overview</h2>
+            <div className="summary-groups">
+              {groups.map((group) => (
+                <div
+                  className={`summary-group${group.strip || group.labels.length < 3 ? "" : " is-wide"}`}
+                  key={group.title}
+                >
+                  <h3>{group.title}</h3>
+                  <div
+                    className={`metric-links${group.strip ? " metric-links--strip" : ""}`}
                   >
-                    <strong>{pending.length}</strong>
-                    {phase} document reminders
-                  </Link>
-                );
-              },
-            )}
-          {prefs.partnershipAlerts &&
-            account.role === "Company Supervisor" &&
-            company && (
-              <Link href={`/dashboard/partners/${company.id}`}>
-                <strong>
-                  {partnership(db, company.id) === "Expiring Soon" ? 1 : 0}
-                </strong>
-                Local partnership expiration reminder
-              </Link>
-            )}
-        </div>
-      </section>
-      <section>
-        <h2>Workspace actions</h2>
-        <div className="record-links">
-          {account.role === "Student" && (
-            <>
-              <Link
-                href={`/dashboard/students/${db.students.find((s) => s.accountId === account.id)?.id}`}
-              >
-                My Profile
-              </Link>
-              <Link href="/dashboard/requirements">
-                Internship Requirements
-              </Link>
-              <Link href="/dashboard/attendance">Daily Attendance Record</Link>
-              <Link href="/dashboard/progress/weekly/create">
-                Weekly Report
-              </Link>
-            </>
-          )}
-          {account.role === "Faculty Adviser" && (
-            <>
-              <Link href="/dashboard/students/create">
-                Pre-Register Student
-              </Link>
-              <Link href="/dashboard/students">Assigned students</Link>
-              <Link href="/dashboard/progress?view=reports">
-                Company-based progress monitoring
-              </Link>
-            </>
-          )}
+                    {tiles(group.labels)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
           {account.role === "Company Supervisor" && company && (
-            <>
-              <Link href={`/dashboard/partners/${company.id}`}>
-                Company Profile and Intern Supervisor Management
-              </Link>
-              <Link href="/dashboard/internships/create">
-                Create Internship Posting
-              </Link>
-            </>
+            <section>
+              <h2>Partnership status</h2>
+              <div className="panel">
+                <dl className="partnership-card">
+                  <div>
+                    <dt>Active MOA status</dt>
+                    <dd>
+                      <Status>{partnership(db, company.id)}</Status>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>MOA expiration date</dt>
+                    <dd>{company.moaEnd}</dd>
+                  </div>
+                </dl>
+              </div>
+            </section>
           )}
-          {account.role === "Intern Supervisor" && profile && (
-            <>
-              <Link
-                href={`/dashboard/partners/${profile.companyId}/supervisors/${profile.id}`}
-              >
-                Supervisor Profile
-              </Link>
-              <Link href="/dashboard/applications?assigned=true">
-                Application Management
-              </Link>
-              <Link href="/dashboard/students?interns=true">My Interns</Link>
-            </>
-          )}
-          <Link href="/dashboard/placements">Internship Placements</Link>
-          <Link href="/dashboard/evaluations">Internship Evaluation</Link>
-          <Link href="/dashboard/settings">Account Settings</Link>
         </div>
-      </section>
-      <section>
-        <h2>Recent activity</h2>
-        <Table
-          headers={["Activity", "Date", "Record"]}
-          rows={db.activities.slice(0, 12).map((a) => [
-            a.message,
-            a.at,
-            <Link key={a.id} href={a.href}>
-              Open related record
-            </Link>,
-          ])}
-        />
-      </section>
+        <aside
+          className="dashboard-aside"
+          aria-label="Shortcuts and recent activity"
+        >
+          <section>
+            <h2>Workspace actions</h2>
+            <ul className="quick-actions">
+              {actions.map(([label, href, Icon]) => (
+                <li key={label}>
+                  <Link href={href}>
+                    <Icon size={17} aria-hidden="true" />
+                    {label}
+                    <ArrowRight
+                      className="qa-go"
+                      size={15}
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <h2>Recent activity</h2>
+            <div className="panel panel-flush">
+              <ul className="activity-list">
+                {db.activities.slice(0, 8).map((a) => (
+                  <li key={a.id}>
+                    <span className="activity-dot" aria-hidden="true" />
+                    <div className="activity-body">
+                      <p>{a.message}</p>
+                      <time dateTime={a.at}>
+                        {new Date(a.at).toLocaleString([], {
+                          month: "short",
+                          day: "numeric",
+                          hour: "numeric",
+                          minute: "2-digit",
+                        })}
+                      </time>
+                    </div>
+                    <RowLink href={a.href}>Open related record</RowLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </aside>
+      </div>
     </>
   );
 }

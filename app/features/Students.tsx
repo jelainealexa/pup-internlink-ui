@@ -7,10 +7,15 @@ import {
   Field,
   Filter,
   Filters,
+  Identity,
+  MetricLink,
+  Mono,
   PageHeader,
   RecordState,
+  RowLink,
   SaveForm,
   Search,
+  Stack,
   Status,
   Table,
   options,
@@ -18,6 +23,7 @@ import {
   ActionButton,
   useFilters,
 } from "../components/ui";
+import { Pencil, UserPlus } from "lucide-react";
 import {
   companyFor,
   hours,
@@ -174,6 +180,20 @@ export function Students({ id, action }: FeatureProps) {
                   "",
               ),
         ));
+    const canManage = registrar && canReviewStudent(db, account, student.id);
+    const studentAccount = get(db.accounts, student.accountId);
+    const adviserName =
+      db.accounts.find(
+        (a) =>
+          a.id ===
+          db.faculty.find((f) => f.id === student.adviserId)?.accountId,
+      )?.name ?? "Not assigned";
+    const eligibility = !documentAccess
+      ? "Document checklist is not shared with this role"
+      : missingRequirements(db, student.id).length
+        ? "Incomplete — approval needed"
+        : "Eligible under demo policy";
+    const currentPlacement = ps.find((p) => p.status === "Ongoing") ?? ps[0];
     return (
       <>
         <Back href="/dashboard/students">Student directory</Back>
@@ -181,139 +201,43 @@ export function Students({ id, action }: FeatureProps) {
           title={nameOf(student)}
           description={`${student.studentNumber} · ${student.program} · ${student.yearLevel} / ${student.section}`}
         >
-          {registrar && canReviewStudent(db, account, student.id) && (
+          {canManage && (
             <Link
               className="secondary-action"
               href={`/dashboard/students/${id}/edit`}
             >
+              <Pencil size={16} aria-hidden="true" />
               Edit Profile
             </Link>
           )}
         </PageHeader>
-        {registrar && canReviewStudent(db, account, student.id) && (
-          <section>
-            <h2>Account activation</h2>
-            <p>
-              Account status:{" "}
-              {get(db.accounts, student.accountId).activationState}
-            </p>
-            {get(db.accounts, student.accountId).activationState ===
-              "Pending Activation" && (
-              <ActionButton
-                action={async () => {
-                  await mutate({
-                    type: "account.invite",
-                    studentId: student.id,
-                  });
-                  setNotice("Local invitation generated. No email was sent.");
-                }}
-              >
-                Generate Invitation
-              </ActionButton>
-            )}
-            {(db.accountRequests ?? [])
-              .filter(
-                (r) =>
-                  r.accountId === student.accountId &&
-                  r.purpose === "Activation" &&
-                  !r.usedAt &&
-                  r.expiresAt > new Date().toISOString(),
-              )
-              .map((r) => (
-                <p key={r.id}>
-                  <Link
-                    href={`/activate?token=${encodeURIComponent(r.id)}&email=${encodeURIComponent(student.email)}`}
-                  >
-                    Open demonstration activation link
-                  </Link>{" "}
-                  · Invitation code: <code>{r.id}</code> · Expires {r.expiresAt}
-                </p>
-              ))}
-            {get(db.accounts, student.accountId).activationState !==
-              "Deactivated" && (
-              <ActionButton
-                confirm="Deactivate this student account and invalidate invitations? Historical internship records remain."
-                action={async () => {
-                  await mutate({
-                    type: "account.deactivate",
-                    accountId: student.accountId,
-                  });
-                }}
-              >
-                Deactivate Student Account
-              </ActionButton>
-            )}
-          </section>
-        )}
-        <Details
-          items={[
-            ["Email", student.email],
-            [
-              "Account status",
-              get(db.accounts, student.accountId).activationState,
-            ],
-            [
-              "Profile completion",
-              `${Math.round(([student.studentNumber, student.firstName, student.lastName, student.email, student.program, student.yearLevel, student.section, student.academicYear].filter((v) => !!v?.trim()).length / 8) * 100)}% (8 required identity and academic fields)`,
-            ],
-            [
-              "Assigned Faculty Adviser",
-              db.accounts.find(
-                (a) =>
-                  a.id ===
-                  db.faculty.find((f) => f.id === student.adviserId)?.accountId,
-              )?.name ?? "Not assigned",
-            ],
-            [
-              "Status",
-              <Status key={3387}>{studentStatus(db, student.id)}</Status>,
-            ],
-            ["Approved hours (all placements)", reviewed],
-            ["Academic year", student.academicYear],
-            [
-              "Current mandatory eligibility",
-              !documentAccess
-                ? "Document checklist is not shared with this role"
-                : missingRequirements(db, student.id).length
-                  ? "Incomplete — approval needed"
-                  : "Eligible under demo policy",
-            ],
-          ]}
-        />
-        {account.role === "Student" && (
-          <Link href="/dashboard/settings">Account Settings</Link>
-        )}
-        {coordinator && (
-          <SaveForm
-            revision={db.revision}
-            submit="Assign Faculty Adviser"
-            save={async (data, revision) => {
-              await mutate(
-                {
-                  type: "faculty.assign",
-                  studentId: student.id,
-                  adviserId: text(data, "adviserId"),
-                },
-                undefined,
-                revision,
-              );
-              setNotice("Faculty assignment saved.");
-            }}
-          >
-            <Field
-              label="Faculty Adviser"
-              name="adviserId"
-              value={student.adviserId}
-              options={db.faculty
-                .filter((f) => get(db.accounts, f.accountId).active)
-                .map((f) => ({
-                  value: f.id,
-                  label: get(db.accounts, f.accountId).name,
-                }))}
-            />
-          </SaveForm>
-        )}
-        <div className="record-links">
+        <div className="record-summary" aria-label="Student summary">
+          <div>
+            <span className="summary-label">Internship status</span>
+            <Status>{studentStatus(db, student.id)}</Status>
+          </div>
+          <div>
+            <span className="summary-label">Current placement</span>
+            <span className="summary-value">
+              {currentPlacement
+                ? companyFor(db, currentPlacement).name
+                : "Not yet placed"}
+            </span>
+          </div>
+          <div>
+            <span className="summary-label">Faculty adviser</span>
+            <span className="summary-value">{adviserName}</span>
+          </div>
+          <div>
+            <span className="summary-label">Approved hours</span>
+            <span className="summary-value">{reviewed}</span>
+          </div>
+          <div>
+            <span className="summary-label">Mandatory eligibility</span>
+            <span className="summary-value">{eligibility}</span>
+          </div>
+        </div>
+        <nav className="record-links" aria-label="Student records">
           {documentAccess && (
             <Link
               href={`/dashboard/requirements?student=${id}&view=submissions`}
@@ -329,25 +253,150 @@ export function Students({ id, action }: FeatureProps) {
             Progress reports
           </Link>
           <Link href={`/dashboard/evaluations?student=${id}`}>Evaluations</Link>
+          {account.role === "Student" && (
+            <Link href="/dashboard/settings">Account Settings</Link>
+          )}
+        </nav>
+        <div className="record-layout">
+          <div className="record-main">
+            {documentAccess && (
+              <section>
+                <h2>Requirement checklist</h2>
+                <RequirementChecklist studentId={student.id} />
+              </section>
+            )}
+            <section>
+              <h2>Applications</h2>
+              <ApplicationRows studentId={id} />
+            </section>
+            <section>
+              <h2>Placements and supervision</h2>
+              <PlacementRows placements={ps} />
+            </section>
+            <section>
+              <h2>Evaluations</h2>
+              <EvaluationRows studentId={id} />
+            </section>
+          </div>
+          <aside className="record-aside" aria-label="Profile and account">
+            <section>
+              <h2>Profile</h2>
+              <Details
+                items={[
+                  ["Email", student.email],
+                  ["Account status", studentAccount.activationState],
+                  [
+                    "Profile completion",
+                    `${Math.round(([student.studentNumber, student.firstName, student.lastName, student.email, student.program, student.yearLevel, student.section, student.academicYear].filter((v) => !!v?.trim()).length / 8) * 100)}% (8 required identity and academic fields)`,
+                  ],
+                  ["Assigned Faculty Adviser", adviserName],
+                  [
+                    "Status",
+                    <Status key={3387}>{studentStatus(db, student.id)}</Status>,
+                  ],
+                  ["Approved hours (all placements)", reviewed],
+                  ["Academic year", student.academicYear],
+                  ["Current mandatory eligibility", eligibility],
+                ]}
+              />
+            </section>
+            {canManage && (
+              <section>
+                <h2>Account activation</h2>
+                <div className="panel">
+                  <p>
+                    Account status:{" "}
+                    <Status>{studentAccount.activationState}</Status>
+                  </p>
+                  <div className="action-bar">
+                    {studentAccount.activationState ===
+                      "Pending Activation" && (
+                      <ActionButton
+                        action={async () => {
+                          await mutate({
+                            type: "account.invite",
+                            studentId: student.id,
+                          });
+                          setNotice(
+                            "Local invitation generated. No email was sent.",
+                          );
+                        }}
+                      >
+                        Generate Invitation
+                      </ActionButton>
+                    )}
+                    {studentAccount.activationState !== "Deactivated" && (
+                      <ActionButton
+                        danger
+                        confirm="Deactivate this student account and invalidate invitations? Historical internship records remain."
+                        action={async () => {
+                          await mutate({
+                            type: "account.deactivate",
+                            accountId: student.accountId,
+                          });
+                        }}
+                      >
+                        Deactivate Student Account
+                      </ActionButton>
+                    )}
+                  </div>
+                  {(db.accountRequests ?? [])
+                    .filter(
+                      (r) =>
+                        r.accountId === student.accountId &&
+                        r.purpose === "Activation" &&
+                        !r.usedAt &&
+                        r.expiresAt > new Date().toISOString(),
+                    )
+                    .map((r) => (
+                      <p key={r.id} className="invite-note">
+                        <Link
+                          href={`/activate?token=${encodeURIComponent(r.id)}&email=${encodeURIComponent(student.email)}`}
+                        >
+                          Open demonstration activation link
+                        </Link>{" "}
+                        · Invitation code: <code>{r.id}</code> · Expires{" "}
+                        {r.expiresAt}
+                      </p>
+                    ))}
+                </div>
+              </section>
+            )}
+            {coordinator && (
+              <section>
+                <h2>Faculty adviser</h2>
+                <SaveForm
+                  revision={db.revision}
+                  submit="Assign Faculty Adviser"
+                  save={async (data, revision) => {
+                    await mutate(
+                      {
+                        type: "faculty.assign",
+                        studentId: student.id,
+                        adviserId: text(data, "adviserId"),
+                      },
+                      undefined,
+                      revision,
+                    );
+                    setNotice("Faculty assignment saved.");
+                  }}
+                >
+                  <Field
+                    label="Faculty Adviser"
+                    name="adviserId"
+                    value={student.adviserId}
+                    options={db.faculty
+                      .filter((f) => get(db.accounts, f.accountId).active)
+                      .map((f) => ({
+                        value: f.id,
+                        label: get(db.accounts, f.accountId).name,
+                      }))}
+                  />
+                </SaveForm>
+              </section>
+            )}
+          </aside>
         </div>
-        {documentAccess && (
-          <section>
-            <h2>Requirement checklist</h2>
-            <RequirementChecklist studentId={student.id} />
-          </section>
-        )}
-        <section>
-          <h2>Applications</h2>
-          <ApplicationRows studentId={id} />
-        </section>
-        <section>
-          <h2>Placements and supervision</h2>
-          <PlacementRows placements={ps} />
-        </section>
-        <section>
-          <h2>Evaluations</h2>
-          <EvaluationRows studentId={id} />
-        </section>
       </>
     );
   }
@@ -406,31 +455,30 @@ export function Students({ id, action }: FeatureProps) {
       >
         {registrar && (
           <Link className="primary-action" href="/dashboard/students/create">
-            + Add / Pre-Register Student
+            <UserPlus size={16} aria-hidden="true" />
+            Add / Pre-Register Student
           </Link>
         )}
       </PageHeader>
       {registrar && (
-        <div className="metric-links">
-          <Link href="/dashboard/students">
-            <strong>
-              {db.students.filter((s) => s.academicYear === year).length}
-            </strong>
-            Total Registered Students
-          </Link>
-          <Link href="/dashboard/students?activation=Pending%20Activation">
-            <strong>
-              {
-                db.students.filter(
-                  (s) =>
-                    s.academicYear === year &&
-                    get(db.accounts, s.accountId).activationState ===
-                      "Pending Activation",
-                ).length
-              }
-            </strong>
-            Pending Account Activations
-          </Link>
+        <div className="metric-links metric-links--strip metric-links--pair">
+          <MetricLink
+            href="/dashboard/students"
+            count={db.students.filter((s) => s.academicYear === year).length}
+            label="Total Registered Students"
+          />
+          <MetricLink
+            href="/dashboard/students?activation=Pending%20Activation"
+            count={
+              db.students.filter(
+                (s) =>
+                  s.academicYear === year &&
+                  get(db.accounts, s.accountId).activationState ===
+                    "Pending Activation",
+              ).length
+            }
+            label="Pending Account Activations"
+          />
         </div>
       )}
       <Filters>
@@ -496,29 +544,35 @@ export function Students({ id, action }: FeatureProps) {
           "Student ID",
           "Student",
           "Program",
-          "Year / Section",
           "Placement",
           "Status",
+          "Activation",
           "Rendered Hours",
           "Approved Hours",
-          "Activation",
           "Actions",
         ]}
+        numeric={[6, 7]}
+        hrefs={rows.map((s) => `/dashboard/students/${s.id}`)}
         rows={rows.map((s) => {
           const p = placementsForStudent(db, s.id)[0];
           return [
-            s.studentNumber,
-            nameOf(s),
-            s.program,
-            `${s.yearLevel} / ${s.section}`,
+            <Mono key="id">{s.studentNumber}</Mono>,
+            <Identity key="who" name={nameOf(s)} meta={s.email} />,
+            <Stack
+              key="program"
+              primary={s.program}
+              secondary={`${s.yearLevel} / ${s.section}`}
+            />,
             p ? companyFor(db, p).name : "Not Yet Placed",
-            studentStatus(db, s.id),
+            <Status key="status">{studentStatus(db, s.id)}</Status>,
+            <Status key="activation">
+              {get(db.accounts, s.accountId).activationState ?? "Active"}
+            </Status>,
             totalHours(s.id, "submitted"),
             totalHours(s.id),
-            get(db.accounts, s.accountId).activationState,
-            <Link href={`/dashboard/students/${s.id}`} key={6406}>
+            <RowLink href={`/dashboard/students/${s.id}`} key={6406}>
               Open student
-            </Link>,
+            </RowLink>,
           ];
         })}
       />

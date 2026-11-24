@@ -5,9 +5,13 @@ import {
   Back,
   Details,
   Field,
+  Identity,
+  Mono,
+  RowLink,
   PageHeader,
   RecordState,
   SaveForm,
+  Status,
   Table,
   text,
 } from "../components/ui";
@@ -137,13 +141,14 @@ export function Faculty({ id, action }: FeatureProps) {
             "Program / Year / Section",
             "Actions",
           ]}
+          hrefs={assigned.map((s) => `/dashboard/students/${s.id}`)}
           rows={assigned.map((s) => [
-            s.studentNumber,
-            nameOf(s),
+            <Mono key="n">{s.studentNumber}</Mono>,
+            <Identity key="who" name={nameOf(s)} />,
             `${s.program} / ${s.yearLevel} / ${s.section}`,
-            <Link key={s.id} href={`/dashboard/students/${s.id}`}>
+            <RowLink key={s.id} href={`/dashboard/students/${s.id}`}>
               Open student
-            </Link>,
+            </RowLink>,
           ])}
         />
       </>
@@ -168,19 +173,21 @@ export function Faculty({ id, action }: FeatureProps) {
           "Ongoing placements",
           "Actions",
         ]}
+        hrefs={db.faculty.map((f) => `/dashboard/faculty/${f.id}`)}
+        numeric={[3, 4]}
         rows={db.faculty.map((f) => {
           const a = get(db.accounts, f.accountId);
           return [
-            a.name,
+            <Identity key="who" name={a.name} />,
             a.email,
-            a.active ? "Active" : "Deactivated",
+            <Status key="st">{a.active ? "Active" : "Deactivated"}</Status>,
             db.students.filter((s) => s.adviserId === f.id).length,
             db.placements.filter(
               (p) => p.adviserId === f.id && p.status === "Ongoing",
             ).length,
-            <Link key={f.id} href={`/dashboard/faculty/${f.id}`}>
+            <RowLink key={f.id} href={`/dashboard/faculty/${f.id}`}>
               Open faculty
-            </Link>,
+            </RowLink>,
           ];
         })}
       />

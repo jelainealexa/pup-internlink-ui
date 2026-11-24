@@ -1,0 +1,294 @@
+/* =========================================================
+   PUP INTERNLINK — DESIGN TOKENS + BASE
+   Single source of truth for colour, type, space, radius,
+   elevation and motion. Every other stylesheet consumes these
+   variables; nothing downstream should hard-code a colour.
+   ========================================================= */
+
+:root {
+  /* ---- Brand: PUP maroon (accent, never a wash) ---- */
+  --maroon-950: #2b0b12;
+  --maroon-900: #4b1220;
+  --maroon-800: #611827;
+  --maroon-700: #7a1f31;
+  --maroon-600: #942a3e;
+  --maroon-200: #e8c9d0;
+  --maroon-100: #f4e4e8;
+  --maroon-50: #faf2f4;
+
+  /* ---- Secondary accent: PUP gold (used sparingly for meaning) ---- */
+  --gold-500: #c08a24;
+  --gold-400: #e3b24f;
+  --gold-700: #8a5c0d;
+  --gold-100: #f8ecd2;
+
+  /* ---- Warm neutrals ---- */
+  --canvas: #f6f3ee;
+  --surface: #ffffff;
+  --surface-muted: #faf8f4;
+  --sunken: #ede8e0;
+  --line: #e3ddd3;
+  --line-strong: #cfc7bb;
+  --control-border: #8a8178;
+
+  --text: #1b1715;
+  --text-muted: #5f5851;
+  --text-subtle: #6b635b;
+  --text-on-dark: #e6dfd6;
+  --text-on-dark-muted: #a99f94;
+
+  /* ---- Semantic roles ---- */
+  --primary: var(--maroon-700);
+  --primary-hover: var(--maroon-800);
+  --primary-active: var(--maroon-900);
+  --primary-soft: var(--maroon-100);
+  --primary-soft-line: var(--maroon-200);
+  --on-primary: #ffffff;
+  --focus: #2457a6;
+
+  --success: #1b6a40;
+  --success-soft: #e4f2ea;
+  --success-line: #b9dcc7;
+  --warning: #85500a;
+  --warning-soft: #fbefd3;
+  --warning-line: #ecd29a;
+  --danger: #a3241b;
+  --danger-soft: #fae6e3;
+  --danger-line: #efbdb7;
+  --info: #1f4e7a;
+  --info-soft: #e5edf6;
+  --info-line: #b8cde3;
+  --neutral: #4a443e;
+  --neutral-soft: #ece7df;
+  --neutral-line: #d6cec2;
+
+  /* ---- Sidebar (dark charcoal rail) ---- */
+  --rail-bg: #1f1a18;
+  --rail-raised: #2a2321;
+  --rail-line: #3a312e;
+  --rail-hover: rgba(255, 255, 255, 0.06);
+  --rail-active: #3a2f2b;
+
+  /* ---- Typography ---- */
+  --font-display:
+    "Bricolage Grotesque Variable", "Public Sans Variable", system-ui,
+    -apple-system, "Segoe UI", sans-serif;
+  --font-ui:
+    "Public Sans Variable", system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
+  --font-mono:
+    ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+
+  --fs-2xs: 0.6875rem; /* 11 */
+  --fs-xs: 0.75rem; /* 12 */
+  --fs-sm: 0.8125rem; /* 13 */
+  --fs-base: 0.875rem; /* 14 */
+  --fs-md: 0.9375rem; /* 15 */
+  --fs-lg: 1.0625rem; /* 17 */
+  --fs-xl: 1.25rem; /* 20 */
+  --fs-2xl: 1.5rem; /* 24 */
+  --fs-3xl: clamp(1.625rem, 1.2rem + 1.2vw, 2.125rem); /* 26–34 */
+  --fs-stat: clamp(1.75rem, 1.4rem + 0.9vw, 2.375rem);
+  --lh-tight: 1.2;
+  --lh-snug: 1.4;
+  --lh-body: 1.6;
+
+  /* ---- Spacing (4px base) ---- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+
+  /* ---- Shape ---- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation (warm-tinted, low) ---- */
+  --shadow-xs: 0 1px 0 rgba(43, 11, 18, 0.04);
+  --shadow-sm:
+    0 1px 2px rgba(43, 11, 18, 0.06), 0 1px 1px rgba(43, 11, 18, 0.04);
+  --shadow-md:
+    0 6px 16px -4px rgba(43, 11, 18, 0.12), 0 2px 4px rgba(43, 11, 18, 0.05);
+  --shadow-lg: 0 24px 48px -12px rgba(43, 11, 18, 0.28);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --t-fast: 120ms;
+  --t-base: 180ms;
+
+  /* ---- Layout ---- */
+  --rail-width: 268px;
+  --rail-width-collapsed: 76px;
+  --topbar-height: 60px;
+  --content-max: 1280px;
+  --control-height: 2.5rem; /* 40 */
+  --control-height-sm: 2.25rem; /* 36 */
+  --row-pad-y: 0.8125rem;
+}
+
+/* Preference: larger interface text. Tokens scale, components follow. */
+.larger-text {
+  --fs-xs: 0.875rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1rem;
+  --fs-md: 1.0625rem;
+}
+/* Preference: compact table density. */
+.compact-tables {
+  --row-pad-y: 0.4375rem;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+body {
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--text);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.application {
+  min-height: 100vh;
+  /* Re-resolves --fs-base so the larger-text preference reaches every control. */
+  font-size: var(--fs-base);
+}
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--text);
+  text-wrap: balance;
+}
+h1 {
+  font-size: var(--fs-3xl);
+  font-weight: 650;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.022em;
+}
+h2 {
+  font-size: var(--fs-xl);
+  font-weight: 620;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.012em;
+}
+h3 {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+}
+p {
+  margin: 0 0 var(--sp-3);
+}
+a {
+  color: var(--primary);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover {
+  color: var(--primary-hover);
+  text-decoration-thickness: 2px;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--sunken);
+  padding: 0.1em 0.4em;
+  border-radius: var(--radius-xs);
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: var(--sp-6) 0;
+}
+svg {
+  flex-shrink: 0;
+}
+progress {
+  accent-color: var(--primary);
+}
+::selection {
+  background: var(--maroon-200);
+  color: var(--maroon-950);
+}
+
+/* ---------- Accessibility ---------- */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: var(--sp-3);
+  z-index: 4000;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: var(--sp-3);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+  transition: none !important;
+  animation: none !important;
+  scroll-behavior: auto !important;
+}

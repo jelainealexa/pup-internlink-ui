@@ -9,10 +9,16 @@ import {
   Field,
   Filter,
   Filters,
+  Identity,
+  MetricLink,
+  Mono,
   PageHeader,
   RecordState,
+  RowLink,
   SaveForm,
   Search,
+  Stack,
+  Status,
   Table,
   options,
   text,
@@ -126,6 +132,13 @@ export function Applications({ id, action }: FeatureProps) {
     const placement = db.placements.find(
       (p) => p.applicationId === application.id,
     );
+    const mayDecide =
+      canDecideApplication(db, account, application.opportunityId) &&
+      application.status === "Pending";
+    const showChecklist =
+      account.role !== "Company Supervisor" &&
+      (account.role !== "Intern Supervisor" ||
+        canDecideApplication(db, account, opportunity.id));
     return (
       <>
         <Back href="/dashboard/applications">Applications</Back>
@@ -133,155 +146,212 @@ export function Applications({ id, action }: FeatureProps) {
           title={nameOf(student)}
           description={`${opportunity.title} · ${company.name} · ${application.status}`}
         />
-        <Details
-          items={[
-            ["Application ID", application.id],
-            [
-              "Status",
-              <strong data-testid="application-status" key={2771}>
-                {application.status}
-              </strong>,
-            ],
-            [
-              "Student",
-              <Link href={`/dashboard/students/${student.id}`} key={2856}>
-                {nameOf(student)} ({student.studentNumber})
-              </Link>,
-            ],
-            [
-              "Program / Year / Section",
-              `${student.program} · ${student.yearLevel} / ${student.section}`,
-            ],
-            [
-              "Opportunity",
-              <Link
-                href={`/dashboard/internships/${opportunity.id}`}
-                key={3070}
-              >
-                {opportunity.title}
-              </Link>,
-            ],
-            ["Description", opportunity.description],
-            [
-              "Company",
-              <Link href={`/dashboard/partners/${company.id}`} key={3209}>
-                {company.name}
-              </Link>,
-            ],
-            ["Remaining slots", remainingSlots(db, opportunity.id)],
-            ["Submitted", new Date(application.submittedAt).toLocaleString()],
-          ]}
-        />
-        {account.role !== "Company Supervisor" &&
-          (account.role !== "Intern Supervisor" ||
-            canDecideApplication(db, account, opportunity.id)) && (
-            <section>
-              <h2>Mandatory requirement checklist</h2>
-              <RequirementChecklist
-                studentId={student.id}
-                phase="Before Internship"
-              />
-              <p>
-                {missingRequirements(db, student.id).length
-                  ? "Acceptance is blocked until all mandatory requirements are approved (demonstration policy)."
-                  : "Mandatory requirement eligibility satisfied."}
-              </p>
-            </section>
-          )}
-        {canDecideApplication(db, account, application.opportunityId) &&
-          application.status === "Pending" && (
-            <section>
-              <h2>Application decision</h2>
-              <label className="field">
-                Acceptance remarks (optional)
-                <textarea
-                  value={acceptRemarks}
-                  onChange={(e) => setAcceptRemarks(e.target.value)}
-                  maxLength={2000}
-                />
-              </label>
-              <ActionButton
-                confirm="Accept this application after reviewing its requirements and availability? Capacity will be consumed only when a placement is saved."
-                action={async () => {
-                  await mutate({
-                    type: "application.decide",
-                    id: application.id,
-                    decision: "Accepted",
-                    reason: acceptRemarks,
-                  });
-                  setNotice("Application accepted; related views updated.");
-                }}
-              >
-                Accept Application
-              </ActionButton>
-              <SaveForm
-                revision={db.revision}
-                submit="Confirm Rejection"
-                save={async (data, revision) => {
-                  if (text(data, "confirm") !== "reject")
-                    throw new Error(
-                      "Select the rejection confirmation before saving.",
-                    );
-                  await mutate(
-                    {
-                      type: "application.decide",
-                      id: application.id,
-                      decision: "Rejected",
-                      reason: text(data, "reason"),
-                    },
-                    undefined,
-                    revision,
-                  );
-                  setNotice("Application rejected; reason and history saved.");
-                }}
-              >
-                <Field label="Rejection reason" name="reason" type="textarea" />
-                <div className="checkbox-field">
-                  <input
-                    id="reject-confirm"
-                    type="checkbox"
-                    name="confirm"
-                    value="reject"
-                    required
-                  />
-                  <label htmlFor="reject-confirm">
-                    I confirm rejection of this application.
-                  </label>
-                </div>
-              </SaveForm>
-            </section>
-          )}
-        {application.status === "Accepted" && (
-          <div className="action-bar">
-            {placement ? (
-              <Link
-                className="simple-action"
-                href={`/dashboard/placements/${placement.id}`}
-              >
-                Open existing placement
-              </Link>
-            ) : (
-              coordinator && (
-                <Link
-                  className="primary-action"
-                  href={`/dashboard/placements/create?application=${application.id}`}
-                >
-                  Create Placement
-                </Link>
-              )
-            )}
+        <div className="record-summary" aria-label="Application summary">
+          <div>
+            <span className="summary-label">Decision</span>
+            <Status>{application.status}</Status>
           </div>
-        )}
-        <h2>Decision history</h2>
-        <Table
-          headers={["Status", "Date", "Actor / Role", "Reason"]}
-          rows={application.history.map((h) => [
-            h.status,
-            new Date(h.at).toLocaleString(),
-            `${accountName(db, h.actorId)} / ${db.accounts.find((a) => a.id === h.actorId)?.role ?? "Historical actor"}`,
-            h.reason ?? "—",
-          ])}
-        />
+          <div>
+            <span className="summary-label">Opportunity</span>
+            <span className="summary-value">{opportunity.title}</span>
+          </div>
+          <div>
+            <span className="summary-label">Company</span>
+            <span className="summary-value">{company.name}</span>
+          </div>
+          <div>
+            <span className="summary-label">Remaining slots</span>
+            <span className="summary-value">
+              {remainingSlots(db, opportunity.id)}
+            </span>
+          </div>
+          <div>
+            <span className="summary-label">Submitted</span>
+            <span className="summary-value">
+              {new Date(application.submittedAt).toLocaleDateString()}
+            </span>
+          </div>
+        </div>
+        <div className="record-layout">
+          <div className="record-main">
+            {showChecklist && (
+              <section>
+                <h2>Mandatory requirement checklist</h2>
+                <RequirementChecklist
+                  studentId={student.id}
+                  phase="Before Internship"
+                />
+                <p
+                  className={`gate-note ${missingRequirements(db, student.id).length ? "is-blocked" : "is-clear"}`}
+                >
+                  {missingRequirements(db, student.id).length
+                    ? "Acceptance is blocked until all mandatory requirements are approved (demonstration policy)."
+                    : "Mandatory requirement eligibility satisfied."}
+                </p>
+              </section>
+            )}
+            {mayDecide && (
+              <section>
+                <h2>Application decision</h2>
+                <div className="decision-grid">
+                  <div className="panel decision-accept">
+                    <h3>Accept</h3>
+                    <label className="field">
+                      Acceptance remarks (optional)
+                      <textarea
+                        value={acceptRemarks}
+                        onChange={(e) => setAcceptRemarks(e.target.value)}
+                        maxLength={2000}
+                      />
+                    </label>
+                    <div className="action-bar">
+                      <ActionButton
+                        confirm="Accept this application after reviewing its requirements and availability? Capacity will be consumed only when a placement is saved."
+                        action={async () => {
+                          await mutate({
+                            type: "application.decide",
+                            id: application.id,
+                            decision: "Accepted",
+                            reason: acceptRemarks,
+                          });
+                          setNotice(
+                            "Application accepted; related views updated.",
+                          );
+                        }}
+                      >
+                        Accept Application
+                      </ActionButton>
+                    </div>
+                  </div>
+                  <div className="decision-reject">
+                    <h3>Reject</h3>
+                    <SaveForm
+                      revision={db.revision}
+                      submit="Confirm Rejection"
+                      save={async (data, revision) => {
+                        if (text(data, "confirm") !== "reject")
+                          throw new Error(
+                            "Select the rejection confirmation before saving.",
+                          );
+                        await mutate(
+                          {
+                            type: "application.decide",
+                            id: application.id,
+                            decision: "Rejected",
+                            reason: text(data, "reason"),
+                          },
+                          undefined,
+                          revision,
+                        );
+                        setNotice(
+                          "Application rejected; reason and history saved.",
+                        );
+                      }}
+                    >
+                      <Field
+                        label="Rejection reason"
+                        name="reason"
+                        type="textarea"
+                      />
+                      <div className="checkbox-field">
+                        <input
+                          id="reject-confirm"
+                          type="checkbox"
+                          name="confirm"
+                          value="reject"
+                          required
+                        />
+                        <label htmlFor="reject-confirm">
+                          I confirm rejection of this application.
+                        </label>
+                      </div>
+                    </SaveForm>
+                  </div>
+                </div>
+              </section>
+            )}
+            {application.status === "Accepted" && (
+              <div className="action-bar">
+                {placement ? (
+                  <Link
+                    className="simple-action"
+                    href={`/dashboard/placements/${placement.id}`}
+                  >
+                    Open existing placement
+                  </Link>
+                ) : (
+                  coordinator && (
+                    <Link
+                      className="primary-action"
+                      href={`/dashboard/placements/create?application=${application.id}`}
+                    >
+                      Create Placement
+                    </Link>
+                  )
+                )}
+              </div>
+            )}
+            <section>
+              <h2>Decision history</h2>
+              <Table
+                headers={["Status", "Date", "Actor / Role", "Reason"]}
+                rows={application.history.map((h) => [
+                  <Status key="s">{h.status}</Status>,
+                  new Date(h.at).toLocaleString(),
+                  `${accountName(db, h.actorId)} / ${db.accounts.find((a) => a.id === h.actorId)?.role ?? "Historical actor"}`,
+                  h.reason ?? "—",
+                ])}
+              />
+            </section>
+          </div>
+          <aside className="record-aside" aria-label="Application facts">
+            <section>
+              <h2>Application record</h2>
+              <Details
+                items={[
+                  ["Application ID", application.id],
+                  [
+                    "Status",
+                    <span data-testid="application-status" key={2771}>
+                      <Status>{application.status}</Status>
+                    </span>,
+                  ],
+                  [
+                    "Student",
+                    <Link href={`/dashboard/students/${student.id}`} key={2856}>
+                      {nameOf(student)} ({student.studentNumber})
+                    </Link>,
+                  ],
+                  [
+                    "Program / Year / Section",
+                    `${student.program} · ${student.yearLevel} / ${student.section}`,
+                  ],
+                  [
+                    "Opportunity",
+                    <Link
+                      href={`/dashboard/internships/${opportunity.id}`}
+                      key={3070}
+                    >
+                      {opportunity.title}
+                    </Link>,
+                  ],
+                  ["Description", opportunity.description],
+                  [
+                    "Company",
+                    <Link href={`/dashboard/partners/${company.id}`} key={3209}>
+                      {company.name}
+                    </Link>,
+                  ],
+                  ["Remaining slots", remainingSlots(db, opportunity.id)],
+                  [
+                    "Submitted",
+                    new Date(application.submittedAt).toLocaleString(),
+                  ],
+                ]}
+              />
+            </section>
+          </aside>
+        </div>
       </>
     );
   }
@@ -326,18 +396,18 @@ export function Applications({ id, action }: FeatureProps) {
           </Link>
         )}
       </PageHeader>
-      <div className="metric-links">
+      <div className="metric-links metric-links--strip metric-links--pair">
         {["Pending", "Accepted", "Rejected"].map((status) => (
-          <Link key={status} href={`/dashboard/applications?status=${status}`}>
-            <strong>
-              {
-                db.applications.filter(
-                  (a) => a.academicYear === year && a.status === status,
-                ).length
-              }
-            </strong>
-            {status}
-          </Link>
+          <MetricLink
+            key={status}
+            href={`/dashboard/applications?status=${status}`}
+            count={
+              db.applications.filter(
+                (a) => a.academicYear === year && a.status === status,
+              ).length
+            }
+            label={status}
+          />
         ))}
       </div>
       <Filters>
@@ -378,27 +448,31 @@ export function Applications({ id, action }: FeatureProps) {
         headers={[
           "Application",
           "Student",
-          "Student ID",
           "Opportunity",
-          "Company",
-          "Date",
+          "Submitted",
           "Status",
           "Actions",
         ]}
+        hrefs={rows.map((a) => `/dashboard/applications/${a.id}`)}
+        tones={rows.map((a) =>
+          a.status === "Pending" ? "warning" : undefined,
+        )}
         rows={rows.map((a) => {
           const s = get(db.students, a.studentId),
             o = get(db.opportunities, a.opportunityId);
           return [
-            a.id,
-            nameOf(s),
-            s.studentNumber,
-            o.title,
-            get(db.companies, o.companyId).name,
+            <Mono key="id">{a.id}</Mono>,
+            <Identity key="who" name={nameOf(s)} meta={s.studentNumber} />,
+            <Stack
+              key="opp"
+              primary={o.title}
+              secondary={get(db.companies, o.companyId).name}
+            />,
             a.submittedAt.slice(0, 10),
-            a.status,
-            <Link href={`/dashboard/applications/${a.id}`} key={7459}>
+            <Status key="st">{a.status}</Status>,
+            <RowLink href={`/dashboard/applications/${a.id}`} key={7459}>
               Open application
-            </Link>,
+            </RowLink>,
           ];
         })}
       />

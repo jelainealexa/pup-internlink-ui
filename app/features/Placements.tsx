@@ -8,6 +8,7 @@ import {
   Field,
   Filter,
   Filters,
+  MetricLink,
   PageHeader,
   RecordState,
   SaveForm,
@@ -524,18 +525,18 @@ export function Placements({ id, action }: FeatureProps) {
         title="Placements"
         description={`${rows.length} official demonstration assignments · ${year}`}
       />
-      <div className="metric-links">
+      <div className="metric-links metric-links--strip">
         {["Ongoing", "Completed", "Terminated"].map((status) => (
-          <Link key={status} href={`/dashboard/placements?status=${status}`}>
-            <strong>
-              {
-                db.placements.filter(
-                  (p) => p.academicYear === year && p.status === status,
-                ).length
-              }
-            </strong>
-            {status}
-          </Link>
+          <MetricLink
+            key={status}
+            href={`/dashboard/placements?status=${status}`}
+            count={
+              db.placements.filter(
+                (p) => p.academicYear === year && p.status === status,
+              ).length
+            }
+            label={status}
+          />
         ))}
       </div>
       <Filters>

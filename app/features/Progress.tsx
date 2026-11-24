@@ -7,10 +7,16 @@ import {
   Field,
   Filter,
   Filters,
+  HoursMeter,
+  Identity,
+  MetricLink,
   PageHeader,
   RecordState,
+  RowLink,
   SaveForm,
   Search,
+  Stack,
+  Status,
   Table,
   number,
   options,
@@ -425,31 +431,29 @@ export function Progress({ id, action }: FeatureProps) {
       <Link href="/dashboard/progress?view=reports">
         View submitted progress reports
       </Link>
-      <div className="metric-links">
-        <Link href="/dashboard/progress?view=reports&reportStatus=Pending&status=Ongoing">
-          <strong>
-            {
-              db.reports.filter(
-                (r) =>
-                  reviewState(r.status) === "Pending" &&
-                  yearPlacements.some(
-                    (p) => p.id === r.placementId && p.status === "Ongoing",
-                  ),
-              ).length
-            }
-          </strong>
-          Pending reviews
-        </Link>
-        <Link href="/dashboard/progress?status=Ongoing&near=true">
-          <strong>
-            {
-              yearPlacements.filter(
-                (p) => p.status === "Ongoing" && hours(db, p.id).percent >= 75,
-              ).length
-            }
-          </strong>
-          Near completion (75%+ approved)
-        </Link>
+      <div className="metric-links metric-links--strip metric-links--pair">
+        <MetricLink
+          href="/dashboard/progress?view=reports&reportStatus=Pending&status=Ongoing"
+          count={
+            db.reports.filter(
+              (r) =>
+                reviewState(r.status) === "Pending" &&
+                yearPlacements.some(
+                  (p) => p.id === r.placementId && p.status === "Ongoing",
+                ),
+            ).length
+          }
+          label="Pending reviews"
+        />
+        <MetricLink
+          href="/dashboard/progress?status=Ongoing&near=true"
+          count={
+            yearPlacements.filter(
+              (p) => p.status === "Ongoing" && hours(db, p.id).percent >= 75,
+            ).length
+          }
+          label="Near completion (75%+ approved)"
+        />
       </div>
       <Filters>
         <Search placeholder="Student name or number" />
@@ -501,35 +505,50 @@ export function Progress({ id, action }: FeatureProps) {
           "Reporting",
           "Actions",
         ]}
+        hrefs={ps.map((p) => `/dashboard/progress/${p.id}`)}
+        numeric={[2, 3, 4, 5]}
+        tones={ps.map((p) =>
+          p.status === "Ongoing" && reportingGap(db, p, today)
+            ? "warning"
+            : undefined,
+        )}
         rows={ps.map((p) => {
           const h = hours(db, p.id);
+          const gap = p.status === "Ongoing" && reportingGap(db, p, today);
           return [
-            nameOf(studentFor(db, p)),
-            <span key={7051}>
-              {companyFor(db, p).name}
-              <br />
-              {accountName(db, get(db.faculty, p.adviserId).accountId)}
-            </span>,
+            <Identity key="who" name={nameOf(studentFor(db, p))} />,
+            <Stack
+              key="co"
+              primary={companyFor(db, p).name}
+              secondary={accountName(
+                db,
+                get(db.faculty, p.adviserId).accountId,
+              )}
+            />,
             p.requiredHours,
             h.submitted,
             h.reviewed,
             h.remaining,
-            <span key={7200}>
-              <span>{h.percent}%</span>
-              <progress
-                aria-label={`${nameOf(studentFor(db, p))} completion`}
-                max={100}
-                value={Math.min(h.percent, 100)}
-              />
-            </span>,
-            p.status !== "Ongoing"
-              ? p.status
-              : reportingGap(db, p, today)
-                ? "Missing / delayed report"
-                : "Reporting current",
-            <Link href={`/dashboard/progress/${p.id}`} key={7457}>
+            <HoursMeter
+              key="pct"
+              approved={Math.min(h.reviewed, p.requiredHours)}
+              required={p.requiredHours}
+              label={`${nameOf(studentFor(db, p))} completion`}
+            />,
+            p.status !== "Ongoing" ? (
+              <Status key="rp">{p.status}</Status>
+            ) : gap ? (
+              <Status key="rp" tone="warning">
+                Missing / delayed report
+              </Status>
+            ) : (
+              <Status key="rp" tone="success">
+                Reporting current
+              </Status>
+            ),
+            <RowLink href={`/dashboard/progress/${p.id}`} key={7457}>
               Open progress
-            </Link>,
+            </RowLink>,
           ];
         })}
       />
