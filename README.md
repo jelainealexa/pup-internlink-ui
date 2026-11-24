@@ -1,4 +1,4 @@
-# PUP InternLink
+# INtrack
 
 Published release: [`frontend/final-release`](https://github.com/jelainealexa/pup-internlink-ui/tree/frontend/final-release). Public application: **https://pup-internlink-frontend.vercel.app/**. See [deployment status and update procedure](docs/DEPLOYMENT.md). This separate project is deployed explicitly through Vercel CLI; automatic Git deployments are not configured. The original applications and historical refinement evidence below remain unchanged.
 

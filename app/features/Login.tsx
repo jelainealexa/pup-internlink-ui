@@ -27,7 +27,7 @@ export function Login() {
   }, [account, db, query, router]);
   return (
     <main className="page login-page">
-      <h1>PUP InternLink</h1>
+      <h1>INtrack</h1>
       <p>Academic internship management</p>
       <section className="prototype-box">
         <h2>Demonstration sign in</h2>

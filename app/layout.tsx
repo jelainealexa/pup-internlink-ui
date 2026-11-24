@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import { AppProvider } from "./components/AppProvider";
 
 export const metadata = {
-  title: "PUP InternLink",
+  title: "INtrack",
   description: "Academic internship management — browser-local demonstration",
 };
 
@@ -23,7 +23,7 @@ export default function RootLayout({
         <Suspense
           fallback={
             <main className="page">
-              <p role="status">Loading PUP InternLink…</p>
+              <p role="status">Loading INtrack…</p>
             </main>
           }
         >

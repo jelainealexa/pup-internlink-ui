@@ -262,7 +262,7 @@ export function Workspace({ children }: { children: ReactNode }) {
           </span>
           <div className="brand-copy">
             <Link className="brand-title" href="/dashboard">
-              PUP InternLink
+              INtrack
             </Link>
             <p className="brand-subtitle">Internship coordination</p>
           </div>
@@ -334,7 +334,7 @@ export function Workspace({ children }: { children: ReactNode }) {
             <span className="brand-mark" aria-hidden="true">
               IL
             </span>
-            InternLink
+            INtrack
           </Link>
           <div className="topbar-context" aria-label="Current location">
             <span>{roleLabel(account.role)}</span>
